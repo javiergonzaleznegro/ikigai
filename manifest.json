@@ -1,0 +1,31 @@
+{
+  "name": "Sistema de Mejora Personal",
+  "short_name": "Sistema",
+  "description": "Arquitectura Interior y Proceso Diario",
+  "lang": "es",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#131C30",
+  "theme_color": "#131C30",
+  "icons": [
+    {
+      "src": "./icon-180-v1.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    },
+    {
+      "src": "./icon-512-v1.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "./icon-512-v1.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}
