@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="color-scheme" content="only dark">
+<meta name="color-scheme" content="dark">
 <meta name="theme-color" content="#131C30">
 <link rel="manifest" href="./manifest.json">
 <link rel="apple-touch-icon" href="./icon-180-v1.png">
@@ -11,8 +11,8 @@
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="Sistema">
-<title>Sistema de Mejora Personal — v1.0.94</title>
-<meta name="version" content="1.0.94">
+<title>Sistema de Mejora Personal — v1.1.0</title>
+<meta name="version" content="1.1.0">
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Karla:ital,wght@0,400;0,500;0,700;1,400&display=swap');
 
@@ -62,26 +62,19 @@ p,div,span,li{overflow-wrap:break-word}
 .cab .doble{width:250px;max-width:62%;margin:8px auto 0}
 .cab .doble line{stroke:var(--tiza);stroke-width:2.6;stroke-linecap:round}
 .mapa-niveles{margin:28px auto 0;max-width:1000px;width:100%;display:block}
-.mapa-mini{display:none;margin:24px auto 0;max-width:400px;width:100%}
-.mapa-mini .tit{font-weight:700;letter-spacing:.05em;font-size:19px;fill:var(--tinta)}
-.mapa-mini .titc{font-weight:700;letter-spacing:.05em;font-size:15px;fill:var(--papel)}
-.mapa-mini .nom{font-weight:700;letter-spacing:.02em;font-size:15px;fill:var(--tinta)}
-.mapa-mini .clave{font-size:11.5px;fill:var(--tinta-suave);letter-spacing:.06em}
-.mapa-mini .pata{font-size:10.5px;fill:var(--tiza-suave)}
-.mapa-mini .pie2{font-size:13px;fill:var(--tiza);font-style:italic}
-.mapa-mini .cav{font-family:var(--mano);font-size:17px;fill:var(--tiza)}
-@media(max-width:700px){.mapa-niveles{display:none}.mapa-mini{display:block}}
+
 .mapa-niveles text{font-family:var(--texto);fill:var(--tinta)}
 .mapa-niveles .cav{font-family:var(--mano);font-size:28px;fill:var(--tiza)}
-.mapa-niveles .caja,.mapa-mini .caja{fill:var(--papel);stroke:#22406F;stroke-width:2}
+.mapa-niveles .caja{fill:var(--papel);stroke:#22406F;stroke-width:2}
 .mapa-niveles .tit{font-weight:700;letter-spacing:.06em;font-size:29px}
 .mapa-niveles .sub{font-size:13.6px;fill:var(--grafito);letter-spacing:.03em}
-.mapa-niveles .cab,.mapa-mini .cab{fill:#22406F;stroke:none}
+.mapa-niveles .cab{fill:#22406F;stroke:none}
 .mapa-niveles .titc{font-weight:700;letter-spacing:.05em;font-size:23px;fill:var(--papel)}
 .mapa-niveles .celda{fill:var(--papel);stroke:none}
 .mapa-niveles .cinta{stroke:none}
-.mapa-niveles .panel,.mapa-mini .panel{fill:rgba(239,231,210,.045);stroke:rgba(239,231,210,.16);stroke-width:1.2}
+.mapa-niveles .panel{fill:rgba(239,231,210,.045);stroke:rgba(239,231,210,.16);stroke-width:1.2}
 .mapa-niveles .nom{font-weight:700;letter-spacing:.02em;font-size:22px;fill:var(--tinta)}
+.mapa-niveles .nom[font-size="12.5"]{font-size:12.5px}
 .mapa-niveles .pie2{font-size:19.5px;fill:var(--tiza);font-style:italic}
 .mapa-niveles .clave{font-size:15.5px;fill:var(--tinta-suave);letter-spacing:.08em}
 .mapa-niveles .pata{font-size:13.5px;fill:var(--tiza-suave);letter-spacing:0}
@@ -98,8 +91,21 @@ p,div,span,li{overflow-wrap:break-word}
 .ley{font-family:var(--mano);font-size:23px;color:var(--tiza-suave);margin:2px 0 20px 52px}
 .ley::before{content:"↳ ";opacity:.6}
 
-.dims{display:grid;gap:18px;grid-template-columns:1fr}
+.dims{display:grid;gap:18px;grid-template-columns:1fr;align-items:start}
 @media(min-width:760px){.dims{grid-template-columns:repeat(2,1fr)}}
+@media(min-width:760px){
+  .dims > details.dim[open]{
+    grid-column:1/-1;
+    width:min(100%,780px);
+    justify-self:center;
+  }
+  .dims > details.dim[open] + details.dim,
+  .dims > details.dim:has(+ details.dim[open]){
+    grid-column:1/-1;
+    width:min(100%,780px);
+    justify-self:center;
+  }
+}
 .plano{grid-column:1/-1;margin:18px 0 2px;color:var(--tiza);text-align:center}
 .plano:first-child{margin-top:2px}
 .plano h3{font-size:clamp(17px,2.9vw,20.5px);font-weight:700;letter-spacing:.02em;margin:0}
@@ -195,7 +201,7 @@ details[open]>summary .abre{transform:rotate(45deg)}
 
 /* ================= cuadrantes ================= */
 .cuadrante{
-  position:relative;margin-top:10px;
+  position:relative;margin:10px auto 0;max-width:660px;width:100%;
   display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;
   border:2.2px solid var(--tinta);background:var(--carta-2);
 }
@@ -290,9 +296,8 @@ details[open]>summary .abre{transform:rotate(45deg)}
   margin:0 8px 0 0;flex:none}
 .fila-p{display:flex;align-items:baseline;gap:2px;flex-wrap:wrap;margin:7px 0 7px 16px;font-size:13.6px;
   line-height:1.5;color:var(--grafito)}
-@media(max-width:560px){.fila-p--sub{margin-left:26px}}
 .fila-p i{color:var(--tinta-suave)}
-.fila-p--sub{margin-left:46px}
+.bloque-prep{border:1.4px dashed rgba(34,64,111,.45);border-radius:9px;padding:2px 10px 9px 2px;margin:11px 0 11px 8px}
 .pastillas{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0 6px 16px}
 .fase--term .concepto>summary{font-size:17px;padding:9px 2px}
 .fase--term .concepto>summary::before{width:8px;height:8px}
@@ -353,6 +358,30 @@ details[open]>summary .abre{transform:rotate(45deg)}
 .marca-pie{margin-top:14px;color:var(--tiza);opacity:.72;font-size:13.8px;letter-spacing:.04em;line-height:1.7}
 .marca-pie small{display:block;margin-top:6px;font-size:11.2px;opacity:.72}
 .sello{margin:26px 0 8px;text-align:center;font-family:var(--texto);font-size:11.5px;letter-spacing:.24em;color:var(--tiza);opacity:.55}
+
+
+/* =============== entrada operativa =============== */
+.modo{max-width:1040px;margin:30px auto 8px;padding:18px 16px 16px;border:1px solid rgba(239,231,210,.24);border-radius:18px;background:rgba(255,255,255,.035);box-shadow:0 14px 34px rgba(0,0,0,.22)}
+.modo-cab{text-align:center;color:var(--tiza);margin-bottom:13px}
+.modo-cab .kicker{font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--tiza-suave);opacity:.84}
+.modo-cab h2{font-family:var(--mano);font-size:clamp(30px,5.2vw,44px);line-height:1.05;margin-top:2px}
+.modo-cab p{font-size:13px;color:var(--tiza-suave);margin-top:4px}
+.modo-grid{display:grid;grid-template-columns:1fr;gap:10px}
+@media(min-width:760px){.modo-grid{grid-template-columns:repeat(3,1fr)}}
+.modo-card{background:var(--papel);border:1.5px solid var(--tinta);border-top:6px solid var(--proceso);border-radius:5px 14px 5px 14px;padding:11px 12px 12px;box-shadow:0 8px 20px rgba(0,0,0,.22)}
+.modo-card h3{font-size:16px;letter-spacing:.11em;text-transform:uppercase;color:var(--tinta);margin-bottom:5px}
+.modo-card .sub{font-family:var(--mano);font-size:19px;color:var(--tinta-suave);margin-bottom:6px}
+.modo-card ol{list-style:none;counter-reset:paso;margin:0;padding:0}
+.modo-card li{counter-increment:paso;display:flex;gap:8px;align-items:flex-start;color:var(--grafito);font-size:13.2px;line-height:1.35;padding:3px 0}
+.modo-card li::before{content:counter(paso);flex:none;width:18px;height:18px;border-radius:50%;border:1.3px solid var(--tinta);display:grid;place-items:center;font-size:10px;font-weight:700;color:var(--tinta);background:#FFF6D2;margin-top:0}
+.modo-card b{color:var(--tinta)}
+.modo-ley{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin-top:12px}
+.modo-ley a{color:var(--tiza);text-decoration:none;border:1px solid rgba(239,231,210,.34);border-radius:999px;padding:5px 11px;font-size:12.4px;letter-spacing:.03em;background:rgba(239,231,210,.05)}
+.modo-ley a:active{transform:translateY(1px)}
+.bridge{margin:10px 0 2px;padding:8px 11px;border-left:3px solid var(--proceso);background:var(--carta-2);font-size:13.4px;color:var(--grafito);line-height:1.45}
+.bridge b{color:var(--tinta)}
+.fase-secuencia{font-family:var(--mano);font-size:18px;color:var(--tinta-suave);margin:4px 0 9px 16px}
+
 </style>
 </head>
 <body>
@@ -421,15 +450,15 @@ details[open]>summary .abre{transform:rotate(45deg)}
       <line x1="4" y1="4" x2="246" y2="3"/><line x1="16" y1="9" x2="232" y2="9" opacity=".5"/>
     </svg>
 
-    <svg class="mapa-niveles" viewBox="0 0 700 748" role="img" aria-label="Mapa de niveles">
+    <svg class="mapa-niveles" viewBox="0 0 700 740" role="img" aria-label="Mapa de niveles: Arquitectura Interior y Proceso Diario">
       <defs>
         <filter id="som-n" x="-30%" y="-30%" width="160%" height="160%">
           <feDropShadow dx="0" dy="3" stdDeviation="3.6" flood-color="#060B14" flood-opacity=".38"/>
         </filter>
       </defs>
 
-      <rect class="panel" x="0" y="74" width="350" height="482" rx="14"/>
-      <rect class="panel" x="370" y="74" width="330" height="582" rx="14"/>
+      <rect class="panel" x="0" y="80" width="350" height="442" rx="14"/>
+      <rect class="panel" x="370" y="80" width="330" height="638" rx="14"/>
 
       <rect class="caja" x="220" y="4" width="260" height="56" rx="9" filter="url(#som-n)"/>
       <text class="tit" x="350" y="42" text-anchor="middle">EL SISTEMA</text>
@@ -437,170 +466,116 @@ details[open]>summary .abre{transform:rotate(45deg)}
       <path d="M350 60 L350 68 Q350 73 355 73 L530 73 Q535 73 535 78 L535 86" fill="none" stroke="var(--tiza-suave)" stroke-width="2"/>
 
       <rect class="cab" x="6" y="88" width="338" height="44" rx="7"/>
-      <svg x="16" y="103" width="30" height="15" viewBox="64 10 96 48"><use href="#i-galon"/></svg>
       <text class="titc" x="180" y="118" text-anchor="middle">ARQUITECTURA INTERIOR</text>
-      <rect x="6" y="138" width="164" height="70" rx="8" fill="var(--mirada)" filter="url(#som-n)"/>
-      <rect x="6" y="147" width="164" height="61" rx="8" fill="var(--papel)"/>
-      <text class="nom" x="88.0" y="176" text-anchor="middle">MIRADA</text>
-      <text class="clave" x="88.0" y="198" text-anchor="middle">ver</text>
-      <rect x="180" y="138" width="164" height="70" rx="8" fill="var(--proceso)" filter="url(#som-n)"/>
-      <rect x="180" y="147" width="164" height="61" rx="8" fill="var(--papel)"/>
-      <text class="nom" x="262.0" y="176" text-anchor="middle">ACTITUD</text>
-      <text class="clave" x="262.0" y="198" text-anchor="middle">poder</text>
-      <path class="rama" d="M19 221 L19 264"/>
-      <path class="rama" d="M19 228 L28 228"/>
-      <text class="pata pata--s" x="33" y="232"><tspan class="pn">presencia</tspan></text>
-      <path class="rama" d="M19 246 L28 246"/>
-      <text class="pata pata--s" x="33" y="250"><tspan class="pn">filtro</tspan></text>
-      <path class="rama" d="M19 264 L28 264"/>
-      <text class="pata pata--s" x="33" y="268"><tspan class="pn">preguntarse</tspan></text>
-      <path class="rama" d="M193 221 L193 282"/>
-      <path class="rama" d="M193 228 L202 228"/>
-      <text class="pata pata--s" x="207" y="232"><tspan class="pn">iniciativa</tspan></text>
-      <path class="rama" d="M193 246 L202 246"/>
-      <text class="pata pata--s" x="207" y="250"><tspan class="pn">resolución</tspan></text>
-      <path class="rama" d="M193 264 L202 264"/>
-      <text class="pata pata--s" x="207" y="268"><tspan class="pn">esmero</tspan></text>
-      <path class="rama" d="M193 282 L202 282"/>
-      <text class="pata pata--s" x="207" y="286"><tspan class="pn">determinación</tspan></text>
-      <text class="pie2" x="175" y="326" text-anchor="middle">cómo se afronta la vida</text>
+      <text class="pie2" x="175" y="157" text-anchor="middle">Cómo se afronta la vida</text>
+      <rect x="6" y="166" width="164" height="70" rx="8" fill="var(--mirada)" filter="url(#som-n)"/>
+      <rect x="6" y="175" width="164" height="61" rx="8" fill="var(--papel)"/>
+      <text class="nom" x="88.0" y="204" text-anchor="middle">MIRADA</text>
+      <text class="clave" x="88.0" y="226" text-anchor="middle">ver</text>
+      <rect x="180" y="166" width="164" height="70" rx="8" fill="var(--proceso)" filter="url(#som-n)"/>
+      <rect x="180" y="175" width="164" height="61" rx="8" fill="var(--papel)"/>
+      <text class="nom" x="262.0" y="204" text-anchor="middle">ACTITUD</text>
+      <text class="clave" x="262.0" y="226" text-anchor="middle">poder</text>
+      <path class="rama" d="M19 249 L19 292"/>
+      <path class="rama" d="M19 256 L28 256"/>
+      <path class="rama" d="M19 274 L28 274"/>
+      <path class="rama" d="M19 292 L28 292"/>
+      <text class="pata" x="33" y="260"><tspan class="pn">presencia</tspan></text>
+      <text class="pata" x="33" y="278"><tspan class="pn">filtro</tspan></text>
+      <text class="pata" x="33" y="296"><tspan class="pn">preguntarse</tspan></text>
+      <path class="rama" d="M193 249 L193 310"/>
+      <path class="rama" d="M193 256 L202 256"/>
+      <path class="rama" d="M193 274 L202 274"/>
+      <path class="rama" d="M193 292 L202 292"/>
+      <path class="rama" d="M193 310 L202 310"/>
+      <text class="pata" x="207" y="260"><tspan class="pn">iniciativa</tspan></text>
+      <text class="pata" x="207" y="278"><tspan class="pn">resolución</tspan></text>
+      <text class="pata" x="207" y="296"><tspan class="pn">esmero</tspan></text>
+      <text class="pata" x="207" y="314"><tspan class="pn">determinación</tspan></text>
+      <text class="pie2" x="175" y="346" text-anchor="middle">El entrenamiento y las prácticas</text>
       <rect x="6" y="356" width="164" height="70" rx="8" fill="var(--mental)" filter="url(#som-n)"/>
       <rect x="6" y="365" width="164" height="61" rx="8" fill="var(--papel)"/>
-      <text class="nom" x="88.0" y="394" text-anchor="middle" font-size="12.5">MENTALIZACIÓN</text>
+      <text class="nom" x="88.0" y="394" text-anchor="middle" font-size="12.5" textLength="142" lengthAdjust="spacingAndGlyphs">MENTALIZACIÓN</text>
       <text class="clave" x="88.0" y="416" text-anchor="middle">querer</text>
       <rect x="180" y="356" width="164" height="70" rx="8" fill="var(--operar)" filter="url(#som-n)"/>
       <rect x="180" y="365" width="164" height="61" rx="8" fill="var(--papel)"/>
-      <text class="nom" x="262.0" y="394" text-anchor="middle">OPERAR</text>
+      <text class="nom" x="262.0" y="394" text-anchor="middle">OPERACIÓN</text>
       <text class="clave" x="262.0" y="416" text-anchor="middle">saber y hacer</text>
       <path class="rama" d="M19 439 L19 500"/>
       <path class="rama" d="M19 446 L28 446"/>
-      <text class="pata pata--s" x="33" y="450"><tspan class="pn">focalizar</tspan></text>
       <path class="rama" d="M19 464 L28 464"/>
-      <text class="pata pata--s" x="33" y="468"><tspan class="pn">grabar</tspan></text>
       <path class="rama" d="M19 482 L28 482"/>
-      <text class="pata pata--s" x="33" y="486"><tspan class="pn">visualizar</tspan></text>
       <path class="rama" d="M19 500 L28 500"/>
-      <text class="pata pata--s" x="33" y="504"><tspan class="pn">ser</tspan></text>
+      <text class="pata" x="33" y="450"><tspan class="pn">focalizar</tspan></text>
+      <text class="pata" x="33" y="468"><tspan class="pn">grabar</tspan></text>
+      <text class="pata" x="33" y="486"><tspan class="pn">visualizar</tspan></text>
+      <text class="pata" x="33" y="504"><tspan class="pn">ser</tspan></text>
       <path class="rama" d="M193 439 L193 464"/>
       <path class="rama" d="M193 446 L202 446"/>
-      <text class="pata pata--s" x="207" y="450"><tspan class="pn">procesar</tspan></text>
       <path class="rama" d="M193 464 L202 464"/>
-      <text class="pata pata--s" x="207" y="468"><tspan class="pn">proceder</tspan></text>
-      <text class="pie2" x="175" y="538" text-anchor="middle">el entrenamiento y las prácticas</text>
+      <text class="pata" x="207" y="450"><tspan class="pn">procesar</tspan></text>
+      <text class="pata" x="207" y="468"><tspan class="pn">proceder</tspan></text>
 
       <rect class="cab" x="376" y="88" width="318" height="44" rx="7"/>
-      <svg x="386" y="103" width="30" height="15" viewBox="64 10 96 48"><use href="#i-galon"/></svg>
       <text class="titc" x="545" y="118" text-anchor="middle">PROCESO DIARIO</text>
       <rect x="376" y="138" width="318" height="70" rx="8" fill="var(--proceso)" filter="url(#som-n)"/>
       <rect x="376" y="147" width="318" height="61" rx="8" fill="var(--papel)"/>
       <text class="nom" x="535.0" y="176" text-anchor="middle">COMENZAR</text>
-      <text class="clave" x="535.0" y="198" text-anchor="middle">el impulso</text>
+      <text class="clave" x="535.0" y="198" text-anchor="middle">el impulso · ponerme en marcha</text>
       <path class="rama" d="M389 221 L389 300"/>
       <path class="rama" d="M389 228 L398 228"/>
-      <text class="pata" x="403" y="232"><tspan class="pn">preparación</tspan> · planeamiento · mentalización</text>
       <path class="rama" d="M389 246 L398 246"/>
-      <text class="pata" x="403" y="250"><tspan class="pn">primera tarea</tspan> · cama · ordenar</text>
       <path class="rama" d="M389 264 L398 264"/>
-      <text class="pata" x="403" y="268"><tspan class="pn">calibración</tspan> · presencia · activación</text>
-      <path class="rama" d="M389 282 L398 282"/>
-      <text class="pata" x="403" y="286"><tspan class="pn">rezar</tspan> · agradecer · preguntarse</text>
       <path class="rama" d="M389 300 L398 300"/>
-      <text class="pata" x="403" y="304"> · pedir · comprometerse</text>
-      <polygon points="535,330 528,322 542,322" fill="var(--tiza-suave)"/>
-      <rect x="376" y="340" width="318" height="70" rx="8" fill="var(--proceso)" filter="url(#som-n)"/>
-      <rect x="376" y="349" width="318" height="61" rx="8" fill="var(--papel)"/>
-      <text class="nom" x="535.0" y="378" text-anchor="middle">FUNCIONAR</text>
-      <text class="clave" x="535.0" y="400" text-anchor="middle">las herramientas</text>
-      <path class="rama" d="M389 423 L389 448"/>
-      <path class="rama" d="M389 430 L398 430"/>
-      <text class="pata" x="403" y="434"><tspan class="pn">áreas</tspan> · prácticas · técnicas</text>
-      <path class="rama" d="M389 448 L398 448"/>
-      <text class="pata" x="403" y="452"><tspan class="pn">listas mentales</tspan> · retos</text>
-      <polygon points="535,486 528,478 542,478" fill="var(--tiza-suave)"/>
-      <rect x="376" y="496" width="318" height="70" rx="8" fill="var(--proceso)" filter="url(#som-n)"/>
-      <rect x="376" y="505" width="318" height="61" rx="8" fill="var(--papel)"/>
-      <text class="nom" x="535.0" y="534" text-anchor="middle">TERMINAR</text>
-      <text class="clave" x="535.0" y="556" text-anchor="middle">cerrar · abrir</text>
-      <path class="rama" d="M389 579 L389 640"/>
-      <path class="rama" d="M389 586 L398 586"/>
-      <text class="pata" x="403" y="590"><tspan class="pn">repaso mental</tspan> · llaa · logros · memorizar</text>
-      <path class="rama" d="M389 604 L398 604"/>
-      <text class="pata" x="403" y="608"><tspan class="pn">planificación</tspan> · prácticas · plantemp</text>
-      <path class="rama" d="M389 622 L398 622"/>
-      <text class="pata" x="403" y="626"><tspan class="pn">meditación</tspan> · estiramientos · respiración</text>
-      <path class="rama" d="M389 640 L398 640"/>
-      <text class="pata" x="403" y="644"><tspan class="pn">rezar</tspan> · los cuatro pasos</text>
+      <text class="pata" x="403" y="232"><tspan class="pn">primera tarea</tspan> · cama</text>
+      <text class="pata" x="403" y="250"><tspan class="pn">calibración</tspan> · presencia + activación</text>
+      <text class="pata" x="403" y="268"><tspan class="pn">rezar</tspan> · agradecer + preguntarse</text>
+      <text class="pata" x="518" y="286" text-anchor="middle">pedir + comprometerse</text>
+      <text class="pata" x="403" y="304"><tspan class="pn">avance</tspan> · mentalización + planeamiento</text>
+      <polygon points="535,324 528,316 542,316" fill="var(--tiza-suave)"/>
+      <rect x="376" y="334" width="318" height="70" rx="8" fill="var(--proceso)" filter="url(#som-n)"/>
+      <rect x="376" y="343" width="318" height="61" rx="8" fill="var(--papel)"/>
+      <text class="nom" x="535.0" y="372" text-anchor="middle">FUNCIONAR</text>
+      <text class="clave" x="535.0" y="394" text-anchor="middle">avanzar durante el día</text>
+      <path class="rama" d="M389 417 L389 496"/>
+      <path class="rama" d="M389 424 L398 424"/>
+      <path class="rama" d="M389 442 L398 442"/>
+      <path class="rama" d="M389 460 L398 460"/>
+      <path class="rama" d="M389 478 L398 478"/>
+      <path class="rama" d="M389 496 L398 496"/>
+      <text class="pata" x="403" y="428"><tspan class="pn">áreas</tspan></text>
+      <text class="pata" x="403" y="446"><tspan class="pn">prácticas</tspan> → qué entreno hoy</text>
+      <text class="pata" x="403" y="464"><tspan class="pn">técnicas</tspan></text>
+      <text class="pata" x="403" y="482"><tspan class="pn">listas mentales</tspan></text>
+      <text class="pata" x="403" y="500"><tspan class="pn">retos</tspan></text>
+      <polygon points="535,520 528,512 542,512" fill="var(--tiza-suave)"/>
+      <rect x="376" y="530" width="318" height="70" rx="8" fill="var(--proceso)" filter="url(#som-n)"/>
+      <rect x="376" y="539" width="318" height="61" rx="8" fill="var(--papel)"/>
+      <text class="nom" x="535.0" y="568" text-anchor="middle">TERMINAR</text>
+      <text class="clave" x="535.0" y="590" text-anchor="middle">cerrar · dejar listo</text>
+      <path class="rama" d="M389 613 L389 692"/>
+      <path class="rama" d="M389 620 L398 620"/>
+      <path class="rama" d="M389 656 L398 656"/>
+      <path class="rama" d="M389 674 L398 674"/>
+      <path class="rama" d="M389 692 L398 692"/>
+      <text class="pata" x="403" y="624"><tspan class="pn">repaso mental</tspan> · LLAA + mejoras · logros</text>
+      <text class="pata" x="510" y="642" text-anchor="middle">recuerdos</text>
+      <text class="pata" x="403" y="660"><tspan class="pn">preparación</tspan> · dejar listo</text>
+      <text class="pata" x="403" y="678"><tspan class="pn">calibración</tspan> · presencia</text>
+      <text class="pata" x="403" y="696"><tspan class="pn">rezar</tspan> · agradecer + preguntarse</text>
+      <text class="pata" x="495" y="714" text-anchor="middle">pedir + comprometerse</text>
 
-      <path d="M348 192 L360 192" stroke="var(--tiza-suave)" stroke-width="2.6" fill="none"/>
-      <polygon points="370,192 358,185 358,199" fill="var(--tiza-suave)"/>
+      <path d="M348 110 L360 110" stroke="var(--tiza-suave)" stroke-width="2.6" fill="none"/>
+      <polygon points="370,110 358,103 358,117" fill="var(--tiza-suave)"/>
 
-      <text class="cav" x="350" y="700" text-anchor="middle">la Arquitectura define los elementos</text>
-      <text class="cav" x="350" y="734" text-anchor="middle">el Proceso los aplica a lo largo del día</text>
     </svg>
-  <svg class="mapa-mini" viewBox="0 0 380 780" role="img" aria-label="Mapa de niveles">
-    <rect class="panel" x="0" y="62" width="380" height="322" rx="12"/>
-    <rect class="panel" x="0" y="398" width="380" height="316" rx="12"/>
-    <rect class="caja" x="95" y="2" width="190" height="42" rx="7"/>
-    <text class="tit" x="190" y="30" text-anchor="middle">EL SISTEMA</text>
-    <path d="M190 44 L190 58" stroke="var(--tiza-suave)" stroke-width="1.8" fill="none"/>
-    <rect class="cab" x="6" y="72" width="368" height="32" rx="6"/>
-    <text class="titc" x="190" y="93" text-anchor="middle">ARQUITECTURA INTERIOR</text>
-    <rect x="6" y="112" width="179" height="52" rx="6" fill="var(--mirada)"/>
-    <rect x="6" y="118" width="179" height="46" rx="6" fill="var(--papel)"/>
-    <text class="nom" x="95.5" y="142" text-anchor="middle">MIRADA</text>
-    <text class="clave" x="95.5" y="158" text-anchor="middle">ver</text>
-    <rect x="195" y="112" width="179" height="52" rx="6" fill="var(--proceso)"/>
-    <rect x="195" y="118" width="179" height="46" rx="6" fill="var(--papel)"/>
-    <text class="nom" x="284.5" y="142" text-anchor="middle">ACTITUD</text>
-    <text class="clave" x="284.5" y="158" text-anchor="middle">poder</text>
-    <text class="pata" x="95.5" y="180" text-anchor="middle">presencia · filtro</text>
-    <text class="pata" x="95.5" y="193" text-anchor="middle">preguntarse</text>
-    <text class="pie2" x="190" y="216" text-anchor="middle">cómo se afronta la vida</text>
-    <text class="pata" x="284.5" y="180" text-anchor="middle">iniciativa · resolución</text>
-    <text class="pata" x="284.5" y="193" text-anchor="middle">esmero · determinación</text>
-    <rect x="6" y="234" width="179" height="52" rx="6" fill="var(--mental)"/>
-    <rect x="6" y="240" width="179" height="46" rx="6" fill="var(--papel)"/>
-    <text class="nom" x="95.5" y="264" text-anchor="middle" font-size="11.5">MENTALIZACIÓN</text>
-    <text class="clave" x="95.5" y="280" text-anchor="middle">querer</text>
-    <rect x="195" y="234" width="179" height="52" rx="6" fill="var(--operar)"/>
-    <rect x="195" y="240" width="179" height="46" rx="6" fill="var(--papel)"/>
-    <text class="nom" x="284.5" y="264" text-anchor="middle">OPERAR</text>
-    <text class="clave" x="284.5" y="280" text-anchor="middle">saber y hacer</text>
-    <text class="pata" x="95.5" y="302" text-anchor="middle">focalizar · grabar</text>
-    <text class="pata" x="95.5" y="315" text-anchor="middle">visualizar · ser</text>
-    <text class="pata" x="284.5" y="302" text-anchor="middle">procesar · proceder</text>
-    <text class="pie2" x="190" y="352" text-anchor="middle">el entrenamiento y las prácticas</text>
-    <rect class="cab" x="6" y="408" width="368" height="32" rx="6"/>
-    <text class="titc" x="190" y="429" text-anchor="middle">PROCESO DIARIO</text>
-    <rect x="6" y="448" width="368" height="50" rx="6" fill="var(--proceso)"/>
-    <rect x="6" y="454" width="368" height="44" rx="6" fill="var(--papel)"/>
-    <text class="nom" x="190.0" y="476" text-anchor="middle">COMENZAR</text>
-    <text class="clave" x="190.0" y="492" text-anchor="middle">el impulso</text>
-    <text class="pata" x="190" y="514" text-anchor="middle">preparación · planeamiento · mentalización</text>
-    <text class="pata" x="190" y="527" text-anchor="middle">primera tarea · cama · ordenar</text>
-    <text class="pata" x="190" y="540" text-anchor="middle">calibración · presencia · activación</text>
-    <text class="pata" x="190" y="553" text-anchor="middle">rezar · agradecer · preguntarse · pedir · comprometerse</text>
-    <rect x="6" y="574" width="368" height="50" rx="6" fill="var(--proceso)"/>
-    <rect x="6" y="580" width="368" height="44" rx="6" fill="var(--papel)"/>
-    <text class="nom" x="190.0" y="602" text-anchor="middle">FUNCIONAR</text>
-    <text class="clave" x="190.0" y="618" text-anchor="middle">las herramientas</text>
-    <text class="pata" x="190" y="640" text-anchor="middle">áreas · prácticas · técnicas · listas mentales · retos</text>
-    <rect x="6" y="656" width="368" height="50" rx="6" fill="var(--proceso)"/>
-    <rect x="6" y="662" width="368" height="44" rx="6" fill="var(--papel)"/>
-    <text class="nom" x="190.0" y="684" text-anchor="middle">TERMINAR</text>
-    <text class="clave" x="190.0" y="700" text-anchor="middle">cerrar · abrir</text>
-    <text class="pata" x="190" y="722" text-anchor="middle">repaso mental · planificación</text>
-    <text class="pata" x="190" y="735" text-anchor="middle">meditación · rezar</text>
-    <text class="cav" x="190" y="762" text-anchor="middle">la Arquitectura define los elementos</text>
-    <text class="cav" x="190" y="780" text-anchor="middle">el Proceso los aplica a lo largo del día</text>
-  </svg>
 
   </header>
 
   <!-- ============ CAPA I ============ -->
-  <section class="capa">
+  <section class="capa" id="arquitectura">
     <div class="capa-cab"><svg class="galon"><use href="#i-galon"/></svg><h2>Arquitectura Interior</h2><span class="regla"></span></div>
-    <p class="ley">define los elementos</p>
+    <p class="ley">qué entreno · desde qué lugar afronto la vida</p>
 
     <div class="dims">
 
@@ -666,11 +641,11 @@ details[open]>summary .abre{transform:rotate(45deg)}
           <h4 class="c-mirada">Filtro</h4>
           <p class="glosa">cómo mirar</p>
           <details class="concepto"><summary>Perspectiva<span class="mas">+</span></summary>
-            <div class="def">Mirar lo que existe y encontrarle lo positivo: <b>admirar lo que veo, no lo que deseo ver</b>. Lo que hay que evitar: las <b>expectativas</b> — idealizar cómo deberían ser las cosas, divagar libre y caprichoso; la realidad después solo devuelve frustración.</div></details>
+            <div class="def"><b>Ver lo que hay antes de compararlo con lo que esperaba.</b> Admirar lo que veo, no lo que deseo ver. La expectativa rígida termina convirtiendo la realidad en frustración.</div></details>
           <details class="concepto"><summary>Agradecer<span class="mas">+</span></summary>
             <div class="def">Valorar lo que se tiene: <b>el gimnasio de la mirada</b>.</div></details>
           <details class="concepto"><summary>Abundancia<span class="mas">+</span></summary>
-            <div class="def">Mirar lo que hay y <b>buscar oportunidades</b>; la escasez mira lo que falta.</div></details>
+            <div class="def">Mirar primero <b>lo que hay y lo que permite</b>; la escasez mira primero lo que falta.</div></details>
           <details class="concepto"><summary>Enfoque — ante la tarea<span class="mas">+</span></summary>
             <div class="def">Con qué ojos mirar <b>lo que toca hacer</b>. Cuatro lentes — y cada una vence al miedo por su lado:</div>
             <div class="cuadrante">
@@ -680,23 +655,6 @@ details[open]>summary .abre{transform:rotate(45deg)}
               <div class="q p--d"><div class="qcab"><svg class="qico"><use href="#i-agua"/></svg><span class="titq">Aportación</span></div><p class="cont">vence al miedo con <b>propósito</b></p></div>
               <span class="centro">ENFOQUE</span>
             </div></details>
-        </div>
-
-        <div class="grupo">
-          <h4 class="c-mirada">Preguntarse</h4>
-          <p class="glosa">el sentido de la vida</p>
-          <details class="concepto"><summary>El cuadrante de PREGUNTAS<span class="mas">+</span></summary>
-            <div class="def">El nivel hondo: <b>dónde poner la mirada en la vida</b> — preguntas generales, de vida y de largo plazo. <b>No devuelven una tarea: devuelven una manera de mirar.</b></div>
-            <div class="cuadrante preg">
-              <div class="q p--b"><p class="cont">¿Qué <b>quiero</b>, qué me <b>gusta</b> y qué no?<br>¿Qué le <b>pido</b> a la vida y qué <b>espero</b> de ella?<br>¿Qué <b>sentido</b> le doy?<br>¿Cuáles son mis <b>propósitos</b> y <b>proyectos</b>?</p></div>
-              <div class="q p--a"><p class="cont">¿Cuáles son mis <b>valores</b> y <b>principios</b>?<br>¿Cómo quiero <b>ser</b> y qué <b>cualidades</b> quiero tener?<br>¿Qué cosas quiero que me <b>definan</b>?</p></div>
-              <div class="q p--c"><p class="cont">¿Qué es <b>importante</b>?<br>¿Qué merece la pena, mi <b>esfuerzo</b> y mi <b>tiempo</b>?<br>¿Por qué y por <b>quién</b> quiero luchar?</p></div>
-              <div class="q p--d"><p class="cont">¿Qué puedo hacer para ser más <b>feliz</b>?<br>¿Qué puedo hacer para sentirme <b>bien</b>, <b>pleno</b>, <b>en paz</b>?</p></div>
-              <span class="centro">PREGUNTAS</span>
-            </div></details>
-        </div>
-
-        <div class="grupo">
           <details class="concepto"><summary><span class="c-mirada" style="font-size:15px;padding:1px 6px">Personas</span><span class="mas">+</span></summary>
           <div class="def">cómo mirar a los demás:</div>
           <div class="cuadrante">
@@ -721,6 +679,17 @@ details[open]>summary .abre{transform:rotate(45deg)}
         </div>
 
         <div class="grupo">
+          <h4 class="c-mirada">Preguntarse</h4>
+          <p class="glosa">el sentido de la vida</p>
+          <details class="concepto"><summary>El cuadrante de PREGUNTAS<span class="mas">+</span></summary>
+            <div class="def">El nivel hondo: <b>dónde poner la mirada en la vida</b> — preguntas generales, de vida y de largo plazo. <b>No devuelven una tarea: devuelven una manera de mirar.</b></div>
+            <div class="cuadrante preg">
+              <div class="q p--b"><p class="cont">¿Qué <b>quiero</b>, qué me <b>gusta</b> y qué no?<br>¿Qué le <b>pido</b> a la vida y qué <b>espero</b> de ella?<br>¿Qué <b>sentido</b> le doy?<br>¿Cuáles son mis <b>propósitos</b> y <b>proyectos</b>?</p></div>
+              <div class="q p--a"><p class="cont">¿Cuáles son mis <b>valores</b> y <b>principios</b>?<br>¿Cómo quiero <b>ser</b> y qué <b>cualidades</b> quiero tener?<br>¿Qué cosas quiero que me <b>definan</b>?</p></div>
+              <div class="q p--c"><p class="cont">¿Qué es <b>importante</b>?<br>¿Qué merece la pena, mi <b>esfuerzo</b> y mi <b>tiempo</b>?<br>¿Por qué y por <b>quién</b> quiero luchar?</p></div>
+              <div class="q p--d"><p class="cont">¿Qué puedo hacer para ser más <b>feliz</b>?<br>¿Qué puedo hacer para sentirme <b>bien</b>, <b>pleno</b>, <b>en paz</b>?</p></div>
+              <span class="centro">PREGUNTAS</span>
+            </div></details>
           <details class="concepto"><summary><span class="c-mirada" style="font-size:15px;padding:1px 6px">Plenitud</span><span class="mas">+</span></summary>
           <div class="def">el cuadrante de los cuatro elementos:</div>
           <div class="cuadrante">
@@ -752,6 +721,8 @@ details[open]>summary .abre{transform:rotate(45deg)}
           </div></details>
         </div>
 
+
+
         </div>
       </details>
 
@@ -770,7 +741,8 @@ details[open]>summary .abre{transform:rotate(45deg)}
 
         <p class="margen-nota">hermana de la Mirada: una contempla el camino, la otra lo pisa</p>
 
-        <svg class="flujo" viewBox="0 0 640 158" role="img" aria-label="Proceso de manifestación">
+        <details class="concepto"><summary>Cómo se forma la actitud<span class="mas">+</span></summary>
+          <svg class="flujo" viewBox="0 0 640 158" role="img" aria-label="Proceso de manifestación">
           <circle cx="26" cy="34" r="6.5" fill="var(--mirada)" stroke="var(--tinta)" stroke-width="2"/>
           <circle cx="26" cy="70" r="6.5" fill="var(--operar)" stroke="var(--tinta)" stroke-width="2"/>
           <circle cx="26" cy="106" r="6.5" fill="var(--mental)" stroke="var(--tinta)" stroke-width="2"/>
@@ -793,12 +765,12 @@ details[open]>summary .abre{transform:rotate(45deg)}
           <text class="eti" x="572" y="75">soy</text>
           <text class="cav" x="316" y="148" text-anchor="middle">y eso configura quién me cuento que soy</text>
         </svg>
-
-        <div class="cita">
+          <div class="cita">
           «Lo que <b>percibo</b>, lo que <b>pienso</b> y lo que <b>siento</b> configura mi actitud <i>(nivel de poder y compromiso)</i>. Me dispone a acciones que me llevan a unos resultados. Eso configura quien me cuento que soy.»
           <span class="fuente">cuaderno · IPP — Asignatura 1: Liderazgo personal</span>
         </div>
-        <p class="margen-nota">ya estaba escrito: la Arquitectura entera, en tres líneas tuyas</p>
+          <p class="margen-nota">percibo · pienso · siento → me dispongo → actúo</p>
+        </details>
 
         <div class="grupo">
           <h4 class="c-actitud">Las cuatro actitudes</h4>
@@ -813,7 +785,9 @@ details[open]>summary .abre{transform:rotate(45deg)}
           <p class="margen-nota"><span class="pend">⟦elementos propuestos por mí: fuego empuja · aire aligera · agua cuida · tierra sostiene⟧</span></p>
         </div>
 
-        <div class="act-cols">
+        <details class="concepto" style="margin-top:10px"><summary>Cómo encaja en el sistema<span class="mas">+</span></summary>
+          <div class="bridge"><b>Mirada</b> decide cómo veo · <b>Actitud</b> cómo doy el paso · <b>Mentalización</b> prepara el querer · <b>Operación</b> pone el saber y el hacer. La actitud sostenida termina alimentando la identidad.</div>
+          <div class="act-cols">
           <div class="grupo" style="margin-top:0">
             <h4 class="c-actitud">La simetría con Mirada</h4>
             <p class="glosa">el ojo y el brazo, ante la misma tarea</p>
@@ -833,14 +807,15 @@ details[open]>summary .abre{transform:rotate(45deg)}
             <h4 class="c-actitud">Cómo se enlaza</h4>
             <p class="glosa">de dónde viene y a dónde da</p>
             <div class="subdef">
-              <div class="fila"><b>↑ se construye abajo</b> — Operar y Mentalización la fabrican; Mirada la tiñe</div>
+              <div class="fila"><b>↑ se construye abajo</b> — Operación y Mentalización la fabrican; Mirada la tiñe</div>
               <div class="fila"><b>→ Proceso Diario</b> — con la actitud puesta se entra a Comenzar · Funcionar · Terminar</div>
-              <div class="fila"><b>→ Operar · Proceder</b> — su cuadrante conserva la casilla «Actitud» como puntero</div>
+              <div class="fila"><b>→ Operación · Proceder</b> — su cuadrante conserva la casilla «Actitud» como puntero</div>
               <div class="fila"><b>↩ Ser</b> — la actitud sostenida acaba siendo identidad: el círculo se cierra</div>
             </div>
             <p class="margen-nota">a vigilar: <b>traje</b> = quién soy hoy · <b>actitud</b> = cómo doy este paso</p>
           </div>
         </div>
+        </details>
 
         </div>
       </details>
@@ -849,113 +824,6 @@ details[open]>summary .abre{transform:rotate(45deg)}
         <h3>El entrenamiento y las prácticas</h3>
         <span class="sub">que construyen esa mirada y esa actitud</span>
       </div>
-
-      <!-- ===================== OPERAR ===================== -->
-      <details class="dim dim--operar">
-        <summary>
-          <div class="dim-cab">
-            <svg class="ico ico--rosa"><use href="#i-estrella-s"/></svg>
-            <h3>Operar</h3>
-            <span class="verbo v-operar">saber y hacer</span>
-            <span class="abre">+</span>
-          </div>
-          <p class="eyebrow">Cognitiva y ejecutiva · ¿qué sé y cómo lo hago?</p>
-        </summary>
-        <div class="dim-body">
-
-        <div class="grupo">
-          <h4 class="c-operar">Procesar</h4><span class="vmini">saber</span>
-          <p class="glosa">trabaja sobre la <i>información</i> — la maquinaria; se entrena, no se reprograma</p>
-          <details class="concepto"><summary>Procesar / Entender<span class="mas">+</span></summary>
-            <div class="def">Extraer y ordenar información externa: conversaciones y explicaciones, hilos narrativos y situaciones.</div></details>
-          <details class="concepto"><summary>Lectura<span class="mas">+</span></summary>
-            <div class="def">Lectura rápida.</div></details>
-          <details class="concepto"><summary>Resolución secuencial<span class="mas">+</span></summary>
-            <div class="def">Ordenar información interna para resolver o reconstruir, paso a paso.</div></details>
-          <details class="concepto"><summary>Evocar<span class="mas">+</span></summary>
-            <div class="def">Activar información interna a partir de estímulos externos. <b>Automático, involuntario y no premeditado.</b> Hilar, recuerdos aleatorios.</div></details>
-          <details class="concepto"><summary>Recordar<span class="mas">+</span></summary>
-            <div class="def">Buscar información interna concreta <b>de manera premeditada</b>: recuerdos concretos · datos memorizados.</div></details>
-          <details class="concepto"><summary>Memorizar<span class="mas">+</span></summary>
-            <div class="def">Integrar información externa por <b>asociación y repetición</b>: memoria fotográfica, palacios mentales. Si emplea asociación, integrar el vínculo para que se establezca.</div></details>
-          <details class="concepto"><summary>Conversión<span class="mas">+</span></summary>
-            <div class="def"><b>Relación directa, pura o lógica</b> entre formatos: números ↔ palabras (traducir) · palabras ↔ imágenes (visualizar).</div></details>
-          <details class="concepto"><summary>Asociación<span class="mas">+</span></summary>
-            <div class="def">Crear un vínculo entre un dato y una asociación (concepto/imagen): <b>un vínculo que evoque</b> una cosa a la otra. Emplea imaginación.</div></details>
-          <details class="concepto"><summary>Imaginar<span class="mas">+</span></summary>
-            <div class="def">Crear información nueva, a partir de información interna o externa.</div></details>
-        </div>
-
-        <div class="grupo">
-          <h4 class="c-operar">Proceder</h4><span class="vmini">hacer</span>
-          <p class="glosa">conducción / acción — trabaja sobre <i>la acción</i>: la maquinaria aplicada</p>
-          <div class="cuadrante">
-            <div class="q p--b"><span class="titq">Preparación</span><p class="cont">decisión consciente + planificar<br>resolver dudas + convencimiento</p></div>
-            <div class="q p--a"><span class="titq">Orientación</span><p class="cont">① analizar ⇒ preguntas<br>② resolver ⇒ estrategia</p></div>
-            <div class="q p--c"><span class="titq">Actitud</span><p class="cont">iniciativa + resolución<br>esmero + determinación<br><i>→ la pone el hermano de arriba</i></p></div>
-            <div class="q p--d"><span class="titq">Ejecución</span><p class="cont">focalización + visualización<br>ejecución + aprendizaje</p></div>
-            <span class="centro">PROCEDER</span>
-          </div>
-          <details class="concepto" style="margin-top:8px"><summary>Preparación<span class="mas">+</span></summary>
-            <div class="def"><b>Qué · cómo · cuándo:</b> tomar la decisión consciente + planificar. <b>Por qué:</b> resolver dudas + convencimiento <i>(aclarar ideas)</i>.</div>
-            <div class="subdef">
-              <div class="fila"><b>Concienciación / interiorización</b> — establecer autoafirmaciones + visualización · PNL + mentalización</div>
-              <div class="fila"><b>Sentido / valor</b> — propósito + aportación <i>(argumentar)</i> → convencimiento</div>
-            </div></details>
-          <details class="concepto"><summary>Orientación<span class="mas">+</span></summary>
-            <div class="def">Dos movimientos: analizar y resolver.</div>
-            <div class="esq">
-              <div class="paso-e"><span class="n">1</span><span><b>Analizar ⇒ Preguntas</b> — <i>reunir las piezas del puzle; lluvia de ideas.</i> Detectar: recursos (oportunidades) y obstáculos (limitaciones) · problemas y soluciones · fortalezas y debilidades · información que falta o necesito (dónde buscarla, quién la tiene) · qué no estoy viendo o doy por hecho · qué me van a pedir o voy a necesitar · decisiones y acciones que tomar · opciones que tengo, cuáles funcionan mejor, consecuencias · a quién debo informar o solicitar</span></div>
-              <div class="paso-e"><span class="n">2</span><span><b>Resolver ⇒ Estrategia</b> — <i>decidir cómo encajan las piezas; estructurar y organizar ideas.</i> Elegir opciones · establecer prioridades: urgente / importante · secuenciar: definir pasos · simplificar: hacer funcional y eficiente, descargar</span></div>
-            </div></details>
-          <details class="concepto"><summary>Actitud <span class="pend">⟦vive arriba⟧</span><span class="mas">+</span></summary>
-            <div class="def">Las cuatro actitudes con las que se conduce la acción <b>no viven aquí</b>: no son «qué sé hacer», son disposición. Su cuadrante está en <b>ACTITUD</b>, el hermano de Mirada. La casilla se conserva porque poner la actitud sigue siendo una fase del acto.</div></details>
-          <details class="concepto"><summary>Ejecución<span class="mas">+</span></summary>
-            <div class="def">Los pasos con los que se ejecuta:</div>
-            <div class="esq">
-              <div class="paso-e"><span class="n">1</span><span><b>Focalización</b> — focalizar blanco + resultado</span></div>
-              <div class="paso-e"><span class="n">2</span><span><b>Visualización</b> — visualizar ejecución + resultado</span></div>
-              <div class="paso-e"><span class="n">3</span><span><b>Ejecución</b> — consciente + <i>observar y corregir</i></span></div>
-              <div class="paso-e"><span class="n">4</span><span><b>Aprendizaje</b></span></div>
-            </div></details>
-          <details class="concepto"><summary>Planificación<span class="mas">+</span></summary>
-            <div class="def"><b>Listar las tareas del día.</b></div>
-            <div class="esq">
-              <div class="paso-e"><span class="n">1</span><span><b>Estrategia</b> — cómo afrontarlas: la estrategia a seguir</span></div>
-              <div class="paso-e"><span class="n">2</span><span><b>Planificar</b> — en qué orden hacerlas, cuándo, y cuánto tiempo dedicarle</span></div>
-            </div>
-            <div class="def" style="padding-top:10px;padding-bottom:2px">Lo que decide ese orden — <b>prioridad, urgencia e importancia</b>:</div>
-            <svg class="ramas" viewBox="0 0 620 122" role="img" aria-label="La prioridad sale de cruzar urgencia e importancia">
-              <rect x="4" y="8" width="150" height="46" rx="4" fill="var(--carta-2)" stroke="var(--tinta)" stroke-width="1.8"/>
-              <text class="ram" x="79" y="37" text-anchor="middle">urgencia</text>
-              <text class="ram" x="170" y="38" text-anchor="middle">+</text>
-              <rect x="186" y="8" width="170" height="46" rx="4" fill="var(--carta-2)" stroke="var(--tinta)" stroke-width="1.8"/>
-              <text class="ram" x="271" y="37" text-anchor="middle">importancia</text>
-              <path d="M362 31 L386 31" stroke="var(--tinta)" stroke-width="1.8" fill="none"/>
-              <polygon points="394,31 382,25 382,37" fill="var(--tinta)"/>
-              <rect x="400" y="8" width="156" height="46" rx="4" fill="#FFF6D2" stroke="var(--tinta)" stroke-width="2"/>
-              <text class="ram" x="478" y="37" text-anchor="middle">prioridad</text>
-              <path d="M478 56 L478 74" stroke="var(--tinta)" stroke-width="1.8" fill="none"/>
-              <polygon points="478,82 472,66 484,66" fill="var(--tinta)"/>
-              <text class="ram2" x="478" y="106" text-anchor="middle">orden · cuándo · cuánto tiempo</text>
-            </svg>
-            <div class="def" style="padding-top:8px">La ventana <b>Planificar</b> — con qué espíritu, por elementos:</div>
-            <div class="cuadrante">
-              <div class="q p--a"><div class="qcab"><svg class="qico"><use href="#i-fuego"/></svg><span class="titq">Decisión</span></div><p class="cont">compromiso<br>determinación + voluntad</p></div>
-              <div class="q p--b"><div class="qcab"><svg class="qico"><use href="#i-aire"/></svg><span class="titq">Eficiencia</span></div><p class="cont">simplificar<br>claridad + flexibilidad</p></div>
-              <div class="q p--c"><div class="qcab"><svg class="qico"><use href="#i-tierra"/></svg><span class="titq">Revisar</span></div><p class="cont">evaluar + priorizar<br>importancia + tiempo</p></div>
-              <div class="q p--d"><div class="qcab"><svg class="qico"><use href="#i-agua"/></svg><span class="titq">Sentido</span></div><p class="cont">objetivo<br>propósito + aportación</p></div>
-              <span class="centro">PLANIFICAR</span>
-            </div>
-            <p class="margen-nota">«antes de actuar, planifica con sentido, método, ligereza y compromiso; sé realista» · automatizar las tareas que se repiten</p></details>
-          <details class="concepto"><summary>Estrategia<span class="mas">+</span></summary>
-            <div class="def"><b>Cómo afrontar las tareas</b>: la estrategia a seguir, tarea por tarea.</div>
-            <p class="margen-nota">prioridad, urgencia e importancia <b>no viven aquí</b>: son de Planificación — deciden el orden, no el modo</p></details>
-        <p class="margen-nota">⚠ dimensión en obras: vendrá más material del IKIGAI</p>
-        </div>
-
-        </div>
-      </details>
 
       <!-- ===================== MENTALIZACIÓN ===================== -->
       <details class="dim dim--mental">
@@ -988,29 +856,29 @@ details[open]>summary .abre{transform:rotate(45deg)}
           <p class="glosa">qué objetivos me marco</p>
           <p class="margen-nota">las preguntas del <b>sentido de la vida</b> ya no viven aquí: están en Mirada · Preguntarse</p>
           <details class="concepto"><summary>Objetivos<span class="mas">+</span></summary>
-            <div class="def">El nivel funcional: <b>¿qué objetivos tengo hoy?</b> Objetivos ≠ tareas — «hoy: pasar el día con la familia y estar lo mejor posible con ellos» es un objetivo, no una tarea. Marcarlos, listarlos, repetírselos.</div></details>
+            <div class="def"><b>¿Qué quiero conseguir o vivir hoy?</b> Objetivo ≠ tarea. Escribirlo en una frase y volver a ella durante el día.</div></details>
           <details class="concepto"><summary>Sentido<span class="mas">+</span></summary>
-            <div class="def">Para qué hago cada cosa.</div></details>
+            <div class="def"><b>¿Para qué merece la pena esto hoy?</b></div></details>
         </div>
 
         <div class="grupo">
           <h4 class="c-mental">Grabar</h4>
           <p class="glosa">qué instalo</p>
           <details class="concepto"><summary>Afirmaciones<span class="mas">+</span></summary>
-            <div class="def">Repetirse la idea, en voz alta o mentalmente.</div></details>
+            <div class="def">Formular una <b>frase breve, concreta y en presente</b>; repetirla en voz alta o mentalmente.</div></details>
           <details class="concepto"><summary>Convencimiento<span class="mas">+</span></summary>
-            <div class="def">Escribir 5-10 min al día los motivos. <b>Cuanto más se escribe, más fuerte.</b></div></details>
+            <div class="def">Escribir 5-10 min al día los motivos: <b>reforzar el convencimiento</b>.</div></details>
           <details class="concepto"><summary>Creencias<span class="mas">+</span></summary>
-            <div class="def">La idea integrada en lo profundo: <b>el cierre</b>.</div></details>
+            <div class="def">La idea ya no necesita empuje: <b>empiezo a actuar desde ella</b>.</div></details>
         </div>
 
         <div class="grupo">
           <h4 class="c-mental">Visualizar</h4>
           <p class="glosa">cómo saldrá</p>
-          <details class="concepto"><summary>Ensayar tarea u objetivo<span class="mas">+</span></summary>
-            <div class="def">Verse haciéndolo: el trabajo, el partido, el día completo.</div></details>
-          <details class="concepto"><summary>Ensayar miedo <span class="pend">⟦o fricción⟧</span><span class="mas">+</span></summary>
-            <div class="def">Verse enfrentando lo que se evita: la conversación pendiente, la silla.</div></details>
+          <details class="concepto"><summary>Ensayar ejecución<span class="mas">+</span></summary>
+            <div class="def">Verme haciéndolo: <b>inicio · momento difícil · cierre</b>.</div></details>
+          <details class="concepto"><summary>Ensayar fricción<span class="mas">+</span></summary>
+            <div class="def">Ver el momento que normalmente evito y <b>verme atravesándolo</b>: la conversación pendiente, la silla.</div></details>
         </div>
 
         <div class="grupo">
@@ -1019,7 +887,7 @@ details[open]>summary .abre{transform:rotate(45deg)}
           <details class="concepto"><summary>Modelaje<span class="mas">+</span></summary>
             <div class="def"><b>Identidad prestada</b>: la personalidad de alguien admirado — mente, cuerpo y emociones.</div></details>
           <details class="concepto"><summary>Identidad<span class="mas">+</span></summary>
-            <div class="def"><b>Identidad propia</b>: de «voy a intentar» a «yo soy».</div></details>
+            <div class="def">Dejar de preguntarme solo qué haré y actuar desde <b>quién decido ser</b>: de «voy a intentar» a «yo soy».</div></details>
           <p class="margen-nota">el modelaje ensaya; la identidad ya es</p>
           <details class="concepto"><summary>Vestuario — los nueve trajes<span class="mas">+</span></summary>
             <div class="def">Las áreas de DESARROLLO que pasan la prueba del <b>«hoy soy…»</b>. Cada una se viste: nombre, modelaje y, debajo, las conductas que la hacen real.</div>
@@ -1034,8 +902,114 @@ details[open]>summary .abre{transform:rotate(45deg)}
               <div class="fila"><b>Disfrutar</b> — persona que disfruta</div>
               <div class="fila"><b>Humor</b> — Zamar</div>
             </div>
-            <p class="margen-nota">las otras nueve áreas no son trajes: siete son facultades que se entrenan (Percibir · Presente · Cuerpo · Mente · Emociones → Presencia; Ágil mental → Operaciones; Expresar → habilidad), Productividad es método y Zona conf, programa ⟦traje o programa: por decidir⟧</p>
+            <p class="margen-nota">las otras nueve áreas no son trajes: siete son facultades que se entrenan (Percibir · Presente · Cuerpo · Mente · Emociones → Presencia; Ágil mental → Operaciones; Expresar → habilidad), Productividad es método y Zona conf, programa</p>
           </details>
+        </div>
+
+
+        </div>
+      </details>
+
+      <!-- ===================== OPERAR ===================== -->
+      <details class="dim dim--operar">
+        <summary>
+          <div class="dim-cab">
+            <svg class="ico ico--rosa"><use href="#i-estrella-s"/></svg>
+            <h3>Operación</h3>
+            <span class="verbo v-operar">saber y hacer</span>
+            <span class="abre">+</span>
+          </div>
+          <p class="eyebrow">Cognitiva y ejecutiva · ¿qué sé y cómo lo hago?</p>
+        </summary>
+        <div class="dim-body">
+
+        <div class="grupo">
+          <h4 class="c-operar">Procesar</h4><span class="vmini">saber</span>
+          <p class="glosa">trabaja sobre la <i>información</i> — la maquinaria; se entrena, no se reprograma</p>
+          <details class="concepto"><summary>Procesar / Entender<span class="mas">+</span></summary>
+            <div class="def">Extraer y ordenar información externa: conversaciones y explicaciones, hilos narrativos y situaciones.</div></details>
+          <details class="concepto"><summary>Lectura<span class="mas">+</span></summary>
+            <div class="def">Lectura rápida.</div></details>
+          <details class="concepto"><summary>Resolución secuencial<span class="mas">+</span></summary>
+            <div class="def">Ordenar información interna para resolver o reconstruir, paso a paso.</div></details>
+          <details class="concepto"><summary>Evocar<span class="mas">+</span></summary>
+            <div class="def">Activar información interna a partir de estímulos externos. <b>Automático, involuntario y no premeditado.</b> Hilar, recuerdos aleatorios.</div></details>
+          <details class="concepto"><summary>Recordar<span class="mas">+</span></summary>
+            <div class="def">Buscar información interna concreta <b>de manera premeditada</b>: recuerdos concretos · datos memorizados.</div></details>
+          <details class="concepto"><summary>Memorizar<span class="mas">+</span></summary>
+            <div class="def">Integrar información externa por <b>asociación y repetición</b>: memoria fotográfica, palacios mentales. Si emplea asociación, integrar el vínculo para que se establezca.</div></details>
+          <details class="concepto"><summary>Conversión<span class="mas">+</span></summary>
+            <div class="def"><b>Relación directa, pura o lógica</b> entre formatos: números ↔ palabras (traducir) · palabras ↔ imágenes (visualizar).</div></details>
+          <details class="concepto"><summary>Asociación<span class="mas">+</span></summary>
+            <div class="def">Crear un vínculo entre un dato y una asociación (concepto/imagen): <b>un vínculo que evoque</b> una cosa a la otra. Emplea imaginación.</div></details>
+          <details class="concepto"><summary>Imaginar<span class="mas">+</span></summary>
+            <div class="def">Crear información nueva, a partir de información interna o externa.</div></details>
+        </div>
+
+        <div class="grupo">
+          <h4 class="c-operar">Proceder</h4><span class="vmini">hacer</span>
+          <p class="glosa">decidir · orientarse · ponerse la actitud · ejecutar</p>
+          <div class="cuadrante">
+            <div class="q p--b"><span class="titq">Preparación</span><p class="cont">decisión consciente<br>resolver dudas + convencimiento</p></div>
+            <div class="q p--a"><span class="titq">Orientación</span><p class="cont">① analizar ⇒ preguntas<br>② resolver ⇒ estrategia</p></div>
+            <div class="q p--c"><span class="titq">Actitud</span><p class="cont">iniciativa + resolución<br>esmero + determinación<br><i>→ la pone el hermano de arriba</i></p></div>
+            <div class="q p--d"><span class="titq">Ejecución</span><p class="cont">focalización + visualización<br>ejecución + aprendizaje</p></div>
+            <span class="centro">PROCEDER</span>
+          </div>
+          <p class="fase-secuencia">decido → entiendo → me dispongo → actúo</p>
+          <p class="margen-nota">la actitud no se fabrica aquí: se trae puesta desde ACTITUD</p>
+          <details class="concepto" style="margin-top:8px"><summary>Preparación — decidir<span class="mas">+</span></summary>
+            <div class="def">Tomar la <b>decisión consciente</b>. Aclarar el <b>qué y el porqué</b>: resolver dudas + convencimiento.</div>
+            <div class="subdef">
+              <div class="fila"><b>Interiorización</b> — afirmaciones + visualización → ponerme en situación</div>
+              <div class="fila"><b>Sentido / valor</b> — propósito + aportación <i>(argumentar)</i> → convencimiento</div>
+            </div></details>
+          <details class="concepto"><summary>Orientación — entender y resolver<span class="mas">+</span></summary>
+            <div class="def">Dos movimientos: analizar y resolver.</div>
+            <div class="esq">
+              <div class="paso-e"><span class="n">1</span><span><b>Analizar ⇒ Preguntas</b> — reunir las piezas: <b>qué hay · qué falta · qué no veo · recursos / obstáculos · fortalezas / debilidades · opciones / consecuencias · decisiones / acciones · a quién informar o pedir</b>.</span></div>
+              <div class="paso-e"><span class="n">2</span><span><b>Resolver ⇒ Estrategia</b> — elegir una opción y convertirla en camino: <b>definir pasos · simplificar · prever obstáculos y apoyos</b>.</span></div>
+            </div></details>
+          <details class="concepto"><summary>Ejecución — actuar y corregir<span class="mas">+</span></summary>
+            <div class="def">Los pasos con los que se ejecuta:</div>
+            <div class="esq">
+              <div class="paso-e"><span class="n">1</span><span><b>Focalización</b> — focalizar blanco + resultado</span></div>
+              <div class="paso-e"><span class="n">2</span><span><b>Visualización</b> — visualizar ejecución + resultado</span></div>
+              <div class="paso-e"><span class="n">3</span><span><b>Ejecución</b> — consciente + <i>observar y corregir</i></span></div>
+              <div class="paso-e"><span class="n">4</span><span><b>Aprendizaje</b></span></div>
+            </div>
+            <details class="concepto" style="margin-left:12px"><summary>Autocontrol<span class="mas">+</span></summary>
+              <div class="def">Detectar el impulso · parar · elegir respuesta · sostenerla.</div></details>
+            </details>
+          <details class="concepto"><summary>Planificación — orden y tiempo<span class="mas">+</span></summary>
+            <div class="def"><b>Poner las tareas en el tiempo.</b> La Planificación decide <b>orden · cuándo · cuánto</b>; la Estrategia decide <b>cómo</b>.</div>
+            <div class="def" style="padding-top:10px;padding-bottom:2px">Lo que decide ese orden — <b>prioridad, urgencia e importancia</b>:</div>
+            <svg class="ramas" viewBox="0 0 620 122" role="img" aria-label="La prioridad sale de cruzar urgencia e importancia">
+              <rect x="4" y="8" width="150" height="46" rx="4" fill="var(--carta-2)" stroke="var(--tinta)" stroke-width="1.8"/>
+              <text class="ram" x="79" y="37" text-anchor="middle">urgencia</text>
+              <text class="ram" x="170" y="38" text-anchor="middle">+</text>
+              <rect x="186" y="8" width="170" height="46" rx="4" fill="var(--carta-2)" stroke="var(--tinta)" stroke-width="1.8"/>
+              <text class="ram" x="271" y="37" text-anchor="middle">importancia</text>
+              <path d="M362 31 L386 31" stroke="var(--tinta)" stroke-width="1.8" fill="none"/>
+              <polygon points="394,31 382,25 382,37" fill="var(--tinta)"/>
+              <rect x="400" y="8" width="156" height="46" rx="4" fill="#FFF6D2" stroke="var(--tinta)" stroke-width="2"/>
+              <text class="ram" x="478" y="37" text-anchor="middle">prioridad</text>
+              <path d="M478 56 L478 74" stroke="var(--tinta)" stroke-width="1.8" fill="none"/>
+              <polygon points="478,82 472,66 484,66" fill="var(--tinta)"/>
+              <text class="ram2" x="478" y="106" text-anchor="middle">orden · cuándo · cuánto tiempo</text>
+            </svg>
+            <div class="def" style="padding-top:8px">La ventana <b>Planificar</b> — con qué espíritu, por elementos:</div>
+            <div class="cuadrante">
+              <div class="q p--a"><div class="qcab"><svg class="qico"><use href="#i-fuego"/></svg><span class="titq">Decisión</span></div><p class="cont">compromiso<br>determinación + voluntad</p></div>
+              <div class="q p--b"><div class="qcab"><svg class="qico"><use href="#i-aire"/></svg><span class="titq">Eficiencia</span></div><p class="cont">simplificar<br>claridad + flexibilidad</p></div>
+              <div class="q p--c"><div class="qcab"><svg class="qico"><use href="#i-tierra"/></svg><span class="titq">Revisar</span></div><p class="cont">evaluar + priorizar<br>importancia + tiempo</p></div>
+              <div class="q p--d"><div class="qcab"><svg class="qico"><use href="#i-agua"/></svg><span class="titq">Sentido</span></div><p class="cont">objetivo<br>propósito + aportación</p></div>
+              <span class="centro">PLANIFICAR</span>
+            </div>
+            <p class="margen-nota">«antes de actuar, planifica con sentido, método, ligereza y compromiso; sé realista» · automatizar las tareas que se repiten</p></details>
+          <details class="concepto"><summary>Estrategia — modo de afrontarlo<span class="mas">+</span></summary>
+            <div class="def"><b>Cómo voy a afrontar esto.</b> Elegir el modo, la secuencia y los apoyos; no el orden del día.</div>
+            <p class="margen-nota">prioridad, urgencia e importancia <b>no viven aquí</b>: son de Planificación — deciden el orden, no el modo</p></details>
         </div>
 
         </div>
@@ -1045,9 +1019,9 @@ details[open]>summary .abre{transform:rotate(45deg)}
   </section>
 
   <!-- ============ CAPA II ============ -->
-  <section class="capa">
+  <section class="capa" id="proceso">
     <div class="capa-cab"><svg class="galon"><use href="#i-galon"/></svg><h2>Proceso Diario</h2><span class="regla"></span></div>
-    <p class="ley">cómo se aplican a lo largo del día</p>
+    <p class="ley">qué hago hoy con lo que entreno</p>
 
     <div class="ciclo">
 
@@ -1058,20 +1032,21 @@ details[open]>summary .abre{transform:rotate(45deg)}
           <div class="fase-tit"><svg class="fico"><use href="#i-sol"/></svg><h3>Comenzar</h3></div>
           <p class="rol">el impulso a avanzar</p>
           <svg class="simbolo" viewBox="0 34 300 282" role="img" aria-label="Símbolo de Comenzar">
-            <text class="et" x="150" y="64" text-anchor="middle">Preparación</text>
+            <text class="et" x="150" y="64" text-anchor="middle">Preparación / avance</text>
             <path d="M150.0 78.0 L97.0 129.0 L150.0 94.3 Z" fill="var(--tinta)"/>
             <path d="M150.0 78.0 L203.0 129.0 L150.0 94.3 Z" fill="var(--tinta)"/>
             <path d="M97.5 129.8 L150.5 95.0 L150.0 107.0 Z" fill="var(--tinta)" fill-opacity=".55"/>
             <path d="M202.5 129.8 L149.5 95.0 L150.0 107.0 Z" fill="var(--tinta)" fill-opacity=".55"/>
-            <text class="et2" x="100" y="113" text-anchor="middle" transform="rotate(-43.9 100 113)">planeamiento</text>
-            <text class="et2" x="200" y="113" text-anchor="middle" transform="rotate(43.9 200 113)">mentalización</text>
+            <text class="et2" x="100" y="107" text-anchor="middle" transform="rotate(-43.9 100 107)">planeamiento</text>
+            <text class="et2" x="200" y="107" text-anchor="middle" transform="rotate(43.9 200 107)">mentalización</text>
             <path d="M101.13 237.01 A63.8 63.8 0 0 1 182.86 141.31 L185.71 150.30 A58 58 0 0 0 101.36 227.59 L101.13 237.01 Z" fill="var(--tinta)"/>
             <path d="M110.01 229.55 A52.2 52.2 0 0 1 176.88 151.26 L185.71 150.30 A58 58 0 0 0 101.36 227.59 L110.01 229.55 Z" fill="var(--tinta)" fill-opacity=".55"/>
             <path d="M198.87 154.99 A63.8 63.8 0 0 1 117.14 250.69 L114.29 241.70 A58 58 0 0 0 198.64 164.41 L198.87 154.99 Z" fill="var(--tinta)" fill-opacity=".55"/>
             <path d="M189.99 162.45 A52.2 52.2 0 0 1 123.12 240.74 L114.29 241.70 A58 58 0 0 0 198.64 164.41 L189.99 162.45 Z" fill="var(--tinta)"/>
             <use href="#rosa" x="88.5" y="134.5" width="123" height="123"/>
             <text class="et2" x="124.5" y="225.5" text-anchor="middle" transform="rotate(-45 124.5 225.5)">rezar</text>
-            <text class="et2" x="216" y="200" text-anchor="start">calibración</text>
+            <text class="et2" x="216" y="192" text-anchor="start">calibración</text>
+            <text class="et2" x="216" y="208" text-anchor="start" style="font-size:11.2px">presencia + activación</text>
             <path d="M94 274 L206 274 L198.5 281.5 L101.5 281.5 Z" fill="var(--tinta)" fill-opacity=".55"/>
             <path d="M101.5 281.5 L198.5 281.5 L206 289 L94 289 Z" fill="var(--tinta)"/>
             <path d="M94 274 L101.5 281.5 L94 289 Z" fill="var(--tinta)" fill-opacity=".78"/>
@@ -1083,7 +1058,7 @@ details[open]>summary .abre{transform:rotate(45deg)}
         <ul>
           <li><details class="concepto"><summary>Primera tarea<span class="mas">+</span></summary>
             <div class="def">Algo cumplido antes de pensar:</div>
-            <div class="pastillas"><span class="pastilla">cama</span><span class="pastilla">ordenar</span></div>
+            <div class="pastillas"><span class="pastilla">cama / ordenar</span></div>
             <div class="def" style="padding-bottom:2px">El objetivo no es la cama: es <b>arrancar el día con algo ya cumplido</b>. Una tarea terminada empuja a la siguiente, y esa a la siguiente.</div>
             <svg class="ramas" viewBox="0 0 620 72" role="img" aria-label="Una tarea cumplida arrastra a la siguiente">
               <rect x="2" y="8" width="124" height="46" rx="4" fill="#FFF6D2" stroke="var(--tinta)" stroke-width="1.8"/>
@@ -1106,12 +1081,13 @@ details[open]>summary .abre{transform:rotate(45deg)}
               <span class="fuente">William H. McRaven &middot; UT Austin, 2014</span>
             </div></details></li>
           <li><details class="concepto"><summary>Calibración<span class="mas">+</span></summary>
+            <div class="def">Poner el motor en <b>las revoluciones que el momento pide</b>: primero claridad; después, si hace falta, activación.</div>
             <div class="pastillas"><span class="pastilla">presencia</span><span class="rot" style="margin:0"><i>calma y claridad</i></span></div>
             <ul class="lista">
-              <li>estiramientos</li>
-              <li>respiración <i>(28)</i></li>
-              <li>meditación</li>
-              <li class="li-det"><details class="concepto"><summary><b>conexión</b><span class="mas">+</span></summary>
+              <li>Estiramientos</li>
+              <li>Respiración <i>(28)</i></li>
+              <li>Meditación</li>
+              <li class="li-det"><details class="concepto"><summary><b>Conexión</b><span class="mas">+</span></summary>
                 <div class="def">Observar y conectar con lo que hay, por sus cuatro puertas:</div>
               <div class="cuadrante">
                 <div class="q p--b">
@@ -1141,8 +1117,8 @@ details[open]>summary .abre{transform:rotate(45deg)}
             </ul>
             <div class="pastillas"><span class="pastilla">activación</span><span class="rot" style="margin:0"><i>revoluciones</i></span></div>
             <ul class="lista">
-              <li>hilar</li>
-              <li>recuerdos aleatorios <i>(evocar)</i></li>
+              <li>Hilar <i>(evocar: encadenar ideas)</i></li>
+              <li>Recuerdos aleatorios <i>(evocar)</i></li>
             </ul></details></li>
           <li><details class="concepto"><summary>Rezar<span class="mas">+</span></summary>
             <div class="def">El centro. La rutina que recorre la Arquitectura sin vivir en ella.</div>
@@ -1161,26 +1137,31 @@ details[open]>summary .abre{transform:rotate(45deg)}
               <span class="salto"></span>
               <span class="paso">3 Pedir</span><span class="paso">4 Comprometerse</span>
             </div></details></li>
-          <li><details class="concepto"><summary>Preparación<span class="mas">+</span></summary>
-            <p class="rot">Planeamiento <i>— racional · las tareas</i></p>
-            <div class="fila-p"><span class="pastilla">planificación</span><span><i>qué y cuándo.</i> Listar las tareas del día y ponerlas en el tiempo: prioridad · urgencia · importancia → en qué orden, cuándo, y cuánto tiempo dedicarle</span></div>
-            <div class="fila-p"><span class="pastilla">estrategia</span><span><i>cómo.</i> La forma de afrontarlas, tarea por tarea</span></div>
+          <li><details class="concepto"><summary>Preparación / avance<span class="mas">+</span></summary>
+            <div class="def">El impulso: <b>avanzar con objetivos y tareas claros</b>.</div>
+            <div class="bloque-prep">
             <p class="rot">Mentalización <i>— emocional · los objetivos</i></p>
             <div class="fila-p"><span class="pastilla">focalización</span><span>¿qué objetivos tengo hoy? <i>(objetivos ≠ tareas)</i></span></div>
             <div class="fila-p"><span class="pastilla">grabar</span><span>las frases que necesito hoy, para mi momento y mi estado</span></div>
-            <div class="fila-p fila-p--sub"><span class="pastilla">identidad</span><span>qué identidad adoptar o reforzar hoy</span></div>
+            <div class="fila-p"><span class="pastilla">identidad</span><span>qué identidad adoptar o reforzar hoy</span></div>
             <div class="fila-p"><span class="pastilla">visualización</span><span>verme afrontando el día y sus objetivos</span></div>
+            </div>
+            <div class="bloque-prep">
+            <p class="rot">Planeamiento <i>— racional · las tareas</i></p>
+            <div class="fila-p"><span class="pastilla">planificación</span><span><i>qué y cuándo.</i> Listar las tareas del día y ponerlas en el tiempo: prioridad · urgencia · importancia → en qué orden, cuándo, y cuánto tiempo dedicarle</span></div>
+            <div class="fila-p"><span class="pastilla">estrategia</span><span><i>cómo.</i> La forma de afrontarlas, tarea por tarea</span></div>
+            </div>
             </details></li>
         </ul>
         <div class="tira">
-          <span class="titt">el cuadrante ejecuta ↴</span>
+          <span class="titt">secuencia de arranque ↴</span>
           <div class="tramos">
-            <span class="tramo">0630<b>1ª tarea</b></span>
-            <span class="tramo">0640<b>resp + estir</b></span>
-            <span class="tramo">0650<b>ducha · Rezar</b></span>
-            <span class="tramo">0700<b>salir · Ment</b></span>
-            <span class="tramo">0710<b>coche · Activ</b></span>
-            <span class="tramo">0730<b>Planeamiento</b></span>
+            <span class="tramo">1<b>1ª tarea</b></span>
+            <span class="tramo">2<b>presencia</b></span>
+            <span class="tramo">3<b>Rezar</b></span>
+            <span class="tramo">4<b>Mentalización</b></span>
+            <span class="tramo">5<b>activación</b></span>
+            <span class="tramo">6<b>Planeamiento</b></span>
           </div>
         </div>
         </div>
@@ -1225,7 +1206,7 @@ details[open]>summary .abre{transform:rotate(45deg)}
               <span class="centro">ÁREAS 2</span>
             </div></details></li>
           <li><details class="concepto"><summary>Prácticas<span class="mas">+</span></summary>
-            <div class="def">Las miniherramientas que eliges cada día:</div>
+            <div class="def">Lo que <b>entreno deliberadamente hoy</b>: elegir poco y repetirlo durante el día.</div>
             <ul class="lista">
               <li><b>Prox5Min</b> — presencia + foco → decisión consciente</li>
               <li><b>Etiquetar pensamientos</b> — nombrar el pensamiento al pasar; toma elementos de la atención plena</li>
@@ -1271,18 +1252,18 @@ details[open]>summary .abre{transform:rotate(45deg)}
                 </ul></div>
               <div><p class="cat">Resolución secuencial</p>
                 <ul class="lista">
-                  <li><b>Paso a paso</b></li>
+                  <li><b>Práctica directa</b></li>
                 </ul></div>
               <div><p class="cat">Asociación</p>
                 <ul class="lista">
-                  <li><b>Asociar sobre la marcha</b></li>
+                  <li><b>Práctica directa</b></li>
                 </ul></div>
               <div><p class="cat">Imaginar</p>
                 <ul class="lista">
-                  <li><b>Imaginar sobre la marcha</b></li>
+                  <li><b>Práctica directa</b></li>
                 </ul></div>
             </div>
-            <p class="margen-nota">en las tres últimas el ejercicio es la propia operación <span class="pend">⟦sus nombres los puse yo: pendientes de validar⟧</span></p></details></li>
+            </details></li>
           <li><details class="concepto"><summary>Técnicas<span class="mas">+</span></summary>
             <div class="def">El <b>manual de instrucciones</b> de cada actividad: trucos concretos que se aplican en el momento de hacerla. No se entrenan aparte — se recuerdan al ejecutar.</div>
             <details class="concepto" style="margin-left:12px"><summary>Basket<span class="mas">+</span></summary>
@@ -1300,28 +1281,28 @@ details[open]>summary .abre{transform:rotate(45deg)}
               </div>
               <p class="rot">Tocar + mirar</p>
               <ul class="lista">
-                <li>control con la <b>yema de los dedos</b></li>
-                <li>mirar la canasta <b>mucho antes</b> de tirar</li>
+                <li>Control con la <b>yema de los dedos</b></li>
+                <li>Mirar la canasta <b>mucho antes</b> de tirar</li>
               </ul>
               <p class="rot">Normalizar</p>
               <ul class="lista">
-                <li>hacer siempre igual</li>
-                <li>tomar referencias</li>
-                <li>pulir y mejorar</li>
+                <li>Hacer siempre igual</li>
+                <li>Tomar referencias</li>
+                <li>Pulir y mejorar</li>
               </ul>
               <p class="margen-nota">el mismo principio que en trimados y entradas a puerto</p></details>
             <details class="concepto" style="margin-left:12px"><summary>Pádel<span class="mas">+</span></summary>
               <ul class="lista">
-                <li>al saque, ir a por la bola <b>en cuanto golpee la pared</b></li>
-                <li><b>hablar siempre</b>, aunque sea para decir «dónde» — coordina y da seguridad</li>
-                <li>igual relevando el bote y doblando</li>
-                <li>respetar el turno del compañero</li>
+                <li>Al saque, ir a por la bola <b>en cuanto golpee la pared</b></li>
+                <li><b>Hablar siempre</b>, aunque sea para decir «dónde» — coordina y da seguridad</li>
+                <li>Igual relevando el bote y doblando</li>
+                <li>Respetar el turno del compañero</li>
               </ul>
             </details>
             <details class="concepto" style="margin-left:12px"><summary>Inglés<span class="mas">+</span></summary>
               <ul class="lista">
-                <li>conversación con ChatGPT</li>
-                <li>autospeakings buscando <b>expresiones y formas nuevas</b> de decir las cosas</li>
+                <li>Conversación con ChatGPT</li>
+                <li>Autospeakings buscando <b>expresiones y formas nuevas</b> de decir las cosas</li>
               </ul>
             </details>
             <details class="concepto" style="margin-left:12px"><summary>Lectura por pasos<span class="mas">+</span></summary>
@@ -1334,10 +1315,10 @@ details[open]>summary .abre{transform:rotate(45deg)}
               <p class="margen-nota">mejor a primera hora</p></details>
             <details class="concepto" style="margin-left:12px"><summary>Vista<span class="mas">+</span></summary>
               <ul class="lista">
-                <li>movimientos en <b>cruz, círculos e infinito</b></li>
-                <li>guiñar, cerrar y frotar</li>
-                <li>enfocar-desenfocar: dedo tras dedo · salchicha · dedos en V</li>
-                <li>leer lejos-cerca</li>
+                <li>Movimientos en <b>cruz, círculos e infinito</b></li>
+                <li>Guiñar, cerrar y frotar</li>
+                <li>Enfocar-desenfocar: dedo tras dedo · salchicha · dedos en V</li>
+                <li>Leer lejos-cerca</li>
               </ul>
             </details>
             <details class="concepto" style="margin-left:12px"><summary>Deporte<span class="mas">+</span></summary>
@@ -1345,53 +1326,51 @@ details[open]>summary .abre{transform:rotate(45deg)}
             <details class="concepto" style="margin-left:12px"><summary>Observar<span class="mas">+</span></summary>
               <p class="rot">GPS del coche</p>
               <ul class="lista">
-                <li>captura <b>fotográfica</b> con la vista</li>
-                <li>analizar lo visto <b>sin mirar</b></li>
+                <li>Captura <b>fotográfica</b> con la vista</li>
+                <li>Analizar lo visto <b>sin mirar</b></li>
               </ul>
             </details>
             <details class="concepto" style="margin-left:12px"><summary>Atención<span class="mas">+</span></summary>
               <ul class="lista">
-                <li>bici estática: sostener un <b>rango de velocidad</b> — si se sale, empezar de cero</li>
-                <li>contar <b>1-100</b> visualizando los números, también en otros idiomas</li>
+                <li>Bici estática: sostener un <b>rango de velocidad</b> — si se sale, empezar de cero</li>
+                <li>Contar <b>1-100</b> visualizando los números, también en otros idiomas</li>
               </ul>
             </details>
             <details class="concepto" style="margin-left:12px"><summary>Expresar<span class="mas">+</span></summary>
               <div class="def">Practicar <b>exponer y defender ideas</b> — por ejemplo, analizando un método de enseñanza.</div></details>
             <details class="concepto" style="margin-left:12px"><summary>Eficiencia<span class="mas">+</span></summary>
               <ul class="lista">
-                <li>listar tareas, acciones y conocimientos <b>indispensables</b></li>
-                <li>sentarlos <b>antes</b> de añadir nada a mayores</li>
+                <li>Listar tareas, acciones y conocimientos <b>indispensables</b></li>
+                <li>Asentarlos <b>antes</b> de añadir nada a mayores</li>
               </ul>
             </details>
             <details class="concepto" style="margin-left:12px"><summary>Idear<span class="mas">+</span></summary>
-              <div class="def">Apuntar todas las ideas que van llegando: <b>practicar tener buenas ideas</b>.</div></details>
+              <div class="def">Apuntar todas las ideas que van llegando: <b>practicar generarlas y capturarlas</b>.</div></details>
             <details class="concepto" style="margin-left:12px"><summary>Lápiz sin frenos<span class="mas">+</span></summary>
               <div class="def">Escribir <b>10-15&#8217;</b> con una sola condición: <b>no parar</b> en ningún momento.</div></details>
             <details class="concepto" style="margin-left:12px"><summary>Reflexión<span class="mas">+</span></summary>
               <div class="def">Al escribir acaecimientos, describir los <b>sentimientos</b>, no solo los eventos.</div></details>
             <details class="concepto" style="margin-left:12px"><summary>Embotamiento<span class="mas">+</span></summary>
-              <div class="def">Tras una actividad de mucha atención:</div>
+              <div class="def">Después de exigir mucho a la atención: <b>descargar y recuperar</b>.</div>
               <ul class="lista">
-                <li>atención plena</li>
-                <li>mente en blanco</li>
-                <li><b>no gastar energía</b></li>
+                <li>Atención plena</li>
+                <li>Mente en blanco</li>
+                <li><b>No gastar energía</b></li>
               </ul>
             </details>
-            <p class="margen-nota">fuente: DESARROLLO · Destrezas y habilidades + AM5 158-160 — catálogo vivo: cada actividad va sumando sus trucos</p>
           </details></li>
           <li><details class="concepto"><summary>Listas mentales<span class="mas">+</span></summary>
             <div class="def">Palabras clave para listar en la mente ciertas listas.</div>
             <div class="subdef">
-              <div class="fila"><b>TomDEC</b> — decisiones: suele haber opciones</div>
-              <div class="fila"><b>ResDUD</b> — dudas: repetirse la pregunta</div>
-              <div class="fila"><b>ResProb / EncSoluc</b> — problemas: secuenciar · buscar · repasar</div>
-              <div class="fila"><b>AnEstCaSit</b> — analizar casos y situaciones: ¿qué se hizo? · ¿cómo? · ¿por qué? → LLAA + mejora → memorizar y archivar</div>
-              <div class="fila"><b>EnfSit</b> — enfrentar · abordar una situación → llevarla a cabo; no es un problema que resolver, pero no es una situación fácil</div>
+              <div class="fila"><b>TomDEC</b> — decidir: abrir opciones → comparar → elegir</div>
+              <div class="fila"><b>ResDUD</b> — duda: formular bien la pregunta → buscar lo que falta</div>
+              <div class="fila"><b>ResProb / EncSoluc</b> — problema: secuenciar · buscar · comprobar</div>
+              <div class="fila"><b>AnEstCaSit</b> — Analizar/Estudiar casos/situaciones: ¿qué se hizo? · ¿cómo? · ¿por qué? → LLAA + mejora → memorizar y archivar</div>
+              <div class="fila"><b>EnfSit</b> — afrontar una situación difícil: no hay un problema que resolver; hay que llevarla a cabo</div>
             </div></details></li>
           <li><details class="concepto"><summary>Retos<span class="mas">+</span></summary>
-            <div class="def">Lo que no es hábito diario pero <b>se quiere poder hacer</b>.</div></details></li>
+            <div class="def">Una capacidad o situación que no entreno a diario pero <b>quiero poder afrontar</b>. Elegir el reto y concretar <b>el siguiente intento</b>.</div></details></li>
         </ul>
-        <p class="margen-nota">⟦autocontrol: concepto por ubicar — puede aparecer en varios sitios⟧</p>
         </div>
       </details>
 
@@ -1400,7 +1379,7 @@ details[open]>summary .abre{transform:rotate(45deg)}
         <summary>
           <span class="abre">+</span>
           <div class="fase-tit"><svg class="fico"><use href="#i-luna"/></svg><h3>Terminar</h3></div>
-          <p class="rol">cerrar el día · abrir mañana</p>
+          <p class="rol">cerrar el día · dejar listo mañana</p>
           <svg class="simbolo simbolo--term" viewBox="0 78 304 216" role="img" aria-label="Símbolo de Terminar">
             <path d="M32.0 175.0 L83.0 122.0 L48.3 175.0 Z" fill="var(--tinta)"/>
             <path d="M32.0 175.0 L83.0 228.0 L48.3 175.0 Z" fill="var(--tinta)"/>
@@ -1414,60 +1393,85 @@ details[open]>summary .abre{transform:rotate(45deg)}
             <path d="M110.01 208.55 A52.2 52.2 0 1 1 123.12 219.74 L114.29 220.70 A58 58 0 1 0 101.36 206.59 L110.01 208.55 Z" fill="var(--tinta)" fill-opacity=".55"/>
             <use href="#rosa" x="88.5" y="113.5" width="123" height="123"/>
             <text class="et2" x="124.5" y="204.5" text-anchor="middle" transform="rotate(-45 124.5 204.5)">rezar</text>
-            <text class="et2" x="150" y="253" text-anchor="middle">meditación</text>
-            <text class="et2" x="40" y="126" text-anchor="middle" transform="rotate(-46.1 40 126)">repaso mental</text>
-            <text class="et2" x="40" y="227" text-anchor="middle" transform="rotate(46.1 40 227)">(cerrar · atrás)</text>
-            <text class="et2" x="260" y="126" text-anchor="middle" transform="rotate(46.1 260 126)">planificación</text>
-            <text class="et2" x="260" y="227" text-anchor="middle" transform="rotate(-46.1 260 227)">(abrir · delante)</text>
+            <text class="et2" x="150" y="253" text-anchor="middle">calibración</text>
+            <text class="et2" x="50" y="134" text-anchor="middle" transform="rotate(-46.1 50 134)">repaso mental</text>
+            <text class="et2" x="50" y="218" text-anchor="middle" transform="rotate(46.1 50 218)">(cerrar · atrás)</text>
+            <text class="et2" x="250" y="134" text-anchor="middle" transform="rotate(46.1 250 134)">preparación</text>
+            <text class="et2" x="250" y="218" text-anchor="middle" transform="rotate(-46.1 250 218)">(dejar listo)</text>
           </svg>
         </summary>
         <div class="fase-body">
 
         <ul>
           <li><details class="concepto"><summary>Repaso mental<span class="mas">+</span></summary>
-            <div class="def">Mirar atrás. De <b>recordar</b> el día salen tres cosas:</div>
-            <svg class="ramas" viewBox="0 0 620 196" role="img" aria-label="Recordar se abre en tres">
-              <rect x="238" y="4" width="144" height="34" rx="17" fill="#FFF6D2" stroke="var(--tinta)" stroke-width="2"/>
-              <text class="chip" x="310" y="27" text-anchor="middle">RECORDAR</text>
-              <path d="M310 38 L310 58 M100 58 L520 58 M100 58 L100 66 M310 58 L310 66 M520 58 L520 66" fill="none" stroke="var(--tinta)" stroke-width="1.8"/>
-              <polygon points="100,82 92,64 108,64" fill="var(--tinta)"/>
-              <polygon points="310,82 302,64 318,64" fill="var(--tinta)"/>
-              <polygon points="520,82 512,64 528,64" fill="var(--tinta)"/>
-              <rect x="8" y="88" width="184" height="100" rx="4" fill="var(--carta-2)" stroke="var(--tinta)" stroke-width="1.8"/>
-              <rect x="218" y="88" width="184" height="100" rx="4" fill="var(--carta-2)" stroke="var(--tinta)" stroke-width="1.8"/>
-              <rect x="428" y="88" width="184" height="100" rx="4" fill="var(--carta-2)" stroke="var(--tinta)" stroke-width="1.8"/>
-              <text class="ram" x="100" y="118" text-anchor="middle">LLAA + mejoras</text>
-              <text class="ram2" x="100" y="139" text-anchor="middle">lecciones aprendidas</text>
-              <text class="ram" x="310" y="118" text-anchor="middle">logros</text>
-              <text class="ram" x="520" y="118" text-anchor="middle">memorizar</text>
-              <text class="ram2" x="520" y="139" text-anchor="middle">herramientas · recuerdos</text>
-              <rect x="52" y="154" width="96" height="25" rx="12.5" fill="#FFF6D2" stroke="var(--tinta)" stroke-width="1.4"/>
-              <text class="ram3" x="100" y="171" text-anchor="middle">análisis</text>
-              <rect x="250" y="154" width="120" height="25" rx="12.5" fill="#FFF6D2" stroke="var(--tinta)" stroke-width="1.4"/>
-              <text class="ram3" x="310" y="171" text-anchor="middle">recompensa</text>
-              <rect x="468" y="154" width="104" height="25" rx="12.5" fill="#FFF6D2" stroke="var(--tinta)" stroke-width="1.4"/>
-              <text class="ram3" x="520" y="171" text-anchor="middle">recuerdo</text>
+            <div class="def"><b>Reproducir el día como una película.</b> Al recordarlo, guardar tres cosas:</div>
+            <svg class="ramas" viewBox="0 0 620 192" role="img" aria-label="Reproducir el día: lecciones aprendidas, logros y recuerdos">
+              <rect x="220" y="4" width="180" height="34" rx="17" fill="#FFF6D2" stroke="var(--tinta)" stroke-width="2"/>
+              <text class="chip" x="310" y="27" text-anchor="middle">REPRODUCIR EL DÍA</text>
+              <text class="ram2" x="310" y="52" text-anchor="middle">recordar</text>
+              <path d="M310 56 L310 70 M100 70 L520 70 M100 70 L100 78 M310 70 L310 78 M520 70 L520 78" fill="none" stroke="var(--tinta)" stroke-width="1.8"/>
+              <polygon points="100,92 92,76 108,76" fill="var(--tinta)"/>
+              <polygon points="310,92 302,76 318,76" fill="var(--tinta)"/>
+              <polygon points="520,92 512,76 528,76" fill="var(--tinta)"/>
+              <rect x="8" y="98" width="184" height="74" rx="4" fill="var(--carta-2)" stroke="var(--tinta)" stroke-width="1.8"/>
+              <rect x="218" y="98" width="184" height="74" rx="4" fill="var(--carta-2)" stroke="var(--tinta)" stroke-width="1.8"/>
+              <rect x="428" y="98" width="184" height="74" rx="4" fill="var(--carta-2)" stroke="var(--tinta)" stroke-width="1.8"/>
+              <text class="ram" x="100" y="130" text-anchor="middle">LLAA + mejoras</text>
+              <text class="ram" x="310" y="130" text-anchor="middle">logros</text>
+              <text class="ram" x="520" y="124" text-anchor="middle">recuerdos</text>
+              <text class="ram2" x="520" y="146" text-anchor="middle">álbum mental · útiles</text>
             </svg>
-            <p class="margen-nota">dónde mirar: calendario · recordatorios · libretas</p>
+            <div class="subdef">
+              <div class="fila"><b>Álbum mental</b> — guardar escenas que quiero conservar como una foto.</div>
+              <div class="fila"><b>Útiles</b> — fijar hechos, conversaciones o formas de hacer algo que puede servirme recordar.</div>
+            </div>
           </details></li>
-          <li><details class="concepto"><summary>Planificación<span class="mas">+</span></summary>
-            <div class="def">Mirar delante — <b>dejar armado mañana</b>.</div>
-            <div class="dos">
-              <div><p class="cu">Prácticas + retos</p><p class="cd">lo que toca de Desarrollo</p></div>
-              <div><p class="cu">PlanTemp + tareas</p><p class="cd">el plan temporal y lo que hay que hacer</p></div>
-            </div></details></li>
-          <li><details class="concepto"><summary>Meditación<span class="mas">+</span></summary>
-            <div class="def"><b>Estiramientos · respiración.</b> Lo mismo que por la mañana, pero no para lo mismo:</div>
-            <div class="dos">
-              <div><p class="cu">mañana</p><p class="fl">&#8597;</p><p class="cd">calibra en los dos sentidos:<br>calma <i>o</i> revoluciones</p></div>
-              <div><p class="cu">noche</p><p class="fl">&#8595;</p><p class="cd"><b>solo hacia la calma</b></p></div>
-            </div></details></li>
+          <li><details class="concepto"><summary>Preparación — dejar listo<span class="mas">+</span></summary>
+            <div class="def"><b>Dejar una base para mañana</b>, sin desarrollarla todavía:</div>
+            <div class="fila-p"><span class="pastilla">objetivos</span><span>apuntar los que probablemente tenga mañana</span></div>
+            <div class="fila-p"><span class="pastilla">tareas</span><span>apuntar las importantes que ya conozca</span></div>
+            <p class="margen-nota">dejar la masa hecha; mañana se termina con mentalización + planeamiento</p>
+          </details></li>
+          <li><details class="concepto"><summary>Calibración<span class="mas">+</span></summary>
+            <div class="def">Bajar revoluciones sin desconectarme: <b>soltar el día y volver a mí</b>.</div>
+            <div class="pastillas"><span class="pastilla">presencia</span><span class="rot" style="margin:0"><i>calma y claridad</i></span></div>
+            <ul class="lista">
+              <li>Estiramientos</li>
+              <li>Respiración</li>
+              <li>Meditación</li>
+              <li class="li-det"><details class="concepto"><summary><b>Conexión</b><span class="mas">+</span></summary>
+                <div class="def">Observar y conectar con lo que hay, por sus cuatro puertas:</div>
+              <div class="cuadrante">
+                <div class="q p--b">
+                  <div class="qcab"><svg class="qico"><use href="#i-cuerpo"/></svg><span class="titq">Cuerpo</span></div>
+                  <ul class="pares-ico">
+                    <li><svg class="mini"><use href="#i-aire"/></svg><span><b>frente</b> · aire <i>(elevar)</i></span></li>
+                    <li><svg class="mini"><use href="#i-tierra"/></svg><span><b>pies</b> · tierra <i>(sustentar)</i></span></li>
+                    <li><svg class="mini"><use href="#i-fuego"/></svg><span><b>sensación</b> · fuego</span></li>
+                    <li><svg class="mini"><use href="#i-agua"/></svg><span><b>respiración</b> · agua</span></li>
+                  </ul>
+                </div>
+                <div class="q p--c">
+                  <div class="qcab"><svg class="qico"><use href="#i-mente"/></svg><span class="titq">Mente</span></div>
+                  <p class="cont">pensamientos</p>
+                </div>
+                <div class="q p--d">
+                  <div class="qcab"><svg class="qico"><use href="#i-corazon"/></svg><span class="titq">Emociones</span></div>
+                  <p class="cont">alegría + tristeza<br>miedo + ira<br>ansiedad + culpa<br>calma + afecto</p>
+                </div>
+                <div class="q p--a">
+                  <div class="qcab"><svg class="qico"><use href="#i-ojo"/></svg><span class="titq">Contemplación</span></div>
+                  <p class="cont">ojos de niño: inocencia + asombro<br>contemplar y vigilar<br>a las personas importantes</p>
+                </div>
+                <span class="centro">CONEXIÓN</span>
+              </div>
+              </details></li>
+            </ul></details></li>
           <li><details class="concepto"><summary>Rezar<span class="mas">+</span></summary>
-            <div class="def">El centro. La misma rutina que en Comenzar, recorrida <b>en espejo</b>.</div>
+            <div class="def">La misma secuencia que en Comenzar, ahora <b>cerrando el día y dejando mañana encaminado</b>.</div>
             <div class="rezo">
               <span class="paso">1 Agradecer</span>
               <details class="paso-det"><summary class="paso">2 Preguntarse<span class="mas">+</span></summary>
-                <p class="def" style="padding:8px 0 0">El nivel hondo — las mismas preguntas de la Arquitectura (Mirada · Preguntarse):</p>
       <div class="cuadrante preg">
       <div class="q p--b"><p class="cont">¿Qué <b>quiero</b>, qué me <b>gusta</b> y qué no?<br>¿Qué le <b>pido</b> a la vida y qué <b>espero</b> de ella?<br>¿Qué <b>sentido</b> le doy?<br>¿Cuáles son mis <b>propósitos</b> y <b>proyectos</b>?</p></div>
       <div class="q p--a"><p class="cont">¿Cuáles son mis <b>valores</b> y <b>principios</b>?<br>¿Cómo quiero <b>ser</b> y qué <b>cualidades</b> quiero tener?<br>¿Qué cosas quiero que me <b>definan</b>?</p></div>
@@ -1478,11 +1482,6 @@ details[open]>summary .abre{transform:rotate(45deg)}
               </details>
               <span class="salto"></span>
               <span class="paso">3 Pedir</span><span class="paso">4 Comprometerse</span>
-            </div>
-            <p class="margen-nota">de noche los cuatro pasos van emparejados</p>
-            <div class="dos">
-              <div><p class="cu">pedir</p><p class="cd">+ valorar / agradecer</p></div>
-              <div><p class="cu">preguntarse</p><p class="cd">+ comprometerse</p></div>
             </div>
           </details></li>
         </ul>
@@ -1496,15 +1495,15 @@ details[open]>summary .abre{transform:rotate(45deg)}
     <svg viewBox="-36 -30 306 262" role="img" aria-label="Escudo del sistema">
       <use href="#escudo-full" x="-36" y="-30" width="306" height="262"/>
     </svg>
-    <p class="marca-pie">fuego &middot; aire &middot; agua &middot; tierra<br><small>sol y luna &middot; cielo y flor &middot; mirada y actitud &middot; mente, emoci&oacute;n y cuerpo<br>la rosa: mentalizaci&oacute;n delante, operar detr&aacute;s</small></p>
+    <p class="marca-pie">fuego &middot; aire &middot; agua &middot; tierra<br><small>sol y luna &middot; cielo y flor &middot; mirada y actitud &middot; mente, emoci&oacute;n y cuerpo<br>la rosa: mentalizaci&oacute;n delante, operaci&oacute;n detr&aacute;s</small></p>
   </div>
 
   <p class="pie">
-    <span class="vpq">ver · poder — saber y hacer · querer</span>
-    <small>la estructura ordena · el cuadrante ejecuta</small>
+    <span class="vpq">ver · poder — querer · saber y hacer</span>
+    <small>la Arquitectura orienta · el Proceso ejecuta</small>
   </p>
 
-  <p class="sello">v1.0.94</p>
+  <p class="sello">v1.1.0</p>
 
 </div>
 
@@ -1515,9 +1514,9 @@ details[open]>summary .abre{transform:rotate(45deg)}
   if (location.protocol === 'file:') return;
   var recargado = false;
   navigator.serviceWorker.register('./sw.js').then(function (reg) {
-    reg.update();
+    reg.update().catch(function () {});
     document.addEventListener('visibilitychange', function () {
-      if (document.visibilityState === 'visible') { try { reg.update(); } catch (e) {} }
+      if (document.visibilityState === 'visible') { reg.update().catch(function () {}); }
     });
   }).catch(function () {});
   navigator.serviceWorker.addEventListener('controllerchange', function () {
