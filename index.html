@@ -11,8 +11,8 @@
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="Sistema">
-<title>Sistema de Mejora Personal — v1.2.6 · Comprobación</title>
-<meta name="version" content="1.2.6">
+<title>Sistema de Mejora Personal — v1.2.7</title>
+<meta name="version" content="1.2.7">
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Karla:ital,wght@0,400;0,500;0,700;1,400&display=swap');
 
@@ -392,11 +392,6 @@ details[open]>summary .abre{transform:rotate(45deg)}
 .cp-regla{display:flex;justify-content:space-between;gap:10px;margin:6px 4px 0;color:var(--tiza-suave);font-family:var(--mano);font-size:15px;opacity:.85}
 @media(max-width:430px){.cp-fila{gap:4px}.cp-nodo{padding:6px 3px 5px}.cp-nodo b{font-size:10.8px}.cp-nodo span{font-size:14.5px}.cp-arr{font-size:18px}.cp-regla{font-size:13.5px}}
 
-/* =============== marcas de propuesta (solo versión de comprobación) =============== */
-.propuesta-chatgpt{position:relative;outline:1.4px dashed rgba(127,212,226,.9);outline-offset:4px;--prop-bg:var(--papel)}
-.propuesta-chatgpt::after{content:"PROPUESTA";position:absolute;top:-11px;right:10px;z-index:4;padding:1px 6px;border:1px solid var(--mirada);border-radius:999px;background:var(--prop-bg);color:var(--tinta);font-size:8.5px;font-weight:700;letter-spacing:.13em;line-height:1.4}
-.propuesta-chatgpt--dark{--prop-bg:var(--fondo)}
-.propuesta-chatgpt--dark::after{color:var(--tiza)}
 
 
 /* v1.2.2: conservar márgenes también con las fuentes de reserva sin conexión.
@@ -408,7 +403,6 @@ details[open]>summary .abre{transform:rotate(45deg)}
 }
 /* v1.2.2: Personas es una disposición de trato, no otra de las cuatro actitudes. */
 .personas-actitud{margin-top:26px;margin-bottom:22px;padding:12px 10px 10px;border-radius:4px}
-.personas-actitud::after{content:attr(data-propuesta)}
 .personas-actitud .personas-desplegable{border-bottom:0}
 .personas-actitud .personas-desplegable>summary{font-size:17.5px;padding:0 0 26px;align-items:center}
 .personas-actitud .personas-desplegable>summary::before{display:none}
@@ -450,12 +444,12 @@ details[open]>summary .abre{transform:rotate(45deg)}
 .cuadrante--compacto{max-width:540px}
 
 /* v1.2.3 — revisión de contenido y proporciones. Reglas acotadas a cada componente. */
-.revision-concepto{margin:14px 0 8px;padding:5px 9px 8px;border:1px dashed var(--mirada);border-radius:7px;outline:none}
-.revision-concepto:last-child{border-bottom:1px dashed var(--mirada)}
-.revision-concepto::after{display:none}
-.revision-concepto>summary{align-items:center;gap:7px;min-height:36px}
-.revision-etiqueta{margin-left:auto;padding:1px 5px;border:1px solid var(--mirada);border-radius:999px;font:700 8px/1.4 var(--texto);letter-spacing:.08em;color:var(--tinta-suave);flex:none}
-.revision-concepto>summary .mas{margin-left:0}
+.proposito-referencia{margin:14px 0 8px;padding:5px 9px 8px;border:1px solid rgba(34,64,111,.22);border-radius:7px;outline:none}
+.proposito-referencia:last-child{border-bottom:1px solid rgba(34,64,111,.22)}
+.proposito-referencia::after{display:none}
+.proposito-referencia>summary{align-items:center;gap:7px;min-height:36px}
+
+.proposito-referencia>summary .mas{margin-left:auto}
 .pregunta-guia{text-align:center;font:18px/1.25 var(--mano);color:var(--tinta-suave);margin:10px 6px 3px}
 .arranque-simple{text-align:center;margin:7px auto 15px;padding:13px 8px 8px;max-width:330px}
 .arranque-simple .pastilla{font-size:18px;line-height:1.25;padding:9px 20px;margin:0;background:var(--proceso)}
@@ -507,7 +501,7 @@ details[open]>summary .abre{transform:rotate(45deg)}
   .rezo-centro{width:60px;height:66px}.rezo-centro svg{width:60px;height:60px}
   .rezo-nodo{font-size:9px}.rezo-nodo svg{width:19px;height:19px}.rezo-nodo small{font-size:8.2px}
   .rezo-preguntas>summary{font-size:10.8px}
-  .revision-concepto{padding-left:6px;padding-right:6px}.revision-etiqueta{font-size:7px;letter-spacing:0}
+  .proposito-referencia{padding-left:6px;padding-right:6px}.revision-etiqueta{font-size:7px;letter-spacing:0}
 }
 @media(prefers-reduced-motion:reduce){.abre,.mas,.rezo-preguntas>summary .mas{transition:none}}
 
@@ -518,14 +512,13 @@ details[open]>summary .abre{transform:rotate(45deg)}
 .dim--mirada{--arq-acento:var(--mirada)}
 .dim--actitud{--arq-acento:var(--proceso)}
 .arq-apartado{margin:13px 0 0;border:1px solid rgba(34,64,111,.22);border-left:3px solid var(--arq-acento);border-radius:6px;background:var(--papel);min-width:0}
-.arq-apartado.arq-reorganizado{border-top-style:dashed;border-right-style:dashed;border-bottom-style:dashed}
 .arq-apartado>summary{list-style:none;cursor:pointer;user-select:none;padding:10px 11px 9px}
 .arq-apartado>summary::-webkit-details-marker{display:none}
 .arq-apartado>summary h4{display:flex;align-items:center;gap:8px;margin:0;font-size:17.5px;font-weight:700;line-height:1.3;color:var(--tinta)}
 .arq-nombre{padding:0 3px;min-width:0;overflow-wrap:normal}
-.arq-apartado>summary .revision-etiqueta{font-size:8px;letter-spacing:.06em;margin-left:auto}
+
 .arq-apartado>summary .mas{margin-left:auto;flex:none;display:inline-block;width:18px;text-align:center;font:23px/1 var(--mano);color:var(--tinta-suave);transition:transform .18s}
-.arq-apartado>summary .revision-etiqueta+.mas{margin-left:0}
+
 .arq-apartado[open]>summary .mas{transform:rotate(45deg)}
 .arq-apartado>summary:focus-visible{outline:2px solid var(--tinta);outline-offset:3px;border-radius:4px}
 .arq-glosa{display:block;margin-top:3px;font-size:12.6px;line-height:1.35;color:var(--tinta-suave)}
@@ -541,7 +534,7 @@ details[open]>summary .abre{transform:rotate(45deg)}
 @media(max-width:430px){
   .arq-apartado>summary{padding:10px 8px}
   .arq-apartado>summary h4{font-size:16px;gap:5px}
-  .arq-apartado>summary .revision-etiqueta{font-size:7px;letter-spacing:0;padding:1px 4px}
+
   .arq-contenido{padding:0 7px 10px}
   .arq-glosa{font-size:12px}
 }
@@ -555,12 +548,12 @@ details[open]>summary .abre{transform:rotate(45deg)}
 .dim--operar{--arq-acento:var(--operar)}
 #operacion-proceder .ph{margin-top:16px}
 .op-apoyo-rotulo{margin:18px 2px 7px;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--grafito)}
-.op-apoyo{border:1px dashed rgba(34,64,111,.3);border-left:2px solid var(--operar);border-radius:5px;min-width:0}
+.op-apoyo{border:1px solid rgba(34,64,111,.3);border-left:2px solid var(--operar);border-radius:5px;min-width:0}
 .op-apoyo>summary{list-style:none;cursor:pointer;padding:9px 10px;user-select:none}
 .op-apoyo>summary::-webkit-details-marker{display:none}
 .op-apoyo>summary h5{display:flex;align-items:center;gap:7px;font-size:14.6px;line-height:1.3;color:var(--tinta)}
-.op-apoyo>summary .revision-etiqueta{font-size:7px;margin-left:auto;letter-spacing:.04em}
-.op-apoyo>summary .mas{flex:none;display:inline-block;font:20px/1 var(--mano);color:var(--tinta-suave);transition:transform .18s}
+
+.op-apoyo>summary .mas{margin-left:auto;flex:none;display:inline-block;font:20px/1 var(--mano);color:var(--tinta-suave);transition:transform .18s}
 .op-apoyo[open]>summary{border-bottom:1px dotted rgba(34,64,111,.18);background:var(--carta-2)}
 .op-apoyo[open]>summary .mas{transform:rotate(45deg)}
 .op-apoyo>summary .arq-glosa{font-size:12px}
@@ -572,6 +565,21 @@ details[open]>summary .abre{transform:rotate(45deg)}
   .op-apoyo-contenido{padding:5px 5px 8px}
 }
 @media(prefers-reduced-motion:reduce){.op-apoyo>summary .mas{transition:none}}
+
+
+/* v1.2.7 — Cadena de proposito aplicada a Focalizar; OBJETIVOS en primer plano. */
+.foco-cadena{max-width:500px;margin:5px auto 13px;text-align:center}
+.fc-titulo{margin-bottom:9px;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--tinta-suave)}
+.fc-fila{display:grid;grid-template-columns:minmax(0,1fr) 14px minmax(0,1.65fr) 14px minmax(0,1fr);gap:4px;align-items:center}
+.fc-nodo{min-width:0;padding:8px 4px;border:1px solid rgba(34,64,111,.2);border-radius:5px;color:var(--tinta-suave);line-height:1.25}
+.fc-nodo b{display:block;font-size:10px;letter-spacing:.035em}
+.fc-nodo span{display:block;margin-top:4px;font-size:12px;line-height:1.3}
+.fc-objetivos{padding:12px 5px;border:1.5px solid var(--tinta);background:rgba(155,221,144,.3);color:var(--tinta)}
+.fc-objetivos b{font-size:14px;letter-spacing:.04em}
+.fc-objetivos span{font-size:13px}
+.fc-flecha{font-size:16px;color:var(--tinta-suave)}
+.fc-lectura{margin:10px 4px 0;font-size:12px;color:var(--grafito);line-height:1.4}
+@media(max-width:430px){.fc-nodo b{font-size:9px;letter-spacing:0}.fc-nodo span{font-size:11px}.fc-objetivos b{font-size:12px}.fc-objetivos span{font-size:12px}}
 
 </style>
 </head>
@@ -843,9 +851,9 @@ details[open]>summary .abre{transform:rotate(45deg)}
           </div>
         </details>
 
-        <details class="arq-apartado arq-reorganizado" id="mirada-plenitud">
+        <details class="arq-apartado" id="mirada-plenitud">
           <summary>
-            <h4><span class="arq-nombre c-mirada">Plenitud</span><span class="revision-etiqueta">PROPUESTA</span><span class="mas" aria-hidden="true">+</span></h4>
+            <h4><span class="arq-nombre c-mirada">Plenitud</span><span class="mas" aria-hidden="true">+</span></h4>
             <span class="arq-glosa">cómo entiendo una vida plena</span>
           </summary>
           <div class="arq-contenido">
@@ -881,9 +889,9 @@ details[open]>summary .abre{transform:rotate(45deg)}
           </div>
         </details>
 
-        <details class="arq-apartado arq-reorganizado" id="mirada-enfoque">
+        <details class="arq-apartado" id="mirada-enfoque">
           <summary>
-            <h4><span class="arq-nombre c-mirada">Enfoque ante una tarea</span><span class="revision-etiqueta">PROPUESTA</span><span class="mas" aria-hidden="true">+</span></h4>
+            <h4><span class="arq-nombre c-mirada">Enfoque ante una tarea</span><span class="mas" aria-hidden="true">+</span></h4>
             <span class="arq-glosa">con qué ojos miro lo que toca hacer</span>
           </summary>
           <div class="arq-contenido">
@@ -913,8 +921,8 @@ details[open]>summary .abre{transform:rotate(45deg)}
               <div class="q p--d"><p class="cont">¿Qué puedo hacer para ser más <b>feliz</b>?<br>¿Qué puedo hacer para sentirme <b>bien</b>, <b>pleno</b>, <b>en paz</b>?</p></div>
               <span class="centro">PREGUNTAS</span>
             </div></details>
-<details class="concepto propuesta-chatgpt revision-concepto" id="mirada-proposito">
-            <summary><span>Cadena de propósito</span><span class="revision-etiqueta">PROPUESTA</span><span class="mas">+</span></summary>
+<details class="concepto proposito-referencia" id="mirada-proposito">
+            <summary><span>Cadena de propósito</span><span class="mas">+</span></summary>
             <div class="def">Que lo que hago <b>conecte con lo que importa</b>.</div>
             <div class="cadena-proposito cadena-proposito--papel" role="group" aria-label="Cadena de propósito: sentido, objetivos, tareas. De arriba abajo se construye; de abajo arriba se comprueba.">
               <div class="cp-fila">
@@ -948,9 +956,9 @@ details[open]>summary .abre{transform:rotate(45deg)}
 
         <p class="arq-contexto">Distintas disposiciones para distintas situaciones.</p>
 
-        <details class="arq-apartado arq-reorganizado" id="actitud-accion">
+        <details class="arq-apartado" id="actitud-accion">
           <summary>
-            <h4><span class="arq-nombre c-actitud">Tomar acción</span><span class="revision-etiqueta">PROPUESTA</span><span class="mas" aria-hidden="true">+</span></h4>
+            <h4><span class="arq-nombre c-actitud">Tomar acción</span><span class="mas" aria-hidden="true">+</span></h4>
             <span class="arq-glosa">las actitudes con las que trabajo y saco las cosas adelante</span>
           </summary>
           <div class="arq-contenido">
@@ -962,13 +970,13 @@ details[open]>summary .abre{transform:rotate(45deg)}
             <div class="q p--d"><div class="qcab"><svg class="qico"><use href="#i-tierra"/></svg><span class="titq">④ Determinación</span></div><span class="fn">sostener</span><p class="cont">intención + integridad<br>compromiso + responsabilidad<br>voluntad + disciplina<br>constancia + no procrastinar / terminar</p></div>
             <span class="centro">TOMAR ACCIÓN</span>
           </div>
-<p class="margen-nota"><span class="pend">⟦elementos propuestos por mí: fuego empuja · aire aligera · agua cuida · tierra sostiene⟧</span></p>
+<p class="margen-nota"><span class="pend">fuego empuja — aire aligera — agua cuida — tierra sostiene</span></p>
           </div>
         </details>
 
-        <details class="arq-apartado arq-reorganizado" id="actitud-personas">
+        <details class="arq-apartado" id="actitud-personas">
           <summary>
-            <h4><span class="arq-nombre c-actitud">Personas</span><span class="revision-etiqueta">PROPUESTA</span><span class="mas" aria-hidden="true">+</span></h4>
+            <h4><span class="arq-nombre c-actitud">Personas</span><span class="mas" aria-hidden="true">+</span></h4>
             <span class="arq-glosa">cómo trato a los demás</span>
           </summary>
           <div class="arq-contenido">
@@ -1042,7 +1050,7 @@ details[open]>summary .abre{transform:rotate(45deg)}
               <div class="fila">agua · Aportación ↔ <b>Esmero</b></div>
               <div class="fila">tierra · Aprendizaje ↔ <b>Determinación</b></div>
             </div>
-            <p class="margen-nota"><span class="pend">⟦emparejamiento propuesto: sale de los elementos⟧</span></p>
+            <!-- Relación de Enfoque y Tomar acción sugerida durante la revisión; autoría y estado conservados en Drive. -->
           </div>
           <div class="grupo" style="margin-top:0">
             <h4 class="c-actitud">Cómo se enlaza</h4>
@@ -1079,23 +1087,34 @@ details[open]>summary .abre{transform:rotate(45deg)}
         </summary>
         <div class="dim-body">
 
-        <details class="arq-apartado arq-reorganizado" id="mental-focalizar">
+        <details class="arq-apartado" id="mental-focalizar">
           <summary>
-            <h4><span class="arq-nombre c-mental">Focalizar</span><span class="revision-etiqueta">PROPUESTA</span><span class="mas" aria-hidden="true">+</span></h4>
-            <span class="arq-glosa">qué objetivos me marco</span>
+            <h4><span class="arq-nombre c-mental">Focalizar</span><span class="mas" aria-hidden="true">+</span></h4>
+            <span class="arq-glosa">qué quiero conseguir y para qué</span>
           </summary>
           <div class="arq-contenido">
+            <div class="foco-cadena" role="group" aria-label="Cadena de propósito. En Focalizar, el centro son los objetivos.">
+              <p class="fc-titulo">Cadena de propósito</p>
+              <div class="fc-fila">
+                <div class="fc-nodo"><b>SENTIDO</b><span>para qué</span></div>
+                <span class="fc-flecha" aria-hidden="true">→</span>
+                <div class="fc-nodo fc-objetivos"><b>OBJETIVOS</b><span>qué quiero conseguir</span></div>
+                <span class="fc-flecha" aria-hidden="true">→</span>
+                <div class="fc-nodo"><b>TAREAS</b><span>qué hago</span></div>
+              </div>
+              <p class="fc-lectura">El sentido orienta. Las tareas se concretan en Planeamiento.</p>
+            </div>
 <details class="concepto"><summary>Objetivos<span class="mas">+</span></summary>
             <div class="def"><b>¿Qué quiero conseguir o vivir hoy?</b> Objetivo ≠ tarea. Escribirlo en una frase y volver a ella durante el día.</div></details>
           <details class="concepto"><summary>Sentido<span class="mas">+</span></summary>
             <div class="def"><b>¿Para qué merece la pena esto hoy?</b></div></details>
-<p class="margen-nota">las preguntas del <b>sentido de la vida</b> ya no viven aquí: están en Mirada · Preguntarse</p>
+
           </div>
         </details>
 
-        <details class="arq-apartado arq-reorganizado" id="mental-grabar">
+        <details class="arq-apartado" id="mental-grabar">
           <summary>
-            <h4><span class="arq-nombre c-mental">Grabar</span><span class="revision-etiqueta">PROPUESTA</span><span class="mas" aria-hidden="true">+</span></h4>
+            <h4><span class="arq-nombre c-mental">Grabar</span><span class="mas" aria-hidden="true">+</span></h4>
             <span class="arq-glosa">afirmaciones, convencimiento y creencias</span>
           </summary>
           <div class="arq-contenido">
@@ -1108,9 +1127,9 @@ details[open]>summary .abre{transform:rotate(45deg)}
           </div>
         </details>
 
-        <details class="arq-apartado arq-reorganizado" id="mental-visualizar">
+        <details class="arq-apartado" id="mental-visualizar">
           <summary>
-            <h4><span class="arq-nombre c-mental">Visualizar</span><span class="revision-etiqueta">PROPUESTA</span><span class="mas" aria-hidden="true">+</span></h4>
+            <h4><span class="arq-nombre c-mental">Visualizar</span><span class="mas" aria-hidden="true">+</span></h4>
             <span class="arq-glosa">ensayar ejecución y fricción</span>
           </summary>
           <div class="arq-contenido">
@@ -1121,9 +1140,9 @@ details[open]>summary .abre{transform:rotate(45deg)}
           </div>
         </details>
 
-        <details class="arq-apartado arq-reorganizado" id="mental-ser">
+        <details class="arq-apartado" id="mental-ser">
           <summary>
-            <h4><span class="arq-nombre c-mental">Ser</span><span class="revision-etiqueta">PROPUESTA</span><span class="mas" aria-hidden="true">+</span></h4>
+            <h4><span class="arq-nombre c-mental">Ser</span><span class="mas" aria-hidden="true">+</span></h4>
             <span class="arq-glosa">identidad, modelaje y vestuario</span>
           </summary>
           <div class="arq-contenido">
@@ -1184,9 +1203,9 @@ details[open]>summary .abre{transform:rotate(45deg)}
         </summary>
         <div class="dim-body">
 
-        <details class="arq-apartado arq-reorganizado" id="operacion-procesar">
+        <details class="arq-apartado" id="operacion-procesar">
           <summary>
-            <h4><span class="arq-nombre c-operar">Procesar</span><span class="revision-etiqueta">PROPUESTA</span><span class="mas" aria-hidden="true">+</span></h4>
+            <h4><span class="arq-nombre c-operar">Procesar</span><span class="mas" aria-hidden="true">+</span></h4>
             <span class="arq-glosa">trabajar con la información</span>
           </summary>
           <div class="arq-contenido">
@@ -1211,13 +1230,13 @@ details[open]>summary .abre{transform:rotate(45deg)}
           </div>
         </details>
 
-        <details class="arq-apartado arq-reorganizado" id="operacion-proceder">
+        <details class="arq-apartado" id="operacion-proceder">
           <summary>
-            <h4><span class="arq-nombre c-operar">Proceder</span><span class="revision-etiqueta">PROPUESTA</span><span class="mas" aria-hidden="true">+</span></h4>
+            <h4><span class="arq-nombre c-operar">Proceder</span><span class="mas" aria-hidden="true">+</span></h4>
             <span class="arq-glosa">decidir, orientarme y ejecutar</span>
           </summary>
           <div class="arq-contenido">
-<div class="ph propuesta-chatgpt" aria-label="Pensador y Hacedor: dos modos de proceder">
+<div class="ph" aria-label="Pensador y Hacedor: dos modos de proceder">
           <div class="ph-kicker">Modo de proceder</div>
           <p class="ph-pregunta">¿Qué necesita esto ahora: que piense o que haga?</p>
           <div class="ph-modos">
@@ -1278,7 +1297,7 @@ details[open]>summary .abre{transform:rotate(45deg)}
                     <p class="op-apoyo-rotulo">Herramientas de apoyo</p>
           <details class="op-apoyo" id="operacion-planeamiento">
             <summary>
-              <h5>Planeamiento<span class="revision-etiqueta">PROPUESTA</span><span class="mas" aria-hidden="true">+</span></h5>
+              <h5>Planeamiento<span class="mas" aria-hidden="true">+</span></h5>
               <span class="arq-glosa">planificación: orden y tiempo — estrategia: cómo</span>
             </summary>
             <div class="op-apoyo-contenido">
@@ -1370,7 +1389,7 @@ details[open]>summary .abre{transform:rotate(45deg)}
         <div class="fase-body">
         <ul>
           <li><details class="concepto primera-tarea"><summary>Primera tarea<span class="mas">+</span></summary>
-            <div class="arranque-simple propuesta-chatgpt">
+            <div class="arranque-simple">
               <span class="pastilla">cama / ordenar</span>
               <p>Empezar con algo cumplido.</p>
             </div>
@@ -1417,7 +1436,7 @@ details[open]>summary .abre{transform:rotate(45deg)}
             </ul></details></li>
           <li><details class="concepto"><summary>Rezar<span class="mas">+</span></summary>
             <div class="def">El centro. La rutina que recorre la Arquitectura sin vivir en ella.</div>
-            <div class="rezo-estrella propuesta-chatgpt">
+            <div class="rezo-estrella">
               <div class="rezo-star-grid">
                 <div class="rezo-nodo rezo-arriba"><svg><use href="#i-fuego"/></svg><span>PEDIR<small>fuego</small></span></div>
                 <div class="rezo-nodo rezo-izq"><span>AGRADECER<small>agua</small></span><svg><use href="#i-agua"/></svg></div>
@@ -1704,7 +1723,7 @@ details[open]>summary .abre{transform:rotate(45deg)}
         <ul>
           <li><details class="concepto"><summary>Repaso mental<span class="mas">+</span></summary>
             <div class="def">Recordar lo vivido y recoger <b>tres cosas</b>:</div>
-            <div class="repaso-diagrama propuesta-chatgpt" role="group" aria-label="Reproducir el día como una película; recoger lecciones aprendidas y mejoras, logros y recuerdos.">
+            <div class="repaso-diagrama" role="group" aria-label="Reproducir el día como una película; recoger lecciones aprendidas y mejoras, logros y recuerdos.">
               <div class="rm-origen"><b>REPRODUCIR EL DÍA</b><span>como una película</span></div>
               <div class="rm-resultados">
                 <div class="rm-rama"><div class="rm-caja"><b>LLAA + mejoras</b></div></div>
@@ -1760,7 +1779,7 @@ details[open]>summary .abre{transform:rotate(45deg)}
             </ul></details></li>
           <li><details class="concepto"><summary>Rezar<span class="mas">+</span></summary>
             <div class="def">La misma secuencia que en Comenzar, ahora <b>cerrando el día y dejando mañana encaminado</b>.</div>
-            <div class="rezo-estrella propuesta-chatgpt">
+            <div class="rezo-estrella">
               <div class="rezo-star-grid">
                 <div class="rezo-nodo rezo-arriba"><svg><use href="#i-fuego"/></svg><span>PEDIR<small>fuego</small></span></div>
                 <div class="rezo-nodo rezo-izq"><span>AGRADECER<small>agua</small></span><svg><use href="#i-agua"/></svg></div>
@@ -1798,7 +1817,7 @@ details[open]>summary .abre{transform:rotate(45deg)}
     <small>la Arquitectura orienta · el Proceso ejecuta</small>
   </p>
 
-  <p class="sello">v1.2.6 — comprobación</p>
+  <p class="sello">v1.2.7</p>
 
 </div>
 

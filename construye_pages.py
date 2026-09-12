@@ -31,13 +31,21 @@ def comprobar(html, ver):
     fallos = []
     if html.count('<meta name="version" content="%s">' % ver) != 1:
         fallos.append('meta')
-    # Publicar una candidata no obliga a perder sus marcas de comprobación.
-    titulo = r'<title>%s — v%s(?: · Comprobación)?</title>' % (re.escape(NOMBRE), re.escape(ver))
-    sello = r'<p class="sello">v%s(?: — comprobación)?</p>' % re.escape(ver)
-    if not re.search(titulo, html):
-        fallos.append('title')
-    if not re.search(sello, html):
-        fallos.append('sello visible')
+    # Solo versiones limpias: las marcas de revision se quedan fuera de Pages.
+    if ('<title>%s — v%s</title>' % (NOMBRE, ver)) not in html:
+        fallos.append('title: usar version limpia')
+    if ('<p class="sello">v%s</p>' % ver) not in html:
+        fallos.append('sello visible: usar version limpia')
+    from html.parser import HTMLParser
+    class RevisionDetector(HTMLParser):
+        def handle_starttag(self, tag, attrs):
+            classes = dict(attrs).get('class', '').split()
+            if set(classes) & {'propuesta-chatgpt', 'revision-etiqueta', 'arq-reorganizado', 'revision-concepto'}:
+                fallos.append('marcas de revision en HTML')
+        def handle_data(self, data):
+            if data.strip().upper() in {'PROPUESTA', 'REUBICACIÓN', 'COMPROBACIÓN'}:
+                fallos.append('etiqueta de revision en HTML')
+    RevisionDetector().feed(html)
     for f in ('icon-180-%s.png' % ICONO_V, 'icon-512-%s.png' % ICONO_V):
         if not os.path.exists(os.path.join(AQUI, f)):
             fallos.append('falta ' + f)
