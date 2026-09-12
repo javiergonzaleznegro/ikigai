@@ -11,8 +11,8 @@
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="Sistema">
-<title>Sistema de Mejora Personal — v1.1.0</title>
-<meta name="version" content="1.1.0">
+<title>Sistema de Mejora Personal — v1.2.6 · Comprobación</title>
+<meta name="version" content="1.2.6">
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Karla:ital,wght@0,400;0,500;0,700;1,400&display=swap');
 
@@ -91,18 +91,18 @@ p,div,span,li{overflow-wrap:break-word}
 .ley{font-family:var(--mano);font-size:23px;color:var(--tiza-suave);margin:2px 0 20px 52px}
 .ley::before{content:"↳ ";opacity:.6}
 
-.dims{display:grid;gap:18px;grid-template-columns:1fr;align-items:start}
-@media(min-width:760px){.dims{grid-template-columns:repeat(2,1fr)}}
+.dims{display:grid;gap:18px;grid-template-columns:minmax(0,1fr);align-items:start}
+@media(min-width:760px){.dims{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(min-width:760px){
   .dims > details.dim[open]{
     grid-column:1/-1;
-    width:min(100%,780px);
+    width:min(90%,720px);
     justify-self:center;
   }
   .dims > details.dim[open] + details.dim,
   .dims > details.dim:has(+ details.dim[open]){
     grid-column:1/-1;
-    width:min(100%,780px);
+    width:min(90%,720px);
     justify-self:center;
   }
 }
@@ -129,14 +129,13 @@ details[open]>summary .abre{transform:rotate(45deg)}
 .dim--mirada{border-top:7px solid var(--mirada)}
 .dim--operar{border-top:7px solid var(--operar)}
 .dim--mental{border-top:7px solid var(--mental)}
-.dim-cab{display:flex;align-items:center;gap:10px}
+.dim-cab{display:grid;grid-template-columns:42px minmax(0,1fr) 28px;align-items:center;gap:8px}
+.dim-cab>.abre{justify-self:center}
+.dim-cab>.ico{justify-self:center}
 .dim-cab .ico{width:34px;height:34px;flex:none}
 .dim-cab .ico--rosa{width:42px;height:42px}
-.dim-cab h3{font-size:23px;font-weight:700;letter-spacing:.08em;text-transform:uppercase}
-.verbo{
-  font-family:var(--mano);font-size:26px;line-height:1.1;margin-left:auto;
-  padding:1px 12px;border-radius:4px;color:var(--oscuro);font-weight:700;
-}
+.dim-cab h3{font-size:clamp(17.5px,4.7vw,23px);font-weight:700;letter-spacing:.055em;text-transform:uppercase;min-width:0}
+.verbo{display:none}
 .v-mirada{background:var(--mirada)} .v-operar{background:var(--operar)} .v-mental{background:var(--mental)}
 .vmini{font-family:var(--mano);font-size:19px;line-height:1;margin-left:8px;padding:0 8px;
   border-radius:3px;background:var(--operar);color:var(--oscuro);font-weight:700}
@@ -201,7 +200,7 @@ details[open]>summary .abre{transform:rotate(45deg)}
 
 /* ================= cuadrantes ================= */
 .cuadrante{
-  position:relative;margin:10px auto 0;max-width:660px;width:100%;
+  position:relative;margin:10px auto 0;max-width:540px;width:100%;
   display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;
   border:2.2px solid var(--tinta);background:var(--carta-2);
 }
@@ -382,6 +381,198 @@ details[open]>summary .abre{transform:rotate(45deg)}
 .bridge b{color:var(--tinta)}
 .fase-secuencia{font-family:var(--mano);font-size:18px;color:var(--tinta-suave);margin:4px 0 9px 16px}
 
+/* =============== cadena de propósito =============== */
+.cadena-proposito{max-width:760px;margin:4px auto 24px;text-align:center;color:var(--tiza)}
+.cadena-proposito .cp-tit{font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--tiza-suave);margin-bottom:7px}
+.cp-fila{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr) auto minmax(0,1fr);gap:7px;align-items:center}
+.cp-nodo{min-width:0;padding:7px 6px 6px;border:1px solid rgba(239,231,210,.28);border-radius:10px 3px 10px 3px;background:rgba(239,231,210,.055)}
+.cp-nodo b{display:block;color:var(--tiza);font-size:12.5px;letter-spacing:.07em}
+.cp-nodo span{display:block;color:var(--tiza-suave);font-family:var(--mano);font-size:16px;line-height:1.05;margin-top:1px}
+.cp-arr{font-family:var(--mano);font-size:21px;color:var(--proceso);opacity:.9}
+.cp-regla{display:flex;justify-content:space-between;gap:10px;margin:6px 4px 0;color:var(--tiza-suave);font-family:var(--mano);font-size:15px;opacity:.85}
+@media(max-width:430px){.cp-fila{gap:4px}.cp-nodo{padding:6px 3px 5px}.cp-nodo b{font-size:10.8px}.cp-nodo span{font-size:14.5px}.cp-arr{font-size:18px}.cp-regla{font-size:13.5px}}
+
+/* =============== marcas de propuesta (solo versión de comprobación) =============== */
+.propuesta-chatgpt{position:relative;outline:1.4px dashed rgba(127,212,226,.9);outline-offset:4px;--prop-bg:var(--papel)}
+.propuesta-chatgpt::after{content:"PROPUESTA";position:absolute;top:-11px;right:10px;z-index:4;padding:1px 6px;border:1px solid var(--mirada);border-radius:999px;background:var(--prop-bg);color:var(--tinta);font-size:8.5px;font-weight:700;letter-spacing:.13em;line-height:1.4}
+.propuesta-chatgpt--dark{--prop-bg:var(--fondo)}
+.propuesta-chatgpt--dark::after{color:var(--tiza)}
+
+
+/* v1.2.2: conservar márgenes también con las fuentes de reserva sin conexión.
+   A partir de 760px se mantienen intactos los anchos de revisión aprobados. */
+@media(max-width:759px){
+  .dims{grid-template-columns:minmax(0,1fr)}
+  .dims>.dim{min-width:0;max-width:100%}
+  .dim-cab{flex-wrap:wrap}
+}
+/* v1.2.2: Personas es una disposición de trato, no otra de las cuatro actitudes. */
+.personas-actitud{margin-top:26px;margin-bottom:22px;padding:12px 10px 10px;border-radius:4px}
+.personas-actitud::after{content:attr(data-propuesta)}
+.personas-actitud .personas-desplegable{border-bottom:0}
+.personas-actitud .personas-desplegable>summary{font-size:17.5px;padding:0 0 26px;align-items:center}
+.personas-actitud .personas-desplegable>summary::before{display:none}
+.personas-actitud .personas-desplegable>summary .c-actitud{padding:1px 7px;border-radius:2px}
+.personas-actitud .personas-glosa{position:absolute;top:38px;left:17px;margin:0;pointer-events:none}
+.personas-actitud .personas-contenido>.cuadrante{margin-top:10px}
+
+/* =============== Pensador / Hacedor =============== */
+.ph{margin:12px 4px 18px;padding:10px 11px 9px;border:1.4px solid rgba(34,64,111,.32);border-radius:10px 3px 10px 3px;background:#FFF9E7}
+.ph-kicker{text-align:center;font-size:9.3px;font-weight:700;letter-spacing:.17em;text-transform:uppercase;color:var(--tinta-suave);margin:0 0 4px}
+.ph-pregunta{text-align:center;font-family:var(--mano);font-size:20px;color:var(--tinta);line-height:1.15;margin:0 0 8px}
+.ph-modos{display:grid;gap:6px}
+.ph-modo{display:grid;grid-template-columns:82px minmax(90px,1fr) 46px;gap:8px;align-items:center}
+.ph-nombre{font-size:11px;font-weight:700;letter-spacing:.08em;color:var(--tinta)}
+.ph-track{height:9px;display:flex;overflow:hidden;border:1px solid rgba(34,64,111,.35);border-radius:999px;background:#fff}
+.ph-track .piensa{background:var(--tinta)}
+.ph-track .hace{background:var(--proceso)}
+.ph-ratio{font-family:var(--mano);font-size:15px;color:var(--tinta-suave);text-align:right}
+.ph-ejes{display:flex;justify-content:space-between;margin:2px 53px 0 90px;font-size:9.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--grafito)}
+.ph-det{margin-top:7px;border-top:1px dotted rgba(34,64,111,.28);padding-top:5px}
+.ph-det>summary{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:7px;color:var(--tinta);font-size:12.6px;font-weight:700;letter-spacing:.04em}
+.ph-det>summary::-webkit-details-marker{display:none}
+.ph-det>summary .mas{font-family:var(--mano);font-size:18px;color:var(--tinta-suave);transition:transform .18s}
+.ph-det[open]>summary .mas{transform:rotate(45deg)}
+.ph-flujo{max-width:520px;margin:7px auto 2px;display:grid;gap:5px}
+.ph-paso{display:flex;gap:8px;align-items:baseline;font-size:12.8px;color:var(--grafito)}
+.ph-paso b{flex:0 0 82px;color:var(--tinta);font-size:11px;letter-spacing:.07em;text-transform:uppercase}
+.ph-hacedor{margin-top:2px;padding-top:6px;border-top:1px dashed rgba(34,64,111,.3);color:var(--grafito);font-size:12.8px;text-align:center}
+.ph-hacedor b{color:var(--tinta);letter-spacing:.07em}
+@media(max-width:430px){.ph-modo{grid-template-columns:70px minmax(70px,1fr) 40px;gap:6px}.ph-nombre{font-size:10px}.ph-ejes{margin-left:76px;margin-right:46px}.ph-pregunta{font-size:18px}}
+
+.cadena-proposito--papel{max-width:540px;margin:10px auto;color:var(--tinta);text-align:center}
+.cadena-proposito--papel .cp-arr{color:var(--tinta-suave)}
+.cadena-proposito--papel .cp-tit{color:var(--tinta-suave)}
+.cadena-proposito--papel .cp-nodo{border-color:rgba(34,64,111,.22);background:var(--carta-2)}
+.cadena-proposito--papel .cp-nodo b{color:var(--tinta)}
+.cadena-proposito--papel .cp-nodo span{color:var(--tinta-suave)}
+.cadena-proposito--papel .cp-regla{color:var(--tinta-suave)}
+.cuadrante--compacto{max-width:540px}
+
+/* v1.2.3 — revisión de contenido y proporciones. Reglas acotadas a cada componente. */
+.revision-concepto{margin:14px 0 8px;padding:5px 9px 8px;border:1px dashed var(--mirada);border-radius:7px;outline:none}
+.revision-concepto:last-child{border-bottom:1px dashed var(--mirada)}
+.revision-concepto::after{display:none}
+.revision-concepto>summary{align-items:center;gap:7px;min-height:36px}
+.revision-etiqueta{margin-left:auto;padding:1px 5px;border:1px solid var(--mirada);border-radius:999px;font:700 8px/1.4 var(--texto);letter-spacing:.08em;color:var(--tinta-suave);flex:none}
+.revision-concepto>summary .mas{margin-left:0}
+.pregunta-guia{text-align:center;font:18px/1.25 var(--mano);color:var(--tinta-suave);margin:10px 6px 3px}
+.arranque-simple{text-align:center;margin:7px auto 15px;padding:13px 8px 8px;max-width:330px}
+.arranque-simple .pastilla{font-size:18px;line-height:1.25;padding:9px 20px;margin:0;background:var(--proceso)}
+.arranque-simple p{font:19px/1.25 var(--mano);color:var(--tinta-suave);margin:8px 0 0}
+/* La estrella y Preguntarse comparten centro, también con el cuadrante desplegado. */
+.rezo-estrella{container-type:inline-size;max-width:540px;margin:12px auto 14px;padding:6px 0;text-align:center}
+.rezo-star-grid{display:grid;width:100%;max-width:350px;margin:0 auto;grid-template-columns:minmax(0,1fr) 72px minmax(0,1fr);grid-template-rows:auto 76px;gap:5px 8px;align-items:center}
+.rezo-nodo{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;color:var(--tinta);font-weight:700;font-size:11.2px;line-height:1.1;text-align:center;min-width:0}
+.rezo-nodo svg{width:21px;height:21px;flex:none}
+.rezo-nodo>span{white-space:nowrap}
+.rezo-nodo small{display:block;font-size:9px;font-weight:400;letter-spacing:.08em;text-transform:uppercase;color:var(--tinta-suave);margin-top:3px}
+.rezo-arriba{grid-column:2;grid-row:1;align-self:end}
+.rezo-izq{grid-column:1;grid-row:2;justify-self:end}
+.rezo-izq svg{order:-1}
+.rezo-centro{grid-column:2;grid-row:2;width:72px;height:76px;display:grid;place-items:center}
+.rezo-centro svg{width:72px;height:72px}
+.rezo-der{grid-column:3;grid-row:2;justify-self:start}
+.rezo-preguntas{margin:9px auto 0;max-width:540px}
+.rezo-preguntas>summary{list-style:none;cursor:pointer;width:max-content;max-width:100%;margin:0 auto;display:grid;grid-template-columns:22px auto 22px;grid-template-rows:auto auto;gap:3px 2px;align-items:center;justify-content:center;color:var(--tinta);font-weight:700;font-size:11.5px;line-height:1.1;min-height:54px}
+.rezo-preguntas>summary::-webkit-details-marker{display:none}
+.rezo-preguntas>summary>svg{grid-column:2;grid-row:1;justify-self:center;width:22px;height:22px}
+.rezo-tierra-label{grid-column:2;grid-row:2;text-align:center}
+.rezo-preguntas>summary small{display:block;font-size:9px;font-weight:400;letter-spacing:.08em;text-transform:uppercase;color:var(--tinta-suave);margin-top:3px}
+.rezo-preguntas>summary .mas{grid-column:3;grid-row:2;align-self:start;justify-self:center;font:20px/1 var(--mano);color:var(--tinta-suave);transition:transform .18s;margin:0}
+.rezo-preguntas[open]>summary .mas{transform:rotate(45deg)}
+.rezo-preguntas .cuadrante{margin:13px auto 3px;max-width:540px}
+/* Árbol de repaso: texto HTML legible, no encogido por el viewBox. */
+.repaso-diagrama{max-width:540px;margin:15px auto;padding:12px 8px 9px;container-type:inline-size}
+.rm-origen{position:relative;width:fit-content;max-width:100%;margin:0 auto;padding:7px 18px 6px;text-align:center;border:1.6px solid var(--tinta);border-radius:18px;background:#FFF6D2}
+.rm-origen b{display:block;font-size:14px;letter-spacing:.045em;line-height:1.25}
+.rm-origen span{display:block;font:17px/1.15 var(--mano);color:var(--tinta-suave);margin-top:2px}
+.rm-origen::after{content:"";position:absolute;left:50%;bottom:-12px;height:11px;border-left:1.4px solid var(--tinta)}
+.rm-resultados{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;position:relative;margin-top:23px}
+.rm-resultados::before{content:"";position:absolute;top:-12px;left:calc((100% - 24px)/6);right:calc((100% - 24px)/6);border-top:1.4px solid var(--tinta)}
+.rm-rama{position:relative;min-width:0}
+.rm-rama::before{content:"";position:absolute;left:50%;top:-12px;height:12px;border-left:1.4px solid var(--tinta)}
+.rm-caja{height:100%;min-height:50px;padding:7px 8px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;text-align:center;border:1.4px solid var(--tinta);border-radius:5px;background:var(--carta-2)}
+.rm-caja b{font-size:13px;line-height:1.2}
+.rm-caja span{font-size:11.4px;line-height:1.2;color:var(--tinta-suave)}
+@container (max-width:420px){
+  .rm-resultados{grid-template-columns:1fr;gap:8px;padding-left:18px;margin:23px 10px 0}
+  .rm-resultados::before{left:0;right:auto;top:-12px;bottom:25px;border-top:none;border-left:1.4px solid var(--tinta)}
+  .rm-resultados::after{content:"";position:absolute;top:-12px;left:0;right:50%;border-top:1.4px solid var(--tinta)}
+  .rm-rama::before{left:-18px;top:50%;height:0;width:18px;border-left:none;border-top:1.4px solid var(--tinta)}
+  .rm-caja{min-height:45px;padding:9px 12px}
+}
+@container (max-width:330px){
+  .rezo-star-grid{grid-template-columns:minmax(0,1fr) 60px minmax(0,1fr);grid-template-rows:auto 66px;gap:5px}
+  .rezo-centro{width:60px;height:66px}.rezo-centro svg{width:60px;height:60px}
+  .rezo-nodo{font-size:9px}.rezo-nodo svg{width:19px;height:19px}.rezo-nodo small{font-size:8.2px}
+  .rezo-preguntas>summary{font-size:10.8px}
+  .revision-concepto{padding-left:6px;padding-right:6px}.revision-etiqueta{font-size:7px;letter-spacing:0}
+}
+@media(prefers-reduced-motion:reduce){.abre,.mas,.rezo-preguntas>summary .mas{transition:none}}
+
+
+/* v1.2.5 — organización de Mirada y Actitud.
+   Ubicación principal por función; no categorías excluyentes ni fases de una secuencia.
+   Los otros componentes, anchos aprobados, símbolos y Proceso Diario no cambian. */
+.dim--mirada{--arq-acento:var(--mirada)}
+.dim--actitud{--arq-acento:var(--proceso)}
+.arq-apartado{margin:13px 0 0;border:1px solid rgba(34,64,111,.22);border-left:3px solid var(--arq-acento);border-radius:6px;background:var(--papel);min-width:0}
+.arq-apartado.arq-reorganizado{border-top-style:dashed;border-right-style:dashed;border-bottom-style:dashed}
+.arq-apartado>summary{list-style:none;cursor:pointer;user-select:none;padding:10px 11px 9px}
+.arq-apartado>summary::-webkit-details-marker{display:none}
+.arq-apartado>summary h4{display:flex;align-items:center;gap:8px;margin:0;font-size:17.5px;font-weight:700;line-height:1.3;color:var(--tinta)}
+.arq-nombre{padding:0 3px;min-width:0;overflow-wrap:normal}
+.arq-apartado>summary .revision-etiqueta{font-size:8px;letter-spacing:.06em;margin-left:auto}
+.arq-apartado>summary .mas{margin-left:auto;flex:none;display:inline-block;width:18px;text-align:center;font:23px/1 var(--mano);color:var(--tinta-suave);transition:transform .18s}
+.arq-apartado>summary .revision-etiqueta+.mas{margin-left:0}
+.arq-apartado[open]>summary .mas{transform:rotate(45deg)}
+.arq-apartado>summary:focus-visible{outline:2px solid var(--tinta);outline-offset:3px;border-radius:4px}
+.arq-glosa{display:block;margin-top:3px;font-size:12.6px;line-height:1.35;color:var(--tinta-suave)}
+.arq-apartado[open]>summary{border-bottom:1px dotted rgba(34,64,111,.18);margin-bottom:8px;background:var(--carta-2)}
+.arq-contenido{padding:0 11px 12px;min-width:0}
+.arq-contenido>.def{font-size:14px;line-height:1.5;color:var(--grafito);padding:1px 3px 6px}
+.arq-contenido>.def b{color:var(--tinta)}
+.arq-alcance{font-size:13px;line-height:1.45;color:var(--grafito);margin:2px 3px 10px}
+.arq-alcance b{font-weight:500;color:var(--tinta-suave)}
+.arq-contexto{font:19px/1.25 var(--mano);color:var(--tinta-suave);margin:10px 1px 15px}
+.arq-referencias{margin-top:23px;padding-top:10px;border-top:1px solid rgba(34,64,111,.18)}
+.arq-referencia-titulo{font-size:10px;letter-spacing:.13em;text-transform:uppercase;color:var(--grafito);margin-bottom:5px}
+@media(max-width:430px){
+  .arq-apartado>summary{padding:10px 8px}
+  .arq-apartado>summary h4{font-size:16px;gap:5px}
+  .arq-apartado>summary .revision-etiqueta{font-size:7px;letter-spacing:0;padding:1px 4px}
+  .arq-contenido{padding:0 7px 10px}
+  .arq-glosa{font-size:12px}
+}
+@media(prefers-reduced-motion:reduce){.arq-apartado>summary .mas{transition:none}}
+
+
+/* v1.2.6 — mismo lenguaje de cajitas en Mentalización y Operación.
+   Cambios de contenedor/jerarquía, no de doctrina. Contenidos originales conservados.
+   Pensador/Hacedor es un modo de Proceder, nunca una fase de su cuadrante. */
+.dim--mental{--arq-acento:var(--mental)}
+.dim--operar{--arq-acento:var(--operar)}
+#operacion-proceder .ph{margin-top:16px}
+.op-apoyo-rotulo{margin:18px 2px 7px;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--grafito)}
+.op-apoyo{border:1px dashed rgba(34,64,111,.3);border-left:2px solid var(--operar);border-radius:5px;min-width:0}
+.op-apoyo>summary{list-style:none;cursor:pointer;padding:9px 10px;user-select:none}
+.op-apoyo>summary::-webkit-details-marker{display:none}
+.op-apoyo>summary h5{display:flex;align-items:center;gap:7px;font-size:14.6px;line-height:1.3;color:var(--tinta)}
+.op-apoyo>summary .revision-etiqueta{font-size:7px;margin-left:auto;letter-spacing:.04em}
+.op-apoyo>summary .mas{flex:none;display:inline-block;font:20px/1 var(--mano);color:var(--tinta-suave);transition:transform .18s}
+.op-apoyo[open]>summary{border-bottom:1px dotted rgba(34,64,111,.18);background:var(--carta-2)}
+.op-apoyo[open]>summary .mas{transform:rotate(45deg)}
+.op-apoyo>summary .arq-glosa{font-size:12px}
+.op-apoyo>summary:focus-visible{outline:2px solid var(--tinta);outline-offset:3px;border-radius:4px}
+.op-apoyo-contenido{padding:5px 8px 8px;min-width:0}
+@media(max-width:430px){
+  .op-apoyo>summary{padding:9px 7px}
+  .op-apoyo>summary h5{font-size:14px;gap:5px}
+  .op-apoyo-contenido{padding:5px 5px 8px}
+}
+@media(prefers-reduced-motion:reduce){.op-apoyo>summary .mas{transition:none}}
+
 </style>
 </head>
 <body>
@@ -432,8 +623,8 @@ details[open]>summary .abre{transform:rotate(45deg)}
   </symbol>
   <symbol id="escudo" viewBox="0 0 224 212"><path d="M112 12 L66 56 L112 26 Z" fill="#EFE7D2"/><path d="M112 12 L158 56 L112 26 Z" fill="#EFE7D2"/><path d="M66.5 56.8 L112.5 26.8 L112 37 Z" fill="#8C8C89" stroke="#131C30" stroke-width="0.5" stroke-linejoin="round"/><path d="M157.5 56.8 L111.5 26.8 L112 37 Z" fill="#8C8C89" stroke="#131C30" stroke-width="0.5" stroke-linejoin="round"/><path d="M10 114 L54 68 L24 114 Z" fill="#EFE7D2"/><path d="M10 114 L54 160 L24 114 Z" fill="#EFE7D2"/><path d="M54.8 68.5 L24.8 114.5 L35 114 Z" fill="#8C8C89" stroke="#131C30" stroke-width="0.5" stroke-linejoin="round"/><path d="M54.8 159.5 L24.8 113.5 L35 114 Z" fill="#8C8C89" stroke="#131C30" stroke-width="0.5" stroke-linejoin="round"/><path d="M214 114 L170 68 L200 114 Z" fill="#EFE7D2"/><path d="M214 114 L170 160 L200 114 Z" fill="#EFE7D2"/><path d="M169.2 68.5 L199.2 114.5 L189 114 Z" fill="#8C8C89" stroke="#131C30" stroke-width="0.5" stroke-linejoin="round"/><path d="M169.2 159.5 L199.2 113.5 L189 114 Z" fill="#8C8C89" stroke="#131C30" stroke-width="0.5" stroke-linejoin="round"/><path d="M69.87 149.35 A55 55 0 0 1 140.33 66.86 L142.78 74.60 A50 50 0 0 0 70.07 141.23L69.87 149.35 Z" fill="#EFE7D2"/><path d="M77.53 142.93 A45 45 0 0 1 135.18 75.43 L142.78 74.60 A50 50 0 0 0 70.07 141.23 L77.53 142.93 Z" fill="#8C8C89" stroke="#131C30" stroke-width="0.5" stroke-linejoin="round"/><path d="M154.13 78.65 A55 55 0 0 1 83.67 161.14 L81.22 153.40 A50 50 0 0 0 153.93 86.77L154.13 78.65 Z" fill="#8C8C89" stroke="#131C30" stroke-width="0.5" stroke-linejoin="round"/><path d="M146.47 85.07 A45 45 0 0 1 88.82 152.57 L81.22 153.40 A50 50 0 0 0 153.93 86.77 L146.47 85.07 Z" fill="#EFE7D2"/><path d="M112.00 114.00 L130.38 95.62 L124.00 114.00 Z" fill="#8C8C89" stroke="#131C30" stroke-width="0.5" stroke-linejoin="round"/><path d="M112.00 114.00 L130.38 95.62 L112.00 102.00 Z" fill="#EFE7D2"/><path d="M112.00 114.00 L130.38 132.38 L112.00 126.00 Z" fill="#8C8C89" stroke="#131C30" stroke-width="0.5" stroke-linejoin="round"/><path d="M112.00 114.00 L130.38 132.38 L124.00 114.00 Z" fill="#EFE7D2"/><path d="M112.00 114.00 L93.62 132.38 L100.00 114.00 Z" fill="#8C8C89" stroke="#131C30" stroke-width="0.5" stroke-linejoin="round"/><path d="M112.00 114.00 L93.62 132.38 L112.00 126.00 Z" fill="#EFE7D2"/><path d="M112.00 114.00 L93.62 95.62 L112.00 102.00 Z" fill="#8C8C89" stroke="#131C30" stroke-width="0.5" stroke-linejoin="round"/><path d="M112.00 114.00 L93.62 95.62 L100.00 114.00 Z" fill="#EFE7D2"/><path d="M112.00 69.50 L121.19 104.81 L156.50 114.00 L121.19 123.19 L112.00 158.50 L102.81 123.19 L67.50 114.00 L102.81 104.81 Z" fill="none" stroke="#131C30" stroke-width="1.5" stroke-linejoin="round"/><path d="M112.00 114.00 L112.00 69.50 L121.19 104.81 Z" fill="#EFE7D2"/><path d="M112.00 114.00 L112.00 69.50 L102.81 104.81 Z" fill="#8C8C89" stroke="#131C30" stroke-width="0.5" stroke-linejoin="round"/><path d="M112.00 114.00 L156.50 114.00 L121.19 123.19 Z" fill="#EFE7D2"/><path d="M112.00 114.00 L156.50 114.00 L121.19 104.81 Z" fill="#8C8C89" stroke="#131C30" stroke-width="0.5" stroke-linejoin="round"/><path d="M112.00 114.00 L112.00 158.50 L102.81 123.19 Z" fill="#EFE7D2"/><path d="M112.00 114.00 L112.00 158.50 L121.19 123.19 Z" fill="#8C8C89" stroke="#131C30" stroke-width="0.5" stroke-linejoin="round"/><path d="M112.00 114.00 L67.50 114.00 L102.81 104.81 Z" fill="#EFE7D2"/><path d="M112.00 114.00 L67.50 114.00 L102.81 123.19 Z" fill="#8C8C89" stroke="#131C30" stroke-width="0.5" stroke-linejoin="round"/><path d="M64 184 L160 184 L153.5 190.5 L70.5 190.5 Z" fill="#8C8C89" stroke="#131C30" stroke-width="0.5" stroke-linejoin="round"/><path d="M70.5 190.5 L153.5 190.5 L160 197 L64 197 Z" fill="#EFE7D2"/><path d="M64 184 L70.5 190.5 L64 197 Z" fill="#BFBAAE" stroke="#131C30" stroke-width="0.5" stroke-linejoin="round"/><path d="M160 184 L153.5 190.5 L160 197 Z" fill="#BFBAAE" stroke="#131C30" stroke-width="0.5" stroke-linejoin="round"/></symbol>
   <symbol id="escudo-min" viewBox="30 0 164 180"><path d="M112 12 L66 56 L112 26 Z" fill="#22406F"/><path d="M112 12 L158 56 L112 26 Z" fill="#22406F"/><path d="M66.5 56.8 L112.5 26.8 L112 37 Z" fill="#8596B0" stroke="#FFFCF2" stroke-width="0.5" stroke-linejoin="round"/><path d="M157.5 56.8 L111.5 26.8 L112 37 Z" fill="#8596B0" stroke="#FFFCF2" stroke-width="0.5" stroke-linejoin="round"/><path d="M69.87 149.35 A55 55 0 0 1 140.33 66.86 L142.78 74.60 A50 50 0 0 0 70.07 141.23L69.87 149.35 Z" fill="#22406F"/><path d="M77.53 142.93 A45 45 0 0 1 135.18 75.43 L142.78 74.60 A50 50 0 0 0 70.07 141.23 L77.53 142.93 Z" fill="#8596B0" stroke="#FFFCF2" stroke-width="0.5" stroke-linejoin="round"/><path d="M154.13 78.65 A55 55 0 0 1 83.67 161.14 L81.22 153.40 A50 50 0 0 0 153.93 86.77L154.13 78.65 Z" fill="#8596B0" stroke="#FFFCF2" stroke-width="0.5" stroke-linejoin="round"/><path d="M146.47 85.07 A45 45 0 0 1 88.82 152.57 L81.22 153.40 A50 50 0 0 0 153.93 86.77 L146.47 85.07 Z" fill="#22406F"/><path d="M112.00 114.00 L130.38 95.62 L124.00 114.00 Z" fill="#8596B0" stroke="#FFFCF2" stroke-width="0.5" stroke-linejoin="round"/><path d="M112.00 114.00 L130.38 95.62 L112.00 102.00 Z" fill="#22406F"/><path d="M112.00 114.00 L130.38 132.38 L112.00 126.00 Z" fill="#8596B0" stroke="#FFFCF2" stroke-width="0.5" stroke-linejoin="round"/><path d="M112.00 114.00 L130.38 132.38 L124.00 114.00 Z" fill="#22406F"/><path d="M112.00 114.00 L93.62 132.38 L100.00 114.00 Z" fill="#8596B0" stroke="#FFFCF2" stroke-width="0.5" stroke-linejoin="round"/><path d="M112.00 114.00 L93.62 132.38 L112.00 126.00 Z" fill="#22406F"/><path d="M112.00 114.00 L93.62 95.62 L112.00 102.00 Z" fill="#8596B0" stroke="#FFFCF2" stroke-width="0.5" stroke-linejoin="round"/><path d="M112.00 114.00 L93.62 95.62 L100.00 114.00 Z" fill="#22406F"/><path d="M112.00 69.50 L121.19 104.81 L156.50 114.00 L121.19 123.19 L112.00 158.50 L102.81 123.19 L67.50 114.00 L102.81 104.81 Z" fill="none" stroke="#FFFCF2" stroke-width="1.5" stroke-linejoin="round"/><path d="M112.00 114.00 L112.00 69.50 L121.19 104.81 Z" fill="#22406F"/><path d="M112.00 114.00 L112.00 69.50 L102.81 104.81 Z" fill="#8596B0" stroke="#FFFCF2" stroke-width="0.5" stroke-linejoin="round"/><path d="M112.00 114.00 L156.50 114.00 L121.19 123.19 Z" fill="#22406F"/><path d="M112.00 114.00 L156.50 114.00 L121.19 104.81 Z" fill="#8596B0" stroke="#FFFCF2" stroke-width="0.5" stroke-linejoin="round"/><path d="M112.00 114.00 L112.00 158.50 L102.81 123.19 Z" fill="#22406F"/><path d="M112.00 114.00 L112.00 158.50 L121.19 123.19 Z" fill="#8596B0" stroke="#FFFCF2" stroke-width="0.5" stroke-linejoin="round"/><path d="M112.00 114.00 L67.50 114.00 L102.81 104.81 Z" fill="#22406F"/><path d="M112.00 114.00 L67.50 114.00 L102.81 123.19 Z" fill="#8596B0" stroke="#FFFCF2" stroke-width="0.5" stroke-linejoin="round"/></symbol>
-  <symbol id="escudo-full-papel" viewBox="-36 -30 306 262"><path d="M112 12 L66 56 L112 26 Z" fill="#22406F"/><path d="M112 12 L158 56 L112 26 Z" fill="#22406F"/><path d="M66.5 56.8 L112.5 26.8 L112 37 Z" fill="#8596B0" stroke="#FFFCF2" stroke-width="0.5" stroke-linejoin="round"/><path d="M157.5 56.8 L111.5 26.8 L112 37 Z" fill="#8596B0" stroke="#FFFCF2" stroke-width="0.5" stroke-linejoin="round"/><path d="M10 114 L54 68 L24 114 Z" fill="#22406F"/><path d="M10 114 L54 160 L24 114 Z" fill="#22406F"/><path d="M54.8 68.5 L24.8 114.5 L35 114 Z" fill="#8596B0" stroke="#FFFCF2" stroke-width="0.5" stroke-linejoin="round"/><path d="M54.8 159.5 L24.8 113.5 L35 114 Z" fill="#8596B0" stroke="#FFFCF2" stroke-width="0.5" stroke-linejoin="round"/><path d="M214 114 L170 68 L200 114 Z" fill="#22406F"/><path d="M214 114 L170 160 L200 114 Z" fill="#22406F"/><path d="M169.2 68.5 L199.2 114.5 L189 114 Z" fill="#8596B0" stroke="#FFFCF2" stroke-width="0.5" stroke-linejoin="round"/><path d="M169.2 159.5 L199.2 113.5 L189 114 Z" fill="#8596B0" stroke="#FFFCF2" stroke-width="0.5" stroke-linejoin="round"/><path d="M69.87 149.35 A55 55 0 0 1 140.33 66.86 L142.78 74.60 A50 50 0 0 0 70.07 141.23L69.87 149.35 Z" fill="#22406F"/><path d="M77.53 142.93 A45 45 0 0 1 135.18 75.43 L142.78 74.60 A50 50 0 0 0 70.07 141.23 L77.53 142.93 Z" fill="#8596B0" stroke="#FFFCF2" stroke-width="0.5" stroke-linejoin="round"/><path d="M154.13 78.65 A55 55 0 0 1 83.67 161.14 L81.22 153.40 A50 50 0 0 0 153.93 86.77L154.13 78.65 Z" fill="#8596B0" stroke="#FFFCF2" stroke-width="0.5" stroke-linejoin="round"/><path d="M146.47 85.07 A45 45 0 0 1 88.82 152.57 L81.22 153.40 A50 50 0 0 0 153.93 86.77 L146.47 85.07 Z" fill="#22406F"/><path d="M112.00 114.00 L130.38 95.62 L124.00 114.00 Z" fill="#8596B0" stroke="#FFFCF2" stroke-width="0.5" stroke-linejoin="round"/><path d="M112.00 114.00 L130.38 95.62 L112.00 102.00 Z" fill="#22406F"/><path d="M112.00 114.00 L130.38 132.38 L112.00 126.00 Z" fill="#8596B0" stroke="#FFFCF2" stroke-width="0.5" stroke-linejoin="round"/><path d="M112.00 114.00 L130.38 132.38 L124.00 114.00 Z" fill="#22406F"/><path d="M112.00 114.00 L93.62 132.38 L100.00 114.00 Z" fill="#8596B0" stroke="#FFFCF2" stroke-width="0.5" stroke-linejoin="round"/><path d="M112.00 114.00 L93.62 132.38 L112.00 126.00 Z" fill="#22406F"/><path d="M112.00 114.00 L93.62 95.62 L112.00 102.00 Z" fill="#8596B0" stroke="#FFFCF2" stroke-width="0.5" stroke-linejoin="round"/><path d="M112.00 114.00 L93.62 95.62 L100.00 114.00 Z" fill="#22406F"/><path d="M112.00 69.50 L121.19 104.81 L156.50 114.00 L121.19 123.19 L112.00 158.50 L102.81 123.19 L67.50 114.00 L102.81 104.81 Z" fill="none" stroke="#FFFCF2" stroke-width="1.5" stroke-linejoin="round"/><path d="M112.00 114.00 L112.00 69.50 L121.19 104.81 Z" fill="#22406F"/><path d="M112.00 114.00 L112.00 69.50 L102.81 104.81 Z" fill="#8596B0" stroke="#FFFCF2" stroke-width="0.5" stroke-linejoin="round"/><path d="M112.00 114.00 L156.50 114.00 L121.19 123.19 Z" fill="#22406F"/><path d="M112.00 114.00 L156.50 114.00 L121.19 104.81 Z" fill="#8596B0" stroke="#FFFCF2" stroke-width="0.5" stroke-linejoin="round"/><path d="M112.00 114.00 L112.00 158.50 L102.81 123.19 Z" fill="#22406F"/><path d="M112.00 114.00 L112.00 158.50 L121.19 123.19 Z" fill="#8596B0" stroke="#FFFCF2" stroke-width="0.5" stroke-linejoin="round"/><path d="M112.00 114.00 L67.50 114.00 L102.81 104.81 Z" fill="#22406F"/><path d="M112.00 114.00 L67.50 114.00 L102.81 123.19 Z" fill="#8596B0" stroke="#FFFCF2" stroke-width="0.5" stroke-linejoin="round"/><path d="M64 184 L160 184 L153.5 190.5 L70.5 190.5 Z" fill="#8596B0" stroke="#FFFCF2" stroke-width="0.5" stroke-linejoin="round"/><path d="M70.5 190.5 L153.5 190.5 L160 197 L64 197 Z" fill="#22406F"/><path d="M64 184 L70.5 190.5 L64 197 Z" fill="#536A8F" stroke="#FFFCF2" stroke-width="0.5" stroke-linejoin="round"/><path d="M160 184 L153.5 190.5 L160 197 Z" fill="#536A8F" stroke="#FFFCF2" stroke-width="0.5" stroke-linejoin="round"/><g transform="translate(112.00 -6.00) rotate(0) scale(1.1000) translate(-10 -10)"><path d="M10 1.6C11.6 5.8 15.4 7.4 15.4 11.6A5.4 5.4 0 0 1 4.6 11.6C4.6 9 6.4 7.8 7 6.1 7.7 7.8 9 8.5 9.7 7.8 9 5.8 9 3.6 10 1.6Z" fill="#22406F"/></g><g transform="translate(-10.00 114.00) rotate(0) scale(1.1000) translate(-10 -10)"><g fill="none" stroke="#22406F" stroke-width="1.6" stroke-linecap="round"><path d="M1.8 6.6H11.6A2.7 2.7 0 1 0 8.9 3.9"/><path d="M1.8 11H14.8A2.7 2.7 0 1 1 12.1 13.7"/><path d="M1.8 15.4H9"/></g></g><g transform="translate(112.00 215.00) rotate(0) scale(1.1000) translate(-10 -10)"><path d="M1.2 16.4L7 6.6 10.6 12.4 13.2 8.2 18.8 16.4Z" fill="#22406F"/></g><g transform="translate(244 114) scale(0.19469) translate(-113 -50)"><path d="M214.30 96.00C206.73 96.06 204.78 96.84 192.97 95.69C181.15 94.55 182.76 94.76 172.09 91.92C161.42 89.07 161.74 88.46 154.84 85.52C147.95 82.58 151.29 83.91 147.48 81.42C143.67 78.93 144.38 79.51 141.23 76.61C138.08 73.71 138.41 73.92 136.24 71.08C134.06 68.23 134.89 69.90 133.45 66.44C132.01 62.99 131.75 62.54 131.09 58.73C130.43 54.92 130.70 55.88 131.09 52.83C131.48 49.78 130.97 51.01 132.49 47.84C134.01 44.66 132.67 45.11 136.52 41.48C140.36 37.86 143.21 37.18 146.22 34.89C149.23 32.60 147.27 33.31 147.27 33.31C147.27 33.31 147.49 31.96 144.41 30.89C141.32 29.81 142.46 29.43 136.24 29.46C130.01 29.49 128.94 29.53 122.17 30.99C115.39 32.45 116.51 32.75 112.04 34.68C107.56 36.60 111.47 34.10 106.18 37.85C100.88 41.60 101.99 39.75 93.12 48.07C84.26 56.39 82.27 59.83 74.51 67.57C66.76 75.30 70.52 71.55 65.44 75.70C60.36 79.84 62.21 78.72 56.36 82.39C50.52 86.05 51.55 85.62 44.56 88.79C37.57 91.97 37.50 91.82 31.40 93.74C25.30 95.65 29.26 95.10 22.78 95.64C16.30 96.19 12.80 95.86 8.25 95.69C3.71 95.52 7.19 95.60 6.56 95.04C5.93 94.47 6.00 93.67 6.00 93.67C6.00 93.67 1.83 94.61 7.80 92.10C13.77 89.59 18.67 88.45 27.32 84.71C35.96 80.98 33.20 81.95 38.66 78.77C44.13 75.58 39.02 79.44 46.83 73.32C54.64 67.20 55.11 67.40 66.55 56.91C77.98 46.42 77.95 44.47 87.68 35.86C97.40 27.26 95.32 29.96 101.29 26.18C107.26 22.40 103.42 24.47 109.01 22.36C114.60 20.25 116.30 19.95 121.26 18.64C126.22 17.33 120.86 17.95 126.71 17.68C132.55 17.41 133.88 16.85 142.14 17.66C150.40 18.47 148.45 18.18 156.21 20.57C163.96 22.95 162.96 22.55 169.82 26.18C176.68 29.82 176.50 30.28 180.71 33.55C184.93 36.82 182.96 35.25 184.87 37.85C186.78 40.45 187.03 40.68 187.53 42.84C188.03 45.00 187.40 44.51 186.64 45.57C185.87 46.62 188.87 47.04 184.80 46.62C180.72 46.19 177.93 44.79 172.09 44.05C166.24 43.31 167.61 43.70 163.92 43.98C160.24 44.27 161.47 44.17 158.93 45.07C156.39 45.98 157.16 45.17 154.84 47.21C152.53 49.25 152.11 49.40 150.65 52.37C149.19 55.35 149.43 54.39 149.63 57.82C149.83 61.25 149.76 61.01 151.35 64.63C152.93 68.24 152.28 67.28 155.30 70.73C158.31 74.18 156.68 73.20 162.11 76.95C167.53 80.71 166.15 80.44 174.67 84.14C183.18 87.85 179.95 87.27 192.51 90.19C205.07 93.12 219.51 94.58 219.51 94.58C219.51 94.58 220.00 95.49 220.00 95.49C220.00 95.49 221.87 95.94 214.30 96.00Z" fill="#22406F"/></g><g transform="translate(83.17 95.98) rotate(-13) scale(0.7000) translate(-10 -10)"><circle cx="10" cy="10" r="4.2" fill="#22406F"/><g stroke="#22406F" stroke-width="1.5" stroke-linecap="round"><path d="M10 1.6V4"/><path d="M10 16V18.4"/><path d="M1.6 10H4"/><path d="M16 10H18.4"/><path d="M4.1 4.1L5.8 5.8"/><path d="M14.2 14.2L15.9 15.9"/><path d="M15.9 4.1L14.2 5.8"/><path d="M5.8 14.2L4.1 15.9"/></g></g><g transform="translate(93.98 85.17) rotate(13) scale(0.7000) translate(-10 -10)"><path d="M17.36 13.13A8 8 0 1 1 6.87 2.64 7.8 7.8 0 0 0 17.36 13.13Z" fill="#22406F"/></g><g transform="translate(130.02 85.17) rotate(-13) scale(0.7000) translate(-10 -10)"><polygon points="10.00,0.20 10.49,1.52 11.90,1.58 10.80,2.46 11.18,3.82 10.00,3.04 8.82,3.82 9.20,2.46 8.10,1.58 9.51,1.52" fill="#22406F"/><polygon points="10.40,15.50 10.97,17.02 12.59,17.09 11.32,18.10 11.75,19.66 10.40,18.77 9.05,19.66 9.48,18.10 8.21,17.09 9.83,17.02" fill="#22406F"/><polygon points="16.60,8.30 17.07,9.55 18.41,9.61 17.36,10.45 17.72,11.74 16.60,11.00 15.48,11.74 15.84,10.45 14.79,9.61 16.13,9.55" fill="#22406F"/><polygon points="3.60,6.90 3.97,7.89 5.03,7.94 4.20,8.59 4.48,9.61 3.60,9.03 2.72,9.61 3.00,8.59 2.17,7.94 3.23,7.89" fill="#22406F"/><polygon points="11.40,11.50 11.62,12.09 12.26,12.12 11.76,12.52 11.93,13.13 11.40,12.78 10.87,13.13 11.04,12.52 10.54,12.12 11.18,12.09" fill="#22406F"/></g><g transform="translate(140.83 95.98) rotate(13) scale(0.7000) translate(-10 -10)"><g fill="#22406F"><path d="M10 10C7.7 9.5 6.3 7.5 6.3 5.3 6.3 3.0 8.0 1.4 10 1.4 12.0 1.4 13.7 3.0 13.7 5.3 13.7 7.5 12.3 9.5 10 10Z" transform="rotate(180 10 10)"/><path d="M10 10C7.7 9.5 6.3 7.5 6.3 5.3 6.3 3.0 8.0 1.4 10 1.4 12.0 1.4 13.7 3.0 13.7 5.3 13.7 7.5 12.3 9.5 10 10Z" transform="rotate(252 10 10)"/><path d="M10 10C7.7 9.5 6.3 7.5 6.3 5.3 6.3 3.0 8.0 1.4 10 1.4 12.0 1.4 13.7 3.0 13.7 5.3 13.7 7.5 12.3 9.5 10 10Z" transform="rotate(324 10 10)"/><path d="M10 10C7.7 9.5 6.3 7.5 6.3 5.3 6.3 3.0 8.0 1.4 10 1.4 12.0 1.4 13.7 3.0 13.7 5.3 13.7 7.5 12.3 9.5 10 10Z" transform="rotate(396 10 10)"/><path d="M10 10C7.7 9.5 6.3 7.5 6.3 5.3 6.3 3.0 8.0 1.4 10 1.4 12.0 1.4 13.7 3.0 13.7 5.3 13.7 7.5 12.3 9.5 10 10Z" transform="rotate(468 10 10)"/></g><ellipse cx="10" cy="5.9" rx="1.1" ry="1.75" transform="rotate(180 10 10)" fill="#FFFCF2"/><ellipse cx="10" cy="5.9" rx="1.1" ry="1.75" transform="rotate(252 10 10)" fill="#FFFCF2"/><ellipse cx="10" cy="5.9" rx="1.1" ry="1.75" transform="rotate(324 10 10)" fill="#FFFCF2"/><ellipse cx="10" cy="5.9" rx="1.1" ry="1.75" transform="rotate(396 10 10)" fill="#FFFCF2"/><ellipse cx="10" cy="5.9" rx="1.1" ry="1.75" transform="rotate(468 10 10)" fill="#FFFCF2"/><circle cx="10" cy="10" r="2.6" fill="#FFFCF2"/><path d="M10 10L12.40 10.00" stroke="#22406F" stroke-width="0.6" stroke-linecap="round"/><path d="M10 10L12.08 11.20" stroke="#22406F" stroke-width="0.6" stroke-linecap="round"/><path d="M10 10L11.20 12.08" stroke="#22406F" stroke-width="0.6" stroke-linecap="round"/><path d="M10 10L10.00 12.40" stroke="#22406F" stroke-width="0.6" stroke-linecap="round"/><path d="M10 10L8.80 12.08" stroke="#22406F" stroke-width="0.6" stroke-linecap="round"/><path d="M10 10L7.92 11.20" stroke="#22406F" stroke-width="0.6" stroke-linecap="round"/><path d="M10 10L7.60 10.00" stroke="#22406F" stroke-width="0.6" stroke-linecap="round"/><path d="M10 10L7.92 8.80" stroke="#22406F" stroke-width="0.6" stroke-linecap="round"/><path d="M10 10L8.80 7.92" stroke="#22406F" stroke-width="0.6" stroke-linecap="round"/><path d="M10 10L10.00 7.60" stroke="#22406F" stroke-width="0.6" stroke-linecap="round"/><path d="M10 10L11.20 7.92" stroke="#22406F" stroke-width="0.6" stroke-linecap="round"/><path d="M10 10L12.08 8.80" stroke="#22406F" stroke-width="0.6" stroke-linecap="round"/><circle cx="10" cy="10" r="0.9" fill="#22406F"/></g><g transform="translate(83.17 132.02) rotate(0) scale(0.7500) translate(-10 -10)"><path d="M1.4 10C4.6 4.4 15.4 4.4 18.6 10 15.4 15.6 4.6 15.6 1.4 10Z" fill="none" stroke="#22406F" stroke-width="1.6"/><circle cx="10" cy="10" r="2.8" fill="#22406F"/></g><g transform="translate(93.98 142.83) rotate(0) scale(0.6500) translate(-10 -10)"><path d="M11.03 19.30 C9.80 19.41 8.16 19.35 7.20 19.30 C6.24 19.25 6.03 19.05 5.27 19.02 C4.51 18.99 3.20 19.15 2.63 19.14 C2.06 19.14 2.06 19.07 1.85 18.99 C1.65 18.90 1.44 19.57 1.40 18.63 C1.36 17.70 1.50 14.55 1.59 13.37 C1.67 12.20 1.61 12.55 1.90 11.60 C2.19 10.66 2.99 8.82 3.33 7.71 C3.67 6.61 3.83 5.64 3.95 4.98 C4.07 4.31 3.98 4.06 4.04 3.73 C4.11 3.40 4.10 3.37 4.32 2.99 C4.55 2.60 5.06 1.81 5.38 1.43 C5.71 1.05 6.04 0.82 6.27 0.70 C6.50 0.58 6.27 0.56 6.77 0.70 C7.26 0.84 8.72 1.33 9.25 1.54 C9.79 1.75 9.82 1.81 9.97 1.98 C10.12 2.14 10.14 2.40 10.14 2.55 C10.14 2.70 9.98 2.77 9.95 2.89 C9.92 3.01 9.90 3.11 9.95 3.27 C10.01 3.42 10.27 3.60 10.30 3.83 C10.32 4.05 10.31 4.36 10.12 4.62 C9.94 4.88 9.47 5.11 9.19 5.37 C8.92 5.62 8.68 5.98 8.48 6.17 C8.27 6.37 8.14 6.45 7.98 6.52 C7.82 6.58 7.70 6.48 7.51 6.58 C7.33 6.68 7.02 6.73 6.87 7.12 C6.73 7.51 6.71 7.88 6.66 8.93 C6.60 9.97 6.61 12.48 6.56 13.37 C6.52 14.27 6.36 14.12 6.38 14.28 C6.39 14.43 6.56 14.32 6.64 14.29 C6.72 14.26 6.74 14.32 6.87 14.09 C7.01 13.86 7.15 13.34 7.43 12.94 C7.72 12.54 8.23 12.03 8.57 11.71 C8.91 11.39 9.22 11.18 9.47 11.00 C9.72 10.81 9.81 10.73 10.06 10.62 C10.32 10.51 10.64 10.40 11.00 10.34 C11.35 10.28 11.77 10.25 12.21 10.25 C12.64 10.25 13.00 10.17 13.61 10.34 C14.21 10.52 15.19 10.89 15.85 11.31 C16.51 11.72 17.16 12.41 17.57 12.85 C17.99 13.28 18.15 13.63 18.32 13.93 C18.49 14.24 18.55 14.40 18.60 14.68 C18.65 14.96 18.64 15.36 18.60 15.61 C18.56 15.87 18.58 15.93 18.35 16.24 C18.13 16.54 17.88 17.03 17.25 17.43 C16.61 17.84 15.58 18.34 14.54 18.65 C13.50 18.96 12.25 19.19 11.03 19.30 Z" fill="#22406F"/></g><g transform="translate(143.52 126.74) rotate(-23) scale(0.8519) translate(-10.00 -8.40)"><g fill="none" stroke="#22406F" stroke-linecap="round" stroke-linejoin="round"><path d="M10.00 2.10 C8.70 1.40 7.30 1.80 6.90 2.90 C5.60 3.00 4.70 4.20 5.00 5.50 C4.00 6.30 3.90 8.00 4.80 9.00 C4.30 10.40 5.00 11.90 6.20 12.40 C6.40 13.80 7.60 14.90 8.80 14.50 C9.20 15.40 9.70 15.40 10.00 14.90" stroke-width="0.880435"/><path d="M 10.00 2.10 C 11.30 1.40 12.70 1.80 13.10 2.90 C 14.40 3.00 15.30 4.20 15.00 5.50 C 16.00 6.30 16.10 8.00 15.20 9.00 C 15.70 10.40 15.00 11.90 13.80 12.40 C 13.60 13.80 12.40 14.90 11.20 14.50 C 10.80 15.40 10.30 15.40 10.00 14.90" stroke-width="0.880435"/><path d="M10 2.1V14.9" stroke-width="0.880435"/><path d="M7.9 4.1C6.6 4.5 6.4 5.8 7.4 6.4 M6.4 7.4C5.6 8.3 6.1 9.5 7.3 9.7 M8.1 10.7C7.4 11.6 7.8 12.7 8.8 12.9" stroke-width="0.704348"/><path d="M 12.10 4.1 C 13.40 4.5 13.60 5.8 12.60 6.4 M 13.60 7.4 C 14.40 8.3 13.90 9.5 12.70 9.7 M 11.90 10.7 C 12.60 11.6 12.20 12.7 11.20 12.9" stroke-width="0.704348"/></g></g><g transform="translate(136.04 138.04) rotate(0) scale(0.6765) translate(-10.00 -10.00)"><path d="M10 16.4C1.5 10.7 1.5 5.4 5.8 4.1 8.1 3.5 10 5.4 10 6.8 10 5.4 11.9 3.5 14.2 4.1 18.5 5.4 18.5 10.7 10 16.4Z" fill="none" stroke="#22406F" stroke-width="1.1087" stroke-linejoin="round"/></g><g transform="translate(124.74 145.52) rotate(23) scale(0.6150) translate(-14.50 -10.25)"><path d="M13.4 6.6C16.4 6.6 17.9 8.9 17.4 11.3 17.0 13.4 15.2 14.6 14.4 16.2 13.6 17.8 14.0 19.4 12.0 19.5 10.2 19.6 9.2 18.0 9.8 16.2 10.4 14.3 11.7 13.4 11.4 11.7 11.1 10.0 9.8 9.4 10.2 8.4 10.7 7.2 11.7 6.6 13.4 6.6Z" fill="none" stroke="#22406F" stroke-width="1.21957" stroke-linejoin="round"/><g fill="#22406F"><ellipse cx="10.5" cy="4.2" rx="1.7" ry="2.0" transform="rotate(-12 10.5 4.2)"/><ellipse cx="13.9" cy="2.9" rx="1.3" ry="1.55" transform="rotate(4 13.9 2.9)"/><ellipse cx="16.2" cy="3.4" rx="1.05" ry="1.3" transform="rotate(16 16.2 3.4)"/><ellipse cx="17.9" cy="4.6" rx="0.9" ry="1.1" transform="rotate(28 17.9 4.6)"/><ellipse cx="19.0" cy="6.2" rx="0.78" ry="0.95" transform="rotate(40 19 6.2)"/></g></g></symbol>
-  <symbol id="escudo-full" viewBox="-36 -30 306 262"><path d="M112 12 L66 56 L112 26 Z" fill="#EFE7D2"/><path d="M112 12 L158 56 L112 26 Z" fill="#EFE7D2"/><path d="M66.5 56.8 L112.5 26.8 L112 37 Z" fill="#8C8C89" stroke="#131C30" stroke-width="0.5" stroke-linejoin="round"/><path d="M157.5 56.8 L111.5 26.8 L112 37 Z" fill="#8C8C89" stroke="#131C30" stroke-width="0.5" stroke-linejoin="round"/><path d="M10 114 L54 68 L24 114 Z" fill="#EFE7D2"/><path d="M10 114 L54 160 L24 114 Z" fill="#EFE7D2"/><path d="M54.8 68.5 L24.8 114.5 L35 114 Z" fill="#8C8C89" stroke="#131C30" stroke-width="0.5" stroke-linejoin="round"/><path d="M54.8 159.5 L24.8 113.5 L35 114 Z" fill="#8C8C89" stroke="#131C30" stroke-width="0.5" stroke-linejoin="round"/><path d="M214 114 L170 68 L200 114 Z" fill="#EFE7D2"/><path d="M214 114 L170 160 L200 114 Z" fill="#EFE7D2"/><path d="M169.2 68.5 L199.2 114.5 L189 114 Z" fill="#8C8C89" stroke="#131C30" stroke-width="0.5" stroke-linejoin="round"/><path d="M169.2 159.5 L199.2 113.5 L189 114 Z" fill="#8C8C89" stroke="#131C30" stroke-width="0.5" stroke-linejoin="round"/><path d="M69.87 149.35 A55 55 0 0 1 140.33 66.86 L142.78 74.60 A50 50 0 0 0 70.07 141.23L69.87 149.35 Z" fill="#EFE7D2"/><path d="M77.53 142.93 A45 45 0 0 1 135.18 75.43 L142.78 74.60 A50 50 0 0 0 70.07 141.23 L77.53 142.93 Z" fill="#8C8C89" stroke="#131C30" stroke-width="0.5" stroke-linejoin="round"/><path d="M154.13 78.65 A55 55 0 0 1 83.67 161.14 L81.22 153.40 A50 50 0 0 0 153.93 86.77L154.13 78.65 Z" fill="#8C8C89" stroke="#131C30" stroke-width="0.5" stroke-linejoin="round"/><path d="M146.47 85.07 A45 45 0 0 1 88.82 152.57 L81.22 153.40 A50 50 0 0 0 153.93 86.77 L146.47 85.07 Z" fill="#EFE7D2"/><path d="M112.00 114.00 L130.38 95.62 L124.00 114.00 Z" fill="#8C8C89" stroke="#131C30" stroke-width="0.5" stroke-linejoin="round"/><path d="M112.00 114.00 L130.38 95.62 L112.00 102.00 Z" fill="#EFE7D2"/><path d="M112.00 114.00 L130.38 132.38 L112.00 126.00 Z" fill="#8C8C89" stroke="#131C30" stroke-width="0.5" stroke-linejoin="round"/><path d="M112.00 114.00 L130.38 132.38 L124.00 114.00 Z" fill="#EFE7D2"/><path d="M112.00 114.00 L93.62 132.38 L100.00 114.00 Z" fill="#8C8C89" stroke="#131C30" stroke-width="0.5" stroke-linejoin="round"/><path d="M112.00 114.00 L93.62 132.38 L112.00 126.00 Z" fill="#EFE7D2"/><path d="M112.00 114.00 L93.62 95.62 L112.00 102.00 Z" fill="#8C8C89" stroke="#131C30" stroke-width="0.5" stroke-linejoin="round"/><path d="M112.00 114.00 L93.62 95.62 L100.00 114.00 Z" fill="#EFE7D2"/><path d="M112.00 69.50 L121.19 104.81 L156.50 114.00 L121.19 123.19 L112.00 158.50 L102.81 123.19 L67.50 114.00 L102.81 104.81 Z" fill="none" stroke="#131C30" stroke-width="1.5" stroke-linejoin="round"/><path d="M112.00 114.00 L112.00 69.50 L121.19 104.81 Z" fill="#EFE7D2"/><path d="M112.00 114.00 L112.00 69.50 L102.81 104.81 Z" fill="#8C8C89" stroke="#131C30" stroke-width="0.5" stroke-linejoin="round"/><path d="M112.00 114.00 L156.50 114.00 L121.19 123.19 Z" fill="#EFE7D2"/><path d="M112.00 114.00 L156.50 114.00 L121.19 104.81 Z" fill="#8C8C89" stroke="#131C30" stroke-width="0.5" stroke-linejoin="round"/><path d="M112.00 114.00 L112.00 158.50 L102.81 123.19 Z" fill="#EFE7D2"/><path d="M112.00 114.00 L112.00 158.50 L121.19 123.19 Z" fill="#8C8C89" stroke="#131C30" stroke-width="0.5" stroke-linejoin="round"/><path d="M112.00 114.00 L67.50 114.00 L102.81 104.81 Z" fill="#EFE7D2"/><path d="M112.00 114.00 L67.50 114.00 L102.81 123.19 Z" fill="#8C8C89" stroke="#131C30" stroke-width="0.5" stroke-linejoin="round"/><path d="M64 184 L160 184 L153.5 190.5 L70.5 190.5 Z" fill="#8C8C89" stroke="#131C30" stroke-width="0.5" stroke-linejoin="round"/><path d="M70.5 190.5 L153.5 190.5 L160 197 L64 197 Z" fill="#EFE7D2"/><path d="M64 184 L70.5 190.5 L64 197 Z" fill="#BFBAAE" stroke="#131C30" stroke-width="0.5" stroke-linejoin="round"/><path d="M160 184 L153.5 190.5 L160 197 Z" fill="#BFBAAE" stroke="#131C30" stroke-width="0.5" stroke-linejoin="round"/><g transform="translate(112.00 -6.00) rotate(0) scale(1.1000) translate(-10 -10)"><path d="M10 1.6C11.6 5.8 15.4 7.4 15.4 11.6A5.4 5.4 0 0 1 4.6 11.6C4.6 9 6.4 7.8 7 6.1 7.7 7.8 9 8.5 9.7 7.8 9 5.8 9 3.6 10 1.6Z" fill="#EFE7D2"/></g><g transform="translate(-10.00 114.00) rotate(0) scale(1.1000) translate(-10 -10)"><g fill="none" stroke="#EFE7D2" stroke-width="1.6" stroke-linecap="round"><path d="M1.8 6.6H11.6A2.7 2.7 0 1 0 8.9 3.9"/><path d="M1.8 11H14.8A2.7 2.7 0 1 1 12.1 13.7"/><path d="M1.8 15.4H9"/></g></g><g transform="translate(112.00 215.00) rotate(0) scale(1.1000) translate(-10 -10)"><path d="M1.2 16.4L7 6.6 10.6 12.4 13.2 8.2 18.8 16.4Z" fill="#EFE7D2"/></g><g transform="translate(244 114) scale(0.19469) translate(-113 -50)"><path d="M214.30 96.00C206.73 96.06 204.78 96.84 192.97 95.69C181.15 94.55 182.76 94.76 172.09 91.92C161.42 89.07 161.74 88.46 154.84 85.52C147.95 82.58 151.29 83.91 147.48 81.42C143.67 78.93 144.38 79.51 141.23 76.61C138.08 73.71 138.41 73.92 136.24 71.08C134.06 68.23 134.89 69.90 133.45 66.44C132.01 62.99 131.75 62.54 131.09 58.73C130.43 54.92 130.70 55.88 131.09 52.83C131.48 49.78 130.97 51.01 132.49 47.84C134.01 44.66 132.67 45.11 136.52 41.48C140.36 37.86 143.21 37.18 146.22 34.89C149.23 32.60 147.27 33.31 147.27 33.31C147.27 33.31 147.49 31.96 144.41 30.89C141.32 29.81 142.46 29.43 136.24 29.46C130.01 29.49 128.94 29.53 122.17 30.99C115.39 32.45 116.51 32.75 112.04 34.68C107.56 36.60 111.47 34.10 106.18 37.85C100.88 41.60 101.99 39.75 93.12 48.07C84.26 56.39 82.27 59.83 74.51 67.57C66.76 75.30 70.52 71.55 65.44 75.70C60.36 79.84 62.21 78.72 56.36 82.39C50.52 86.05 51.55 85.62 44.56 88.79C37.57 91.97 37.50 91.82 31.40 93.74C25.30 95.65 29.26 95.10 22.78 95.64C16.30 96.19 12.80 95.86 8.25 95.69C3.71 95.52 7.19 95.60 6.56 95.04C5.93 94.47 6.00 93.67 6.00 93.67C6.00 93.67 1.83 94.61 7.80 92.10C13.77 89.59 18.67 88.45 27.32 84.71C35.96 80.98 33.20 81.95 38.66 78.77C44.13 75.58 39.02 79.44 46.83 73.32C54.64 67.20 55.11 67.40 66.55 56.91C77.98 46.42 77.95 44.47 87.68 35.86C97.40 27.26 95.32 29.96 101.29 26.18C107.26 22.40 103.42 24.47 109.01 22.36C114.60 20.25 116.30 19.95 121.26 18.64C126.22 17.33 120.86 17.95 126.71 17.68C132.55 17.41 133.88 16.85 142.14 17.66C150.40 18.47 148.45 18.18 156.21 20.57C163.96 22.95 162.96 22.55 169.82 26.18C176.68 29.82 176.50 30.28 180.71 33.55C184.93 36.82 182.96 35.25 184.87 37.85C186.78 40.45 187.03 40.68 187.53 42.84C188.03 45.00 187.40 44.51 186.64 45.57C185.87 46.62 188.87 47.04 184.80 46.62C180.72 46.19 177.93 44.79 172.09 44.05C166.24 43.31 167.61 43.70 163.92 43.98C160.24 44.27 161.47 44.17 158.93 45.07C156.39 45.98 157.16 45.17 154.84 47.21C152.53 49.25 152.11 49.40 150.65 52.37C149.19 55.35 149.43 54.39 149.63 57.82C149.83 61.25 149.76 61.01 151.35 64.63C152.93 68.24 152.28 67.28 155.30 70.73C158.31 74.18 156.68 73.20 162.11 76.95C167.53 80.71 166.15 80.44 174.67 84.14C183.18 87.85 179.95 87.27 192.51 90.19C205.07 93.12 219.51 94.58 219.51 94.58C219.51 94.58 220.00 95.49 220.00 95.49C220.00 95.49 221.87 95.94 214.30 96.00Z" fill="#EFE7D2"/></g><g transform="translate(83.17 95.98) rotate(-13) scale(0.7000) translate(-10 -10)"><circle cx="10" cy="10" r="4.2" fill="#EFE7D2"/><g stroke="#EFE7D2" stroke-width="1.5" stroke-linecap="round"><path d="M10 1.6V4"/><path d="M10 16V18.4"/><path d="M1.6 10H4"/><path d="M16 10H18.4"/><path d="M4.1 4.1L5.8 5.8"/><path d="M14.2 14.2L15.9 15.9"/><path d="M15.9 4.1L14.2 5.8"/><path d="M5.8 14.2L4.1 15.9"/></g></g><g transform="translate(93.98 85.17) rotate(13) scale(0.7000) translate(-10 -10)"><path d="M17.36 13.13A8 8 0 1 1 6.87 2.64 7.8 7.8 0 0 0 17.36 13.13Z" fill="#EFE7D2"/></g><g transform="translate(130.02 85.17) rotate(-13) scale(0.7000) translate(-10 -10)"><polygon points="10.00,0.20 10.49,1.52 11.90,1.58 10.80,2.46 11.18,3.82 10.00,3.04 8.82,3.82 9.20,2.46 8.10,1.58 9.51,1.52" fill="#EFE7D2"/><polygon points="10.40,15.50 10.97,17.02 12.59,17.09 11.32,18.10 11.75,19.66 10.40,18.77 9.05,19.66 9.48,18.10 8.21,17.09 9.83,17.02" fill="#EFE7D2"/><polygon points="16.60,8.30 17.07,9.55 18.41,9.61 17.36,10.45 17.72,11.74 16.60,11.00 15.48,11.74 15.84,10.45 14.79,9.61 16.13,9.55" fill="#EFE7D2"/><polygon points="3.60,6.90 3.97,7.89 5.03,7.94 4.20,8.59 4.48,9.61 3.60,9.03 2.72,9.61 3.00,8.59 2.17,7.94 3.23,7.89" fill="#EFE7D2"/><polygon points="11.40,11.50 11.62,12.09 12.26,12.12 11.76,12.52 11.93,13.13 11.40,12.78 10.87,13.13 11.04,12.52 10.54,12.12 11.18,12.09" fill="#EFE7D2"/></g><g transform="translate(140.83 95.98) rotate(13) scale(0.7000) translate(-10 -10)"><g fill="#EFE7D2"><path d="M10 10C7.7 9.5 6.3 7.5 6.3 5.3 6.3 3.0 8.0 1.4 10 1.4 12.0 1.4 13.7 3.0 13.7 5.3 13.7 7.5 12.3 9.5 10 10Z" transform="rotate(180 10 10)"/><path d="M10 10C7.7 9.5 6.3 7.5 6.3 5.3 6.3 3.0 8.0 1.4 10 1.4 12.0 1.4 13.7 3.0 13.7 5.3 13.7 7.5 12.3 9.5 10 10Z" transform="rotate(252 10 10)"/><path d="M10 10C7.7 9.5 6.3 7.5 6.3 5.3 6.3 3.0 8.0 1.4 10 1.4 12.0 1.4 13.7 3.0 13.7 5.3 13.7 7.5 12.3 9.5 10 10Z" transform="rotate(324 10 10)"/><path d="M10 10C7.7 9.5 6.3 7.5 6.3 5.3 6.3 3.0 8.0 1.4 10 1.4 12.0 1.4 13.7 3.0 13.7 5.3 13.7 7.5 12.3 9.5 10 10Z" transform="rotate(396 10 10)"/><path d="M10 10C7.7 9.5 6.3 7.5 6.3 5.3 6.3 3.0 8.0 1.4 10 1.4 12.0 1.4 13.7 3.0 13.7 5.3 13.7 7.5 12.3 9.5 10 10Z" transform="rotate(468 10 10)"/></g><ellipse cx="10" cy="5.9" rx="1.1" ry="1.75" transform="rotate(180 10 10)" fill="#131C30"/><ellipse cx="10" cy="5.9" rx="1.1" ry="1.75" transform="rotate(252 10 10)" fill="#131C30"/><ellipse cx="10" cy="5.9" rx="1.1" ry="1.75" transform="rotate(324 10 10)" fill="#131C30"/><ellipse cx="10" cy="5.9" rx="1.1" ry="1.75" transform="rotate(396 10 10)" fill="#131C30"/><ellipse cx="10" cy="5.9" rx="1.1" ry="1.75" transform="rotate(468 10 10)" fill="#131C30"/><circle cx="10" cy="10" r="2.6" fill="#131C30"/><path d="M10 10L12.40 10.00" stroke="#EFE7D2" stroke-width="0.6" stroke-linecap="round"/><path d="M10 10L12.08 11.20" stroke="#EFE7D2" stroke-width="0.6" stroke-linecap="round"/><path d="M10 10L11.20 12.08" stroke="#EFE7D2" stroke-width="0.6" stroke-linecap="round"/><path d="M10 10L10.00 12.40" stroke="#EFE7D2" stroke-width="0.6" stroke-linecap="round"/><path d="M10 10L8.80 12.08" stroke="#EFE7D2" stroke-width="0.6" stroke-linecap="round"/><path d="M10 10L7.92 11.20" stroke="#EFE7D2" stroke-width="0.6" stroke-linecap="round"/><path d="M10 10L7.60 10.00" stroke="#EFE7D2" stroke-width="0.6" stroke-linecap="round"/><path d="M10 10L7.92 8.80" stroke="#EFE7D2" stroke-width="0.6" stroke-linecap="round"/><path d="M10 10L8.80 7.92" stroke="#EFE7D2" stroke-width="0.6" stroke-linecap="round"/><path d="M10 10L10.00 7.60" stroke="#EFE7D2" stroke-width="0.6" stroke-linecap="round"/><path d="M10 10L11.20 7.92" stroke="#EFE7D2" stroke-width="0.6" stroke-linecap="round"/><path d="M10 10L12.08 8.80" stroke="#EFE7D2" stroke-width="0.6" stroke-linecap="round"/><circle cx="10" cy="10" r="0.9" fill="#EFE7D2"/></g><g transform="translate(83.17 132.02) rotate(0) scale(0.7500) translate(-10 -10)"><path d="M1.4 10C4.6 4.4 15.4 4.4 18.6 10 15.4 15.6 4.6 15.6 1.4 10Z" fill="none" stroke="#EFE7D2" stroke-width="1.6"/><circle cx="10" cy="10" r="2.8" fill="#EFE7D2"/></g><g transform="translate(93.98 142.83) rotate(0) scale(0.6500) translate(-10 -10)"><path d="M11.03 19.30 C9.80 19.41 8.16 19.35 7.20 19.30 C6.24 19.25 6.03 19.05 5.27 19.02 C4.51 18.99 3.20 19.15 2.63 19.14 C2.06 19.14 2.06 19.07 1.85 18.99 C1.65 18.90 1.44 19.57 1.40 18.63 C1.36 17.70 1.50 14.55 1.59 13.37 C1.67 12.20 1.61 12.55 1.90 11.60 C2.19 10.66 2.99 8.82 3.33 7.71 C3.67 6.61 3.83 5.64 3.95 4.98 C4.07 4.31 3.98 4.06 4.04 3.73 C4.11 3.40 4.10 3.37 4.32 2.99 C4.55 2.60 5.06 1.81 5.38 1.43 C5.71 1.05 6.04 0.82 6.27 0.70 C6.50 0.58 6.27 0.56 6.77 0.70 C7.26 0.84 8.72 1.33 9.25 1.54 C9.79 1.75 9.82 1.81 9.97 1.98 C10.12 2.14 10.14 2.40 10.14 2.55 C10.14 2.70 9.98 2.77 9.95 2.89 C9.92 3.01 9.90 3.11 9.95 3.27 C10.01 3.42 10.27 3.60 10.30 3.83 C10.32 4.05 10.31 4.36 10.12 4.62 C9.94 4.88 9.47 5.11 9.19 5.37 C8.92 5.62 8.68 5.98 8.48 6.17 C8.27 6.37 8.14 6.45 7.98 6.52 C7.82 6.58 7.70 6.48 7.51 6.58 C7.33 6.68 7.02 6.73 6.87 7.12 C6.73 7.51 6.71 7.88 6.66 8.93 C6.60 9.97 6.61 12.48 6.56 13.37 C6.52 14.27 6.36 14.12 6.38 14.28 C6.39 14.43 6.56 14.32 6.64 14.29 C6.72 14.26 6.74 14.32 6.87 14.09 C7.01 13.86 7.15 13.34 7.43 12.94 C7.72 12.54 8.23 12.03 8.57 11.71 C8.91 11.39 9.22 11.18 9.47 11.00 C9.72 10.81 9.81 10.73 10.06 10.62 C10.32 10.51 10.64 10.40 11.00 10.34 C11.35 10.28 11.77 10.25 12.21 10.25 C12.64 10.25 13.00 10.17 13.61 10.34 C14.21 10.52 15.19 10.89 15.85 11.31 C16.51 11.72 17.16 12.41 17.57 12.85 C17.99 13.28 18.15 13.63 18.32 13.93 C18.49 14.24 18.55 14.40 18.60 14.68 C18.65 14.96 18.64 15.36 18.60 15.61 C18.56 15.87 18.58 15.93 18.35 16.24 C18.13 16.54 17.88 17.03 17.25 17.43 C16.61 17.84 15.58 18.34 14.54 18.65 C13.50 18.96 12.25 19.19 11.03 19.30 Z" fill="#EFE7D2"/></g><g transform="translate(143.52 126.74) rotate(-23) scale(0.8519) translate(-10.00 -8.40)"><g fill="none" stroke="#EFE7D2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.00 2.10 C8.70 1.40 7.30 1.80 6.90 2.90 C5.60 3.00 4.70 4.20 5.00 5.50 C4.00 6.30 3.90 8.00 4.80 9.00 C4.30 10.40 5.00 11.90 6.20 12.40 C6.40 13.80 7.60 14.90 8.80 14.50 C9.20 15.40 9.70 15.40 10.00 14.90" stroke-width="0.880435"/><path d="M 10.00 2.10 C 11.30 1.40 12.70 1.80 13.10 2.90 C 14.40 3.00 15.30 4.20 15.00 5.50 C 16.00 6.30 16.10 8.00 15.20 9.00 C 15.70 10.40 15.00 11.90 13.80 12.40 C 13.60 13.80 12.40 14.90 11.20 14.50 C 10.80 15.40 10.30 15.40 10.00 14.90" stroke-width="0.880435"/><path d="M10 2.1V14.9" stroke-width="0.880435"/><path d="M7.9 4.1C6.6 4.5 6.4 5.8 7.4 6.4 M6.4 7.4C5.6 8.3 6.1 9.5 7.3 9.7 M8.1 10.7C7.4 11.6 7.8 12.7 8.8 12.9" stroke-width="0.704348"/><path d="M 12.10 4.1 C 13.40 4.5 13.60 5.8 12.60 6.4 M 13.60 7.4 C 14.40 8.3 13.90 9.5 12.70 9.7 M 11.90 10.7 C 12.60 11.6 12.20 12.7 11.20 12.9" stroke-width="0.704348"/></g></g><g transform="translate(136.04 138.04) rotate(0) scale(0.6765) translate(-10.00 -10.00)"><path d="M10 16.4C1.5 10.7 1.5 5.4 5.8 4.1 8.1 3.5 10 5.4 10 6.8 10 5.4 11.9 3.5 14.2 4.1 18.5 5.4 18.5 10.7 10 16.4Z" fill="none" stroke="#EFE7D2" stroke-width="1.1087" stroke-linejoin="round"/></g><g transform="translate(124.74 145.52) rotate(23) scale(0.6150) translate(-14.50 -10.25)"><path d="M13.4 6.6C16.4 6.6 17.9 8.9 17.4 11.3 17.0 13.4 15.2 14.6 14.4 16.2 13.6 17.8 14.0 19.4 12.0 19.5 10.2 19.6 9.2 18.0 9.8 16.2 10.4 14.3 11.7 13.4 11.4 11.7 11.1 10.0 9.8 9.4 10.2 8.4 10.7 7.2 11.7 6.6 13.4 6.6Z" fill="none" stroke="#EFE7D2" stroke-width="1.21957" stroke-linejoin="round"/><g fill="#EFE7D2"><ellipse cx="10.5" cy="4.2" rx="1.7" ry="2.0" transform="rotate(-12 10.5 4.2)"/><ellipse cx="13.9" cy="2.9" rx="1.3" ry="1.55" transform="rotate(4 13.9 2.9)"/><ellipse cx="16.2" cy="3.4" rx="1.05" ry="1.3" transform="rotate(16 16.2 3.4)"/><ellipse cx="17.9" cy="4.6" rx="0.9" ry="1.1" transform="rotate(28 17.9 4.6)"/><ellipse cx="19.0" cy="6.2" rx="0.78" ry="0.95" transform="rotate(40 19 6.2)"/></g></g></symbol>
+  <symbol id="escudo-full-papel" viewBox="-48 -30 320 262"><path d="M112 12 L66 56 L112 26 Z" fill="#22406F"/><path d="M112 12 L158 56 L112 26 Z" fill="#22406F"/><path d="M66.5 56.8 L112.5 26.8 L112 37 Z" fill="#8596B0" stroke="#FFFCF2" stroke-width="0.5" stroke-linejoin="round"/><path d="M157.5 56.8 L111.5 26.8 L112 37 Z" fill="#8596B0" stroke="#FFFCF2" stroke-width="0.5" stroke-linejoin="round"/><path d="M10 114 L54 68 L24 114 Z" fill="#22406F"/><path d="M10 114 L54 160 L24 114 Z" fill="#22406F"/><path d="M54.8 68.5 L24.8 114.5 L35 114 Z" fill="#8596B0" stroke="#FFFCF2" stroke-width="0.5" stroke-linejoin="round"/><path d="M54.8 159.5 L24.8 113.5 L35 114 Z" fill="#8596B0" stroke="#FFFCF2" stroke-width="0.5" stroke-linejoin="round"/><path d="M214 114 L170 68 L200 114 Z" fill="#22406F"/><path d="M214 114 L170 160 L200 114 Z" fill="#22406F"/><path d="M169.2 68.5 L199.2 114.5 L189 114 Z" fill="#8596B0" stroke="#FFFCF2" stroke-width="0.5" stroke-linejoin="round"/><path d="M169.2 159.5 L199.2 113.5 L189 114 Z" fill="#8596B0" stroke="#FFFCF2" stroke-width="0.5" stroke-linejoin="round"/><path d="M69.87 149.35 A55 55 0 0 1 140.33 66.86 L142.78 74.60 A50 50 0 0 0 70.07 141.23L69.87 149.35 Z" fill="#22406F"/><path d="M77.53 142.93 A45 45 0 0 1 135.18 75.43 L142.78 74.60 A50 50 0 0 0 70.07 141.23 L77.53 142.93 Z" fill="#8596B0" stroke="#FFFCF2" stroke-width="0.5" stroke-linejoin="round"/><path d="M154.13 78.65 A55 55 0 0 1 83.67 161.14 L81.22 153.40 A50 50 0 0 0 153.93 86.77L154.13 78.65 Z" fill="#8596B0" stroke="#FFFCF2" stroke-width="0.5" stroke-linejoin="round"/><path d="M146.47 85.07 A45 45 0 0 1 88.82 152.57 L81.22 153.40 A50 50 0 0 0 153.93 86.77 L146.47 85.07 Z" fill="#22406F"/><path d="M112.00 114.00 L130.38 95.62 L124.00 114.00 Z" fill="#8596B0" stroke="#FFFCF2" stroke-width="0.5" stroke-linejoin="round"/><path d="M112.00 114.00 L130.38 95.62 L112.00 102.00 Z" fill="#22406F"/><path d="M112.00 114.00 L130.38 132.38 L112.00 126.00 Z" fill="#8596B0" stroke="#FFFCF2" stroke-width="0.5" stroke-linejoin="round"/><path d="M112.00 114.00 L130.38 132.38 L124.00 114.00 Z" fill="#22406F"/><path d="M112.00 114.00 L93.62 132.38 L100.00 114.00 Z" fill="#8596B0" stroke="#FFFCF2" stroke-width="0.5" stroke-linejoin="round"/><path d="M112.00 114.00 L93.62 132.38 L112.00 126.00 Z" fill="#22406F"/><path d="M112.00 114.00 L93.62 95.62 L112.00 102.00 Z" fill="#8596B0" stroke="#FFFCF2" stroke-width="0.5" stroke-linejoin="round"/><path d="M112.00 114.00 L93.62 95.62 L100.00 114.00 Z" fill="#22406F"/><path d="M112.00 69.50 L121.19 104.81 L156.50 114.00 L121.19 123.19 L112.00 158.50 L102.81 123.19 L67.50 114.00 L102.81 104.81 Z" fill="none" stroke="#FFFCF2" stroke-width="1.5" stroke-linejoin="round"/><path d="M112.00 114.00 L112.00 69.50 L121.19 104.81 Z" fill="#22406F"/><path d="M112.00 114.00 L112.00 69.50 L102.81 104.81 Z" fill="#8596B0" stroke="#FFFCF2" stroke-width="0.5" stroke-linejoin="round"/><path d="M112.00 114.00 L156.50 114.00 L121.19 123.19 Z" fill="#22406F"/><path d="M112.00 114.00 L156.50 114.00 L121.19 104.81 Z" fill="#8596B0" stroke="#FFFCF2" stroke-width="0.5" stroke-linejoin="round"/><path d="M112.00 114.00 L112.00 158.50 L102.81 123.19 Z" fill="#22406F"/><path d="M112.00 114.00 L112.00 158.50 L121.19 123.19 Z" fill="#8596B0" stroke="#FFFCF2" stroke-width="0.5" stroke-linejoin="round"/><path d="M112.00 114.00 L67.50 114.00 L102.81 104.81 Z" fill="#22406F"/><path d="M112.00 114.00 L67.50 114.00 L102.81 123.19 Z" fill="#8596B0" stroke="#FFFCF2" stroke-width="0.5" stroke-linejoin="round"/><path d="M64 184 L160 184 L153.5 190.5 L70.5 190.5 Z" fill="#8596B0" stroke="#FFFCF2" stroke-width="0.5" stroke-linejoin="round"/><path d="M70.5 190.5 L153.5 190.5 L160 197 L64 197 Z" fill="#22406F"/><path d="M64 184 L70.5 190.5 L64 197 Z" fill="#536A8F" stroke="#FFFCF2" stroke-width="0.5" stroke-linejoin="round"/><path d="M160 184 L153.5 190.5 L160 197 Z" fill="#536A8F" stroke="#FFFCF2" stroke-width="0.5" stroke-linejoin="round"/><g transform="translate(112.00 -6.00) rotate(0) scale(1.1000) translate(-10 -10)"><path d="M10 1.6C11.6 5.8 15.4 7.4 15.4 11.6A5.4 5.4 0 0 1 4.6 11.6C4.6 9 6.4 7.8 7 6.1 7.7 7.8 9 8.5 9.7 7.8 9 5.8 9 3.6 10 1.6Z" fill="#22406F"/></g><g transform="translate(-18.00 114.00) scale(0.19469) translate(-113 -50)"><path d="M214.30 96.00C206.73 96.06 204.78 96.84 192.97 95.69C181.15 94.55 182.76 94.76 172.09 91.92C161.42 89.07 161.74 88.46 154.84 85.52C147.95 82.58 151.29 83.91 147.48 81.42C143.67 78.93 144.38 79.51 141.23 76.61C138.08 73.71 138.41 73.92 136.24 71.08C134.06 68.23 134.89 69.90 133.45 66.44C132.01 62.99 131.75 62.54 131.09 58.73C130.43 54.92 130.70 55.88 131.09 52.83C131.48 49.78 130.97 51.01 132.49 47.84C134.01 44.66 132.67 45.11 136.52 41.48C140.36 37.86 143.21 37.18 146.22 34.89C149.23 32.60 147.27 33.31 147.27 33.31C147.27 33.31 147.49 31.96 144.41 30.89C141.32 29.81 142.46 29.43 136.24 29.46C130.01 29.49 128.94 29.53 122.17 30.99C115.39 32.45 116.51 32.75 112.04 34.68C107.56 36.60 111.47 34.10 106.18 37.85C100.88 41.60 101.99 39.75 93.12 48.07C84.26 56.39 82.27 59.83 74.51 67.57C66.76 75.30 70.52 71.55 65.44 75.70C60.36 79.84 62.21 78.72 56.36 82.39C50.52 86.05 51.55 85.62 44.56 88.79C37.57 91.97 37.50 91.82 31.40 93.74C25.30 95.65 29.26 95.10 22.78 95.64C16.30 96.19 12.80 95.86 8.25 95.69C3.71 95.52 7.19 95.60 6.56 95.04C5.93 94.47 6.00 93.67 6.00 93.67C6.00 93.67 1.83 94.61 7.80 92.10C13.77 89.59 18.67 88.45 27.32 84.71C35.96 80.98 33.20 81.95 38.66 78.77C44.13 75.58 39.02 79.44 46.83 73.32C54.64 67.20 55.11 67.40 66.55 56.91C77.98 46.42 77.95 44.47 87.68 35.86C97.40 27.26 95.32 29.96 101.29 26.18C107.26 22.40 103.42 24.47 109.01 22.36C114.60 20.25 116.30 19.95 121.26 18.64C126.22 17.33 120.86 17.95 126.71 17.68C132.55 17.41 133.88 16.85 142.14 17.66C150.40 18.47 148.45 18.18 156.21 20.57C163.96 22.95 162.96 22.55 169.82 26.18C176.68 29.82 176.50 30.28 180.71 33.55C184.93 36.82 182.96 35.25 184.87 37.85C186.78 40.45 187.03 40.68 187.53 42.84C188.03 45.00 187.40 44.51 186.64 45.57C185.87 46.62 188.87 47.04 184.80 46.62C180.72 46.19 177.93 44.79 172.09 44.05C166.24 43.31 167.61 43.70 163.92 43.98C160.24 44.27 161.47 44.17 158.93 45.07C156.39 45.98 157.16 45.17 154.84 47.21C152.53 49.25 152.11 49.40 150.65 52.37C149.19 55.35 149.43 54.39 149.63 57.82C149.83 61.25 149.76 61.01 151.35 64.63C152.93 68.24 152.28 67.28 155.30 70.73C158.31 74.18 156.68 73.20 162.11 76.95C167.53 80.71 166.15 80.44 174.67 84.14C183.18 87.85 179.95 87.27 192.51 90.19C205.07 93.12 219.51 94.58 219.51 94.58C219.51 94.58 220.00 95.49 220.00 95.49C220.00 95.49 221.87 95.94 214.30 96.00Z" fill="#22406F"/></g><g transform="translate(112.00 215.00) rotate(0) scale(1.1000) translate(-10 -10)"><path d="M1.2 16.4L7 6.6 10.6 12.4 13.2 8.2 18.8 16.4Z" fill="#22406F"/></g><g transform="translate(231 114) rotate(0) scale(1.1000) translate(-10 -10)"><g fill="none" stroke="#22406F" stroke-width="1.6" stroke-linecap="round"><path d="M1.8 6.6H11.6A2.7 2.7 0 1 0 8.9 3.9"/><path d="M1.8 11H14.8A2.7 2.7 0 1 1 12.1 13.7"/><path d="M1.8 15.4H9"/></g></g><g transform="translate(83.17 95.98) rotate(-13) scale(0.7000) translate(-10 -10)"><circle cx="10" cy="10" r="4.2" fill="#22406F"/><g stroke="#22406F" stroke-width="1.5" stroke-linecap="round"><path d="M10 1.6V4"/><path d="M10 16V18.4"/><path d="M1.6 10H4"/><path d="M16 10H18.4"/><path d="M4.1 4.1L5.8 5.8"/><path d="M14.2 14.2L15.9 15.9"/><path d="M15.9 4.1L14.2 5.8"/><path d="M5.8 14.2L4.1 15.9"/></g></g><g transform="translate(93.98 85.17) rotate(13) scale(0.7000) translate(-10 -10)"><path d="M17.36 13.13A8 8 0 1 1 6.87 2.64 7.8 7.8 0 0 0 17.36 13.13Z" fill="#22406F"/></g><g transform="translate(130.02 85.17) rotate(-13) scale(0.7000) translate(-10 -10)"><polygon points="10.00,0.20 10.49,1.52 11.90,1.58 10.80,2.46 11.18,3.82 10.00,3.04 8.82,3.82 9.20,2.46 8.10,1.58 9.51,1.52" fill="#22406F"/><polygon points="10.40,15.50 10.97,17.02 12.59,17.09 11.32,18.10 11.75,19.66 10.40,18.77 9.05,19.66 9.48,18.10 8.21,17.09 9.83,17.02" fill="#22406F"/><polygon points="16.60,8.30 17.07,9.55 18.41,9.61 17.36,10.45 17.72,11.74 16.60,11.00 15.48,11.74 15.84,10.45 14.79,9.61 16.13,9.55" fill="#22406F"/><polygon points="3.60,6.90 3.97,7.89 5.03,7.94 4.20,8.59 4.48,9.61 3.60,9.03 2.72,9.61 3.00,8.59 2.17,7.94 3.23,7.89" fill="#22406F"/><polygon points="11.40,11.50 11.62,12.09 12.26,12.12 11.76,12.52 11.93,13.13 11.40,12.78 10.87,13.13 11.04,12.52 10.54,12.12 11.18,12.09" fill="#22406F"/></g><g transform="translate(140.83 95.98) rotate(13) scale(0.7000) translate(-10 -10)"><g fill="#22406F"><path d="M10 10C7.7 9.5 6.3 7.5 6.3 5.3 6.3 3.0 8.0 1.4 10 1.4 12.0 1.4 13.7 3.0 13.7 5.3 13.7 7.5 12.3 9.5 10 10Z" transform="rotate(180 10 10)"/><path d="M10 10C7.7 9.5 6.3 7.5 6.3 5.3 6.3 3.0 8.0 1.4 10 1.4 12.0 1.4 13.7 3.0 13.7 5.3 13.7 7.5 12.3 9.5 10 10Z" transform="rotate(252 10 10)"/><path d="M10 10C7.7 9.5 6.3 7.5 6.3 5.3 6.3 3.0 8.0 1.4 10 1.4 12.0 1.4 13.7 3.0 13.7 5.3 13.7 7.5 12.3 9.5 10 10Z" transform="rotate(324 10 10)"/><path d="M10 10C7.7 9.5 6.3 7.5 6.3 5.3 6.3 3.0 8.0 1.4 10 1.4 12.0 1.4 13.7 3.0 13.7 5.3 13.7 7.5 12.3 9.5 10 10Z" transform="rotate(396 10 10)"/><path d="M10 10C7.7 9.5 6.3 7.5 6.3 5.3 6.3 3.0 8.0 1.4 10 1.4 12.0 1.4 13.7 3.0 13.7 5.3 13.7 7.5 12.3 9.5 10 10Z" transform="rotate(468 10 10)"/></g><ellipse cx="10" cy="5.9" rx="1.1" ry="1.75" transform="rotate(180 10 10)" fill="#FFFCF2"/><ellipse cx="10" cy="5.9" rx="1.1" ry="1.75" transform="rotate(252 10 10)" fill="#FFFCF2"/><ellipse cx="10" cy="5.9" rx="1.1" ry="1.75" transform="rotate(324 10 10)" fill="#FFFCF2"/><ellipse cx="10" cy="5.9" rx="1.1" ry="1.75" transform="rotate(396 10 10)" fill="#FFFCF2"/><ellipse cx="10" cy="5.9" rx="1.1" ry="1.75" transform="rotate(468 10 10)" fill="#FFFCF2"/><circle cx="10" cy="10" r="2.6" fill="#FFFCF2"/><path d="M10 10L12.40 10.00" stroke="#22406F" stroke-width="0.6" stroke-linecap="round"/><path d="M10 10L12.08 11.20" stroke="#22406F" stroke-width="0.6" stroke-linecap="round"/><path d="M10 10L11.20 12.08" stroke="#22406F" stroke-width="0.6" stroke-linecap="round"/><path d="M10 10L10.00 12.40" stroke="#22406F" stroke-width="0.6" stroke-linecap="round"/><path d="M10 10L8.80 12.08" stroke="#22406F" stroke-width="0.6" stroke-linecap="round"/><path d="M10 10L7.92 11.20" stroke="#22406F" stroke-width="0.6" stroke-linecap="round"/><path d="M10 10L7.60 10.00" stroke="#22406F" stroke-width="0.6" stroke-linecap="round"/><path d="M10 10L7.92 8.80" stroke="#22406F" stroke-width="0.6" stroke-linecap="round"/><path d="M10 10L8.80 7.92" stroke="#22406F" stroke-width="0.6" stroke-linecap="round"/><path d="M10 10L10.00 7.60" stroke="#22406F" stroke-width="0.6" stroke-linecap="round"/><path d="M10 10L11.20 7.92" stroke="#22406F" stroke-width="0.6" stroke-linecap="round"/><path d="M10 10L12.08 8.80" stroke="#22406F" stroke-width="0.6" stroke-linecap="round"/><circle cx="10" cy="10" r="0.9" fill="#22406F"/></g><g transform="translate(83.17 132.02) rotate(0) scale(0.7500) translate(-10 -10)"><path d="M1.4 10C4.6 4.4 15.4 4.4 18.6 10 15.4 15.6 4.6 15.6 1.4 10Z" fill="none" stroke="#22406F" stroke-width="1.6"/><circle cx="10" cy="10" r="2.8" fill="#22406F"/></g><g transform="translate(93.98 142.83) rotate(0) scale(0.6500) translate(-10 -10)"><path d="M11.03 19.30 C9.80 19.41 8.16 19.35 7.20 19.30 C6.24 19.25 6.03 19.05 5.27 19.02 C4.51 18.99 3.20 19.15 2.63 19.14 C2.06 19.14 2.06 19.07 1.85 18.99 C1.65 18.90 1.44 19.57 1.40 18.63 C1.36 17.70 1.50 14.55 1.59 13.37 C1.67 12.20 1.61 12.55 1.90 11.60 C2.19 10.66 2.99 8.82 3.33 7.71 C3.67 6.61 3.83 5.64 3.95 4.98 C4.07 4.31 3.98 4.06 4.04 3.73 C4.11 3.40 4.10 3.37 4.32 2.99 C4.55 2.60 5.06 1.81 5.38 1.43 C5.71 1.05 6.04 0.82 6.27 0.70 C6.50 0.58 6.27 0.56 6.77 0.70 C7.26 0.84 8.72 1.33 9.25 1.54 C9.79 1.75 9.82 1.81 9.97 1.98 C10.12 2.14 10.14 2.40 10.14 2.55 C10.14 2.70 9.98 2.77 9.95 2.89 C9.92 3.01 9.90 3.11 9.95 3.27 C10.01 3.42 10.27 3.60 10.30 3.83 C10.32 4.05 10.31 4.36 10.12 4.62 C9.94 4.88 9.47 5.11 9.19 5.37 C8.92 5.62 8.68 5.98 8.48 6.17 C8.27 6.37 8.14 6.45 7.98 6.52 C7.82 6.58 7.70 6.48 7.51 6.58 C7.33 6.68 7.02 6.73 6.87 7.12 C6.73 7.51 6.71 7.88 6.66 8.93 C6.60 9.97 6.61 12.48 6.56 13.37 C6.52 14.27 6.36 14.12 6.38 14.28 C6.39 14.43 6.56 14.32 6.64 14.29 C6.72 14.26 6.74 14.32 6.87 14.09 C7.01 13.86 7.15 13.34 7.43 12.94 C7.72 12.54 8.23 12.03 8.57 11.71 C8.91 11.39 9.22 11.18 9.47 11.00 C9.72 10.81 9.81 10.73 10.06 10.62 C10.32 10.51 10.64 10.40 11.00 10.34 C11.35 10.28 11.77 10.25 12.21 10.25 C12.64 10.25 13.00 10.17 13.61 10.34 C14.21 10.52 15.19 10.89 15.85 11.31 C16.51 11.72 17.16 12.41 17.57 12.85 C17.99 13.28 18.15 13.63 18.32 13.93 C18.49 14.24 18.55 14.40 18.60 14.68 C18.65 14.96 18.64 15.36 18.60 15.61 C18.56 15.87 18.58 15.93 18.35 16.24 C18.13 16.54 17.88 17.03 17.25 17.43 C16.61 17.84 15.58 18.34 14.54 18.65 C13.50 18.96 12.25 19.19 11.03 19.30 Z" fill="#22406F"/></g><g transform="translate(143.52 126.74) rotate(-23) scale(0.8519) translate(-10.00 -8.40)"><g fill="none" stroke="#22406F" stroke-linecap="round" stroke-linejoin="round"><path d="M10.00 2.10 C8.70 1.40 7.30 1.80 6.90 2.90 C5.60 3.00 4.70 4.20 5.00 5.50 C4.00 6.30 3.90 8.00 4.80 9.00 C4.30 10.40 5.00 11.90 6.20 12.40 C6.40 13.80 7.60 14.90 8.80 14.50 C9.20 15.40 9.70 15.40 10.00 14.90" stroke-width="0.880435"/><path d="M 10.00 2.10 C 11.30 1.40 12.70 1.80 13.10 2.90 C 14.40 3.00 15.30 4.20 15.00 5.50 C 16.00 6.30 16.10 8.00 15.20 9.00 C 15.70 10.40 15.00 11.90 13.80 12.40 C 13.60 13.80 12.40 14.90 11.20 14.50 C 10.80 15.40 10.30 15.40 10.00 14.90" stroke-width="0.880435"/><path d="M10 2.1V14.9" stroke-width="0.880435"/><path d="M7.9 4.1C6.6 4.5 6.4 5.8 7.4 6.4 M6.4 7.4C5.6 8.3 6.1 9.5 7.3 9.7 M8.1 10.7C7.4 11.6 7.8 12.7 8.8 12.9" stroke-width="0.704348"/><path d="M 12.10 4.1 C 13.40 4.5 13.60 5.8 12.60 6.4 M 13.60 7.4 C 14.40 8.3 13.90 9.5 12.70 9.7 M 11.90 10.7 C 12.60 11.6 12.20 12.7 11.20 12.9" stroke-width="0.704348"/></g></g><g transform="translate(136.04 138.04) rotate(0) scale(0.6765) translate(-10.00 -10.00)"><path d="M10 16.4C1.5 10.7 1.5 5.4 5.8 4.1 8.1 3.5 10 5.4 10 6.8 10 5.4 11.9 3.5 14.2 4.1 18.5 5.4 18.5 10.7 10 16.4Z" fill="none" stroke="#22406F" stroke-width="1.1087" stroke-linejoin="round"/></g><g transform="translate(124.74 145.52) rotate(23) scale(0.6150) translate(-14.50 -10.25)"><path d="M13.4 6.6C16.4 6.6 17.9 8.9 17.4 11.3 17.0 13.4 15.2 14.6 14.4 16.2 13.6 17.8 14.0 19.4 12.0 19.5 10.2 19.6 9.2 18.0 9.8 16.2 10.4 14.3 11.7 13.4 11.4 11.7 11.1 10.0 9.8 9.4 10.2 8.4 10.7 7.2 11.7 6.6 13.4 6.6Z" fill="none" stroke="#22406F" stroke-width="1.21957" stroke-linejoin="round"/><g fill="#22406F"><ellipse cx="10.5" cy="4.2" rx="1.7" ry="2.0" transform="rotate(-12 10.5 4.2)"/><ellipse cx="13.9" cy="2.9" rx="1.3" ry="1.55" transform="rotate(4 13.9 2.9)"/><ellipse cx="16.2" cy="3.4" rx="1.05" ry="1.3" transform="rotate(16 16.2 3.4)"/><ellipse cx="17.9" cy="4.6" rx="0.9" ry="1.1" transform="rotate(28 17.9 4.6)"/><ellipse cx="19.0" cy="6.2" rx="0.78" ry="0.95" transform="rotate(40 19 6.2)"/></g></g></symbol>
+  <symbol id="escudo-full" viewBox="-48 -30 320 262"><path d="M112 12 L66 56 L112 26 Z" fill="#EFE7D2"/><path d="M112 12 L158 56 L112 26 Z" fill="#EFE7D2"/><path d="M66.5 56.8 L112.5 26.8 L112 37 Z" fill="#8C8C89" stroke="#131C30" stroke-width="0.5" stroke-linejoin="round"/><path d="M157.5 56.8 L111.5 26.8 L112 37 Z" fill="#8C8C89" stroke="#131C30" stroke-width="0.5" stroke-linejoin="round"/><path d="M10 114 L54 68 L24 114 Z" fill="#EFE7D2"/><path d="M10 114 L54 160 L24 114 Z" fill="#EFE7D2"/><path d="M54.8 68.5 L24.8 114.5 L35 114 Z" fill="#8C8C89" stroke="#131C30" stroke-width="0.5" stroke-linejoin="round"/><path d="M54.8 159.5 L24.8 113.5 L35 114 Z" fill="#8C8C89" stroke="#131C30" stroke-width="0.5" stroke-linejoin="round"/><path d="M214 114 L170 68 L200 114 Z" fill="#EFE7D2"/><path d="M214 114 L170 160 L200 114 Z" fill="#EFE7D2"/><path d="M169.2 68.5 L199.2 114.5 L189 114 Z" fill="#8C8C89" stroke="#131C30" stroke-width="0.5" stroke-linejoin="round"/><path d="M169.2 159.5 L199.2 113.5 L189 114 Z" fill="#8C8C89" stroke="#131C30" stroke-width="0.5" stroke-linejoin="round"/><path d="M69.87 149.35 A55 55 0 0 1 140.33 66.86 L142.78 74.60 A50 50 0 0 0 70.07 141.23L69.87 149.35 Z" fill="#EFE7D2"/><path d="M77.53 142.93 A45 45 0 0 1 135.18 75.43 L142.78 74.60 A50 50 0 0 0 70.07 141.23 L77.53 142.93 Z" fill="#8C8C89" stroke="#131C30" stroke-width="0.5" stroke-linejoin="round"/><path d="M154.13 78.65 A55 55 0 0 1 83.67 161.14 L81.22 153.40 A50 50 0 0 0 153.93 86.77L154.13 78.65 Z" fill="#8C8C89" stroke="#131C30" stroke-width="0.5" stroke-linejoin="round"/><path d="M146.47 85.07 A45 45 0 0 1 88.82 152.57 L81.22 153.40 A50 50 0 0 0 153.93 86.77 L146.47 85.07 Z" fill="#EFE7D2"/><path d="M112.00 114.00 L130.38 95.62 L124.00 114.00 Z" fill="#8C8C89" stroke="#131C30" stroke-width="0.5" stroke-linejoin="round"/><path d="M112.00 114.00 L130.38 95.62 L112.00 102.00 Z" fill="#EFE7D2"/><path d="M112.00 114.00 L130.38 132.38 L112.00 126.00 Z" fill="#8C8C89" stroke="#131C30" stroke-width="0.5" stroke-linejoin="round"/><path d="M112.00 114.00 L130.38 132.38 L124.00 114.00 Z" fill="#EFE7D2"/><path d="M112.00 114.00 L93.62 132.38 L100.00 114.00 Z" fill="#8C8C89" stroke="#131C30" stroke-width="0.5" stroke-linejoin="round"/><path d="M112.00 114.00 L93.62 132.38 L112.00 126.00 Z" fill="#EFE7D2"/><path d="M112.00 114.00 L93.62 95.62 L112.00 102.00 Z" fill="#8C8C89" stroke="#131C30" stroke-width="0.5" stroke-linejoin="round"/><path d="M112.00 114.00 L93.62 95.62 L100.00 114.00 Z" fill="#EFE7D2"/><path d="M112.00 69.50 L121.19 104.81 L156.50 114.00 L121.19 123.19 L112.00 158.50 L102.81 123.19 L67.50 114.00 L102.81 104.81 Z" fill="none" stroke="#131C30" stroke-width="1.5" stroke-linejoin="round"/><path d="M112.00 114.00 L112.00 69.50 L121.19 104.81 Z" fill="#EFE7D2"/><path d="M112.00 114.00 L112.00 69.50 L102.81 104.81 Z" fill="#8C8C89" stroke="#131C30" stroke-width="0.5" stroke-linejoin="round"/><path d="M112.00 114.00 L156.50 114.00 L121.19 123.19 Z" fill="#EFE7D2"/><path d="M112.00 114.00 L156.50 114.00 L121.19 104.81 Z" fill="#8C8C89" stroke="#131C30" stroke-width="0.5" stroke-linejoin="round"/><path d="M112.00 114.00 L112.00 158.50 L102.81 123.19 Z" fill="#EFE7D2"/><path d="M112.00 114.00 L112.00 158.50 L121.19 123.19 Z" fill="#8C8C89" stroke="#131C30" stroke-width="0.5" stroke-linejoin="round"/><path d="M112.00 114.00 L67.50 114.00 L102.81 104.81 Z" fill="#EFE7D2"/><path d="M112.00 114.00 L67.50 114.00 L102.81 123.19 Z" fill="#8C8C89" stroke="#131C30" stroke-width="0.5" stroke-linejoin="round"/><path d="M64 184 L160 184 L153.5 190.5 L70.5 190.5 Z" fill="#8C8C89" stroke="#131C30" stroke-width="0.5" stroke-linejoin="round"/><path d="M70.5 190.5 L153.5 190.5 L160 197 L64 197 Z" fill="#EFE7D2"/><path d="M64 184 L70.5 190.5 L64 197 Z" fill="#BFBAAE" stroke="#131C30" stroke-width="0.5" stroke-linejoin="round"/><path d="M160 184 L153.5 190.5 L160 197 Z" fill="#BFBAAE" stroke="#131C30" stroke-width="0.5" stroke-linejoin="round"/><g transform="translate(112.00 -6.00) rotate(0) scale(1.1000) translate(-10 -10)"><path d="M10 1.6C11.6 5.8 15.4 7.4 15.4 11.6A5.4 5.4 0 0 1 4.6 11.6C4.6 9 6.4 7.8 7 6.1 7.7 7.8 9 8.5 9.7 7.8 9 5.8 9 3.6 10 1.6Z" fill="#EFE7D2"/></g><g transform="translate(233 114) rotate(0) scale(1.1000) translate(-10 -10)"><g fill="none" stroke="#EFE7D2" stroke-width="1.6" stroke-linecap="round"><path d="M1.8 6.6H11.6A2.7 2.7 0 1 0 8.9 3.9"/><path d="M1.8 11H14.8A2.7 2.7 0 1 1 12.1 13.7"/><path d="M1.8 15.4H9"/></g></g><g transform="translate(112.00 215.00) rotate(0) scale(1.1000) translate(-10 -10)"><path d="M1.2 16.4L7 6.6 10.6 12.4 13.2 8.2 18.8 16.4Z" fill="#EFE7D2"/></g><g transform="translate(-18 114) scale(0.19469) translate(-113 -50)"><path d="M214.30 96.00C206.73 96.06 204.78 96.84 192.97 95.69C181.15 94.55 182.76 94.76 172.09 91.92C161.42 89.07 161.74 88.46 154.84 85.52C147.95 82.58 151.29 83.91 147.48 81.42C143.67 78.93 144.38 79.51 141.23 76.61C138.08 73.71 138.41 73.92 136.24 71.08C134.06 68.23 134.89 69.90 133.45 66.44C132.01 62.99 131.75 62.54 131.09 58.73C130.43 54.92 130.70 55.88 131.09 52.83C131.48 49.78 130.97 51.01 132.49 47.84C134.01 44.66 132.67 45.11 136.52 41.48C140.36 37.86 143.21 37.18 146.22 34.89C149.23 32.60 147.27 33.31 147.27 33.31C147.27 33.31 147.49 31.96 144.41 30.89C141.32 29.81 142.46 29.43 136.24 29.46C130.01 29.49 128.94 29.53 122.17 30.99C115.39 32.45 116.51 32.75 112.04 34.68C107.56 36.60 111.47 34.10 106.18 37.85C100.88 41.60 101.99 39.75 93.12 48.07C84.26 56.39 82.27 59.83 74.51 67.57C66.76 75.30 70.52 71.55 65.44 75.70C60.36 79.84 62.21 78.72 56.36 82.39C50.52 86.05 51.55 85.62 44.56 88.79C37.57 91.97 37.50 91.82 31.40 93.74C25.30 95.65 29.26 95.10 22.78 95.64C16.30 96.19 12.80 95.86 8.25 95.69C3.71 95.52 7.19 95.60 6.56 95.04C5.93 94.47 6.00 93.67 6.00 93.67C6.00 93.67 1.83 94.61 7.80 92.10C13.77 89.59 18.67 88.45 27.32 84.71C35.96 80.98 33.20 81.95 38.66 78.77C44.13 75.58 39.02 79.44 46.83 73.32C54.64 67.20 55.11 67.40 66.55 56.91C77.98 46.42 77.95 44.47 87.68 35.86C97.40 27.26 95.32 29.96 101.29 26.18C107.26 22.40 103.42 24.47 109.01 22.36C114.60 20.25 116.30 19.95 121.26 18.64C126.22 17.33 120.86 17.95 126.71 17.68C132.55 17.41 133.88 16.85 142.14 17.66C150.40 18.47 148.45 18.18 156.21 20.57C163.96 22.95 162.96 22.55 169.82 26.18C176.68 29.82 176.50 30.28 180.71 33.55C184.93 36.82 182.96 35.25 184.87 37.85C186.78 40.45 187.03 40.68 187.53 42.84C188.03 45.00 187.40 44.51 186.64 45.57C185.87 46.62 188.87 47.04 184.80 46.62C180.72 46.19 177.93 44.79 172.09 44.05C166.24 43.31 167.61 43.70 163.92 43.98C160.24 44.27 161.47 44.17 158.93 45.07C156.39 45.98 157.16 45.17 154.84 47.21C152.53 49.25 152.11 49.40 150.65 52.37C149.19 55.35 149.43 54.39 149.63 57.82C149.83 61.25 149.76 61.01 151.35 64.63C152.93 68.24 152.28 67.28 155.30 70.73C158.31 74.18 156.68 73.20 162.11 76.95C167.53 80.71 166.15 80.44 174.67 84.14C183.18 87.85 179.95 87.27 192.51 90.19C205.07 93.12 219.51 94.58 219.51 94.58C219.51 94.58 220.00 95.49 220.00 95.49C220.00 95.49 221.87 95.94 214.30 96.00Z" fill="#EFE7D2"/></g><g transform="translate(83.17 95.98) rotate(-13) scale(0.7000) translate(-10 -10)"><circle cx="10" cy="10" r="4.2" fill="#EFE7D2"/><g stroke="#EFE7D2" stroke-width="1.5" stroke-linecap="round"><path d="M10 1.6V4"/><path d="M10 16V18.4"/><path d="M1.6 10H4"/><path d="M16 10H18.4"/><path d="M4.1 4.1L5.8 5.8"/><path d="M14.2 14.2L15.9 15.9"/><path d="M15.9 4.1L14.2 5.8"/><path d="M5.8 14.2L4.1 15.9"/></g></g><g transform="translate(93.98 85.17) rotate(13) scale(0.7000) translate(-10 -10)"><path d="M17.36 13.13A8 8 0 1 1 6.87 2.64 7.8 7.8 0 0 0 17.36 13.13Z" fill="#EFE7D2"/></g><g transform="translate(130.02 85.17) rotate(-13) scale(0.7000) translate(-10 -10)"><polygon points="10.00,0.20 10.49,1.52 11.90,1.58 10.80,2.46 11.18,3.82 10.00,3.04 8.82,3.82 9.20,2.46 8.10,1.58 9.51,1.52" fill="#EFE7D2"/><polygon points="10.40,15.50 10.97,17.02 12.59,17.09 11.32,18.10 11.75,19.66 10.40,18.77 9.05,19.66 9.48,18.10 8.21,17.09 9.83,17.02" fill="#EFE7D2"/><polygon points="16.60,8.30 17.07,9.55 18.41,9.61 17.36,10.45 17.72,11.74 16.60,11.00 15.48,11.74 15.84,10.45 14.79,9.61 16.13,9.55" fill="#EFE7D2"/><polygon points="3.60,6.90 3.97,7.89 5.03,7.94 4.20,8.59 4.48,9.61 3.60,9.03 2.72,9.61 3.00,8.59 2.17,7.94 3.23,7.89" fill="#EFE7D2"/><polygon points="11.40,11.50 11.62,12.09 12.26,12.12 11.76,12.52 11.93,13.13 11.40,12.78 10.87,13.13 11.04,12.52 10.54,12.12 11.18,12.09" fill="#EFE7D2"/></g><g transform="translate(140.83 95.98) rotate(13) scale(0.7000) translate(-10 -10)"><g fill="#EFE7D2"><path d="M10 10C7.7 9.5 6.3 7.5 6.3 5.3 6.3 3.0 8.0 1.4 10 1.4 12.0 1.4 13.7 3.0 13.7 5.3 13.7 7.5 12.3 9.5 10 10Z" transform="rotate(180 10 10)"/><path d="M10 10C7.7 9.5 6.3 7.5 6.3 5.3 6.3 3.0 8.0 1.4 10 1.4 12.0 1.4 13.7 3.0 13.7 5.3 13.7 7.5 12.3 9.5 10 10Z" transform="rotate(252 10 10)"/><path d="M10 10C7.7 9.5 6.3 7.5 6.3 5.3 6.3 3.0 8.0 1.4 10 1.4 12.0 1.4 13.7 3.0 13.7 5.3 13.7 7.5 12.3 9.5 10 10Z" transform="rotate(324 10 10)"/><path d="M10 10C7.7 9.5 6.3 7.5 6.3 5.3 6.3 3.0 8.0 1.4 10 1.4 12.0 1.4 13.7 3.0 13.7 5.3 13.7 7.5 12.3 9.5 10 10Z" transform="rotate(396 10 10)"/><path d="M10 10C7.7 9.5 6.3 7.5 6.3 5.3 6.3 3.0 8.0 1.4 10 1.4 12.0 1.4 13.7 3.0 13.7 5.3 13.7 7.5 12.3 9.5 10 10Z" transform="rotate(468 10 10)"/></g><ellipse cx="10" cy="5.9" rx="1.1" ry="1.75" transform="rotate(180 10 10)" fill="#131C30"/><ellipse cx="10" cy="5.9" rx="1.1" ry="1.75" transform="rotate(252 10 10)" fill="#131C30"/><ellipse cx="10" cy="5.9" rx="1.1" ry="1.75" transform="rotate(324 10 10)" fill="#131C30"/><ellipse cx="10" cy="5.9" rx="1.1" ry="1.75" transform="rotate(396 10 10)" fill="#131C30"/><ellipse cx="10" cy="5.9" rx="1.1" ry="1.75" transform="rotate(468 10 10)" fill="#131C30"/><circle cx="10" cy="10" r="2.6" fill="#131C30"/><path d="M10 10L12.40 10.00" stroke="#EFE7D2" stroke-width="0.6" stroke-linecap="round"/><path d="M10 10L12.08 11.20" stroke="#EFE7D2" stroke-width="0.6" stroke-linecap="round"/><path d="M10 10L11.20 12.08" stroke="#EFE7D2" stroke-width="0.6" stroke-linecap="round"/><path d="M10 10L10.00 12.40" stroke="#EFE7D2" stroke-width="0.6" stroke-linecap="round"/><path d="M10 10L8.80 12.08" stroke="#EFE7D2" stroke-width="0.6" stroke-linecap="round"/><path d="M10 10L7.92 11.20" stroke="#EFE7D2" stroke-width="0.6" stroke-linecap="round"/><path d="M10 10L7.60 10.00" stroke="#EFE7D2" stroke-width="0.6" stroke-linecap="round"/><path d="M10 10L7.92 8.80" stroke="#EFE7D2" stroke-width="0.6" stroke-linecap="round"/><path d="M10 10L8.80 7.92" stroke="#EFE7D2" stroke-width="0.6" stroke-linecap="round"/><path d="M10 10L10.00 7.60" stroke="#EFE7D2" stroke-width="0.6" stroke-linecap="round"/><path d="M10 10L11.20 7.92" stroke="#EFE7D2" stroke-width="0.6" stroke-linecap="round"/><path d="M10 10L12.08 8.80" stroke="#EFE7D2" stroke-width="0.6" stroke-linecap="round"/><circle cx="10" cy="10" r="0.9" fill="#EFE7D2"/></g><g transform="translate(83.17 132.02) rotate(0) scale(0.7500) translate(-10 -10)"><path d="M1.4 10C4.6 4.4 15.4 4.4 18.6 10 15.4 15.6 4.6 15.6 1.4 10Z" fill="none" stroke="#EFE7D2" stroke-width="1.6"/><circle cx="10" cy="10" r="2.8" fill="#EFE7D2"/></g><g transform="translate(93.98 142.83) rotate(0) scale(0.6500) translate(-10 -10)"><path d="M11.03 19.30 C9.80 19.41 8.16 19.35 7.20 19.30 C6.24 19.25 6.03 19.05 5.27 19.02 C4.51 18.99 3.20 19.15 2.63 19.14 C2.06 19.14 2.06 19.07 1.85 18.99 C1.65 18.90 1.44 19.57 1.40 18.63 C1.36 17.70 1.50 14.55 1.59 13.37 C1.67 12.20 1.61 12.55 1.90 11.60 C2.19 10.66 2.99 8.82 3.33 7.71 C3.67 6.61 3.83 5.64 3.95 4.98 C4.07 4.31 3.98 4.06 4.04 3.73 C4.11 3.40 4.10 3.37 4.32 2.99 C4.55 2.60 5.06 1.81 5.38 1.43 C5.71 1.05 6.04 0.82 6.27 0.70 C6.50 0.58 6.27 0.56 6.77 0.70 C7.26 0.84 8.72 1.33 9.25 1.54 C9.79 1.75 9.82 1.81 9.97 1.98 C10.12 2.14 10.14 2.40 10.14 2.55 C10.14 2.70 9.98 2.77 9.95 2.89 C9.92 3.01 9.90 3.11 9.95 3.27 C10.01 3.42 10.27 3.60 10.30 3.83 C10.32 4.05 10.31 4.36 10.12 4.62 C9.94 4.88 9.47 5.11 9.19 5.37 C8.92 5.62 8.68 5.98 8.48 6.17 C8.27 6.37 8.14 6.45 7.98 6.52 C7.82 6.58 7.70 6.48 7.51 6.58 C7.33 6.68 7.02 6.73 6.87 7.12 C6.73 7.51 6.71 7.88 6.66 8.93 C6.60 9.97 6.61 12.48 6.56 13.37 C6.52 14.27 6.36 14.12 6.38 14.28 C6.39 14.43 6.56 14.32 6.64 14.29 C6.72 14.26 6.74 14.32 6.87 14.09 C7.01 13.86 7.15 13.34 7.43 12.94 C7.72 12.54 8.23 12.03 8.57 11.71 C8.91 11.39 9.22 11.18 9.47 11.00 C9.72 10.81 9.81 10.73 10.06 10.62 C10.32 10.51 10.64 10.40 11.00 10.34 C11.35 10.28 11.77 10.25 12.21 10.25 C12.64 10.25 13.00 10.17 13.61 10.34 C14.21 10.52 15.19 10.89 15.85 11.31 C16.51 11.72 17.16 12.41 17.57 12.85 C17.99 13.28 18.15 13.63 18.32 13.93 C18.49 14.24 18.55 14.40 18.60 14.68 C18.65 14.96 18.64 15.36 18.60 15.61 C18.56 15.87 18.58 15.93 18.35 16.24 C18.13 16.54 17.88 17.03 17.25 17.43 C16.61 17.84 15.58 18.34 14.54 18.65 C13.50 18.96 12.25 19.19 11.03 19.30 Z" fill="#EFE7D2"/></g><g transform="translate(143.52 126.74) rotate(-23) scale(0.8519) translate(-10.00 -8.40)"><g fill="none" stroke="#EFE7D2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.00 2.10 C8.70 1.40 7.30 1.80 6.90 2.90 C5.60 3.00 4.70 4.20 5.00 5.50 C4.00 6.30 3.90 8.00 4.80 9.00 C4.30 10.40 5.00 11.90 6.20 12.40 C6.40 13.80 7.60 14.90 8.80 14.50 C9.20 15.40 9.70 15.40 10.00 14.90" stroke-width="0.880435"/><path d="M 10.00 2.10 C 11.30 1.40 12.70 1.80 13.10 2.90 C 14.40 3.00 15.30 4.20 15.00 5.50 C 16.00 6.30 16.10 8.00 15.20 9.00 C 15.70 10.40 15.00 11.90 13.80 12.40 C 13.60 13.80 12.40 14.90 11.20 14.50 C 10.80 15.40 10.30 15.40 10.00 14.90" stroke-width="0.880435"/><path d="M10 2.1V14.9" stroke-width="0.880435"/><path d="M7.9 4.1C6.6 4.5 6.4 5.8 7.4 6.4 M6.4 7.4C5.6 8.3 6.1 9.5 7.3 9.7 M8.1 10.7C7.4 11.6 7.8 12.7 8.8 12.9" stroke-width="0.704348"/><path d="M 12.10 4.1 C 13.40 4.5 13.60 5.8 12.60 6.4 M 13.60 7.4 C 14.40 8.3 13.90 9.5 12.70 9.7 M 11.90 10.7 C 12.60 11.6 12.20 12.7 11.20 12.9" stroke-width="0.704348"/></g></g><g transform="translate(136.04 138.04) rotate(0) scale(0.6765) translate(-10.00 -10.00)"><path d="M10 16.4C1.5 10.7 1.5 5.4 5.8 4.1 8.1 3.5 10 5.4 10 6.8 10 5.4 11.9 3.5 14.2 4.1 18.5 5.4 18.5 10.7 10 16.4Z" fill="none" stroke="#EFE7D2" stroke-width="1.1087" stroke-linejoin="round"/></g><g transform="translate(124.74 145.52) rotate(23) scale(0.6150) translate(-14.50 -10.25)"><path d="M13.4 6.6C16.4 6.6 17.9 8.9 17.4 11.3 17.0 13.4 15.2 14.6 14.4 16.2 13.6 17.8 14.0 19.4 12.0 19.5 10.2 19.6 9.2 18.0 9.8 16.2 10.4 14.3 11.7 13.4 11.4 11.7 11.1 10.0 9.8 9.4 10.2 8.4 10.7 7.2 11.7 6.6 13.4 6.6Z" fill="none" stroke="#EFE7D2" stroke-width="1.21957" stroke-linejoin="round"/><g fill="#EFE7D2"><ellipse cx="10.5" cy="4.2" rx="1.7" ry="2.0" transform="rotate(-12 10.5 4.2)"/><ellipse cx="13.9" cy="2.9" rx="1.3" ry="1.55" transform="rotate(4 13.9 2.9)"/><ellipse cx="16.2" cy="3.4" rx="1.05" ry="1.3" transform="rotate(16 16.2 3.4)"/><ellipse cx="17.9" cy="4.6" rx="0.9" ry="1.1" transform="rotate(28 17.9 4.6)"/><ellipse cx="19.0" cy="6.2" rx="0.78" ry="0.95" transform="rotate(40 19 6.2)"/></g></g></symbol>
 </defs>
 </svg>
 
@@ -442,8 +633,8 @@ details[open]>summary .abre{transform:rotate(45deg)}
   <!-- ============ CABECERA ============ -->
   <header class="cab">
     <!-- glifo combinado: chevrón arriba + laterales + círculo con cruz + barra -->
-    <svg class="marca" viewBox="-36 -30 306 262" role="img" aria-label="Escudo del sistema">
-      <use href="#escudo-full" x="-36" y="-30" width="306" height="262"/>
+    <svg class="marca" viewBox="-48 -30 320 262" role="img" aria-label="Escudo del sistema: agua a la izquierda, aire a la derecha, fuego arriba y tierra abajo">
+      <use href="#escudo-full" x="-48" y="-30" width="320" height="262"/>
     </svg>
     <h1>Sistema de Mejora Personal</h1>
     <svg class="doble" viewBox="0 0 250 12" aria-hidden="true">
@@ -458,7 +649,7 @@ details[open]>summary .abre{transform:rotate(45deg)}
       </defs>
 
       <rect class="panel" x="0" y="80" width="350" height="442" rx="14"/>
-      <rect class="panel" x="370" y="80" width="330" height="638" rx="14"/>
+      <rect class="panel" x="370" y="80" width="330" height="648" rx="14"/>
 
       <rect class="caja" x="220" y="4" width="260" height="56" rx="9" filter="url(#som-n)"/>
       <text class="tit" x="350" y="42" text-anchor="middle">EL SISTEMA</text>
@@ -471,37 +662,29 @@ details[open]>summary .abre{transform:rotate(45deg)}
       <rect x="6" y="166" width="164" height="70" rx="8" fill="var(--mirada)" filter="url(#som-n)"/>
       <rect x="6" y="175" width="164" height="61" rx="8" fill="var(--papel)"/>
       <text class="nom" x="88.0" y="204" text-anchor="middle">MIRADA</text>
-      <text class="clave" x="88.0" y="226" text-anchor="middle">ver</text>
-      <rect x="180" y="166" width="164" height="70" rx="8" fill="var(--proceso)" filter="url(#som-n)"/>
+            <rect x="180" y="166" width="164" height="70" rx="8" fill="var(--proceso)" filter="url(#som-n)"/>
       <rect x="180" y="175" width="164" height="61" rx="8" fill="var(--papel)"/>
       <text class="nom" x="262.0" y="204" text-anchor="middle">ACTITUD</text>
-      <text class="clave" x="262.0" y="226" text-anchor="middle">poder</text>
-      <path class="rama" d="M19 249 L19 292"/>
-      <path class="rama" d="M19 256 L28 256"/>
-      <path class="rama" d="M19 274 L28 274"/>
-      <path class="rama" d="M19 292 L28 292"/>
+            <!-- v1.2.5: apartados de Mirada y Actitud; no son fases ni una lista exhaustiva de la vida. -->
+      <path class="rama" d="M19 249 L19 320"/>
+      <path class="rama" d="M19 256 L28 256 M19 272 L28 272 M19 288 L28 288 M19 304 L28 304 M19 320 L28 320"/>
       <text class="pata" x="33" y="260"><tspan class="pn">presencia</tspan></text>
-      <text class="pata" x="33" y="278"><tspan class="pn">filtro</tspan></text>
-      <text class="pata" x="33" y="296"><tspan class="pn">preguntarse</tspan></text>
-      <path class="rama" d="M193 249 L193 310"/>
-      <path class="rama" d="M193 256 L202 256"/>
-      <path class="rama" d="M193 274 L202 274"/>
-      <path class="rama" d="M193 292 L202 292"/>
-      <path class="rama" d="M193 310 L202 310"/>
-      <text class="pata" x="207" y="260"><tspan class="pn">iniciativa</tspan></text>
-      <text class="pata" x="207" y="278"><tspan class="pn">resolución</tspan></text>
-      <text class="pata" x="207" y="296"><tspan class="pn">esmero</tspan></text>
-      <text class="pata" x="207" y="314"><tspan class="pn">determinación</tspan></text>
+      <text class="pata" x="33" y="276"><tspan class="pn">filtro</tspan></text>
+      <text class="pata" x="33" y="292"><tspan class="pn">plenitud</tspan></text>
+      <text class="pata" x="33" y="308"><tspan class="pn">enfoque ante tarea</tspan></text>
+      <text class="pata" x="33" y="324"><tspan class="pn">preguntarse</tspan></text>
+      <path class="rama" d="M193 249 L193 272"/>
+      <path class="rama" d="M193 256 L202 256 M193 272 L202 272"/>
+      <text class="pata" x="207" y="260"><tspan class="pn">tomar acción</tspan></text>
+      <text class="pata" x="207" y="276"><tspan class="pn">personas</tspan></text>
       <text class="pie2" x="175" y="346" text-anchor="middle">El entrenamiento y las prácticas</text>
       <rect x="6" y="356" width="164" height="70" rx="8" fill="var(--mental)" filter="url(#som-n)"/>
       <rect x="6" y="365" width="164" height="61" rx="8" fill="var(--papel)"/>
       <text class="nom" x="88.0" y="394" text-anchor="middle" font-size="12.5" textLength="142" lengthAdjust="spacingAndGlyphs">MENTALIZACIÓN</text>
-      <text class="clave" x="88.0" y="416" text-anchor="middle">querer</text>
-      <rect x="180" y="356" width="164" height="70" rx="8" fill="var(--operar)" filter="url(#som-n)"/>
+            <rect x="180" y="356" width="164" height="70" rx="8" fill="var(--operar)" filter="url(#som-n)"/>
       <rect x="180" y="365" width="164" height="61" rx="8" fill="var(--papel)"/>
       <text class="nom" x="262.0" y="394" text-anchor="middle">OPERACIÓN</text>
-      <text class="clave" x="262.0" y="416" text-anchor="middle">saber y hacer</text>
-      <path class="rama" d="M19 439 L19 500"/>
+            <path class="rama" d="M19 439 L19 500"/>
       <path class="rama" d="M19 446 L28 446"/>
       <path class="rama" d="M19 464 L28 464"/>
       <path class="rama" d="M19 482 L28 482"/>
@@ -529,8 +712,11 @@ details[open]>summary .abre{transform:rotate(45deg)}
       <path class="rama" d="M389 300 L398 300"/>
       <text class="pata" x="403" y="232"><tspan class="pn">primera tarea</tspan> · cama</text>
       <text class="pata" x="403" y="250"><tspan class="pn">calibración</tspan> · presencia + activación</text>
-      <text class="pata" x="403" y="268"><tspan class="pn">rezar</tspan> · agradecer + preguntarse</text>
-      <text class="pata" x="518" y="286" text-anchor="middle">pedir + comprometerse</text>
+      <text class="pata" x="403" y="268"><tspan class="pn">rezar</tspan></text>
+      <g class="rezo-mapa-pareja">
+        <text class="pata" x="558" y="268" text-anchor="middle">agradecer + preguntarse</text>
+        <text class="pata" x="558" y="286" text-anchor="middle">pedir + comprometerse</text>
+      </g>
       <text class="pata" x="403" y="304"><tspan class="pn">avance</tspan> · mentalización + planeamiento</text>
       <polygon points="535,324 528,316 542,316" fill="var(--tiza-suave)"/>
       <rect x="376" y="334" width="318" height="70" rx="8" fill="var(--proceso)" filter="url(#som-n)"/>
@@ -562,8 +748,11 @@ details[open]>summary .abre{transform:rotate(45deg)}
       <text class="pata" x="510" y="642" text-anchor="middle">recuerdos</text>
       <text class="pata" x="403" y="660"><tspan class="pn">preparación</tspan> · dejar listo</text>
       <text class="pata" x="403" y="678"><tspan class="pn">calibración</tspan> · presencia</text>
-      <text class="pata" x="403" y="696"><tspan class="pn">rezar</tspan> · agradecer + preguntarse</text>
-      <text class="pata" x="495" y="714" text-anchor="middle">pedir + comprometerse</text>
+      <text class="pata" x="403" y="696"><tspan class="pn">rezar</tspan></text>
+      <g class="rezo-mapa-pareja">
+        <text class="pata" x="558" y="696" text-anchor="middle">agradecer + preguntarse</text>
+        <text class="pata" x="558" y="714" text-anchor="middle">pedir + comprometerse</text>
+      </g>
 
       <path d="M348 110 L360 110" stroke="var(--tiza-suave)" stroke-width="2.6" fill="none"/>
       <polygon points="370,110 358,103 358,117" fill="var(--tiza-suave)"/>
@@ -590,18 +779,19 @@ details[open]>summary .abre{transform:rotate(45deg)}
           <div class="dim-cab">
             <svg class="ico"><use href="#i-ojo"/></svg>
             <h3>Mirada</h3>
-            <span class="verbo v-mirada">ver</span>
             <span class="abre">+</span>
           </div>
-          <p class="eyebrow">Contemplativa y perceptiva · ¿con qué filtro y cómo veo las cosas?</p>
+          <p class="eyebrow">Contemplativa y perceptiva — ¿qué atiendo, cómo lo interpreto y qué valoro?</p>
         </summary>
         <div class="dim-body">
 
-        <div class="grupo">
-          <h4 class="c-mirada">Presencia (atención plena)</h4>
-          <p class="glosa">mirar sin filtro: ver con claridad</p>
-
-          <details class="concepto"><summary>Autoobservación (Conexión)<span class="mas">+</span></summary>
+        <details class="arq-apartado" id="mirada-presencia">
+          <summary>
+            <h4><span class="arq-nombre c-mirada">Presencia</span><span class="mas" aria-hidden="true">+</span></h4>
+            <span class="arq-glosa">atención plena — ver con claridad</span>
+          </summary>
+          <div class="arq-contenido">
+<details class="concepto"><summary>Autoobservación (Conexión)<span class="mas">+</span></summary>
             <div class="def">Observar y conectar con lo que hay, por sus cuatro puertas:</div>
             <div class="cuadrante">
               <div class="q p--b">
@@ -627,72 +817,40 @@ details[open]>summary .abre{transform:rotate(45deg)}
               </div>
               <span class="centro">CONEXIÓN</span>
             </div></details>
-          <details class="concepto"><summary>Meditación · Respiración<span class="mas">+</span></summary>
+<details class="concepto"><summary>Meditación · Respiración<span class="mas">+</span></summary>
             <div class="def">Respiración consciente para volver al presente. Escala <b>7 · 14 · 28 · 112</b>; por la mañana, 28.</div></details>
-          <details class="concepto"><summary>Escribir<span class="mas">+</span></summary>
+<details class="concepto"><summary>Escribir<span class="mas">+</span></summary>
             <div class="def">Sacar fuera lo que pasa dentro.</div></details>
-          <details class="concepto"><summary>Espejo<span class="mas">+</span></summary>
+<details class="concepto"><summary>Espejo<span class="mas">+</span></summary>
             <div class="def">5 minutos de frente: consciente de uno mismo y de lo que se proyecta.</div></details>
-          <details class="concepto"><summary>Actividades conscientes<span class="mas">+</span></summary>
+<details class="concepto"><summary>Actividades conscientes<span class="mas">+</span></summary>
             <div class="def">Carrera, comida, música: <b>una sola cosa, sintiéndola</b>.</div></details>
-        </div>
+          </div>
+        </details>
 
-        <div class="grupo">
-          <h4 class="c-mirada">Filtro</h4>
-          <p class="glosa">cómo mirar</p>
-          <details class="concepto"><summary>Perspectiva<span class="mas">+</span></summary>
+        <details class="arq-apartado" id="mirada-filtro">
+          <summary>
+            <h4><span class="arq-nombre c-mirada">Filtro</span><span class="mas" aria-hidden="true">+</span></h4>
+            <span class="arq-glosa">con qué perspectiva miro</span>
+          </summary>
+          <div class="arq-contenido">
+<details class="concepto"><summary>Perspectiva<span class="mas">+</span></summary>
             <div class="def"><b>Ver lo que hay antes de compararlo con lo que esperaba.</b> Admirar lo que veo, no lo que deseo ver. La expectativa rígida termina convirtiendo la realidad en frustración.</div></details>
-          <details class="concepto"><summary>Agradecer<span class="mas">+</span></summary>
+<details class="concepto"><summary>Agradecer<span class="mas">+</span></summary>
             <div class="def">Valorar lo que se tiene: <b>el gimnasio de la mirada</b>.</div></details>
-          <details class="concepto"><summary>Abundancia<span class="mas">+</span></summary>
+<details class="concepto"><summary>Abundancia<span class="mas">+</span></summary>
             <div class="def">Mirar primero <b>lo que hay y lo que permite</b>; la escasez mira primero lo que falta.</div></details>
-          <details class="concepto"><summary>Enfoque — ante la tarea<span class="mas">+</span></summary>
-            <div class="def">Con qué ojos mirar <b>lo que toca hacer</b>. Cuatro lentes — y cada una vence al miedo por su lado:</div>
-            <div class="cuadrante">
-              <div class="q p--a"><div class="qcab"><svg class="qico"><use href="#i-fuego"/></svg><span class="titq">Reto · Motivación</span></div><p class="cont">vence al miedo con <b>acción</b></p></div>
-              <div class="q p--b"><div class="qcab"><svg class="qico"><use href="#i-aire"/></svg><span class="titq">Curiosidad</span></div><p class="cont">vence al miedo con <b>apertura</b></p></div>
-              <div class="q p--c"><div class="qcab"><svg class="qico"><use href="#i-tierra"/></svg><span class="titq">Aprendizaje</span></div><p class="cont">vence al miedo con <b>evolución</b></p></div>
-              <div class="q p--d"><div class="qcab"><svg class="qico"><use href="#i-agua"/></svg><span class="titq">Aportación</span></div><p class="cont">vence al miedo con <b>propósito</b></p></div>
-              <span class="centro">ENFOQUE</span>
-            </div></details>
-          <details class="concepto"><summary><span class="c-mirada" style="font-size:15px;padding:1px 6px">Personas</span><span class="mas">+</span></summary>
-          <div class="def">cómo mirar a los demás:</div>
-          <div class="cuadrante">
-            <div class="q p--a">
-              <div class="qcab"><svg class="qico"><use href="#i-estrella"/></svg><span class="titq">Agradecer / Valorar</span></div>
-              <p class="pares">Lo que recibo<br>Lo que tienen y lo que son</p>
-            </div>
-            <div class="q p--b">
-              <div class="qcab"><svg class="qico"><use href="#i-manos"/></svg><span class="titq">Entregarse</span></div>
-              <p class="pares"><b>Ayudar + Apoyar</b><br><b>Cuidar + Prestar atención</b><br>Acordarse + Acompañar<br>Escuchar + Interesarse<br><i>(tener detalles)</i></p>
-            </div>
-            <div class="q p--c">
-              <div class="qcab"><svg class="qico"><use href="#i-ancla"/></svg><span class="titq">Ser fiel</span></div>
-              <p class="pares"><b>Lealtad + Honestidad</b><br><b>Sinceridad + Transparencia</b></p>
-            </div>
-            <div class="q p--d">
-              <div class="qcab"><svg class="qico"><use href="#i-corazon"/></svg><span class="titq">Amar</span></div>
-              <p class="pares">Afecto + Cariño<br>Empatía + Entendimiento<br>Perdón + Compasión<br>Aceptar + Acoger</p>
-            </div>
-            <span class="centro">PERSONAS</span>
-          </div></details>
-        </div>
+          </div>
+        </details>
 
-        <div class="grupo">
-          <h4 class="c-mirada">Preguntarse</h4>
-          <p class="glosa">el sentido de la vida</p>
-          <details class="concepto"><summary>El cuadrante de PREGUNTAS<span class="mas">+</span></summary>
-            <div class="def">El nivel hondo: <b>dónde poner la mirada en la vida</b> — preguntas generales, de vida y de largo plazo. <b>No devuelven una tarea: devuelven una manera de mirar.</b></div>
-            <div class="cuadrante preg">
-              <div class="q p--b"><p class="cont">¿Qué <b>quiero</b>, qué me <b>gusta</b> y qué no?<br>¿Qué le <b>pido</b> a la vida y qué <b>espero</b> de ella?<br>¿Qué <b>sentido</b> le doy?<br>¿Cuáles son mis <b>propósitos</b> y <b>proyectos</b>?</p></div>
-              <div class="q p--a"><p class="cont">¿Cuáles son mis <b>valores</b> y <b>principios</b>?<br>¿Cómo quiero <b>ser</b> y qué <b>cualidades</b> quiero tener?<br>¿Qué cosas quiero que me <b>definan</b>?</p></div>
-              <div class="q p--c"><p class="cont">¿Qué es <b>importante</b>?<br>¿Qué merece la pena, mi <b>esfuerzo</b> y mi <b>tiempo</b>?<br>¿Por qué y por <b>quién</b> quiero luchar?</p></div>
-              <div class="q p--d"><p class="cont">¿Qué puedo hacer para ser más <b>feliz</b>?<br>¿Qué puedo hacer para sentirme <b>bien</b>, <b>pleno</b>, <b>en paz</b>?</p></div>
-              <span class="centro">PREGUNTAS</span>
-            </div></details>
-          <details class="concepto"><summary><span class="c-mirada" style="font-size:15px;padding:1px 6px">Plenitud</span><span class="mas">+</span></summary>
-          <div class="def">el cuadrante de los cuatro elementos:</div>
-          <div class="cuadrante">
+        <details class="arq-apartado arq-reorganizado" id="mirada-plenitud">
+          <summary>
+            <h4><span class="arq-nombre c-mirada">Plenitud</span><span class="revision-etiqueta">PROPUESTA</span><span class="mas" aria-hidden="true">+</span></h4>
+            <span class="arq-glosa">cómo entiendo una vida plena</span>
+          </summary>
+          <div class="arq-contenido">
+<div class="def">Qué quiero tener presente <b>al vivirla</b>.</div>
+            <div class="cuadrante">
             <div class="q q--fuego">
               <div class="qcab"><svg class="qico"><use href="#i-fuego"/></svg><span class="elem">Fuego</span></div>
               <span class="fn">que impulsa y activa</span>
@@ -718,10 +876,60 @@ details[open]>summary .abre{transform:rotate(45deg)}
               <p class="cont">soltar + perdonar<br>aceptar + compasión + amar</p>
             </div>
             <span class="centro">PLENITUD</span>
-          </div></details>
-        </div>
+          </div>
+            <p class="pregunta-guia">¿Qué estoy cultivando y qué estoy dejando fuera?</p>
+          </div>
+        </details>
 
+        <details class="arq-apartado arq-reorganizado" id="mirada-enfoque">
+          <summary>
+            <h4><span class="arq-nombre c-mirada">Enfoque ante una tarea</span><span class="revision-etiqueta">PROPUESTA</span><span class="mas" aria-hidden="true">+</span></h4>
+            <span class="arq-glosa">con qué ojos miro lo que toca hacer</span>
+          </summary>
+          <div class="arq-contenido">
+<div class="def">Con qué ojos mirar <b>lo que toca hacer</b>. Cuatro lentes — y cada una vence al miedo por su lado:</div>
+            <div class="cuadrante">
+              <div class="q p--a"><div class="qcab"><svg class="qico"><use href="#i-fuego"/></svg><span class="titq">Reto · Motivación</span></div><p class="cont">vence al miedo con <b>acción</b></p></div>
+              <div class="q p--b"><div class="qcab"><svg class="qico"><use href="#i-aire"/></svg><span class="titq">Curiosidad</span></div><p class="cont">vence al miedo con <b>apertura</b></p></div>
+              <div class="q p--c"><div class="qcab"><svg class="qico"><use href="#i-tierra"/></svg><span class="titq">Aprendizaje</span></div><p class="cont">vence al miedo con <b>evolución</b></p></div>
+              <div class="q p--d"><div class="qcab"><svg class="qico"><use href="#i-agua"/></svg><span class="titq">Aportación</span></div><p class="cont">vence al miedo con <b>propósito</b></p></div>
+              <span class="centro">ENFOQUE</span>
+            </div>
+          </div>
+        </details>
 
+        <details class="arq-apartado" id="mirada-preguntarse">
+          <summary>
+            <h4><span class="arq-nombre c-mirada">Preguntarse</span><span class="mas" aria-hidden="true">+</span></h4>
+            <span class="arq-glosa">qué importa y hacia dónde quiero ir</span>
+          </summary>
+          <div class="arq-contenido">
+<details class="concepto"><summary>El cuadrante de PREGUNTAS<span class="mas">+</span></summary>
+            <div class="def">El nivel hondo: <b>dónde poner la mirada en la vida</b> — preguntas generales, de vida y de largo plazo. <b>No devuelven una tarea: devuelven una manera de mirar.</b></div>
+            <div class="cuadrante preg">
+              <div class="q p--b"><p class="cont">¿Qué <b>quiero</b>, qué me <b>gusta</b> y qué no?<br>¿Qué le <b>pido</b> a la vida y qué <b>espero</b> de ella?<br>¿Qué <b>sentido</b> le doy?<br>¿Cuáles son mis <b>propósitos</b> y <b>proyectos</b>?</p></div>
+              <div class="q p--a"><p class="cont">¿Cuáles son mis <b>valores</b> y <b>principios</b>?<br>¿Cómo quiero <b>ser</b> y qué <b>cualidades</b> quiero tener?<br>¿Qué cosas quiero que me <b>definan</b>?</p></div>
+              <div class="q p--c"><p class="cont">¿Qué es <b>importante</b>?<br>¿Qué merece la pena, mi <b>esfuerzo</b> y mi <b>tiempo</b>?<br>¿Por qué y por <b>quién</b> quiero luchar?</p></div>
+              <div class="q p--d"><p class="cont">¿Qué puedo hacer para ser más <b>feliz</b>?<br>¿Qué puedo hacer para sentirme <b>bien</b>, <b>pleno</b>, <b>en paz</b>?</p></div>
+              <span class="centro">PREGUNTAS</span>
+            </div></details>
+<details class="concepto propuesta-chatgpt revision-concepto" id="mirada-proposito">
+            <summary><span>Cadena de propósito</span><span class="revision-etiqueta">PROPUESTA</span><span class="mas">+</span></summary>
+            <div class="def">Que lo que hago <b>conecte con lo que importa</b>.</div>
+            <div class="cadena-proposito cadena-proposito--papel" role="group" aria-label="Cadena de propósito: sentido, objetivos, tareas. De arriba abajo se construye; de abajo arriba se comprueba.">
+              <div class="cp-fila">
+                <div class="cp-nodo"><b>SENTIDO</b><span>para qué</span></div>
+                <span class="cp-arr" aria-hidden="true">→</span>
+                <div class="cp-nodo"><b>OBJETIVOS</b><span>qué quiero conseguir</span></div>
+                <span class="cp-arr" aria-hidden="true">→</span>
+                <div class="cp-nodo"><b>TAREAS</b><span>qué hago</span></div>
+              </div>
+              <div class="cp-regla"><span>Construir →</span><span>← Comprobar: ¿para qué?</span></div>
+            </div>
+            <p class="pregunta-guia">Una tarea sin vínculo merece revisarse.</p>
+          </details>
+          </div>
+        </details>
 
         </div>
       </details>
@@ -732,16 +940,63 @@ details[open]>summary .abre{transform:rotate(45deg)}
           <div class="dim-cab">
             <svg class="ico"><use href="#i-brazo"/></svg>
             <h3>Actitud</h3>
-            <span class="verbo v-actitud">poder</span>
             <span class="abre">+</span>
           </div>
-          <p class="eyebrow">Activa · ¿con qué disposición doy los pasos?</p>
+          <p class="eyebrow">Disposición — cómo afronto cada situación y trato a los demás</p>
         </summary>
         <div class="dim-body">
 
-        <p class="margen-nota">hermana de la Mirada: una contempla el camino, la otra lo pisa</p>
+        <p class="arq-contexto">Distintas disposiciones para distintas situaciones.</p>
 
-        <details class="concepto"><summary>Cómo se forma la actitud<span class="mas">+</span></summary>
+        <details class="arq-apartado arq-reorganizado" id="actitud-accion">
+          <summary>
+            <h4><span class="arq-nombre c-actitud">Tomar acción</span><span class="revision-etiqueta">PROPUESTA</span><span class="mas" aria-hidden="true">+</span></h4>
+            <span class="arq-glosa">las actitudes con las que trabajo y saco las cosas adelante</span>
+          </summary>
+          <div class="arq-contenido">
+            <p class="arq-alcance">Para trabajar, resolver y sacar adelante lo que requiere acción. <b>No define todas mis actitudes ante la vida.</b></p>
+<div class="cuadrante">
+            <div class="q p--b"><div class="qcab"><svg class="qico"><use href="#i-fuego"/></svg><span class="titq">① Iniciativa</span></div><span class="fn">empezar</span><p class="cont">dar el primer paso + atreverse<br>prontitud <i>(responder a tiempo)</i><br>+ aprovechar oportunidades</p></div>
+            <div class="q p--a"><div class="qcab"><svg class="qico"><use href="#i-aire"/></svg><span class="titq">② Resolución</span></div><span class="fn">eficiencia</span><p class="cont">celeridad + agilidad<br>confianza + decisión<br><i>(convertir en acción)</i></p></div>
+            <div class="q p--c"><div class="qcab"><svg class="qico"><use href="#i-agua"/></svg><span class="titq">③ Esmero</span></div><span class="fn">eficacia</span><p class="cont">foco / atención + precisión<br>cuidado / cariño + excelencia</p></div>
+            <div class="q p--d"><div class="qcab"><svg class="qico"><use href="#i-tierra"/></svg><span class="titq">④ Determinación</span></div><span class="fn">sostener</span><p class="cont">intención + integridad<br>compromiso + responsabilidad<br>voluntad + disciplina<br>constancia + no procrastinar / terminar</p></div>
+            <span class="centro">TOMAR ACCIÓN</span>
+          </div>
+<p class="margen-nota"><span class="pend">⟦elementos propuestos por mí: fuego empuja · aire aligera · agua cuida · tierra sostiene⟧</span></p>
+          </div>
+        </details>
+
+        <details class="arq-apartado arq-reorganizado" id="actitud-personas">
+          <summary>
+            <h4><span class="arq-nombre c-actitud">Personas</span><span class="revision-etiqueta">PROPUESTA</span><span class="mas" aria-hidden="true">+</span></h4>
+            <span class="arq-glosa">cómo trato a los demás</span>
+          </summary>
+          <div class="arq-contenido">
+<div class="cuadrante">
+            <div class="q p--a">
+              <div class="qcab"><svg class="qico"><use href="#i-estrella"/></svg><span class="titq">Agradecer / Valorar</span></div>
+              <p class="pares">Lo que recibo<br>Lo que tienen y lo que son</p>
+            </div>
+            <div class="q p--b">
+              <div class="qcab"><svg class="qico"><use href="#i-manos"/></svg><span class="titq">Entregarse</span></div>
+              <p class="pares"><b>Ayudar + Apoyar</b><br><b>Cuidar + Prestar atención</b><br>Acordarse + Acompañar<br>Escuchar + Interesarse<br><i>(tener detalles)</i></p>
+            </div>
+            <div class="q p--c">
+              <div class="qcab"><svg class="qico"><use href="#i-ancla"/></svg><span class="titq">Ser fiel</span></div>
+              <p class="pares"><b>Lealtad + Honestidad</b><br><b>Sinceridad + Transparencia</b></p>
+            </div>
+            <div class="q p--d">
+              <div class="qcab"><svg class="qico"><use href="#i-corazon"/></svg><span class="titq">Amar</span></div>
+              <p class="pares">Afecto + Cariño<br>Empatía + Entendimiento<br>Perdón + Compasión<br>Aceptar + Acoger</p>
+            </div>
+            <span class="centro">PERSONAS</span>
+          </div>
+          </div>
+        </details>
+
+        <div class="arq-referencias">
+          <p class="arq-referencia-titulo">Para consultar</p>
+<details class="concepto"><summary>Cómo se forma la actitud<span class="mas">+</span></summary>
           <svg class="flujo" viewBox="0 0 640 158" role="img" aria-label="Proceso de manifestación">
           <circle cx="26" cy="34" r="6.5" fill="var(--mirada)" stroke="var(--tinta)" stroke-width="2"/>
           <circle cx="26" cy="70" r="6.5" fill="var(--operar)" stroke="var(--tinta)" stroke-width="2"/>
@@ -771,29 +1026,15 @@ details[open]>summary .abre{transform:rotate(45deg)}
         </div>
           <p class="margen-nota">percibo · pienso · siento → me dispongo → actúo</p>
         </details>
-
-        <div class="grupo">
-          <h4 class="c-actitud">Las cuatro actitudes</h4>
-          <p class="glosa">con las que se dan los pasos</p>
-          <div class="cuadrante">
-            <div class="q p--b"><div class="qcab"><svg class="qico"><use href="#i-fuego"/></svg><span class="titq">① Iniciativa</span></div><span class="fn">empezar</span><p class="cont">dar el primer paso + atreverse<br>prontitud <i>(responder a tiempo)</i><br>+ aprovechar oportunidades</p></div>
-            <div class="q p--a"><div class="qcab"><svg class="qico"><use href="#i-aire"/></svg><span class="titq">② Resolución</span></div><span class="fn">eficiencia</span><p class="cont">celeridad + agilidad<br>confianza + decisión<br><i>(convertir en acción)</i></p></div>
-            <div class="q p--c"><div class="qcab"><svg class="qico"><use href="#i-agua"/></svg><span class="titq">③ Esmero</span></div><span class="fn">eficacia</span><p class="cont">foco / atención + precisión<br>cuidado / cariño + excelencia</p></div>
-            <div class="q p--d"><div class="qcab"><svg class="qico"><use href="#i-tierra"/></svg><span class="titq">④ Determinación</span></div><span class="fn">sostener</span><p class="cont">intención + integridad<br>compromiso + responsabilidad<br>voluntad + disciplina<br>constancia + no procrastinar / terminar</p></div>
-            <span class="centro">ACTITUD</span>
-          </div>
-          <p class="margen-nota"><span class="pend">⟦elementos propuestos por mí: fuego empuja · aire aligera · agua cuida · tierra sostiene⟧</span></p>
-        </div>
-
-        <details class="concepto" style="margin-top:10px"><summary>Cómo encaja en el sistema<span class="mas">+</span></summary>
-          <div class="bridge"><b>Mirada</b> decide cómo veo · <b>Actitud</b> cómo doy el paso · <b>Mentalización</b> prepara el querer · <b>Operación</b> pone el saber y el hacer. La actitud sostenida termina alimentando la identidad.</div>
+<details class="concepto" style="margin-top:10px"><summary>Cómo encaja en el sistema<span class="mas">+</span></summary>
+          <div class="bridge"><b>Una situación puede necesitar las cuatro dimensiones.</b> Cada pieza tiene una ubicación principal por la función que cumple, sin dejar de conectarse con las demás.</div>
           <div class="act-cols">
           <div class="grupo" style="margin-top:0">
-            <h4 class="c-actitud">La simetría con Mirada</h4>
+            <h4 class="c-actitud">Enfoque y Tomar acción</h4>
             <p class="glosa">el ojo y el brazo, ante la misma tarea</p>
             <div class="subdef">
-              <div class="fila"><b>Enfoque</b> — con qué ojos mirar lo que toca hacer <i>(Mirada · Filtro)</i></div>
-              <div class="fila"><b>Proceder</b> — con qué disposición dar los pasos <i>(Actitud)</i></div>
+              <div class="fila"><b>Enfoque</b> — con qué ojos mirar lo que toca hacer <i>(Mirada → Enfoque ante una tarea)</i></div>
+              <div class="fila"><b>Tomar acción</b> — con qué disposición dar los pasos <i>(Actitud → Tomar acción)</i></div>
             </div>
             <div class="subdef">
               <div class="fila">fuego · Reto-Motivación ↔ <b>Iniciativa</b></div>
@@ -807,15 +1048,16 @@ details[open]>summary .abre{transform:rotate(45deg)}
             <h4 class="c-actitud">Cómo se enlaza</h4>
             <p class="glosa">de dónde viene y a dónde da</p>
             <div class="subdef">
-              <div class="fila"><b>↑ se construye abajo</b> — Operación y Mentalización la fabrican; Mirada la tiñe</div>
+              <div class="fila"><b>↔ apoyo entre dimensiones</b> — una disposición puede reforzarse con Mentalización y ponerse en práctica con Operación; Mirada también influye</div>
               <div class="fila"><b>→ Proceso Diario</b> — con la actitud puesta se entra a Comenzar · Funcionar · Terminar</div>
-              <div class="fila"><b>→ Operación · Proceder</b> — su cuadrante conserva la casilla «Actitud» como puntero</div>
+              <div class="fila"><b>→ Operación · Proceder</b> — su casilla «Actitud» remite a Tomar acción</div>
               <div class="fila"><b>↩ Ser</b> — la actitud sostenida acaba siendo identidad: el círculo se cierra</div>
             </div>
             <p class="margen-nota">a vigilar: <b>traje</b> = quién soy hoy · <b>actitud</b> = cómo doy este paso</p>
           </div>
         </div>
         </details>
+        </div>
 
         </div>
       </details>
@@ -831,60 +1073,61 @@ details[open]>summary .abre{transform:rotate(45deg)}
           <div class="dim-cab">
             <svg class="ico ico--rosa"><use href="#i-estrella-p"/></svg>
             <h3>Mentalización</h3>
-            <span class="verbo v-mental">querer</span>
             <span class="abre">+</span>
           </div>
           <p class="eyebrow">Emocional · ¿cómo me preparo por dentro?</p>
         </summary>
         <div class="dim-body">
 
-        <svg class="senda" viewBox="0 0 300 70" role="img" aria-label="Secuencia">
-          <line x1="16" y1="48" x2="276" y2="30" stroke="var(--tinta)" stroke-width="2.2" stroke-dasharray="1 7" stroke-linecap="round"/>
-          <polygon points="290,29 274,23.5 275.5,35.5" fill="var(--tinta)"/>
-          <circle cx="34" cy="46.7" r="5.5" fill="var(--mental)" stroke="var(--tinta)" stroke-width="2"/>
-          <circle cx="112" cy="41.3" r="5.5" fill="var(--mental)" stroke="var(--tinta)" stroke-width="2"/>
-          <circle cx="190" cy="35.9" r="5.5" fill="var(--mental)" stroke="var(--tinta)" stroke-width="2"/>
-          <circle cx="258" cy="31.2" r="5.5" fill="var(--mental)" stroke="var(--tinta)" stroke-width="2"/>
-          <text class="cav" x="34" y="66" text-anchor="middle" font-size="16">apunto</text>
-          <text class="cav" x="112" y="62" text-anchor="middle" font-size="16">grabo</text>
-          <text class="cav" x="190" y="57" text-anchor="middle" font-size="16">visualizo</text>
-          <text class="cav" x="258" y="52" text-anchor="middle" font-size="16">soy</text>
-        </svg>
-
-        <div class="grupo">
-          <h4 class="c-mental">Focalizar</h4>
-          <p class="glosa">qué objetivos me marco</p>
-          <p class="margen-nota">las preguntas del <b>sentido de la vida</b> ya no viven aquí: están en Mirada · Preguntarse</p>
-          <details class="concepto"><summary>Objetivos<span class="mas">+</span></summary>
+        <details class="arq-apartado arq-reorganizado" id="mental-focalizar">
+          <summary>
+            <h4><span class="arq-nombre c-mental">Focalizar</span><span class="revision-etiqueta">PROPUESTA</span><span class="mas" aria-hidden="true">+</span></h4>
+            <span class="arq-glosa">qué objetivos me marco</span>
+          </summary>
+          <div class="arq-contenido">
+<details class="concepto"><summary>Objetivos<span class="mas">+</span></summary>
             <div class="def"><b>¿Qué quiero conseguir o vivir hoy?</b> Objetivo ≠ tarea. Escribirlo en una frase y volver a ella durante el día.</div></details>
           <details class="concepto"><summary>Sentido<span class="mas">+</span></summary>
             <div class="def"><b>¿Para qué merece la pena esto hoy?</b></div></details>
-        </div>
+<p class="margen-nota">las preguntas del <b>sentido de la vida</b> ya no viven aquí: están en Mirada · Preguntarse</p>
+          </div>
+        </details>
 
-        <div class="grupo">
-          <h4 class="c-mental">Grabar</h4>
-          <p class="glosa">qué instalo</p>
-          <details class="concepto"><summary>Afirmaciones<span class="mas">+</span></summary>
+        <details class="arq-apartado arq-reorganizado" id="mental-grabar">
+          <summary>
+            <h4><span class="arq-nombre c-mental">Grabar</span><span class="revision-etiqueta">PROPUESTA</span><span class="mas" aria-hidden="true">+</span></h4>
+            <span class="arq-glosa">afirmaciones, convencimiento y creencias</span>
+          </summary>
+          <div class="arq-contenido">
+<details class="concepto"><summary>Afirmaciones<span class="mas">+</span></summary>
             <div class="def">Formular una <b>frase breve, concreta y en presente</b>; repetirla en voz alta o mentalmente.</div></details>
           <details class="concepto"><summary>Convencimiento<span class="mas">+</span></summary>
             <div class="def">Escribir 5-10 min al día los motivos: <b>reforzar el convencimiento</b>.</div></details>
           <details class="concepto"><summary>Creencias<span class="mas">+</span></summary>
             <div class="def">La idea ya no necesita empuje: <b>empiezo a actuar desde ella</b>.</div></details>
-        </div>
+          </div>
+        </details>
 
-        <div class="grupo">
-          <h4 class="c-mental">Visualizar</h4>
-          <p class="glosa">cómo saldrá</p>
-          <details class="concepto"><summary>Ensayar ejecución<span class="mas">+</span></summary>
+        <details class="arq-apartado arq-reorganizado" id="mental-visualizar">
+          <summary>
+            <h4><span class="arq-nombre c-mental">Visualizar</span><span class="revision-etiqueta">PROPUESTA</span><span class="mas" aria-hidden="true">+</span></h4>
+            <span class="arq-glosa">ensayar ejecución y fricción</span>
+          </summary>
+          <div class="arq-contenido">
+<details class="concepto"><summary>Ensayar ejecución<span class="mas">+</span></summary>
             <div class="def">Verme haciéndolo: <b>inicio · momento difícil · cierre</b>.</div></details>
           <details class="concepto"><summary>Ensayar fricción<span class="mas">+</span></summary>
             <div class="def">Ver el momento que normalmente evito y <b>verme atravesándolo</b>: la conversación pendiente, la silla.</div></details>
-        </div>
+          </div>
+        </details>
 
-        <div class="grupo">
-          <h4 class="c-mental">Ser</h4>
-          <p class="glosa">quién lo hace</p>
-          <details class="concepto"><summary>Modelaje<span class="mas">+</span></summary>
+        <details class="arq-apartado arq-reorganizado" id="mental-ser">
+          <summary>
+            <h4><span class="arq-nombre c-mental">Ser</span><span class="revision-etiqueta">PROPUESTA</span><span class="mas" aria-hidden="true">+</span></h4>
+            <span class="arq-glosa">identidad, modelaje y vestuario</span>
+          </summary>
+          <div class="arq-contenido">
+<details class="concepto"><summary>Modelaje<span class="mas">+</span></summary>
             <div class="def"><b>Identidad prestada</b>: la personalidad de alguien admirado — mente, cuerpo y emociones.</div></details>
           <details class="concepto"><summary>Identidad<span class="mas">+</span></summary>
             <div class="def">Dejar de preguntarme solo qué haré y actuar desde <b>quién decido ser</b>: de «voy a intentar» a «yo soy».</div></details>
@@ -904,8 +1147,27 @@ details[open]>summary .abre{transform:rotate(45deg)}
             </div>
             <p class="margen-nota">las otras nueve áreas no son trajes: siete son facultades que se entrenan (Percibir · Presente · Cuerpo · Mente · Emociones → Presencia; Ágil mental → Operaciones; Expresar → habilidad), Productividad es método y Zona conf, programa</p>
           </details>
-        </div>
+          </div>
+        </details>
 
+        <div class="arq-referencias">
+          <p class="arq-referencia-titulo">Para consultar</p>
+          <details class="concepto">
+            <summary>La senda de mentalización<span class="mas" aria-hidden="true">+</span></summary>
+<svg class="senda" viewBox="0 0 300 70" role="img" aria-label="Secuencia">
+          <line x1="16" y1="48" x2="276" y2="30" stroke="var(--tinta)" stroke-width="2.2" stroke-dasharray="1 7" stroke-linecap="round"/>
+          <polygon points="290,29 274,23.5 275.5,35.5" fill="var(--tinta)"/>
+          <circle cx="34" cy="46.7" r="5.5" fill="var(--mental)" stroke="var(--tinta)" stroke-width="2"/>
+          <circle cx="112" cy="41.3" r="5.5" fill="var(--mental)" stroke="var(--tinta)" stroke-width="2"/>
+          <circle cx="190" cy="35.9" r="5.5" fill="var(--mental)" stroke="var(--tinta)" stroke-width="2"/>
+          <circle cx="258" cy="31.2" r="5.5" fill="var(--mental)" stroke="var(--tinta)" stroke-width="2"/>
+          <text class="cav" x="34" y="66" text-anchor="middle" font-size="16">apunto</text>
+          <text class="cav" x="112" y="62" text-anchor="middle" font-size="16">grabo</text>
+          <text class="cav" x="190" y="57" text-anchor="middle" font-size="16">visualizo</text>
+          <text class="cav" x="258" y="52" text-anchor="middle" font-size="16">soy</text>
+        </svg>
+          </details>
+        </div>
 
         </div>
       </details>
@@ -916,17 +1178,19 @@ details[open]>summary .abre{transform:rotate(45deg)}
           <div class="dim-cab">
             <svg class="ico ico--rosa"><use href="#i-estrella-s"/></svg>
             <h3>Operación</h3>
-            <span class="verbo v-operar">saber y hacer</span>
             <span class="abre">+</span>
           </div>
           <p class="eyebrow">Cognitiva y ejecutiva · ¿qué sé y cómo lo hago?</p>
         </summary>
         <div class="dim-body">
 
-        <div class="grupo">
-          <h4 class="c-operar">Procesar</h4><span class="vmini">saber</span>
-          <p class="glosa">trabaja sobre la <i>información</i> — la maquinaria; se entrena, no se reprograma</p>
-          <details class="concepto"><summary>Procesar / Entender<span class="mas">+</span></summary>
+        <details class="arq-apartado arq-reorganizado" id="operacion-procesar">
+          <summary>
+            <h4><span class="arq-nombre c-operar">Procesar</span><span class="revision-etiqueta">PROPUESTA</span><span class="mas" aria-hidden="true">+</span></h4>
+            <span class="arq-glosa">trabajar con la información</span>
+          </summary>
+          <div class="arq-contenido">
+<details class="concepto"><summary>Procesar / Entender<span class="mas">+</span></summary>
             <div class="def">Extraer y ordenar información externa: conversaciones y explicaciones, hilos narrativos y situaciones.</div></details>
           <details class="concepto"><summary>Lectura<span class="mas">+</span></summary>
             <div class="def">Lectura rápida.</div></details>
@@ -944,20 +1208,50 @@ details[open]>summary .abre{transform:rotate(45deg)}
             <div class="def">Crear un vínculo entre un dato y una asociación (concepto/imagen): <b>un vínculo que evoque</b> una cosa a la otra. Emplea imaginación.</div></details>
           <details class="concepto"><summary>Imaginar<span class="mas">+</span></summary>
             <div class="def">Crear información nueva, a partir de información interna o externa.</div></details>
-        </div>
+          </div>
+        </details>
 
-        <div class="grupo">
-          <h4 class="c-operar">Proceder</h4><span class="vmini">hacer</span>
-          <p class="glosa">decidir · orientarse · ponerse la actitud · ejecutar</p>
+        <details class="arq-apartado arq-reorganizado" id="operacion-proceder">
+          <summary>
+            <h4><span class="arq-nombre c-operar">Proceder</span><span class="revision-etiqueta">PROPUESTA</span><span class="mas" aria-hidden="true">+</span></h4>
+            <span class="arq-glosa">decidir, orientarme y ejecutar</span>
+          </summary>
+          <div class="arq-contenido">
+<div class="ph propuesta-chatgpt" aria-label="Pensador y Hacedor: dos modos de proceder">
+          <div class="ph-kicker">Modo de proceder</div>
+          <p class="ph-pregunta">¿Qué necesita esto ahora: que piense o que haga?</p>
+          <div class="ph-modos">
+            <div class="ph-modo">
+              <span class="ph-nombre">PENSADOR</span>
+              <div class="ph-track" aria-label="Modo Pensador: aproximadamente 80 por ciento pensar y 20 por ciento hacer"><span class="piensa" style="width:80%"></span><span class="hace" style="width:20%"></span></div>
+              <span class="ph-ratio">80/20</span>
+            </div>
+            <div class="ph-modo">
+              <span class="ph-nombre">HACEDOR</span>
+              <div class="ph-track" aria-label="Modo Hacedor: aproximadamente 20 por ciento pensar y 80 por ciento hacer"><span class="piensa" style="width:20%"></span><span class="hace" style="width:80%"></span></div>
+              <span class="ph-ratio">20/80</span>
+            </div>
+          </div>
+          <div class="ph-ejes"><span>pensar</span><span>hacer</span></div>
+          <details class="ph-det">
+            <summary>Pensador → Hacedor <span class="mas">+</span></summary>
+            <div class="ph-flujo">
+              <div class="ph-paso"><b>1 · Marco</b><span>revisa lo escrito</span></div>
+              <div class="ph-paso"><b>2 · Criterio</b><span>papel en blanco</span></div>
+              <div class="ph-paso"><b>3 · Decide</b><span>antes de actuar</span></div>
+              <div class="ph-hacedor"><b>→ HACEDOR</b> · ejecuta · observa · corrige · termina</div>
+            </div>
+          </details>
+        </div>
           <div class="cuadrante">
             <div class="q p--b"><span class="titq">Preparación</span><p class="cont">decisión consciente<br>resolver dudas + convencimiento</p></div>
             <div class="q p--a"><span class="titq">Orientación</span><p class="cont">① analizar ⇒ preguntas<br>② resolver ⇒ estrategia</p></div>
-            <div class="q p--c"><span class="titq">Actitud</span><p class="cont">iniciativa + resolución<br>esmero + determinación<br><i>→ la pone el hermano de arriba</i></p></div>
+            <div class="q p--c"><span class="titq">Actitud</span><p class="cont">iniciativa + resolución<br>esmero + determinación<br><i>→ Actitud / Tomar acción</i></p></div>
             <div class="q p--d"><span class="titq">Ejecución</span><p class="cont">focalización + visualización<br>ejecución + aprendizaje</p></div>
             <span class="centro">PROCEDER</span>
           </div>
           <p class="fase-secuencia">decido → entiendo → me dispongo → actúo</p>
-          <p class="margen-nota">la actitud no se fabrica aquí: se trae puesta desde ACTITUD</p>
+          <p class="margen-nota">para actuar: <b>Actitud → Tomar acción</b></p>
           <details class="concepto" style="margin-top:8px"><summary>Preparación — decidir<span class="mas">+</span></summary>
             <div class="def">Tomar la <b>decisión consciente</b>. Aclarar el <b>qué y el porqué</b>: resolver dudas + convencimiento.</div>
             <div class="subdef">
@@ -981,7 +1275,14 @@ details[open]>summary .abre{transform:rotate(45deg)}
             <details class="concepto" style="margin-left:12px"><summary>Autocontrol<span class="mas">+</span></summary>
               <div class="def">Detectar el impulso · parar · elegir respuesta · sostenerla.</div></details>
             </details>
-          <details class="concepto"><summary>Planificación — orden y tiempo<span class="mas">+</span></summary>
+                    <p class="op-apoyo-rotulo">Herramientas de apoyo</p>
+          <details class="op-apoyo" id="operacion-planeamiento">
+            <summary>
+              <h5>Planeamiento<span class="revision-etiqueta">PROPUESTA</span><span class="mas" aria-hidden="true">+</span></h5>
+              <span class="arq-glosa">planificación: orden y tiempo — estrategia: cómo</span>
+            </summary>
+            <div class="op-apoyo-contenido">
+<details class="concepto"><summary>Planificación — orden y tiempo<span class="mas">+</span></summary>
             <div class="def"><b>Poner las tareas en el tiempo.</b> La Planificación decide <b>orden · cuándo · cuánto</b>; la Estrategia decide <b>cómo</b>.</div>
             <div class="def" style="padding-top:10px;padding-bottom:2px">Lo que decide ese orden — <b>prioridad, urgencia e importancia</b>:</div>
             <svg class="ramas" viewBox="0 0 620 122" role="img" aria-label="La prioridad sale de cruzar urgencia e importancia">
@@ -1007,9 +1308,21 @@ details[open]>summary .abre{transform:rotate(45deg)}
               <span class="centro">PLANIFICAR</span>
             </div>
             <p class="margen-nota">«antes de actuar, planifica con sentido, método, ligereza y compromiso; sé realista» · automatizar las tareas que se repiten</p></details>
-          <details class="concepto"><summary>Estrategia — modo de afrontarlo<span class="mas">+</span></summary>
+<details class="concepto"><summary>Estrategia — modo de afrontarlo<span class="mas">+</span></summary>
             <div class="def"><b>Cómo voy a afrontar esto.</b> Elegir el modo, la secuencia y los apoyos; no el orden del día.</div>
             <p class="margen-nota">prioridad, urgencia e importancia <b>no viven aquí</b>: son de Planificación — deciden el orden, no el modo</p></details>
+            </div>
+          </details>
+          </div>
+        </details>
+
+        <div class="arq-referencias">
+          <p class="arq-referencia-titulo">Para consultar</p>
+          <details class="concepto">
+            <summary>Procesar y Proceder<span class="mas" aria-hidden="true">+</span></summary>
+            <div class="def"><b>Procesar</b> trabaja sobre la <i>información</i> — la maquinaria; se entrena, no se reprograma.</div>
+            <div class="def"><b>Proceder</b>: decidir · orientarse · ponerse la actitud · ejecutar.</div>
+          </details>
         </div>
 
         </div>
@@ -1046,40 +1359,22 @@ details[open]>summary .abre{transform:rotate(45deg)}
             <use href="#rosa" x="88.5" y="134.5" width="123" height="123"/>
             <text class="et2" x="124.5" y="225.5" text-anchor="middle" transform="rotate(-45 124.5 225.5)">rezar</text>
             <text class="et2" x="216" y="192" text-anchor="start">calibración</text>
-            <text class="et2" x="216" y="208" text-anchor="start" style="font-size:11.2px">presencia + activación</text>
+            <text class="et2" x="216" y="208" text-anchor="start" style="font-size:11.2px">presencia<tspan x="216" dy="14">+ activación</tspan></text>
             <path d="M94 274 L206 274 L198.5 281.5 L101.5 281.5 Z" fill="var(--tinta)" fill-opacity=".55"/>
             <path d="M101.5 281.5 L198.5 281.5 L206 289 L94 289 Z" fill="var(--tinta)"/>
             <path d="M94 274 L101.5 281.5 L94 289 Z" fill="var(--tinta)" fill-opacity=".78"/>
             <path d="M206 274 L198.5 281.5 L206 289 Z" fill="var(--tinta)" fill-opacity=".78"/>
-            <text class="et2" x="150" y="308" text-anchor="middle">primera tarea</text>
+            <text class="et2" x="150" y="308" text-anchor="middle">cama / ordenar</text>
           </svg>
         </summary>
         <div class="fase-body">
         <ul>
-          <li><details class="concepto"><summary>Primera tarea<span class="mas">+</span></summary>
-            <div class="def">Algo cumplido antes de pensar:</div>
-            <div class="pastillas"><span class="pastilla">cama / ordenar</span></div>
-            <div class="def" style="padding-bottom:2px">El objetivo no es la cama: es <b>arrancar el día con algo ya cumplido</b>. Una tarea terminada empuja a la siguiente, y esa a la siguiente.</div>
-            <svg class="ramas" viewBox="0 0 620 72" role="img" aria-label="Una tarea cumplida arrastra a la siguiente">
-              <rect x="2" y="8" width="124" height="46" rx="4" fill="#FFF6D2" stroke="var(--tinta)" stroke-width="1.8"/>
-              <text class="ram" x="64" y="37" text-anchor="middle">hacer la cama</text>
-              <path d="M130 31 L152 31" stroke="var(--tinta)" stroke-width="1.8" fill="none"/>
-              <polygon points="160,31 148,25 148,37" fill="var(--tinta)"/>
-              <rect x="166" y="8" width="124" height="46" rx="4" fill="var(--carta-2)" stroke="var(--tinta)" stroke-width="1.8"/>
-              <text class="ram" x="228" y="37" text-anchor="middle">otra tarea</text>
-              <path d="M294 31 L316 31" stroke="var(--tinta)" stroke-width="1.8" fill="none"/>
-              <polygon points="324,31 312,25 312,37" fill="var(--tinta)"/>
-              <rect x="330" y="8" width="124" height="46" rx="4" fill="var(--carta-2)" stroke="var(--tinta)" stroke-width="1.8"/>
-              <text class="ram" x="392" y="37" text-anchor="middle">y otra</text>
-              <path d="M458 31 L480 31" stroke="var(--tinta)" stroke-width="1.8" fill="none"/>
-              <polygon points="488,31 476,25 476,37" fill="var(--tinta)"/>
-              <rect x="494" y="8" width="124" height="46" rx="4" fill="#FFF6D2" stroke="var(--tinta)" stroke-width="1.8"/>
-              <text class="ram" x="556" y="37" text-anchor="middle">el día cumplido</text>
-            </svg>
-            <div class="cita">
-              De ahí viene: el almirante <b>William McRaven</b> lo contó en su discurso de graduación en la Universidad de Texas. Si quieres cambiar el mundo &mdash; dijo &mdash; <b>empieza por hacer la cama</b>. Y si el día sale torcido, vuelves a una cama hecha <i>por ti</i>: la señal de que mañana puede ir mejor.
-              <span class="fuente">William H. McRaven &middot; UT Austin, 2014</span>
-            </div></details></li>
+          <li><details class="concepto primera-tarea"><summary>Primera tarea<span class="mas">+</span></summary>
+            <div class="arranque-simple propuesta-chatgpt">
+              <span class="pastilla">cama / ordenar</span>
+              <p>Empezar con algo cumplido.</p>
+            </div>
+          </details></li>
           <li><details class="concepto"><summary>Calibración<span class="mas">+</span></summary>
             <div class="def">Poner el motor en <b>las revoluciones que el momento pide</b>: primero claridad; después, si hace falta, activación.</div>
             <div class="pastillas"><span class="pastilla">presencia</span><span class="rot" style="margin:0"><i>calma y claridad</i></span></div>
@@ -1122,10 +1417,15 @@ details[open]>summary .abre{transform:rotate(45deg)}
             </ul></details></li>
           <li><details class="concepto"><summary>Rezar<span class="mas">+</span></summary>
             <div class="def">El centro. La rutina que recorre la Arquitectura sin vivir en ella.</div>
-            <div class="rezo">
-              <span class="paso">1 Agradecer</span>
-              <details class="paso-det"><summary class="paso">2 Preguntarse<span class="mas">+</span></summary>
-                <p class="def" style="padding:8px 0 0">El nivel hondo — las mismas preguntas de la Arquitectura (Mirada · Preguntarse):</p>
+            <div class="rezo-estrella propuesta-chatgpt">
+              <div class="rezo-star-grid">
+                <div class="rezo-nodo rezo-arriba"><svg><use href="#i-fuego"/></svg><span>PEDIR<small>fuego</small></span></div>
+                <div class="rezo-nodo rezo-izq"><span>AGRADECER<small>agua</small></span><svg><use href="#i-agua"/></svg></div>
+                <div class="rezo-centro"><svg viewBox="0 0 100 100" role="img" aria-label="Estrella de Rezar"><use href="#rosa"/></svg></div>
+                <div class="rezo-nodo rezo-der"><svg><use href="#i-aire"/></svg><span>COMPROMETERSE<small>aire</small></span></div>
+              </div>
+              <details class="rezo-preguntas">
+                <summary><svg aria-hidden="true"><use href="#i-tierra"/></svg><span class="rezo-tierra-label">PREGUNTARSE<small>tierra</small></span><span class="mas" aria-hidden="true">+</span></summary>
       <div class="cuadrante preg">
       <div class="q p--b"><p class="cont">¿Qué <b>quiero</b>, qué me <b>gusta</b> y qué no?<br>¿Qué le <b>pido</b> a la vida y qué <b>espero</b> de ella?<br>¿Qué <b>sentido</b> le doy?<br>¿Cuáles son mis <b>propósitos</b> y <b>proyectos</b>?</p></div>
       <div class="q p--a"><p class="cont">¿Cuáles son mis <b>valores</b> y <b>principios</b>?<br>¿Cómo quiero <b>ser</b> y qué <b>cualidades</b> quiero tener?<br>¿Qué cosas quiero que me <b>definan</b>?</p></div>
@@ -1134,9 +1434,8 @@ details[open]>summary .abre{transform:rotate(45deg)}
       <span class="centro">PREGUNTAS</span>
       </div>
               </details>
-              <span class="salto"></span>
-              <span class="paso">3 Pedir</span><span class="paso">4 Comprometerse</span>
-            </div></details></li>
+            </div>
+          </details></li>
           <li><details class="concepto"><summary>Preparación / avance<span class="mas">+</span></summary>
             <div class="def">El impulso: <b>avanzar con objetivos y tareas claros</b>.</div>
             <div class="bloque-prep">
@@ -1156,7 +1455,7 @@ details[open]>summary .abre{transform:rotate(45deg)}
         <div class="tira">
           <span class="titt">secuencia de arranque ↴</span>
           <div class="tramos">
-            <span class="tramo">1<b>1ª tarea</b></span>
+            <span class="tramo">1<b>cama</b></span>
             <span class="tramo">2<b>presencia</b></span>
             <span class="tramo">3<b>Rezar</b></span>
             <span class="tramo">4<b>Mentalización</b></span>
@@ -1191,14 +1490,14 @@ details[open]>summary .abre{transform:rotate(45deg)}
         <ul>
           <li><details class="concepto"><summary>Áreas<span class="mas">+</span></summary>
             <div class="def">Las áreas de trabajo que se eligen en cada momento:</div>
-            <div class="cuadrante">
+            <div class="cuadrante cuadrante--compacto">
               <div class="q p--a"><span class="titq">Salud</span><p class="cont">deporte + alimentación<br>descanso + respiración</p></div>
               <div class="q p--b"><span class="titq">Inglés</span><p class="cont">repetir voces + memorizar frases<br>escribir + hablar</p></div>
               <div class="q p--c"><span class="titq">Desarrollo profesional</span><p class="cont">productividad + comunicación<br>JOPS + submarino</p></div>
               <div class="q p--d"><span class="titq">Desarrollo personal</span><p class="cont">presencia + autoestima<br>incomodidad + miedo</p></div>
               <span class="centro">ÁREAS 1</span>
             </div>
-            <div class="cuadrante" style="margin-top:12px">
+            <div class="cuadrante cuadrante--compacto" style="margin-top:12px">
               <div class="q p--d"><span class="titq">Relaciones humanas</span><p class="cont">familia + amigos + pareja + compañeros<br>agradecer + entregarse + ser fiel + amar + valorar</p></div>
               <div class="q p--a"><span class="titq">Proyecto futuro</span><p class="cont">docencia + psicología<br>aprender + investigar<br>explicar + enseñar<br>desarrollar + diseñar</p></div>
               <div class="q p--b"><span class="titq">Finanzas</span></div>
@@ -1404,23 +1703,15 @@ details[open]>summary .abre{transform:rotate(45deg)}
 
         <ul>
           <li><details class="concepto"><summary>Repaso mental<span class="mas">+</span></summary>
-            <div class="def"><b>Reproducir el día como una película.</b> Al recordarlo, guardar tres cosas:</div>
-            <svg class="ramas" viewBox="0 0 620 192" role="img" aria-label="Reproducir el día: lecciones aprendidas, logros y recuerdos">
-              <rect x="220" y="4" width="180" height="34" rx="17" fill="#FFF6D2" stroke="var(--tinta)" stroke-width="2"/>
-              <text class="chip" x="310" y="27" text-anchor="middle">REPRODUCIR EL DÍA</text>
-              <text class="ram2" x="310" y="52" text-anchor="middle">recordar</text>
-              <path d="M310 56 L310 70 M100 70 L520 70 M100 70 L100 78 M310 70 L310 78 M520 70 L520 78" fill="none" stroke="var(--tinta)" stroke-width="1.8"/>
-              <polygon points="100,92 92,76 108,76" fill="var(--tinta)"/>
-              <polygon points="310,92 302,76 318,76" fill="var(--tinta)"/>
-              <polygon points="520,92 512,76 528,76" fill="var(--tinta)"/>
-              <rect x="8" y="98" width="184" height="74" rx="4" fill="var(--carta-2)" stroke="var(--tinta)" stroke-width="1.8"/>
-              <rect x="218" y="98" width="184" height="74" rx="4" fill="var(--carta-2)" stroke="var(--tinta)" stroke-width="1.8"/>
-              <rect x="428" y="98" width="184" height="74" rx="4" fill="var(--carta-2)" stroke="var(--tinta)" stroke-width="1.8"/>
-              <text class="ram" x="100" y="130" text-anchor="middle">LLAA + mejoras</text>
-              <text class="ram" x="310" y="130" text-anchor="middle">logros</text>
-              <text class="ram" x="520" y="124" text-anchor="middle">recuerdos</text>
-              <text class="ram2" x="520" y="146" text-anchor="middle">álbum mental · útiles</text>
-            </svg>
+            <div class="def">Recordar lo vivido y recoger <b>tres cosas</b>:</div>
+            <div class="repaso-diagrama propuesta-chatgpt" role="group" aria-label="Reproducir el día como una película; recoger lecciones aprendidas y mejoras, logros y recuerdos.">
+              <div class="rm-origen"><b>REPRODUCIR EL DÍA</b><span>como una película</span></div>
+              <div class="rm-resultados">
+                <div class="rm-rama"><div class="rm-caja"><b>LLAA + mejoras</b></div></div>
+                <div class="rm-rama"><div class="rm-caja"><b>Logros</b></div></div>
+                <div class="rm-rama"><div class="rm-caja"><b>Recuerdos</b><span>Álbum mental + útiles</span></div></div>
+              </div>
+            </div>
             <div class="subdef">
               <div class="fila"><b>Álbum mental</b> — guardar escenas que quiero conservar como una foto.</div>
               <div class="fila"><b>Útiles</b> — fijar hechos, conversaciones o formas de hacer algo que puede servirme recordar.</div>
@@ -1469,9 +1760,15 @@ details[open]>summary .abre{transform:rotate(45deg)}
             </ul></details></li>
           <li><details class="concepto"><summary>Rezar<span class="mas">+</span></summary>
             <div class="def">La misma secuencia que en Comenzar, ahora <b>cerrando el día y dejando mañana encaminado</b>.</div>
-            <div class="rezo">
-              <span class="paso">1 Agradecer</span>
-              <details class="paso-det"><summary class="paso">2 Preguntarse<span class="mas">+</span></summary>
+            <div class="rezo-estrella propuesta-chatgpt">
+              <div class="rezo-star-grid">
+                <div class="rezo-nodo rezo-arriba"><svg><use href="#i-fuego"/></svg><span>PEDIR<small>fuego</small></span></div>
+                <div class="rezo-nodo rezo-izq"><span>AGRADECER<small>agua</small></span><svg><use href="#i-agua"/></svg></div>
+                <div class="rezo-centro"><svg viewBox="0 0 100 100" role="img" aria-label="Estrella de Rezar"><use href="#rosa"/></svg></div>
+                <div class="rezo-nodo rezo-der"><svg><use href="#i-aire"/></svg><span>COMPROMETERSE<small>aire</small></span></div>
+              </div>
+              <details class="rezo-preguntas">
+                <summary><svg aria-hidden="true"><use href="#i-tierra"/></svg><span class="rezo-tierra-label">PREGUNTARSE<small>tierra</small></span><span class="mas" aria-hidden="true">+</span></summary>
       <div class="cuadrante preg">
       <div class="q p--b"><p class="cont">¿Qué <b>quiero</b>, qué me <b>gusta</b> y qué no?<br>¿Qué le <b>pido</b> a la vida y qué <b>espero</b> de ella?<br>¿Qué <b>sentido</b> le doy?<br>¿Cuáles son mis <b>propósitos</b> y <b>proyectos</b>?</p></div>
       <div class="q p--a"><p class="cont">¿Cuáles son mis <b>valores</b> y <b>principios</b>?<br>¿Cómo quiero <b>ser</b> y qué <b>cualidades</b> quiero tener?<br>¿Qué cosas quiero que me <b>definan</b>?</p></div>
@@ -1480,8 +1777,6 @@ details[open]>summary .abre{transform:rotate(45deg)}
       <span class="centro">PREGUNTAS</span>
       </div>
               </details>
-              <span class="salto"></span>
-              <span class="paso">3 Pedir</span><span class="paso">4 Comprometerse</span>
             </div>
           </details></li>
         </ul>
@@ -1492,18 +1787,18 @@ details[open]>summary .abre{transform:rotate(45deg)}
   </section>
 
     <div class="marca-final">
-    <svg viewBox="-36 -30 306 262" role="img" aria-label="Escudo del sistema">
-      <use href="#escudo-full" x="-36" y="-30" width="306" height="262"/>
+    <svg viewBox="-48 -30 320 262" role="img" aria-label="Escudo del sistema: agua a la izquierda, aire a la derecha, fuego arriba y tierra abajo">
+      <use href="#escudo-full" x="-48" y="-30" width="320" height="262"/>
     </svg>
     <p class="marca-pie">fuego &middot; aire &middot; agua &middot; tierra<br><small>sol y luna &middot; cielo y flor &middot; mirada y actitud &middot; mente, emoci&oacute;n y cuerpo<br>la rosa: mentalizaci&oacute;n delante, operaci&oacute;n detr&aacute;s</small></p>
   </div>
 
   <p class="pie">
-    <span class="vpq">ver · poder — querer · saber y hacer</span>
+    <span class="vpq">mirada · actitud — mentalización · operación</span>
     <small>la Arquitectura orienta · el Proceso ejecuta</small>
   </p>
 
-  <p class="sello">v1.1.0</p>
+  <p class="sello">v1.2.6 — comprobación</p>
 
 </div>
 
@@ -1526,5 +1821,37 @@ details[open]>summary .abre{transform:rotate(45deg)}
   });
 })();
 </script>
+
+<!-- ARCHIVO DE DISEÑO, NO VISIBLE. Conservar para recuperar opciones anteriores.
+     Verbos retirados por Javi: Mirada=ver; Actitud=poder; Mentalización=querer;
+     Operación=saber y hacer. No volver a mostrarlos sin indicación.
+     Explicación extensa de Primera tarea, preservada fuera del uso diario: -->
+<template id="archivo-primera-tarea">
+          <li><details class="concepto"><summary>Primera tarea<span class="mas">+</span></summary>
+            <div class="def">Una acción muy simple que te pone en marcha:</div>
+            <div class="pastillas"><span class="pastilla">cama / ordenar</span></div>
+            <div class="def" style="padding-bottom:2px">El objetivo no es la cama: es <b>arrancar el día con algo ya cumplido</b>. Lo importante es coger inercia desde el principio.</div>
+            <svg class="ramas" viewBox="0 0 620 72" role="img" aria-label="Una tarea cumplida arrastra a la siguiente">
+              <rect x="2" y="8" width="124" height="46" rx="4" fill="#FFF6D2" stroke="var(--tinta)" stroke-width="1.8"/>
+              <text class="ram" x="64" y="37" text-anchor="middle">hacer la cama</text>
+              <path d="M130 31 L152 31" stroke="var(--tinta)" stroke-width="1.8" fill="none"/>
+              <polygon points="160,31 148,25 148,37" fill="var(--tinta)"/>
+              <rect x="166" y="8" width="124" height="46" rx="4" fill="var(--carta-2)" stroke="var(--tinta)" stroke-width="1.8"/>
+              <text class="ram" x="228" y="37" text-anchor="middle">otra tarea</text>
+              <path d="M294 31 L316 31" stroke="var(--tinta)" stroke-width="1.8" fill="none"/>
+              <polygon points="324,31 312,25 312,37" fill="var(--tinta)"/>
+              <rect x="330" y="8" width="124" height="46" rx="4" fill="var(--carta-2)" stroke="var(--tinta)" stroke-width="1.8"/>
+              <text class="ram" x="392" y="37" text-anchor="middle">y otra</text>
+              <path d="M458 31 L480 31" stroke="var(--tinta)" stroke-width="1.8" fill="none"/>
+              <polygon points="488,31 476,25 476,37" fill="var(--tinta)"/>
+              <rect x="494" y="8" width="124" height="46" rx="4" fill="#FFF6D2" stroke="var(--tinta)" stroke-width="1.8"/>
+              <text class="ram" x="556" y="37" text-anchor="middle">el día cumplido</text>
+            </svg>
+            <div class="cita">
+              De ahí viene: el almirante <b>William McRaven</b> lo contó en su discurso de graduación en la Universidad de Texas. Si quieres cambiar el mundo &mdash; dijo &mdash; <b>empieza por hacer la cama</b>. Y si el día sale torcido, vuelves a una cama hecha <i>por ti</i>: la señal de que mañana puede ir mejor.
+              <span class="fuente">William H. McRaven &middot; UT Austin, 2014</span>
+            </div></details></li>
+</template>
+
 </body>
 </html>

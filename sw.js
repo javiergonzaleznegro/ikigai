@@ -1,5 +1,5 @@
 /* generado por construye_pages.py — no editar a mano */
-const CACHE = 'smp-1.1.0';
+const CACHE = 'smp-1.2.6';
 const BASE = ['./', './index.html', './manifest.json',
               './icon-180-v1.png', './icon-512-v1.png'];
 

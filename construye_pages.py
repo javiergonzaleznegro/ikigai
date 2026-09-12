@@ -31,9 +31,12 @@ def comprobar(html, ver):
     fallos = []
     if html.count('<meta name="version" content="%s">' % ver) != 1:
         fallos.append('meta')
-    if ('<title>%s — v%s</title>' % (NOMBRE, ver)) not in html:
+    # Publicar una candidata no obliga a perder sus marcas de comprobación.
+    titulo = r'<title>%s — v%s(?: · Comprobación)?</title>' % (re.escape(NOMBRE), re.escape(ver))
+    sello = r'<p class="sello">v%s(?: — comprobación)?</p>' % re.escape(ver)
+    if not re.search(titulo, html):
         fallos.append('title')
-    if ('<p class="sello">v%s</p>' % ver) not in html:
+    if not re.search(sello, html):
         fallos.append('sello visible')
     for f in ('icon-180-%s.png' % ICONO_V, 'icon-512-%s.png' % ICONO_V):
         if not os.path.exists(os.path.join(AQUI, f)):
