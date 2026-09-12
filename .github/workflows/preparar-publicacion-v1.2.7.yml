@@ -1,0 +1,73 @@
+name: Preparar publicacion IKIGAI v1.2.7
+on:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/preparar-publicacion-v1.2.7.yml']
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  preparar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+      - name: Aplicar cambio verificado y preparar commit sin promover main
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          python3 - <<'PYTHON'
+          import base64, hashlib, json, os, pathlib, re, subprocess, sys, urllib.request, zlib
+          repo = os.environ['GITHUB_REPOSITORY']
+          assert repo == 'javiergonzaleznegro/ikigai'
+          root = pathlib.Path('.')
+          def git_hash(data):
+              return hashlib.sha1(b'blob ' + str(len(data)).encode() + b'\0' + data).hexdigest()
+          before = {'work.html':'15b429a9b69eacefb0d5171cbc10f6fa3109a338','index.html':'15b429a9b69eacefb0d5171cbc10f6fa3109a338','construye_pages.py':'78ae487e987bb00ff18719901e30af87002cbbda','sw.js':'9340c7bb3ce2df20b4663dbad3505073f3389a21','manifest.json':'2ab2235a57262fa01602c3884615c6b5b6f5e141','icon-180-v1.png':'3c8a8aa1e33505ef316c1a83b42b17a337e861e7','icon-512-v1.png':'3c07791b6a31c5e3ce48035abbf8beb35444bc44'}
+          for name, digest in before.items():
+              assert git_hash((root/name).read_bytes()) == digest, 'Base distinta: ' + name
+          encoded = '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'
+          # El checksum de la carga y los hashes de cada salida detectan cualquier alteracion.
+          deltas = json.loads(zlib.decompress(base64.b64decode(encoded)))
+          assert set(deltas) == {'work.html','construye_pages.py'}
+          for name, delta in deltas.items():
+              original = (root/name).read_bytes()
+              assert hashlib.sha256(original).hexdigest() == delta['base']
+              result = b''.join(original[op[0]:op[1]] if isinstance(op,list) else op.encode('utf-8') for op in delta['ops'])
+              assert hashlib.sha256(result).hexdigest() == delta['target'], 'Parche incorrecto: ' + name
+              (root/name).write_bytes(result)
+          subprocess.run([sys.executable,'construye_pages.py'],check=True)
+          expected = {'work.html':'1bccb797c3a32b5ecec901187c0e97e704c15cf9','index.html':'1bccb797c3a32b5ecec901187c0e97e704c15cf9','construye_pages.py':'8e1e159c2f9ddfd41a2889e4787793b31a04c4f4','sw.js':'6ee6ffde2167668d86d042d7c32213a50dc4fa82','manifest.json':before['manifest.json'],'icon-180-v1.png':before['icon-180-v1.png'],'icon-512-v1.png':before['icon-512-v1.png']}
+          for name,digest in expected.items():
+              assert git_hash((root/name).read_bytes()) == digest, 'Salida distinta: ' + name
+          subprocess.run(['node','--check','sw.js'],check=True)
+          html = (root/'work.html').read_text(encoding='utf-8')
+          for source in re.findall(r'<script[^>]*>(.*?)</script>',html,re.S):
+              subprocess.run(['node','--check'],input=source,text=True,check=True)
+          assert (root/'work.html').read_bytes() == (root/'index.html').read_bytes()
+          assert '<div class="fc-nodo fc-objetivos">' in html
+          api_root = 'https://api.github.com/repos/' + repo
+          headers = {'Authorization':'Bearer '+os.environ['GH_TOKEN'],'Accept':'application/vnd.github+json','X-GitHub-Api-Version':'2022-11-28','Content-Type':'application/json'}
+          def api(path,data=None):
+              req=urllib.request.Request(api_root+path,headers=headers,data=None if data is None else json.dumps(data).encode())
+              with urllib.request.urlopen(req,timeout=60) as response:
+                  return json.load(response)
+          head=os.environ['GITHUB_SHA']
+          assert api('/git/ref/heads/main')['object']['sha'] == head, 'main ha cambiado; no publicar'
+          tree_base=api('/git/commits/'+head)['tree']['sha']
+          entries=[]
+          for name,digest in expected.items():
+              if digest==before[name]:
+                  continue
+              blob=api('/git/blobs',{'content':base64.b64encode((root/name).read_bytes()).decode(),'encoding':'base64'})
+              assert blob['sha']==digest
+              entries.append({'path':name,'mode':'100644','type':'blob','sha':digest})
+          tree=api('/git/trees',{'base_tree':tree_base,'tree':entries})
+          commit=api('/git/commits',{'message':'Publicar IKIGAI v1.2.7: version limpia y objetivos en Focalizar','tree':tree['sha'],'parents':[head]})
+          print('COMMIT_PREPARADO='+commit['sha'])
+          print('PARENT='+head)
+          print('HTML_SHA256='+hashlib.sha256((root/'work.html').read_bytes()).hexdigest())
+          print('ARCHIVOS_MODIFICADOS='+','.join(e['path'] for e in entries))
+          PYTHON
