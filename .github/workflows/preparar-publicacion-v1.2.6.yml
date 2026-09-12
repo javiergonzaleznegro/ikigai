@@ -39,16 +39,7 @@ jobs:
           }
           for name, digest in before.items():
               assert git_hash((root / name).read_bytes()) == digest, 'Base distinta: ' + name
-          encoded = """
-          eNrtfVuP3EiW3l+hq9FY1U5mFRnBIINZ6prVSDUzvZBabfXlRd0wmMzIKqozk9lkZrVKBQHeXWDfFvDtD9hvC8NPfjBgPxjo+WP+zongNVm6tDTTa2AFKLNI
-          BuNy4ly+c+JE5O3RT0X5w8nVbr06mt0ezdPKHM2OVBoLE+lIK+kbJaMsWCRplOC29EO90JlMtEn9eebH/jyKAhlKk6VyGcxVoOLYHE2Odml5aXaoK9aBmGfL
-          NExCIeciivU8lFm2zJZGKT+RIjY6wWtLoTJl5mnsx8uFCpdhkM4zsfBRV7GtjmbPn/uTSMrvJ0fiJPL+9Pc//y/vYbHelsU8zfI//cPP/3NzNHkeyWgSxbEt
-          RNfan4ShphvrfLNOX95Dfc8DGQdqgk+ZfD95HqIXk1DFQafQJFiWx0f0LA4nYRRpPEv8TyexoJtRrCahlnHvpg7DiUriEDUGfhgGE3zye6HYvvR6FXtCb/GK
-          TKJwAkqiE0d6+/L1d5uTRb6eZun8/CSdl+b2xb7a5cubaWVWy1lmNjtT9grlWTFWhsbt+yBEIASqzlbpensviE/U9uUkPImvf5oIiTLKB7GUHxNJFa5jIkoc
-          h6Glw/SnfLG7mvnU4rUp58XtIq+2q/Rmtik2hmkdxjTIgCsIj3jcqEJIX9CQTv/a+6z/z8vShdmk3sJ4mLctTVqV74qDYn99ijZt2SkVLKjULejn+hRH/vbl
-          2Roclm9mIaib7lGLwF9n6IUIfCEn+FRE/dcjVXkn2Xa6y3e3y2Kzm1b5KzML/BOiQZAkcTQRvq8U3p0Xu12xnsV2bvDOMl+lVCoWCvMbix5j2anlrrzt1tll
-          uqVqz9JVfrmZ5JuzrjoTjJY2xQIjbmfhbJsuFvnmkt7yIvyngfo6jtHZJKBu6OOzeVEuTDkt00W+rzAkFJP4X/9Br4hIiQk+TmS+TGsIzTEgSTyU2CyBGCcs
-          """
+          encoded = "".join((root / ".github/patches/v1.2.6" / ("part-%02d.b64" % i)).read_text().strip() for i in range(1, 7))
           deltas = json.loads(zlib.decompress(base64.b64decode(encoded)))
           assert set(deltas) == {'work.html', 'construye_pages.py'}
           for name, delta in deltas.items():
@@ -94,8 +85,11 @@ jobs:
           assert {entry['path'] for entry in entries} == {'work.html','index.html','construye_pages.py','sw.js'}
           tree = api('/git/trees', {'base_tree': base_tree, 'tree': entries})
           commit = api('/git/commits', {'message': 'Publicar IKIGAI v1.2.6: revision acumulada y PWA sincronizada', 'tree': tree['sha'], 'parents': [head]})
+          # No se actualiza main desde el token del workflow. Se verifica el commit y se promueve con el conector.
           print('COMMIT_PREPARADO=' + commit['sha'])
           print('PARENT=' + head)
           print('HTML_SHA256=' + hashlib.sha256((root / 'work.html').read_bytes()).hexdigest())
           print('ARCHIVOS_MODIFICADOS=' + ','.join(entry['path'] for entry in entries))
+          with open(os.environ['GITHUB_STEP_SUMMARY'], 'a', encoding='utf-8') as summary:
+              summary.write('Commit preparado, sin actualizar main: `' + commit['sha'] + '`\n\nHTML v1.2.6 identico a la candidata de Drive. Iconos y manifiesto conservados.\n')
           PYTHON
