@@ -1,0 +1,101 @@
+name: Preparar publicacion IKIGAI v1.2.6
+on:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/preparar-publicacion-v1.2.6.yml']
+permissions:
+  contents: write
+concurrency:
+  group: ikigai-publicacion
+  cancel-in-progress: false
+jobs:
+  preparar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Aplicar parche verificado y preparar commit atomico
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          python3 - <<'PYTHON'
+          import base64, hashlib, json, os, pathlib, re, subprocess, sys, urllib.request, zlib
+          repo = os.environ['GITHUB_REPOSITORY']
+          assert repo == 'javiergonzaleznegro/ikigai'
+          root = pathlib.Path('.')
+          def git_hash(b):
+              return hashlib.sha1(b'blob ' + str(len(b)).encode() + b'\0' + b).hexdigest()
+          before = {
+              'work.html': '3fbde09b88456f2cfb09c495fe410296998acb30',
+              'index.html': '3fbde09b88456f2cfb09c495fe410296998acb30',
+              'construye_pages.py': '338f9bfde3eb187e993def7abf1e064a5251a442',
+              'sw.js': '9b0b51bf4100aa0dbd1b78efebdf41bf70148ee4',
+              'manifest.json': '2ab2235a57262fa01602c3884615c6b5b6f5e141',
+              'icon-180-v1.png': '3c8a8aa1e33505ef316c1a83b42b17a337e861e7',
+              'icon-512-v1.png': '3c07791b6a31c5e3ce48035abbf8beb35444bc44',
+          }
+          for name, digest in before.items():
+              assert git_hash((root / name).read_bytes()) == digest, 'Base distinta: ' + name
+          encoded = """
+          eNrtfVuP3EiW3l+hq9FY1U5mFRnBIINZ6prVSDUzvZBabfXlRd0wmMzIKqozk9lkZrVKBQHeXWDfFvDtD9hvC8NPfjBgPxjo+WP+zongNVm6tDTTa2AFKLNI
+          BuNy4ly+c+JE5O3RT0X5w8nVbr06mt0ezdPKHM2OVBoLE+lIK+kbJaMsWCRplOC29EO90JlMtEn9eebH/jyKAhlKk6VyGcxVoOLYHE2Odml5aXaoK9aBmGfL
+          NExCIeciivU8lFm2zJZGKT+RIjY6wWtLoTJl5mnsx8uFCpdhkM4zsfBRV7GtjmbPn/uTSMrvJ0fiJPL+9Pc//y/vYbHelsU8zfI//cPP/3NzNHkeyWgSxbEt
+          RNfan4ShphvrfLNOX95Dfc8DGQdqgk+ZfD95HqIXk1DFQafQJFiWx0f0LA4nYRRpPEv8TyexoJtRrCahlnHvpg7DiUriEDUGfhgGE3zye6HYvvR6FXtCb/GK
+          TKJwAkqiE0d6+/L1d5uTRb6eZun8/CSdl+b2xb7a5cubaWVWy1lmNjtT9grlWTFWhsbt+yBEIASqzlbpensviE/U9uUkPImvf5oIiTLKB7GUHxNJFa5jIkoc
+          h6Glw/SnfLG7mvnU4rUp58XtIq+2q/Rmtik2hmkdxjTIgCsIj3jcqEJIX9CQTv/a+6z/z8vShdmk3sJ4mLctTVqV74qDYn99ijZt2SkVLKjULejn+hRH/vbl
+          2Roclm9mIaib7lGLwF9n6IUIfCEn+FRE/dcjVXkn2Xa6y3e3y2Kzm1b5KzML/BOiQZAkcTQRvq8U3p0Xu12xnsV2bvDOMl+lVCoWCvMbix5j2anlrrzt1tll
+          uqVqz9JVfrmZ5JuzrjoTjJY2xQIjbmfhbJsuFvnmkt7yIvyngfo6jtHZJKBu6OOzeVEuTDkt00W+rzAkFJP4X/9Br4hIiQk+TmS+TGsIzTEgSTyU2CyBGCcs
+          """
+          deltas = json.loads(zlib.decompress(base64.b64decode(encoded)))
+          assert set(deltas) == {'work.html', 'construye_pages.py'}
+          for name, delta in deltas.items():
+              original = (root / name).read_bytes()
+              assert hashlib.sha256(original).hexdigest() == delta['base']
+              result = b''.join(original[op[0]:op[1]] if isinstance(op, list) else op.encode('latin1') for op in delta['ops'])
+              assert hashlib.sha256(result).hexdigest() == delta['target'], 'Parche incorrecto: ' + name
+              (root / name).write_bytes(result)
+          subprocess.run([sys.executable, 'construye_pages.py'], check=True)
+          expected = {
+              'work.html': '15b429a9b69eacefb0d5171cbc10f6fa3109a338',
+              'index.html': '15b429a9b69eacefb0d5171cbc10f6fa3109a338',
+              'construye_pages.py': '78ae487e987bb00ff18719901e30af87002cbbda',
+              'sw.js': '9340c7bb3ce2df20b4663dbad3505073f3389a21',
+              'manifest.json': '2ab2235a57262fa01602c3884615c6b5b6f5e141',
+              'icon-180-v1.png': before['icon-180-v1.png'],
+              'icon-512-v1.png': before['icon-512-v1.png'],
+          }
+          for name, digest in expected.items():
+              assert git_hash((root / name).read_bytes()) == digest, 'Salida distinta: ' + name
+          subprocess.run(['node', '--check', 'sw.js'], check=True)
+          html = (root / 'work.html').read_text(encoding='utf-8')
+          for source in re.findall(r'<script[^>]*>(.*?)</script>', html, re.S):
+              subprocess.run(['node', '--check'], input=source, text=True, check=True)
+          assert (root / 'index.html').read_bytes() == (root / 'work.html').read_bytes()
+          api_root = 'https://api.github.com/repos/' + repo
+          headers = {'Authorization': 'Bearer ' + os.environ['GH_TOKEN'], 'Accept': 'application/vnd.github+json', 'X-GitHub-Api-Version': '2022-11-28', 'Content-Type': 'application/json'}
+          def api(path, data=None):
+              request = urllib.request.Request(api_root + path, headers=headers, data=None if data is None else json.dumps(data).encode('utf-8'))
+              with urllib.request.urlopen(request, timeout=60) as response:
+                  return json.load(response)
+          head = os.environ['GITHUB_SHA']
+          assert api('/git/ref/heads/main')['object']['sha'] == head, 'main ha cambiado; no publicar'
+          base_tree = api('/git/commits/' + head)['tree']['sha']
+          entries = []
+          for name, digest in expected.items():
+              if digest == before[name]:
+                  continue
+              content = (root / name).read_bytes()
+              blob = api('/git/blobs', {'content': base64.b64encode(content).decode(), 'encoding': 'base64'})
+              assert blob['sha'] == digest
+              entries.append({'path': name, 'mode': '100644', 'type': 'blob', 'sha': digest})
+          assert {entry['path'] for entry in entries} == {'work.html','index.html','construye_pages.py','sw.js'}
+          tree = api('/git/trees', {'base_tree': base_tree, 'tree': entries})
+          commit = api('/git/commits', {'message': 'Publicar IKIGAI v1.2.6: revision acumulada y PWA sincronizada', 'tree': tree['sha'], 'parents': [head]})
+          print('COMMIT_PREPARADO=' + commit['sha'])
+          print('PARENT=' + head)
+          print('HTML_SHA256=' + hashlib.sha256((root / 'work.html').read_bytes()).hexdigest())
+          print('ARCHIVOS_MODIFICADOS=' + ','.join(entry['path'] for entry in entries))
+          PYTHON
