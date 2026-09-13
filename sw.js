@@ -1,5 +1,5 @@
-/* generado por construye_pages.py — no editar a mano */
-const CACHE = 'smp-1.2.7';
+/* generado para v1.3.14 — no editar a mano */
+const CACHE = 'smp-1.3.14';
 const BASE = ['./', './index.html', './manifest.json',
               './icon-180-v1.png', './icon-512-v1.png'];
 
@@ -22,7 +22,6 @@ self.addEventListener('fetch', e => {
   const url = new URL(req.url);
   if (url.origin !== self.location.origin) return;
 
-  /* EL HTML VA A RED PRIMERO: si no, la app se queda clavada en una version vieja */
   if (req.mode === 'navigate' || req.destination === 'document') {
     e.respondWith(
       fetch(req)
@@ -36,7 +35,6 @@ self.addEventListener('fetch', e => {
     return;
   }
 
-  /* iconos y manifiesto: cache primero */
   e.respondWith(
     caches.match(req).then(r => r || fetch(req).then(res => {
       const copia = res.clone();
