@@ -5,6 +5,7 @@ on:
     branches: [main]
     paths:
       - '.github/workflows/publicar-v1.3.14.yml'
+      - '.github/publish-v1.3.14/**'
 
 permissions:
   contents: write
@@ -21,7 +22,16 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          cat .github/publish-v1.3.14/final.gz.b64.part* | base64 -d | gzip -d > work.html
+          cat \
+            .github/publish-v1.3.14/final.gz.b64.part00 \
+            .github/publish-v1.3.14/final.gz.b64.part01a \
+            .github/publish-v1.3.14/final.gz.b64.part01b \
+            .github/publish-v1.3.14/final.gz.b64.part01c \
+            .github/publish-v1.3.14/final.gz.b64.part01d \
+            .github/publish-v1.3.14/final.gz.b64.part02 \
+            .github/publish-v1.3.14/final.gz.b64.part03 \
+            .github/publish-v1.3.14/final.gz.b64.part04 \
+            | base64 -d | gzip -d > work.html
           cp work.html index.html
           echo 'e6946d908872254ae775053b02ce823144189db496082a17b532e9d06f01cbcc  work.html' | sha256sum -c -
           cmp -s work.html index.html
