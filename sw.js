@@ -1,5 +1,5 @@
-/* generado para v1.3.14 — no editar a mano */
-const CACHE = 'smp-1.3.14';
+/* generado para v1.4.64 — no editar a mano */
+const CACHE = 'smp-1.4.64';
 const BASE = ['./', './index.html', './manifest.json',
               './icon-180-v1.png', './icon-512-v1.png'];
 
