@@ -1,0 +1,128 @@
+name: Publicar v1.4.63
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/publicar-v1.4.63.yml'
+      - '.github/publish-v1.4.63/**'
+
+permissions:
+  contents: write
+
+jobs:
+  publicar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Reconstruir y validar HTML v1.4.63
+        shell: bash
+        run: |
+          set -euo pipefail
+          base64 -d .github/publish-v1.4.63/final.gz.b64 | gzip -d > work.html
+          cp work.html index.html
+          echo 'c52028affa42ea47a54598afdfec5e9746b1dafdb174f16c12cf3588718b13f4  work.html' | sha256sum -c -
+          cmp -s work.html index.html
+          grep -q '<title>Sistema de Mejora Personal — v1.4.63</title>' work.html
+          grep -q '<meta name="version" content="1.4.63">' work.html
+          grep -q '<p class="sello">v1.4.63</p>' work.html
+          grep -q 'Pilares — 4A' work.html
+          grep -q 'Cadena de propósito' work.html
+          grep -q 'Operaciones mentales' work.html
+          ! grep -Eqi '>\s*(PROPUESTA|REUBICACIÓN|COMPROBACIÓN)\s*<' work.html
+
+      - name: Generar PWA v1.4.63
+        shell: bash
+        run: |
+          cat > sw.js <<'EOF'
+          /* generado para v1.4.63 — no editar a mano */
+          const CACHE = 'smp-1.4.63';
+          const BASE = ['./', './index.html', './manifest.json',
+                        './icon-180-v1.png', './icon-512-v1.png'];
+
+          self.addEventListener('install', e => {
+            self.skipWaiting();
+            e.waitUntil(caches.open(CACHE).then(c => c.addAll(BASE)).catch(() => {}));
+          });
+
+          self.addEventListener('activate', e => {
+            e.waitUntil(
+              caches.keys()
+                .then(ks => Promise.all(ks.filter(k => k !== CACHE).map(k => caches.delete(k))))
+                .then(() => self.clients.claim())
+            );
+          });
+
+          self.addEventListener('fetch', e => {
+            const req = e.request;
+            if (req.method !== 'GET') return;
+            const url = new URL(req.url);
+            if (url.origin !== self.location.origin) return;
+
+            if (req.mode === 'navigate' || req.destination === 'document') {
+              e.respondWith(
+                fetch(req)
+                  .then(r => {
+                    const copia = r.clone();
+                    caches.open(CACHE).then(c => c.put('./index.html', copia));
+                    return r;
+                  })
+                  .catch(() => caches.match('./index.html').then(r => r || caches.match('./')))
+              );
+              return;
+            }
+
+            e.respondWith(
+              caches.match(req).then(r => r || fetch(req).then(res => {
+                const copia = res.clone();
+                caches.open(CACHE).then(c => c.put(req, copia));
+                return res;
+              }))
+            );
+          });
+          EOF
+
+          cat > README.md <<'EOF'
+          # Sistema de Mejora Personal / IKIGAI
+
+          Versión publicada **v1.4.63** (17/09/2026).
+
+          ## Regla de publicación
+
+          La página publicada no lleva etiquetas PROPUESTA, REUBICACIÓN ni marcas de comprobación. Esas marcas se reservan a versiones de revisión.
+
+          ## Fuente y generación
+
+          - `work.html`: fuente HTML limpia.
+          - `index.html`: página publicada, idéntica a `work.html`.
+          - `sw.js`: HTML network-first; caché `smp-1.4.63`.
+          - `manifest.json`: manifiesto PWA.
+          - iconos v1 existentes, conservados.
+
+          ## Contenido de esta entrega
+
+          - Revisión amplia de Arquitectura Interior y Proceso Diario.
+          - Cadena de propósito consolidada: SENTIDO → OBJETIVOS → TAREAS.
+          - Mentalización, Operación y Calibración reorganizadas y depuradas.
+          - Proceder reconstruido: preparación, actitudes, ejecución, prioridad, modos y orientación.
+          - Estado y Calibración separados con mayor claridad entre qué se cultiva y cómo se entrena.
+          - Pilares — 4A rediseñados y prácticas diarias reorganizadas.
+          - Comenzar, Funcionar y Terminar simplificados y armonizados visualmente.
+          - Ajustes generales de jerarquía, redacción, mayúsculas, saltos de línea y eliminación de redundancias.
+
+          SHA-256 de `work.html` e `index.html`: `c52028affa42ea47a54598afdfec5e9746b1dafdb174f16c12cf3588718b13f4`.
+          EOF
+
+      - name: Publicar en main
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git rm -rf .github/publish-v1.4.63
+          git add work.html index.html sw.js README.md
+          git commit -m 'Publicar Sistema de Mejora Personal v1.4.63'
+          git push origin HEAD:main
