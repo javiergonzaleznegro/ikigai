@@ -1,6 +1,11 @@
 <!DOCTYPE html>
 <html lang="es" style="background:#131C30">
 <head>
+<!-- IKIGAI · edición de este frente: HTML y SVG deterministas únicamente.
+No sustituir estos SVG por imágenes generadas. Revisar el render antes y después.
+Cadena de propósito: seis ensayos SVG aparte; no integrar sin elección de Javi.
+Base de esta entrega: v1.5.39. -->
+
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="color-scheme" content="dark">
@@ -11,8 +16,8 @@
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="Sistema">
-<title>Sistema de Mejora Personal — v1.4.64</title>
-<meta name="version" content="1.4.64">
+<title>Sistema de Mejora Personal — v1.5.42</title>
+<meta name="version" content="1.5.42">
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Karla:ital,wght@0,400;0,500;0,700;1,400&display=swap');
 
@@ -31,6 +36,7 @@
   --operar:#FFBE7E;
   --mental:#9BDD90;
   --proceso:#FFE461;
+  --regulacion:#A9A3D9;
   --oscuro:#14203A;
   --mano:'Caveat','Segoe Print','Bradley Hand','Marker Felt','Noteworthy','Comic Sans MS',cursive;
   --texto:'Karla','Avenir Next','Helvetica Neue',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
@@ -66,10 +72,8 @@ p,div,span,li{overflow-wrap:break-word}
 .mapa-niveles{margin:28px auto 0;max-width:1000px;width:100%;display:block}
 
 .mapa-niveles text{font-family:var(--texto);fill:var(--tinta)}
-.mapa-niveles .cav{font-family:var(--mano);font-size:28px;fill:var(--tiza)}
 .mapa-niveles .caja{fill:var(--papel);stroke:#22406F;stroke-width:2}
 .mapa-niveles .tit{font-weight:700;letter-spacing:.06em;font-size:29px}
-.mapa-niveles .sub{font-size:13.6px;fill:var(--grafito);letter-spacing:.03em}
 .mapa-niveles .cab{fill:#22406F;stroke:none}
 .mapa-niveles .titc{font-weight:700;letter-spacing:.05em;font-size:23px;fill:var(--papel)}
 .mapa-niveles .panel{fill:rgba(239,231,210,.045);stroke:rgba(239,231,210,.16);stroke-width:1.2}
@@ -123,9 +127,9 @@ details[open]>summary .abre{transform:rotate(45deg)}
 .dim--operar{border-top:7px solid var(--operar)}
 .dim--mental{border-top:7px solid var(--mental)}
 .dim--estado{border-top:7px solid var(--estado);--arq-acento:var(--estado)}
-.dim--calibrar{border-top:7px solid var(--tiza-suave);--arq-acento:var(--tiza-suave)}
+.dim--calibrar{border-top:7px solid var(--regulacion);--arq-acento:var(--regulacion)}
 .c-estado{background:linear-gradient(180deg,transparent 55%,rgba(200,137,174,.42) 55%)}
-.c-calibrar{background:linear-gradient(180deg,transparent 55%,rgba(195,204,230,.68) 55%)}
+.c-calibrar{background:linear-gradient(180deg,transparent 55%,rgba(169,163,217,.55) 55%)}
 .dim-cab{display:grid;grid-template-columns:42px minmax(0,1fr) 28px;align-items:center;gap:8px}
 .dim-cab>.abre{justify-self:center}
 .dim-cab>.ico{justify-self:center}
@@ -138,21 +142,12 @@ details[open]>summary .abre{transform:rotate(45deg)}
 .c-operar{background:linear-gradient(180deg,transparent 55%,rgba(255,190,126,.55) 55%)}
 .c-mental{background:linear-gradient(180deg,transparent 55%,rgba(155,221,144,.55) 55%)}
 .dim--actitud{border-top:7px solid var(--proceso)}
-.c-actitud{background:linear-gradient(180deg,transparent 55%,rgba(255,228,97,.75) 55%)}
-.act-cols{display:grid;gap:16px;margin-top:16px}
 .cita{margin:12px 0 2px;padding:9px 13px;border-left:3px solid var(--proceso);background:var(--carta-2);font-size:13.8px;color:var(--grafito);line-height:1.6}
 .cita b{color:var(--tinta)}
 .cita .fuente{display:block;margin-top:6px;font-size:11px;letter-spacing:.09em;text-transform:uppercase;color:var(--tinta-suave)}
-.flujo{width:100%;max-width:640px;margin:14px auto 2px;display:block}
-.flujo .eti{font-family:var(--texto);font-size:15.6px;fill:var(--tinta);font-weight:500}
-.flujo .cav{font-family:var(--mano);font-size:19px;fill:var(--tinta-suave)}
 .eyebrow{font-size:11.4px;letter-spacing:.15em;text-transform:uppercase;color:var(--grafito);margin:4px 0 0 44px}
 .dim-body{margin-top:6px}
 
-.grupo{margin-top:16px}
-.grupo>h4{font-size:17.5px;font-weight:700;display:inline;padding:1px 7px;border-radius:2px;color:var(--tinta)}
-.grupo .glosa{font-size:13.8px;color:var(--tinta-suave);font-style:italic;margin:3px 0 6px}
-.margen-nota{font-family:var(--mano);font-size:20px;color:var(--tinta-suave);transform:rotate(-1.4deg);margin:10px 0 0}
 
 /* -------- conceptos desplegables -------- */
 .concepto{border-bottom:1px dotted rgba(34,64,111,.2)}
@@ -185,7 +180,6 @@ details[open]>summary .abre{transform:rotate(45deg)}
 .esq .paso-e{display:flex;align-items:flex-start;gap:8px;font-size:13.4px;line-height:1.45;color:var(--grafito);padding:2.5px 0}
 .esq .n{flex:none;width:17px;height:17px;margin:1px 8px 0 0;border:1.4px solid var(--tinta);border-radius:50%;
   display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:var(--tinta)}
-.esq b{color:var(--tinta)}
 .esq i{color:var(--grafito)}
 .basket-pareja{display:grid;grid-template-columns:repeat(2,minmax(0,160px));justify-content:start;gap:4px 8px;padding:3px 0;border-bottom:1px dotted rgba(34,64,111,.16)}
 .basket-pareja:last-child{border-bottom:0}
@@ -261,8 +255,6 @@ details[open]>summary .abre{transform:rotate(45deg)}
 .simbolo--term{max-width:334px}
 .simbolo .et{font-family:var(--mano);font-size:17px;fill:var(--tinta-suave)}
 .simbolo .et2{font-family:var(--mano);font-size:13.4px;fill:var(--tinta-suave)}
-.simbolo .et3{font-family:var(--mano);font-size:11.8px;fill:var(--tinta-suave)}
-.simbolo .fle{stroke:var(--tinta-suave);stroke-width:2.2;fill:none;stroke-linecap:round;stroke-linejoin:round}
 .fase ul{list-style:none}
 .fase>div>ul>li{border-bottom:1px dotted rgba(34,64,111,.18)}
 .fase>div>ul>li:last-child{border-bottom:none}
@@ -281,7 +273,6 @@ details[open]>summary .abre{transform:rotate(45deg)}
 .fase--term .concepto>summary{font-size:17px;padding:9px 2px}
 .fase--term .concepto>summary::before{width:8px;height:8px}
 .fase--term .concepto .def{font-size:15.6px;line-height:1.6;padding:2px 4px 8px 18px}
-.fase--term .margen-nota{font-size:19px}
 .rot{margin:10px 0 2px 16px;font-size:14.6px;font-weight:700;color:var(--tinta)}
 .rot i{font-weight:400;color:var(--tinta-suave)}
 .lista{list-style:none;margin:2px 0 8px 18px;padding:0}
@@ -290,11 +281,6 @@ details[open]>summary .abre{transform:rotate(45deg)}
   background:var(--proceso);border:1.4px solid var(--tinta)}
 .lista>li i{color:var(--tinta-suave)}
 .lista>li b{color:var(--tinta)}
-.cats{margin:6px 0 2px}
-@media(min-width:700px){.cats{columns:2;column-gap:26px}}
-.cats>div{break-inside:avoid;-webkit-column-break-inside:avoid;page-break-inside:avoid}
-.cat{margin:10px 0 1px 16px;font-size:13.2px;font-weight:400;color:var(--tinta-suave);letter-spacing:.06em}
-.cats>div:first-child .cat{margin-top:2px}
 .practicas-cajones{display:grid;gap:10px;margin:8px 4px 12px 16px}
 .practica-grupo{border:1.3px solid rgba(34,64,111,.28);border-radius:10px 4px 10px 4px;background:var(--carta-2);padding:2px 10px 7px}
 .practica-grupo>summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:8px;padding:7px 0 5px;font-size:14.4px;font-weight:700;color:var(--tinta)}
@@ -305,12 +291,6 @@ details[open]>summary .abre{transform:rotate(45deg)}
 .practica-grupo .lista li{padding-left:14px}
 .practica-grupo .subgrupo{font-size:13.6px;letter-spacing:.05em;text-transform:uppercase;color:var(--tinta);margin:7px 0 4px 2px;text-decoration-line:underline;text-decoration-style:solid;text-decoration-thickness:1px;text-decoration-color:var(--tinta);text-underline-offset:3px}
 
-.practica-mini{margin:2px 0 5px 12px;border:0;background:transparent}
-.practica-mini>summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:7px;padding:2px 0;color:var(--tinta);font-size:13px}
-.practica-mini>summary::-webkit-details-marker{display:none}
-.practica-mini>summary .mas{margin-left:auto;font-size:17px;color:var(--tinta-suave)}
-.practica-mini[open]>summary .mas{transform:rotate(45deg)}
-.practica-mini>.def{padding:3px 0 5px 0;font-size:12.5px;line-height:1.45}
 
 .lista .concepto{border-bottom:none}
 .lista .concepto>summary{font-size:14.2px;font-weight:400;color:var(--grafito);padding:2px 2px}
@@ -341,8 +321,6 @@ details[open]>summary .abre{transform:rotate(45deg)}
 .sello{margin:26px 0 8px;text-align:center;font-family:var(--texto);font-size:11.5px;letter-spacing:.24em;color:var(--tiza);opacity:.55}
 /* =============== entrada operativa =============== */
 
-.bridge{margin:10px 0 2px;padding:8px 11px;border-left:3px solid var(--proceso);background:var(--carta-2);font-size:13.4px;color:var(--grafito);line-height:1.45}
-.bridge b{color:var(--tinta)}
 
 /* =============== cadena de propósito =============== */
 .cadena-proposito{max-width:760px;margin:4px auto 24px;text-align:center;color:var(--tiza)}
@@ -363,7 +341,6 @@ details[open]>summary .abre{transform:rotate(45deg)}
 
 /* =============== Pensador / Hacedor =============== */
 .ph{margin:12px 4px 18px;padding:10px 11px 9px;border:1.4px solid rgba(34,64,111,.32);border-radius:10px 3px 10px 3px;background:#FFF9E7}
-.ph-kicker{text-align:center;font-size:9.3px;font-weight:700;letter-spacing:.17em;text-transform:uppercase;color:var(--tinta-suave);margin:0 0 4px}
 .ph-pregunta{text-align:center;font-family:var(--mano);font-size:20px;color:var(--tinta);line-height:1.15;margin:0 0 8px}
 .ph-modos{display:grid;gap:6px}
 .ph-modo{display:grid;grid-template-columns:82px minmax(90px,1fr) 46px;gap:8px;align-items:center}
@@ -373,11 +350,6 @@ details[open]>summary .abre{transform:rotate(45deg)}
 .ph-track .hace{background:var(--proceso)}
 .ph-ratio{font-family:var(--mano);font-size:15px;color:var(--tinta-suave);text-align:right}
 .ph-ejes{display:flex;justify-content:space-between;margin:2px 53px 0 90px;font-size:9.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--grafito)}
-.ph-det{margin-top:7px;border-top:1px dotted rgba(34,64,111,.28);padding-top:5px}
-.ph-det>summary{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:7px;color:var(--tinta);font-size:12.6px;font-weight:700;letter-spacing:.04em}
-.ph-det>summary::-webkit-details-marker{display:none}
-.ph-det>summary .mas{font-family:var(--mano);font-size:18px;color:var(--tinta-suave);transition:transform .18s}
-.ph-det[open]>summary .mas{transform:rotate(45deg)}
 .ph-flujo{max-width:520px;margin:7px auto 2px;display:grid;gap:5px}
 .ph-paso{display:flex;gap:8px;align-items:baseline;font-size:12.8px;color:var(--grafito)}
 .ph-paso b{flex:0 0 82px;color:var(--tinta);font-size:11px;letter-spacing:.07em;text-transform:uppercase}
@@ -397,12 +369,11 @@ details[open]>summary .abre{transform:rotate(45deg)}
 .cuadrante--compacto{max-width:540px}
 /* v1.2.3 — revisión de contenido y proporciones. Reglas acotadas a cada componente. */
 
-.pregunta-guia{text-align:center;font:18px/1.25 var(--mano);color:var(--tinta-suave);margin:10px 6px 3px}
 .arranque-simple{text-align:center;margin:7px auto 15px;padding:13px 8px 8px;max-width:330px}
 .arranque-simple .pastilla{font-size:18px;line-height:1.25;padding:9px 20px;margin:0;background:var(--proceso)}
 .arranque-simple p{font:19px/1.25 var(--mano);color:var(--tinta-suave);margin:8px 0 0}
-/* La estrella y Preguntarse comparten centro, también con el cuadrante desplegado. */
-.rezo-estrella{container-type:inline-size;max-width:540px;margin:12px auto 14px;padding:6px 0;text-align:center}
+/* Rezar: Preguntarse se asocia al agua; Agradecer a la tierra. */
+.rezo-estrella{container-type:inline-size;max-width:540px;margin:12px auto 14px;padding:6px 0;text-align:center;position:relative}
 .rezo-star-grid{display:grid;width:100%;max-width:350px;margin:0 auto;grid-template-columns:minmax(0,1fr) 72px minmax(0,1fr);grid-template-rows:auto 76px;gap:5px 8px;align-items:center}
 .rezo-nodo{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;color:var(--tinta);font-weight:700;font-size:11.2px;line-height:1.1;text-align:center;min-width:0}
 .rezo-nodo svg{width:21px;height:21px;flex:none}
@@ -414,15 +385,15 @@ details[open]>summary .abre{transform:rotate(45deg)}
 .rezo-centro{grid-column:2;grid-row:2;width:72px;height:76px;display:grid;place-items:center}
 .rezo-centro svg{width:72px;height:72px}
 .rezo-der{grid-column:3;grid-row:2;justify-self:start}
-.rezo-preguntas{margin:9px auto 0;max-width:540px}
-.rezo-preguntas>summary{list-style:none;cursor:pointer;width:max-content;max-width:100%;margin:0 auto;display:grid;grid-template-columns:22px auto 22px;grid-template-rows:auto auto;gap:3px 2px;align-items:center;justify-content:center;color:var(--tinta);font-weight:700;font-size:11.5px;line-height:1.1;min-height:54px}
-.rezo-preguntas>summary::-webkit-details-marker{display:none}
-.rezo-preguntas>summary>svg{grid-column:2;grid-row:1;justify-self:center;width:22px;height:22px}
-.rezo-tierra-label{grid-column:2;grid-row:2;text-align:center}
-.rezo-preguntas>summary small{display:block;font-size:9px;font-weight:400;letter-spacing:.08em;text-transform:uppercase;color:var(--tinta-suave);margin-top:3px}
-.rezo-preguntas>summary .mas{grid-column:3;grid-row:2;align-self:start;justify-self:center;font:20px/1 var(--mano);color:var(--tinta-suave);transition:transform .18s;margin:0}
-.rezo-preguntas[open]>summary .mas{transform:rotate(45deg)}
-.rezo-preguntas .cuadrante{margin:13px auto 3px;max-width:540px}
+.rezo-toggle{position:absolute;width:1px;height:1px;opacity:0;pointer-events:none}
+.rezo-pregunta-label{cursor:pointer;position:relative}
+.rezo-pregunta-label .mas{position:absolute;right:-15px;top:50%;margin-top:-10px;font:20px/1 var(--mano);color:var(--tinta-suave);transition:transform .18s}
+.rezo-toggle:checked ~ .rezo-star-grid .rezo-pregunta-label .mas{transform:rotate(45deg)}
+.rezo-toggle:focus-visible ~ .rezo-star-grid .rezo-pregunta-label{outline:2px solid var(--tinta);outline-offset:3px;border-radius:4px}
+.rezo-abajo{width:max-content;max-width:100%;margin:9px auto 0;min-height:54px}
+.rezo-abajo svg{width:22px;height:22px}
+.rezo-preguntas-panel{display:none;margin:13px auto 3px;max-width:540px}
+.rezo-toggle:checked ~ .rezo-preguntas-panel{display:grid}
 /* Árbol de repaso: texto HTML legible, no encogido por el viewBox. */
 .repaso-diagrama{max-width:540px;margin:15px auto;padding:12px 8px 9px;container-type:inline-size;position:relative}
 .rm-origen{position:relative;width:fit-content;max-width:100%;margin:0 auto;padding:7px 18px 6px;text-align:center;border:1.6px solid var(--tinta);border-radius:18px;background:#FFF6D2}
@@ -438,9 +409,11 @@ details[open]>summary .abre{transform:rotate(45deg)}
 .rm-caja span{font-size:11.4px;line-height:1.2;color:var(--tinta-suave)}
 .rm-capturar{position:relative;z-index:3;width:max-content;margin:8px auto -25px;padding:1px 6px;background:var(--papel);font-size:10.5px;font-weight:800;letter-spacing:.08em;color:var(--tinta);text-transform:uppercase}
 @container (max-width:420px){
-  .rm-resultados{grid-template-columns:1fr;gap:8px;padding-left:18px;margin:23px 10px 0}
-  .rm-resultados::before{left:0;right:auto;top:-12px;bottom:25px;border-top:none;border-left:1.4px solid var(--tinta)}
-  .rm-resultados::after{content:"";position:absolute;top:-12px;left:0;right:50%;border-top:1.4px solid var(--tinta)}
+  .rm-origen::after{bottom:-42px;height:41px}
+  .rm-capturar{margin:12px auto 10px;padding:1px 8px}
+  .rm-resultados{grid-template-columns:1fr;gap:8px;padding-left:18px;margin:30px 10px 0}
+  .rm-resultados::before{left:0;right:auto;top:-24px;bottom:25px;border-top:none;border-left:1.4px solid var(--tinta)}
+  .rm-resultados::after{content:"";position:absolute;top:-24px;left:0;right:50%;border-top:1.4px solid var(--tinta)}
   .rm-rama::before{left:-18px;top:50%;height:0;width:18px;border-left:none;border-top:1.4px solid var(--tinta)}
   .rm-caja{min-height:45px;padding:9px 12px}
 }
@@ -448,9 +421,9 @@ details[open]>summary .abre{transform:rotate(45deg)}
   .rezo-star-grid{grid-template-columns:minmax(0,1fr) 60px minmax(0,1fr);grid-template-rows:auto 66px;gap:5px}
   .rezo-centro{width:60px;height:66px}.rezo-centro svg{width:60px;height:60px}
   .rezo-nodo{font-size:9px}.rezo-nodo svg{width:19px;height:19px}.rezo-nodo small{font-size:8.2px}
-  .rezo-preguntas>summary{font-size:10.8px}
+  .rezo-pregunta-label{font-size:10.8px}
 }
-@media(prefers-reduced-motion:reduce){.abre,.mas,.rezo-preguntas>summary .mas{transition:none}}
+@media(prefers-reduced-motion:reduce){.abre,.mas,.rezo-pregunta-label .mas{transition:none}}
 
 
 /* v1.2.5 — organización de Mirada y Actitud.
@@ -474,10 +447,6 @@ details[open]>summary .abre{transform:rotate(45deg)}
 .arq-contenido>.def{font-size:14px;line-height:1.5;color:var(--grafito);padding:1px 3px 6px}
 .arq-contenido>.def b{color:var(--tinta)}
 .arq-alcance{font-size:13px;line-height:1.45;color:var(--grafito);margin:2px 3px 10px}
-.arq-alcance b{font-weight:500;color:var(--tinta-suave)}
-.arq-contexto{font:19px/1.25 var(--mano);color:var(--tinta-suave);margin:10px 1px 15px}
-.arq-referencias{margin-top:23px;padding-top:10px;border-top:1px solid rgba(34,64,111,.18)}
-.arq-referencia-titulo{font-size:10px;letter-spacing:.13em;text-transform:uppercase;color:var(--grafito);margin-bottom:5px}
 @media(max-width:430px){
   .arq-apartado>summary{padding:10px 8px}
   .arq-apartado>summary h4{font-size:16px;gap:5px}
@@ -501,11 +470,6 @@ details[open]>summary .abre{transform:rotate(45deg)}
 
 #estado-presencia-conexion{margin-bottom:15px}
 #operacion-proceder .actitudes-proceder{margin-bottom:15px}
-#proceso .cal-estado{border-bottom:0;margin:8px 0 7px 12px}
-#proceso .cal-estado>summary{padding:2px 0;align-items:center}
-#proceso .cal-estado>summary::before{display:none}
-#proceso .cal-estado>summary .pastilla{margin:0}
-#proceso .cal-estado>summary .mas{margin-left:8px;margin-right:auto}
 #proceso .conexion-lista{border-bottom:0;margin:0}
 #proceso .conexion-lista>summary{padding:2px 0;font-size:14.6px;list-style:none}
 #proceso .conexion-lista>summary::-webkit-details-marker{display:none}
@@ -517,6 +481,16 @@ details[open]>summary .abre{transform:rotate(45deg)}
   -webkit-box-decoration-break:clone;box-decoration-break:clone;
 }
 #proceso .conexion-lista>summary .mas{margin-left:8px;margin-right:auto}
+
+@media(max-width:600px){
+  #proceso .conexion-lista>.cuadrante{
+    width:calc(100% + 24px);
+    max-width:none;
+    margin-left:-24px;
+    margin-right:0;
+  }
+}
+
 
 #proceso .prep-categoria{
   display:inline-block;margin:2px 0 8px;padding:7px 14px;
@@ -584,23 +558,7 @@ details[open]>summary .abre{transform:rotate(45deg)}
 #operacion-proceder .proc-loop .flecha{font-size:16px;color:var(--tinta-suave);font-weight:700}
 #operacion-proceder .proc-loop .vuelta{font-size:18px;color:var(--tinta);font-weight:800}
 
-.op-apoyo{border:1px solid rgba(34,64,111,.3);border-left:2px solid var(--operar);border-radius:5px;min-width:0}
-.op-apoyo>summary{list-style:none;cursor:pointer;padding:9px 10px;user-select:none}
-.op-apoyo>summary::-webkit-details-marker{display:none}
-.op-apoyo>summary h5{display:flex;align-items:center;gap:7px;font-size:14.6px;line-height:1.3;color:var(--tinta)}
 
-.op-apoyo>summary .mas{margin-left:auto;flex:none;display:inline-block;font:20px/1 var(--mano);color:var(--tinta-suave);transition:transform .18s}
-.op-apoyo[open]>summary{border-bottom:1px dotted rgba(34,64,111,.18);background:var(--carta-2)}
-.op-apoyo[open]>summary .mas{transform:rotate(45deg)}
-.op-apoyo>summary .arq-glosa{font-size:12px}
-.op-apoyo>summary:focus-visible{outline:2px solid var(--tinta);outline-offset:3px;border-radius:4px}
-.op-apoyo-contenido{padding:5px 8px 8px;min-width:0}
-@media(max-width:430px){
-  .op-apoyo>summary{padding:9px 7px}
-  .op-apoyo>summary h5{font-size:14px;gap:5px}
-  .op-apoyo-contenido{padding:5px 5px 8px}
-}
-@media(prefers-reduced-motion:reduce){.op-apoyo>summary .mas{transition:none}}
 
 
 /* v1.2.7 — Cadena de proposito aplicada a Focalizar; OBJETIVOS en primer plano. */
@@ -615,8 +573,40 @@ details[open]>summary .abre{transform:rotate(45deg)}
 .fc-sentido{border:1.5px solid var(--tinta);background:rgba(155,221,144,.3);color:var(--tinta)}
 .fc-tareas{border:1.5px solid var(--tinta);background:rgba(255,190,126,.34);color:var(--tinta)}
 .fc-flecha{font-size:16px;color:var(--tinta-suave);align-self:center}
-.fc-lectura{margin:10px 4px 0;font-size:11px;color:var(--grafito);line-height:1.35}
 @media(max-width:430px){.fc-nodo{padding:8px 3px}.fc-nodo b{font-size:12.5px;letter-spacing:0}.fc-nodo span{font-size:9.5px}.fc-flecha{font-size:14px}}
+
+@media(max-width:430px){
+  /* Do not split short structural labels in the middle of a word. */
+  .cp-nodo b,
+  .fc-nodo b,
+  .dim-cab h3,
+  .aaa-nombre{
+    overflow-wrap:normal;
+    word-break:normal;
+    hyphens:none;
+  }
+
+  .cp-nodo b,
+  .fc-nodo b,
+  .dim-cab h3,
+  .aaa-nombre{
+    white-space:nowrap;
+  }
+
+  /* Real iPhone fonts are slightly wider than the fallback font.
+     Reserve enough room for OBJETIVOS without leaving a lone final S. */
+  .cp-nodo b{font-size:12px;letter-spacing:0}
+  .cadena-proposito--papel .cp-nodo b{font-size:11.7px;letter-spacing:0}
+  .fc-nodo b{font-size:11.8px;letter-spacing:0}
+
+  /* Keep the three boxes visually balanced on the phone. */
+  .cadena-proposito--papel .cp-fila{align-items:stretch}
+  .cadena-proposito--papel .cp-arr{align-self:center}
+
+  /* Preserve compact card headers without affecting the iPad proportions. */
+  .dim-cab h3{font-size:17.5px}
+}
+
 
 
 /* v1.2.8 — Familias de Mirada e introducciones breves.
@@ -696,7 +686,6 @@ details[open]>summary .abre{transform:rotate(45deg)}
 .aaa-busquedas dd{margin:1px 0 0}
 .triple-a a{color:var(--tinta);text-underline-offset:3px;text-decoration-thickness:1px}
 .aaa-recurso{display:inline-block;margin-top:8px;padding:5px 0;font-size:12.5px;line-height:1.4}
-.aaa-cierre{margin-top:11px;font-size:12.5px;line-height:1.45;color:var(--tinta-suave)}
 .aaa-evitar{margin:0 0 7px;font-size:12px;letter-spacing:.08em;text-transform:uppercase;font-weight:400;color:var(--tinta-suave)}
 .dim--operar .dim-cab .ico--rosa{width:34px;height:34px;justify-self:start;transform:translateX(0)}
 .aaa-pilar>summary:focus-visible,.triple-a a:focus-visible{outline:2px solid var(--tinta);outline-offset:3px;border-radius:3px}
@@ -756,15 +745,31 @@ details[open]>summary .abre{transform:rotate(45deg)}
   color:var(--tinta-suave);
   font-weight:400;
 }
-#proceso .fase-body .cat{
-  color:var(--tinta);
-  font-size:13.8px;
-  font-weight:700;
-}
 #proceso .fase-body .aaa-nombre{
   font-size:13.6px;
   font-weight:800;
 }
+
+@media(max-width:430px){
+  #proceso .fase-body .aaa-nombre{
+    font-size:11px;
+    letter-spacing:0;
+    white-space:nowrap;
+    overflow-wrap:normal;
+    word-break:normal;
+  }
+}
+/* v1.5.3: con el Proceso Diario a tres columnas (960–1190 px de ventana) el bloque 4A queda más
+   estrecho que en un iPhone y AUTOCONTROL / AUTODISCIPLINA chocaban con el ×. Se decide por el ancho
+   real del bloque (caja de contenido, sin los 24 px de relleno): hasta 341 px, el mismo cuerpo de 11 px
+   que ya usa el móvil; hasta 282 px, una columna. En iPhone (contenido de 302 px o más) no cambia nada. */
+@container triplea (max-width:341px){
+  #proceso .fase-body .aaa-nombre{font-size:11px;letter-spacing:0}
+}
+@container triplea (max-width:282px){
+  .aaa-pilares{grid-template-columns:minmax(0,1fr)}
+}
+
 #proceso .fase-body .aaa-busquedas dt{
   font-weight:800;
 }
@@ -773,11 +778,207 @@ details[open]>summary .abre{transform:rotate(45deg)}
   font-weight:800;
 }
 
+
+/* v1.5.0 — modelo y contenidos trasladados. Sin rediseñar los componentes anteriores. */
+.dims--superior>.modelo-concepto{width:var(--ancho-tarjeta);justify-self:center}
+.modelo-texto{margin:12px 2px 0;font-size:14px;line-height:1.5;color:var(--grafito)}
+.modelo-texto .arq-cruce{margin:10px 0 0}
+.estado-faceta{margin:8px 2px 16px;font-size:13px;color:var(--grafito)}
+.estado-faceta b{color:var(--tinta)}
+.modelo-esfera{width:var(--ancho-tarjeta);margin:0 auto 24px;border:1.5px solid rgba(195,204,230,.65);border-top:7px solid var(--tiza-suave);border-radius:12px 4px;background:var(--papel);color:var(--tinta);--arq-acento:var(--tiza-suave)}
+.modelo-esfera>summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:12px;padding:15px 16px}
+.modelo-esfera>summary::-webkit-details-marker{display:none}
+.modelo-esfera>summary strong{font-size:19px;line-height:1.3}
+.modelo-esfera>summary small{display:block;font-size:12.6px;color:var(--tinta-suave);margin-top:4px}
+.modelo-esfera-ico{
+  width:30px;height:30px;flex:none;border-radius:50%;
+  border:1.4px solid var(--tinta);
+  background:radial-gradient(circle at 34% 30%,#fff 0 12%,#eef3fa 36%,#c5d3e8 72%,#8fa6c9 100%);
+  box-shadow:inset -4px -5px 8px rgba(34,64,111,.18),0 1px 0 rgba(255,255,255,.8);
+}
+.modelo-esfera>summary .mas{margin-left:auto;flex:none;font:24px/1 var(--mano);transition:transform .18s}
+.modelo-esfera[open]>summary .mas{transform:rotate(45deg)}
+.modelo-esfera[open]>summary{border-bottom:1px dotted rgba(34,64,111,.22)}
+.modelo-esfera-body{padding:4px 14px 15px;font-size:14px;color:var(--grafito);line-height:1.5}
+.modelo-esfera-body>p{margin:12px 0}
+.modelo-esfera-body b{color:var(--tinta)}
+.trabajos-nota{font-size:12.6px;color:var(--tiza-suave);margin:7px 0 8px}
+.eco-ideas{list-style:none;display:grid;grid-template-columns:1fr;gap:24px;margin:16px auto 20px;max-width:360px}
+.eco-ideas>li{position:relative;text-align:center;border:1.4px solid rgba(34,64,111,.35);border-radius:9px 3px;padding:10px 8px;background:var(--carta-2)}
+.eco-ideas>li:nth-child(2){background:#E4F1DC}
+.eco-ideas>li:nth-child(3){background:var(--mental)}
+.eco-ideas>li+li::before{content:"↓";position:absolute;top:-26px;left:calc(50% - 8px);font-size:20px;color:var(--tinta-suave)}
+.eco-ideas b{display:block;font-size:15px;letter-spacing:.03em;overflow-wrap:normal;word-break:normal}
+.revision-v150{text-align:center;margin:18px 0 10px;color:var(--tiza-suave);font-size:11.5px;letter-spacing:.05em}
+.accesos-v150{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin:0 auto;max-width:720px}
+.accesos-v150 a{padding:7px 10px;border:1px solid rgba(195,204,230,.3);border-radius:6px;color:var(--tiza);text-decoration:none;font-size:12px}
+.accesos-v150 a:focus-visible,.modelo-esfera>summary:focus-visible{outline:2px solid var(--proceso);outline-offset:3px}
+#calibracion-presencia .conexion-lista>summary{list-style:none;display:flex;align-items:center;gap:8px;cursor:pointer;padding:2px 0;font-size:14.2px;color:var(--tinta)}
+#calibracion-presencia .conexion-lista>summary::-webkit-details-marker{display:none}
+#calibracion-presencia .conexion-lista>summary .mas{font:20px/1 var(--mano);transition:transform .18s}
+#calibracion-presencia .conexion-lista[open]>summary .mas,
+#proceso .conexion-lista[open]>summary .mas{transform:rotate(45deg)}
+#calibracion-presencia .lista>li>b,#calibracion-presencia .conexion-lista>summary b{font-weight:800;background:linear-gradient(180deg,transparent 67%,rgba(255,228,97,.28) 67%)}
+#calibracion-presencia .conexion-lista>.def{font-size:13px;margin:8px 0;color:var(--grafito)}
+#calibracion-presencia .conexion-lista>.cuadrante{margin-top:12px;margin-bottom:18px}
+#calibracion-presencia #estado-presencia-conexion{margin-bottom:0}
+#mental-plenitud{--arq-acento:var(--mental)}
+#mental-plenitud .cuadrante,#actitud-personas .cuadrante{margin-bottom:12px}
+@media(max-width:430px){
+ .modelo-esfera>summary{padding:13px 11px}
+ .modelo-esfera>summary strong{font-size:17px}
+ .modelo-esfera-body{padding:3px 10px 13px}
+     .modelo-texto{font-size:13px}
+ #calibracion-presencia .conexion-lista>.cuadrante{width:calc(100% + 25px);max-width:none;margin-left:-25px}
+}
+@media(prefers-reduced-motion:reduce){.modelo-esfera>summary .mas,#calibracion-presencia .conexion-lista>summary .mas{transition:none}}
+
+
+/* v1.5.1 — integración del SVG recibido y Elementos independiente.
+   Reglas acotadas: no alteran el mapa, las tarjetas anteriores ni el Proceso Diario. */
+/* v1.5.2 — Mentalización a un solo color (fuera los acentos azul/amarillo heredados);
+   «Integración de creencias»; La Esfera abierta al cargar; cuatro rótulos pequeños retirados del dibujo;
+   pie del mapa sin «Tres capas». */
+/* v1.5.3 — 81 reglas CSS huérfanas retiradas (6209 B; 0 píxeles distintos en 10 capturas de página completa);
+   4A por ancho del bloque; lista de Funcionar del mapa con aire entre entradas. */
+/* v1.5.4 — Estado → Presencia: sus dos formas con el mismo formato; dos reglas de 4A sin efecto retiradas. */
+/* v1.5.5 — Rezar: Preguntarse pasa a agua y Agradecer a tierra. La representación del modelo queda cerrada al cargar y gana un icono esférico provisional; el nombre sigue pendiente. */
+#modelo-esfera .esfera-body{padding:10px 10px 15px}
+.esfera-figura{margin:0}
+.esfera-zoom{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}
+.esfera-control{display:table;margin:0 0 10px auto;padding:7px 12px;border:1px solid rgba(34,64,111,.4);border-radius:6px;font-size:12px;font-weight:700;color:var(--tinta);background:var(--carta-2);cursor:pointer}
+.esfera-control-ajustar{display:none}
+.esfera-zoom:checked+.esfera-control .esfera-control-ampliar{display:none}
+.esfera-zoom:checked+.esfera-control .esfera-control-ajustar{display:inline}
+.esfera-zoom:focus-visible+.esfera-control{outline:3px solid var(--tinta-suave);outline-offset:3px}
+.esfera-viewport{width:100%;overflow-x:auto;overflow-y:hidden;border-radius:10px;background:#FFFBEB;-webkit-overflow-scrolling:touch}
+.esfera-viewport:focus-visible{outline:2px solid var(--tinta-suave);outline-offset:2px}
+.esfera-viewport>.esfera-ilustracion{display:block;width:100%;max-width:none;height:auto}
+.esfera-zoom:checked~.esfera-viewport>.esfera-ilustracion{width:760px;max-width:none}
+.esfera-pie{margin:9px 3px 0;font-size:11.5px;line-height:1.4;color:var(--grafito)}
+#modelo-esfera .esfera-nucleo{margin:14px 4px 0;font-size:13px;line-height:1.5}
+.elementos-contenido{width:var(--ancho-tarjeta);margin:20px auto 0;padding:10px 14px 14px;background:var(--papel);border:1.6px solid var(--tinta);border-radius:12px 4px;--arq-acento:var(--tiza-suave)}
+.elementos-contenido>#mirada-proposito{--arq-acento:var(--mirada)}
+.elementos-contenido>#elementos-ideas{--arq-acento:var(--mental)}
+.anclaje-retirado{display:block;height:0;overflow:hidden}
+@media(max-width:430px){
+ #modelo-esfera .esfera-body{padding:10px 6px 13px}
+ .elementos-contenido{padding:6px 10px 10px}
+}
+
+
+/* v1.5.8 — Cadena de propósito: agrupación visual, sin convertirla en un bloque nuevo. */
+.mental-cadena-proposito{position:relative;margin:12px 2px 18px;padding:14px 9px 5px;border:1.4px dashed rgba(34,64,111,.38);border-radius:8px}
+.mental-cadena-etiqueta{position:absolute;top:-9px;left:14px;padding:0 6px;background:var(--papel);font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--tinta-suave)}
+.mental-cadena-proposito>.arq-apartado{margin-top:7px}
+.mental-integracion-creencias{position:relative;margin:12px 2px 18px;padding:14px 9px 5px;border:1.4px dashed rgba(34,64,111,.38);border-radius:8px}
+.mental-integracion-etiqueta{position:absolute;top:-9px;left:14px;padding:0 6px;background:var(--papel);font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--tinta-suave)}
+.mental-integracion-creencias>.arq-apartado{margin-top:7px}
+/* v1.5.42 — Se amplía aún más la miniatura de Cadena de propósito para priorizar legibilidad en tablet. */
+.mental-inducir-actitud{position:relative;margin:12px 2px 18px;padding:14px 9px 5px;border:1.4px dashed rgba(34,64,111,.38);border-radius:8px}
+.mental-inducir-actitud-etiqueta{position:absolute;top:-9px;left:14px;padding:0 6px;background:var(--papel);font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--tinta-suave)}
+.mental-inducir-actitud>.arq-apartado{margin-top:7px}
+/* Filtros + Enfoques se leen como un mismo trabajo de Mentalización sobre la Mirada. */
+#mentalizacion #mirada-filtro{position:relative;margin-top:22px;border:1.4px dashed rgba(34,64,111,.38);border-bottom:0;border-radius:8px 8px 0 0;padding:8px 9px 0}
+#mentalizacion #mirada-filtro::before{content:"Mirada";position:absolute;top:-10px;left:14px;padding:0 6px;background:var(--papel);font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--tinta-suave)}
+#mentalizacion #mirada-enfoques{margin-top:0;border:1.4px dashed rgba(34,64,111,.38);border-top:0;border-radius:0 0 8px 8px;padding:0 9px 8px}
+.plano--modelo{margin:2px 0 10px}
+
+#operacion-proceder .actitudes-proceder{margin-bottom:6px}
+#operacion-proceder .actitudes-proceder + details.concepto{margin-top:4px}
+
+/* v1.5.16 — Elementos se integra junto al Modelo del Ser; Mirada y Actitud recuperan su desarrollo como desplegable. */
+.elementos-modelo{width:var(--ancho-tarjeta);margin:0 auto 24px}
+.elementos-modelo .plano--elementos{margin:8px 0 10px}
+.elementos-modelo .elementos-contenido{display:grid;gap:10px}
+.elementos-modelo .arq-apartado{margin-top:0}
+
+
+/* v1.5.16 — Elementos integrados en Ser · Entorno y llaves completas de Mirada/Actitud. */
+.modelo-elementos-integrados{margin:4px 16px 18px;padding-top:4px}
+.modelo-elementos-integrados .modelo-separador{border-top:1px solid rgba(34,64,111,.22);margin:2px 0 14px}
+.modelo-elementos-integrados .modelo-elementos-cab{margin:0 0 8px;color:var(--tinta);text-align:center}
+.modelo-elementos-integrados .modelo-elementos-cab h3{font-size:16px;letter-spacing:.08em;text-transform:uppercase}
+.modelo-elementos-integrados .modelo-elementos-cab .sub{font-size:16px;color:var(--tinta-suave)}
+.modelo-elementos-integrados>.arq-apartado{margin-top:10px}
+@media(max-width:430px){.modelo-elementos-integrados{margin-left:8px;margin-right:8px}}
+
+/* v1.5.16 — mapa superior: llaves con aire y bloque inferior compactado; elementos del modelo visibles sin subdesplegables. */
+.modelo-elementos-integrados{margin:4px 16px 18px;padding-top:4px}
+.modelo-elementos-integrados .modelo-separador{border-top:1px solid rgba(34,64,111,.22);margin:2px 0 14px}
+.modelo-elemento-seccion{padding:0 0 5px}
+.modelo-elemento-cab{margin:0 0 8px;color:var(--tinta);text-align:center}
+.modelo-elemento-cab h3{font-size:16px;letter-spacing:.08em;text-transform:uppercase}
+.modelo-elemento-linea{border-top:1px solid rgba(34,64,111,.18);margin:16px 0 14px}
+.modelo-elemento-cruce{text-align:center;margin-top:8px}
+.mental-mirada-grupo{position:relative;margin:12px 2px 18px;padding:14px 9px 5px;border:1.4px dashed rgba(34,64,111,.38);border-radius:8px}
+.mental-mirada-etiqueta{position:absolute;top:-9px;left:14px;padding:0 6px;background:var(--papel);font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--tinta-suave)}
+.mental-mirada-grupo>.arq-apartado{margin-top:7px!important;border:1px solid rgba(34,64,111,.22)!important;border-left:3px solid var(--mental)!important;border-radius:6px!important;padding:0!important}
+.mental-mirada-grupo>#mirada-filtro::before{content:none!important}
+@media(max-width:430px){.modelo-elementos-integrados{margin-left:8px;margin-right:8px}}
+
+/* v1.5.16 — capas trasladadas desde la esfera principal a cada elemento. */
+.modelo-capas-mini{display:grid;grid-template-columns:150px minmax(0,1fr);gap:16px;align-items:center;max-width:560px;margin:12px auto 4px}
+.modelo-capas-mini svg{width:150px;height:auto;display:block}
+.modelo-capas-mini .capas-lectura{font-size:12.5px;line-height:1.55;color:var(--tinta-suave)}
+.modelo-capas-mini .capas-lectura b{color:var(--tinta)}
+@media(max-width:430px){.modelo-capas-mini{grid-template-columns:112px minmax(0,1fr);gap:10px}.modelo-capas-mini svg{width:112px}.modelo-capas-mini .capas-lectura{font-size:11.5px}}
+
+/* v1.5.36 — coherencia visual del Proceso Diario. */
+.rezo-pregunta-label{flex-direction:row}
+.rezo-pregunta-label .mas{position:static;order:-2;margin:0 2px 0 0;flex:none}
+.rezo-pregunta-label>span:not(.mas){order:-1}
+.rezo-pregunta-label>svg{order:0}
+#proceso .prep-apilado .fila-p{display:block;margin:8px 0 10px 16px}
+#proceso .prep-apilado .prep-item{display:block;width:max-content;margin:0 0 3px}
+#proceso .prep-apilado .fila-p>span:last-child{display:block;padding-left:2px;color:var(--grafito)}
+#funcionar-practicas .concepto-lista>summary,
+#funcionar-practicas + li .tecnica-item>summary{position:relative;padding:2px 2px 2px 17px;font-size:14.2px;font-weight:700;color:var(--tinta)}
+#funcionar-practicas .concepto-lista>summary::before,
+#funcionar-practicas + li .tecnica-item>summary::before{content:"";display:block;position:absolute;left:1px;top:9px;width:6px;height:6px;border-radius:50%;background:var(--proceso);border:1.4px solid var(--tinta)}
+#funcionar-practicas .concepto-lista>summary b,
+#funcionar-practicas + li .tecnica-item>summary b{font-weight:800;color:var(--tinta);background:linear-gradient(180deg,transparent 67%,rgba(255,228,97,.28) 67%);-webkit-box-decoration-break:clone;box-decoration-break:clone}
+#funcionar-practicas .concepto-lista>summary .mas,
+#funcionar-practicas + li .tecnica-item>summary .mas{margin-left:auto}
+#funcionar-practicas + li .tecnica-item{margin-left:18px}
+#proceso .concepto-patron>summary::before{background:var(--proceso)}
+
+
+/* v1.5.36 — Elementos: una sola gramática visual de profundidad. */
+.modelo-capas-mini{display:flex;justify-content:center;align-items:center;margin:14px auto 4px;max-width:310px}
+.modelo-capas-mini svg{display:block;width:min(100%,250px);height:auto}
+.modelo-capas-mini .capas-lectura{display:none}
+
+
+/* v1.5.36 — tamaños deliberadamente distintos: Propósito recupera su esfera original; Creencias gana espacio. */
+.modelo-capas-mini--proposito{max-width:320px;margin:14px auto 8px}
+.modelo-capas-mini--proposito svg{width:305px;max-width:100%;height:auto}
+.modelo-capas-mini--creencias{max-width:350px;margin:16px auto 5px}
+.modelo-capas-mini--creencias svg{width:min(100%,310px);height:auto}
+
+
+.mapa-niveles .nom--modelo-resumen{font-size:16.2px;letter-spacing:0}
+
+/* v1.5.36 — cabecera del desplegable del Modelo del Ser homóloga al resto y símbolo común con el esquema. */
+.modelo-esfera>summary{min-height:82px;padding:18px 16px}
+.modelo-esfera-ico--mapa{width:58px;height:48px;border:0;border-radius:0;background:none;box-shadow:none;overflow:visible}
+
+
+/* v1.5.36 — lectura complementaria de trabajos sobre la Cadena de propósito. */
+.proposito-trabajos{max-width:330px;margin:2px auto 8px}
+.proposito-trabajos svg{display:block;width:100%;height:auto}
+
+.modelo-esfera>summary strong{font-size:21px;letter-spacing:.015em}
+@media(max-width:430px){.modelo-esfera>summary strong{font-size:14.5px;letter-spacing:0}}
+
+/* v1.5.36 — el dibujo se muestra directamente, sin control de ampliación. */
+.esfera-viewport{margin-top:4px}
+
 </style>
 </head>
 <body>
 <!-- v1.4.3 — ajuste visual iPad: esquema, calibración, tarjetas cerradas y ancho Proceso Diario. -->
-<!-- v1.4.64 — criterio de estilo: mayúscula inicial en rótulos/frases y preferencia por ideas cortas en líneas separadas cuando mejore la lectura. -->
+<!-- v1.4.74 — criterio de estilo: mayúscula inicial en rótulos/frases y preferencia por ideas cortas en líneas separadas cuando mejore la lectura. -->
 <!-- v1.4.4 — revisión cruzada (Claude): sello sincronizado, anclaje CuiEGO restaurado, texto operativo recuperado,
      ancho único de tarjetas, mapa parametrizado (rótulo único, icono fijo, llaves como trazado) y CSS huérfano retirado. -->
 <!-- v1.4.12 — revisión iPad + limpieza de interfaz: remate de alineaciones del mapa,
@@ -887,15 +1088,15 @@ details[open]>summary .abre{transform:rotate(45deg)}
       <line x1="4" y1="4" x2="246" y2="3"/><line x1="16" y1="9" x2="232" y2="9" opacity=".5"/>
     </svg>
 
-    <svg class="mapa-niveles" viewBox="0 0 700 740" role="img" aria-label="Mapa de niveles: Arquitectura Interior y Proceso Diario">
+    <svg class="mapa-niveles" viewBox="0 0 700 904" role="img" aria-label="Mapa de niveles: Arquitectura y Proceso Diario">
       <defs>
         <filter id="som-n" x="-30%" y="-30%" width="160%" height="160%">
           <feDropShadow dx="0" dy="3" stdDeviation="3.6" flood-color="#060B14" flood-opacity=".38"/>
         </filter>
       </defs>
 
-      <rect class="panel" x="0" y="80" width="360" height="648" rx="14"/>
-      <rect class="panel" x="390" y="80" width="310" height="648" rx="14"/>
+      <rect class="panel" x="0" y="80" width="360" height="820" rx="14"/>
+      <rect class="panel" x="390" y="80" width="310" height="820" rx="14"/>
 
       <rect class="caja" x="220" y="4" width="260" height="56" rx="9" filter="url(#som-n)"/>
       <text class="tit" x="350" y="42" text-anchor="middle">EL SISTEMA</text>
@@ -903,7 +1104,25 @@ details[open]>summary .abre{transform:rotate(45deg)}
       <path d="M350 60 L350 68 Q350 73 355 73 L540 73 Q545 73 545 78 L545 86" fill="none" stroke="var(--tiza-suave)" stroke-width="2"/>
 
       <rect class="cab" x="6" y="88" width="348" height="44" rx="7"/>
-      <text class="titc" x="180" y="118" text-anchor="middle">ARQUITECTURA INTERIOR</text>
+      <text class="titc" x="180" y="118" text-anchor="middle">ARQUITECTURA</text>
+      <text class="pie2" x="180" y="157" text-anchor="middle">Modelo del Ser</text>
+      <rect x="16" y="172" width="328" height="58" rx="8" fill="var(--tiza-suave)" filter="url(#som-n)"/>
+      <rect x="16" y="180" width="328" height="50" rx="8" fill="var(--papel)"/>
+      <!-- Miniatura fiel del Modelo del Ser: misma gramática que la esfera principal, sin flujos ni rótulos secundarios. -->
+      <g transform="translate(30 185)" aria-hidden="true">
+        <defs><marker id="mapa-modelo-ah" markerWidth="5" markerHeight="5" refX="4.1" refY="2.5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L5,2.5 L0,5 Z" fill="#22406F"/></marker></defs>
+        <path d="M0 9 Q-5 19 0 29" fill="none" stroke="#8596B0" stroke-width="5" stroke-linecap="round" opacity=".16"/>
+        <path d="M42 9 Q47 19 42 29" fill="none" stroke="#8596B0" stroke-width="5" stroke-linecap="round" opacity=".16"/>
+        <circle cx="21" cy="19" r="17" fill="rgba(195,204,230,.08)" stroke="#22406F" stroke-width="1.45"/>
+        <ellipse cx="21" cy="19" rx="6.5" ry="16.5" fill="none" stroke="#22406F" stroke-width=".7" opacity=".12"/>
+        <ellipse cx="21" cy="19" rx="16.5" ry="5.2" fill="none" stroke="#22406F" stroke-width=".7" opacity=".10"/>
+        <circle cx="21" cy="19" r="4.2" fill="#9AA9C3" stroke="#22406F" stroke-width=".9"/>
+        <line x1="21" y1="14.8" x2="21" y2="3.5" stroke="#22406F" stroke-width="1.2" stroke-linecap="round" marker-end="url(#mapa-modelo-ah)"/>
+        <line x1="17.4" y1="21.3" x2="6.5" y2="28.4" stroke="#22406F" stroke-width="1.2" stroke-linecap="round" marker-end="url(#mapa-modelo-ah)"/>
+        <line x1="24.6" y1="21.3" x2="35.5" y2="28.4" stroke="#22406F" stroke-width="1.2" stroke-linecap="round" marker-end="url(#mapa-modelo-ah)"/>
+      </g>
+      <text class="nom nom--arq-inf nom--modelo-resumen" x="84" y="205" text-anchor="start" dominant-baseline="middle">SER · ENTORNO · ELEMENTOS</text>
+      <g transform="translate(0 101)">
       <text class="pie2" x="180" y="157" text-anchor="middle">Qué cultivo</text>
 
       <!-- v1.4.2: esquema iPad — cajas más anchas, icono+rótulo centrados y llaves legibles. -->
@@ -916,20 +1135,19 @@ details[open]>summary .abre{transform:rotate(45deg)}
       <rect x="16" y="180" width="226" height="50" rx="8" fill="var(--papel)"/>
       <svg x="28" y="192" width="33" height="25" aria-hidden="true"><use href="#i-mirada-actual"/></svg>
       <text class="nom nom--arq" x="72" y="205" text-anchor="start" dominant-baseline="middle">MIRADA</text>
-      <path class="rama arq-llave" d="M266 183 Q260 183 260 189 L260 197 Q260 203 254 203 Q260 203 260 209 L260 226 Q260 232 266 232" stroke-linecap="round"/>
-      <line class="rama arq-llave" x1="269" y1="191" x2="277" y2="191"/><line class="rama arq-llave" x1="269" y1="209" x2="277" y2="209"/><line class="rama arq-llave" x1="269" y1="227" x2="277" y2="227"/>
-      <text class="pata" x="282" y="195"><tspan class="pn">Filtros</tspan></text>
-      <text class="pata" x="282" y="213"><tspan class="pn">Enfoques</tspan></text>
-      <text class="pata" x="282" y="231"><tspan class="pn">Propósito</tspan></text>
+      <path class="rama arq-llave" d="M266 180 Q260 180 260 186 L260 197 Q260 203 254 203 Q260 203 260 209 L260 220 Q260 226 266 226" stroke-linecap="round"/>
+      <line class="rama arq-llave" x1="269" y1="191" x2="277" y2="191"/><line class="rama arq-llave" x1="269" y1="216" x2="277" y2="216"/>
+      <text class="pata pata--s" x="282" y="195"><tspan class="pn">Recibir</tspan></text>
+      <text class="pata pata--s" x="282" y="220"><tspan class="pn">Interpretar</tspan></text>
 
       <rect x="16" y="241" width="226" height="58" rx="8" fill="var(--proceso)" filter="url(#som-n)"/>
       <rect x="16" y="249" width="226" height="50" rx="8" fill="var(--papel)"/>
       <svg x="30" y="254" width="28" height="34" aria-hidden="true"><use href="#i-actitud-actual"/></svg>
       <text class="nom nom--arq" x="72" y="274" text-anchor="start" dominant-baseline="middle">ACTITUD</text>
-      <path class="rama arq-llave" d="M266 257 Q260 257 260 263 L260 266 Q260 272 254 272 Q260 272 260 278 L260 282 Q260 288 266 288" stroke-linecap="round"/>
-      <line class="rama arq-llave" x1="269" y1="265" x2="277" y2="265"/><line class="rama arq-llave" x1="269" y1="283" x2="277" y2="283"/>
-      <text class="pata" x="282" y="269"><tspan class="pn">Tomar acción</tspan></text>
-      <text class="pata" x="282" y="287"><tspan class="pn">Personas</tspan></text>
+      <path class="rama arq-llave" d="M266 249 Q260 249 260 255 L260 266 Q260 272 254 272 Q260 272 260 278 L260 289 Q260 295 266 295" stroke-linecap="round"/>
+      <line class="rama arq-llave" x1="269" y1="260" x2="277" y2="260"/><line class="rama arq-llave" x1="269" y1="285" x2="277" y2="285"/>
+      <text class="pata pata--s" x="282" y="264"><tspan class="pn">Proyectar</tspan></text>
+      <text class="pata pata--s" x="282" y="289"><tspan class="pn">Responder</tspan></text>
 
       <rect x="16" y="310" width="226" height="58" rx="8" fill="var(--estado)" filter="url(#som-n)"/>
       <rect x="16" y="318" width="226" height="50" rx="8" fill="var(--papel)"/>
@@ -943,91 +1161,97 @@ details[open]>summary .abre{transform:rotate(45deg)}
 
       <text class="pie2" x="180" y="420" text-anchor="middle">Cómo lo entreno</text>
 
-      <rect x="16" y="452" width="226" height="58" rx="8" fill="var(--mental)" filter="url(#som-n)"/>
-      <rect x="16" y="460" width="226" height="50" rx="8" fill="var(--papel)"/>
-      <svg x="29" y="468" width="29" height="29" aria-hidden="true"><use href="#i-estrella-p"/></svg>
-      <text class="nom nom--arq-inf" x="67" y="485" text-anchor="start" dominant-baseline="middle">MENTALIZACIÓN</text>
-      <path class="rama arq-llave" d="M266 443 Q260 443 260 449 L260 478 Q260 484 254 484 Q260 484 260 490 L260 514 Q260 520 266 520" stroke-linecap="round"/>
-      <line class="rama arq-llave" x1="269" y1="451" x2="277" y2="451"/><line class="rama arq-llave" x1="269" y1="467" x2="277" y2="467"/><line class="rama arq-llave" x1="269" y1="483" x2="277" y2="483"/><line class="rama arq-llave" x1="269" y1="499" x2="277" y2="499"/><line class="rama arq-llave" x1="269" y1="515" x2="277" y2="515"/>
-      <text class="pata pata--s" x="282" y="455"><tspan class="pn">Preguntarse</tspan></text>
-      <text class="pata pata--s" x="282" y="471"><tspan class="pn">Focalizar</tspan></text>
-      <text class="pata pata--s" x="282" y="487"><tspan class="pn">Grabar</tspan></text>
-      <text class="pata pata--s" x="282" y="503"><tspan class="pn">Visualizar</tspan></text>
-      <text class="pata pata--s" x="282" y="519"><tspan class="pn">Identidad</tspan></text>
+      <rect x="16" y="466" width="226" height="58" rx="8" fill="var(--mental)" filter="url(#som-n)"/>
+      <rect x="16" y="474" width="226" height="50" rx="8" fill="var(--papel)"/>
+      <svg x="29" y="482" width="29" height="29" aria-hidden="true"><use href="#i-estrella-s"/></svg>
+      <text class="nom nom--arq-inf" x="67" y="499" text-anchor="start" dominant-baseline="middle">MENTALIZACIÓN</text>
+      <path class="rama arq-llave" d="M266 441 Q260 441 260 447 L260 489 Q260 495 254 495 Q260 495 260 501 L260 542 Q260 548 266 548" stroke-linecap="round"/>
+      <line class="rama arq-llave" x1="269" y1="449" x2="277" y2="449"/><line class="rama arq-llave" x1="269" y1="465" x2="277" y2="465"/><line class="rama arq-llave" x1="269" y1="481" x2="277" y2="481"/><line class="rama arq-llave" x1="269" y1="497" x2="277" y2="497"/><line class="rama arq-llave" x1="269" y1="513" x2="277" y2="513"/><line class="rama arq-llave" x1="269" y1="529" x2="277" y2="529"/><line class="rama arq-llave" x1="269" y1="545" x2="277" y2="545"/>
+      <text class="pata pata--s" x="282" y="453"><tspan class="pn">Preguntarse</tspan></text>
+      <text class="pata pata--s" x="282" y="469"><tspan class="pn">Focalizar</tspan></text>
+      <text class="pata pata--s" x="282" y="485"><tspan class="pn">Grabar</tspan></text>
+      <text class="pata pata--s" x="282" y="501"><tspan class="pn">Visualizar</tspan></text>
+      <text class="pata pata--s" x="282" y="517"><tspan class="pn">Identidad</tspan></text>
+      <text class="pata pata--s" x="282" y="533"><tspan class="pn">Filtros</tspan></text>
+      <text class="pata pata--s" x="282" y="549"><tspan class="pn">Enfoques</tspan></text>
 
-      <rect x="16" y="540" width="226" height="58" rx="8" fill="var(--operar)" filter="url(#som-n)"/>
-      <rect x="16" y="548" width="226" height="50" rx="8" fill="var(--papel)"/>
-      <svg x="27" y="556" width="34" height="34" aria-hidden="true"><use href="#i-estrella-s"/></svg>
-      <text class="nom nom--arq-inf" x="70" y="573" text-anchor="start" dominant-baseline="middle">OPERACIÓN</text>
-      <path class="rama arq-llave" d="M266 553 Q260 553 260 559 L260 567 Q260 573 254 573 Q260 573 260 579 L260 582 Q260 588 266 588" stroke-linecap="round"/>
-      <line class="rama arq-llave" x1="269" y1="561" x2="277" y2="561"/><line class="rama arq-llave" x1="269" y1="583" x2="277" y2="583"/>
-      <text class="pata" x="282" y="565"><tspan class="pn">Procesar</tspan></text>
-      <text class="pata" x="282" y="587"><tspan class="pn">Proceder</tspan></text>
+      <rect x="16" y="552" width="226" height="58" rx="8" fill="var(--operar)" filter="url(#som-n)"/>
+      <rect x="16" y="560" width="226" height="50" rx="8" fill="var(--papel)"/>
+      <svg x="27" y="568" width="34" height="34" aria-hidden="true"><use href="#i-estrella-p"/></svg>
+      <text class="nom nom--arq-inf" x="70" y="585" text-anchor="start" dominant-baseline="middle">OPERACIÓN</text>
+      <path class="rama arq-llave" d="M266 565 Q260 565 260 571 L260 579 Q260 585 254 585 Q260 585 260 591 L260 594 Q260 600 266 600" stroke-linecap="round"/>
+      <line class="rama arq-llave" x1="269" y1="573" x2="277" y2="573"/><line class="rama arq-llave" x1="269" y1="595" x2="277" y2="595"/>
+      <text class="pata" x="282" y="577"><tspan class="pn">Procesar</tspan></text>
+      <text class="pata" x="282" y="599"><tspan class="pn">Proceder</tspan></text>
 
-      <rect x="16" y="616" width="226" height="58" rx="8" fill="var(--tiza-suave)" filter="url(#som-n)"/>
-      <rect x="16" y="624" width="226" height="50" rx="8" fill="var(--papel)"/>
-      <svg class="ico-cal-mapa" x="28" y="632" width="31" height="31" aria-hidden="true"><use href="#i-calibracion"/></svg>
-      <text class="nom nom--arq-inf" x="67" y="649" text-anchor="start" dominant-baseline="middle">CALIBRACIÓN</text>
-      <path class="rama arq-llave" d="M266 629 Q260 629 260 635 L260 647 Q260 653 254 653 Q260 653 260 659 L260 670 Q260 676 266 676" stroke-linecap="round"/>
-      <line class="rama arq-llave" x1="269" y1="643" x2="277" y2="643"/><line class="rama arq-llave" x1="269" y1="667" x2="277" y2="667"/>
-      <text class="pata" x="282" y="647"><tspan class="pn">Presencia</tspan></text>
-      <text class="pata" x="282" y="671"><tspan class="pn">Activación</tspan></text>
+      <rect x="16" y="638" width="226" height="58" rx="8" fill="var(--regulacion)" filter="url(#som-n)"/>
+      <rect x="16" y="646" width="226" height="50" rx="8" fill="var(--papel)"/>
+      <svg class="ico-cal-mapa" x="28" y="654" width="31" height="31" aria-hidden="true"><use href="#i-calibracion"/></svg>
+      <text class="nom nom--arq-inf" x="67" y="671" text-anchor="start" dominant-baseline="middle">REGULACIÓN</text>
+      <path class="rama arq-llave" d="M266 651 Q260 651 260 657 L260 669 Q260 675 254 675 Q260 675 260 681 L260 692 Q260 698 266 698" stroke-linecap="round"/>
+      <line class="rama arq-llave" x1="269" y1="665" x2="277" y2="665"/><line class="rama arq-llave" x1="269" y1="689" x2="277" y2="689"/>
+      <text class="pata" x="282" y="669"><tspan class="pn">Presencia</tspan></text>
+      <text class="pata" x="282" y="693"><tspan class="pn">Activación</tspan></text>
 
+      </g>
       <rect class="cab" x="396" y="88" width="298" height="44" rx="7"/>
       <text class="titc" x="545" y="118" text-anchor="middle">PROCESO DIARIO</text>
       <rect x="398" y="138" width="294" height="70" rx="8" fill="var(--proceso)" filter="url(#som-n)"/>
       <rect x="398" y="147" width="294" height="61" rx="8" fill="var(--papel)"/>
-      <text class="nom" x="535.0" y="176" text-anchor="middle">COMENZAR</text>
-      <text class="clave" x="535.0" y="198" text-anchor="middle">El impulso · ponerme en marcha</text>
+      <text class="nom" x="545" y="176" text-anchor="middle">COMENZAR</text>
+      <text class="clave" x="545" y="198" text-anchor="middle">El impulso · ponerme en marcha</text>
       <path class="rama" d="M401 221 L401 300"/>
       <path class="rama" d="M401 228 L410 228"/>
       <path class="rama" d="M401 246 L410 246"/>
-      <path class="rama" d="M401 264 L410 264"/>
+      <path class="rama" d="M401 264 L414 264"/>
       <path class="rama" d="M401 300 L410 300"/>
       <text class="pata" x="417" y="232"><tspan class="pn">Primera tarea</tspan> · Cama</text>
-      <text class="pata" x="417" y="250"><tspan class="pn">Calibración</tspan> · Presencia + activación</text>
+      <text class="pata" x="417" y="250"><tspan class="pn">Regulación</tspan> · Presencia + activación</text>
       <text class="pata" x="417" y="268"><tspan class="pn">Rezar</tspan></text>
       <g class="rezo-mapa-pareja">
-        <text class="pata" x="458" y="268">Agradecer + Preguntarse</text>
-        <text class="pata" x="458" y="286">Pedir + Comprometerse</text>
+        <text class="pata" x="454" y="268">Agradecer + Preguntarse</text>
+        <text class="pata" x="454" y="286">Pedir + Comprometerse</text>
       </g>
       <text class="pata" x="417" y="304"><tspan class="pn">Avance</tspan> · Mentalización + planeamiento</text>
-      <polygon points="535,324 528,316 542,316" fill="var(--tiza-suave)"/>
-      <rect x="398" y="334" width="294" height="70" rx="8" fill="var(--proceso)" filter="url(#som-n)"/>
-      <rect x="398" y="343" width="294" height="61" rx="8" fill="var(--papel)"/>
-      <text class="nom" x="535.0" y="372" text-anchor="middle">FUNCIONAR</text>
-      <text class="clave" x="535.0" y="394" text-anchor="middle">Avanzar durante el día</text>
-      <path class="rama" d="M401 417 L401 532"/>
-      <path class="rama" d="M401 424 L410 424"/>
-      <path class="rama" d="M401 451 L410 451"/>
-      <path class="rama" d="M401 478 L410 478"/>
-      <path class="rama" d="M401 496 L410 496"/>
-      <path class="rama" d="M401 514 L410 514"/>
-      <path class="rama" d="M401 532 L410 532"/>
-      <text class="pata pata--s" x="417" y="426"><tspan class="pn">Áreas</tspan> · Proyectos y propósitos<tspan x="417" dy="13">Foco continuo y diario · medio/largo plazo</tspan></text>
-      <text class="pata pata--s" x="417" y="453"><tspan class="pn">Pilares</tspan> · Aspectos de mi personalidad<tspan x="417" dy="13">Foco continuo y diario · medio/largo plazo</tspan></text>
-      <text class="pata" x="417" y="482"><tspan class="pn">Prácticas</tspan> · Paquete de entrenamientos</text>
-      <text class="pata" x="417" y="500"><tspan class="pn">Técnicas</tspan> · Manuales de instrucciones</text>
-      <text class="pata" x="417" y="518"><tspan class="pn">Listas mentales</tspan> · Recordatorios</text>
-      <text class="pata" x="417" y="536"><tspan class="pn">Retos</tspan> · Desafíos diarios</text>
-      <polygon points="535,546 528,538 542,538" fill="var(--tiza-suave)"/>
-      <rect x="398" y="548" width="294" height="70" rx="8" fill="var(--proceso)" filter="url(#som-n)"/>
-      <rect x="398" y="557" width="294" height="61" rx="8" fill="var(--papel)"/>
-      <text class="nom" x="535.0" y="586" text-anchor="middle">TERMINAR</text>
-      <text class="clave" x="535.0" y="608" text-anchor="middle">Cerrar · dejar listo</text>
-      <path class="rama" d="M401 631 L401 710"/>
-      <path class="rama" d="M401 638 L410 638"/>
-      <path class="rama" d="M401 674 L410 674"/>
-      <path class="rama" d="M401 692 L410 692"/>
-      <path class="rama" d="M401 710 L410 710"/>
-      <text class="pata" x="417" y="642"><tspan class="pn">Repaso mental</tspan> · LLAA + mejoras</text>
-      <text class="pata" x="531" y="660" text-anchor="middle">+ Logros + Recuerdos</text>
-      <text class="pata" x="417" y="678"><tspan class="pn">Preparación</tspan> · Dejar listo</text>
-      <text class="pata" x="417" y="696"><tspan class="pn">Calibración</tspan> · Presencia</text>
-      <text class="pata" x="417" y="714"><tspan class="pn">Rezar</tspan></text>
+      <polygon points="545,330 538,322 552,322" fill="var(--tiza-suave)"/>
+      <rect x="398" y="348" width="294" height="70" rx="8" fill="var(--proceso)" filter="url(#som-n)"/>
+      <rect x="398" y="357" width="294" height="61" rx="8" fill="var(--papel)"/>
+      <text class="nom" x="545" y="386" text-anchor="middle">FUNCIONAR</text>
+      <text class="clave" x="545" y="408" text-anchor="middle">Avanzar durante el día</text>
+      <path class="rama" d="M401 435 L401 553"/>
+      <path class="rama" d="M401 442 L410 442"/>
+      <path class="rama" d="M401 472 L410 472"/>
+      <path class="rama" d="M401 553 L410 553"/>
+      <path class="rama" d="M401 499 L410 499"/>
+      <path class="rama" d="M401 517 L410 517"/>
+      <path class="rama" d="M401 535 L410 535"/>
+      <text class="pata pata--s" x="417" y="444"><tspan class="pn">Áreas</tspan> · Proyectos y propósitos<tspan x="417" dy="13">Foco continuo y diario · medio/largo plazo</tspan></text>
+      <text class="pata pata--s" x="417" y="474"><tspan class="pn">Pilares</tspan> · Aspectos de mi personalidad<tspan x="417" dy="13">Foco continuo y diario · medio/largo plazo</tspan></text>
+      <text class="pata" x="417" y="503"><tspan class="pn">Prácticas</tspan> · Paquete de entrenamientos</text>
+      <text class="pata" x="417" y="521"><tspan class="pn">Técnicas</tspan> · Manuales de instrucciones</text>
+      <text class="pata" x="417" y="539"><tspan class="pn">Listas mentales</tspan> · Recordatorios</text>
+      <text class="pata" x="417" y="557"><tspan class="pn">Retos</tspan> · Desafíos diarios</text>
+      <polygon points="545,579 538,571 552,571" fill="var(--tiza-suave)"/>
+      <rect x="398" y="590" width="294" height="70" rx="8" fill="var(--proceso)" filter="url(#som-n)"/>
+      <rect x="398" y="599" width="294" height="61" rx="8" fill="var(--papel)"/>
+      <text class="nom" x="545" y="628" text-anchor="middle">TERMINAR</text>
+      <text class="clave" x="545" y="650" text-anchor="middle">Cerrar · dejar listo</text>
+      <path class="rama" d="M401 675 L401 754"/>
+      <path class="rama" d="M401 682 L410 682"/>
+      <path class="rama" d="M401 718 L410 718"/>
+      <path class="rama" d="M401 736 L410 736"/>
+      <path class="rama" d="M401 754 L414 754"/>
+      <text class="pata" x="417" y="688"><tspan class="pn">Repaso mental</tspan></text>
+      <g class="repaso-mapa-pareja">
+        <text class="pata" x="520" y="688">LLAA y mejoras</text>
+        <text class="pata" x="520" y="706">+ Logros + Recuerdos</text>
+      </g>
+      <text class="pata" x="417" y="722"><tspan class="pn">Preparación</tspan> · Dejar listo</text>
+      <text class="pata" x="417" y="740"><tspan class="pn">Regulación</tspan> · Presencia</text>
+      <text class="pata" x="417" y="758"><tspan class="pn">Rezar</tspan></text>
       <g class="rezo-mapa-pareja">
-        <text class="pata" x="458" y="714">Agradecer + Preguntarse</text>
-        <text class="pata" x="458" y="732">Pedir + Comprometerse</text>
+        <text class="pata" x="454" y="758">Agradecer + Preguntarse</text>
+        <text class="pata" x="454" y="776">Pedir + Comprometerse</text>
       </g>
 
       <path d="M363 110 L380 110" stroke="var(--tiza-suave)" stroke-width="3.4" stroke-linecap="round" fill="none"/>
@@ -1037,51 +1261,135 @@ details[open]>summary .abre{transform:rotate(45deg)}
 
   </header>
 
+
   <!-- ============ CAPA I ============ -->
   <section class="capa" id="arquitectura">
-    <div class="capa-cab"><svg class="galon"><use href="#i-galon"/></svg><h2>Arquitectura Interior</h2><span class="regla"></span></div>
+    <div class="capa-cab"><svg class="galon"><use href="#i-galon"/></svg><h2>Arquitectura</h2><span class="regla"></span></div>
     <p class="ley">Qué cultivo · cómo lo entreno</p>
 
-    <div class="dims dims--superior">
 
-      <div class="plano">
-        <h3>Qué cultivo</h3>
-        <span class="sub">Mirada · Actitud · Estado — cómo veo, respondo y estoy</span>
+    <div class="plano plano--modelo"><h3>Modelo del Ser</h3><span class="sub">Mapa de la vida</span></div>
+
+    <details class="modelo-esfera" id="modelo-esfera">
+      <summary><svg class="modelo-esfera-ico modelo-esfera-ico--mapa" viewBox="-7 0 56 38" aria-hidden="true">
+  <path d="M0 9 Q-5 19 0 29" fill="none" stroke="#8596B0" stroke-width="5" stroke-linecap="round" opacity=".16"/>
+  <path d="M42 9 Q47 19 42 29" fill="none" stroke="#8596B0" stroke-width="5" stroke-linecap="round" opacity=".16"/>
+  <circle cx="21" cy="19" r="17" fill="rgba(195,204,230,.08)" stroke="#22406F" stroke-width="1.45"/>
+  <ellipse cx="21" cy="19" rx="6.5" ry="16.5" fill="none" stroke="#22406F" stroke-width=".7" opacity=".12"/>
+  <ellipse cx="21" cy="19" rx="16.5" ry="5.2" fill="none" stroke="#22406F" stroke-width=".7" opacity=".10"/>
+  <circle cx="21" cy="19" r="4.2" fill="#9AA9C3" stroke="#22406F" stroke-width=".9"/>
+  <path d="M21 14.8 L21 3.5 L18.8 6.6 M21 3.5 L23.2 6.6" fill="none" stroke="#22406F" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M17.4 21.3 L6.5 28.4 L10.2 28.1 M6.5 28.4 L8.1 25.0" fill="none" stroke="#22406F" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M24.6 21.3 L35.5 28.4 L31.8 28.1 M35.5 28.4 L33.9 25.0" fill="none" stroke="#22406F" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+</svg><span><strong>SER · ENTORNO · ELEMENTOS</strong></span><span class="mas" aria-hidden="true">+</span></summary>
+      <div class="modelo-esfera-body esfera-body">
+        <figure class="esfera-figura">
+          <div class="esfera-viewport" id="esfera-lienzo" tabindex="0" role="region" aria-label="Dibujo del Modelo del Ser; desplazable horizontalmente al ampliar">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 1000" width="760" height="1000" role="img" aria-labelledby="esf151-t esf151-d" font-family="'Avenir Next','Karla','Helvetica Neue',Arial,sans-serif" class="esfera-ilustracion">
+  <title id="esf151-t">Modelo del Ser</title>
+  <desc id="esf151-d">Representación simbólica aportada por Javi: núcleo central, ejes Mente, Cuerpo y Emociones; Mirada hacia dentro, Actitud hacia fuera y Estado en el interior. Mentalización se enlaza en el centro, Operación cruza la superficie y retorna, Calibración se dibuja mediante anillos. El entorno queda fuera. Los rótulos con interrogantes continúan en estudio.</desc>
+  <defs>
+    <marker id="esf151-ah-t" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M1.5 1.5 L8.5 5 L1.5 8.5" fill="none" stroke="#22406F" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></marker>
+    <marker id="esf151-ah-g" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M1.5 1.5 L8.5 5 L1.5 8.5" fill="none" stroke="#3FBF6E" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></marker>
+    <marker id="esf151-ah-o" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M1.5 1.5 L8.5 5 L1.5 8.5" fill="none" stroke="#F4A261" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></marker>
+    <marker id="esf151-ah-c" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M1.5 1.5 L8.5 5 L1.5 8.5" fill="none" stroke="#38BDF8" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></marker>
+    <marker id="esf151-ah-y" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M1.5 1.5 L8.5 5 L1.5 8.5" fill="none" stroke="#E3B341" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></marker>
+    <marker id="esf151-ah-p" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M1.5 1.5 L8.5 5 L1.5 8.5" fill="none" stroke="#E85D9E" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></marker>
+    <radialGradient id="esf151-sph" cx="0.36" cy="0.30" r="0.78"><stop offset="0" stop-color="#FFFFFF"/><stop offset="0.55" stop-color="#F2F6FC"/><stop offset="1" stop-color="#C5D3E8"/></radialGradient>
+    <radialGradient id="esf151-nuc" cx="0.38" cy="0.32" r="0.75"><stop offset="0" stop-color="#EEF3FA"/><stop offset="1" stop-color="#8FA6C9"/></radialGradient>
+    <g id="esf151-eje">
+      <line x1="380" y1="424" x2="380" y2="284" stroke="#22406F" stroke-width="3" stroke-linecap="round" marker-end="url(#esf151-ah-t)"/>
+      <ellipse cx="380" cy="280" rx="12" ry="60" fill="none" stroke="#F4A261" stroke-width="2.4"/><polygon points="368,287 363,277 373,277" fill="#F4A261"/><polygon points="392,273 387,283 397,283" fill="#F4A261"/>
+      <ellipse cx="380" cy="355" rx="30" ry="9" fill="none" stroke="#8596B0" stroke-width="1.8"/>
+      <ellipse cx="380" cy="335" rx="28" ry="8" fill="none" stroke="#8596B0" stroke-width="1.8"/>
+      <ellipse cx="380" cy="315" rx="26" ry="7" fill="none" stroke="#8596B0" stroke-width="1.8"/>
+    </g>
+  </defs>
+  <rect x="0" y="0" width="760" height="1000" rx="18" fill="#FFFBEB"/>
+  <text x="380" y="52" text-anchor="middle" font-size="34" font-weight="700" fill="#22406F" letter-spacing="2">MODELO DEL SER</text>
+  <text x="380" y="82" text-anchor="middle" font-size="15" fill="#22406F" opacity=".86"><tspan x="380">La vida no es ir de A a B: convertirme en la persona que quiero</tspan><tspan x="380" dy="21">y construir el entorno que quiero.</tspan></text>
+  
+  <!-- El entorno se representa como un halo exterior parcial: rodea al ser sin crear una segunda esfera. -->
+  <path d="M280 189 Q380 139 480 189" fill="none" stroke="#C3CCE6" stroke-width="30" stroke-linecap="round" opacity=".18"/>
+  <path d="M280 189 Q380 139 480 189" fill="none" stroke="#8596B0" stroke-width="1.2" stroke-linecap="round" opacity=".18"/>
+  <text x="380" y="143" text-anchor="middle" font-size="20" font-weight="800" fill="#54689A" opacity=".9" letter-spacing="4">ENTORNO</text>
+  <circle cx="380" cy="470" r="190" fill="url(#esf151-sph)" stroke="#22406F" stroke-width="2.6"/>
+  <!-- Líneas de volumen muy ligeras: sugieren esfera sin competir con los ejes. -->
+  <ellipse cx="380" cy="470" rx="72" ry="188" fill="none" stroke="#22406F" stroke-width="1.1" opacity=".10"/>
+  <ellipse cx="380" cy="470" rx="188" ry="58" fill="none" stroke="#22406F" stroke-width="1.1" opacity=".08"/>
+  <!-- Eco exterior inferior: recuerda que el entorno rodea al ser sin cerrar otra esfera. -->
+  <path d="M286 694 Q380 738 474 694" fill="none" stroke="#C3CCE6" stroke-width="24" stroke-linecap="round" opacity=".11"/>
+  <path d="M286 694 Q380 738 474 694" fill="none" stroke="#8596B0" stroke-width="1.1" stroke-linecap="round" opacity=".14"/>
+  
+  
+  
+  
+  
+  
+  
+  <circle cx="380" cy="470" r="46" fill="url(#esf151-nuc)" stroke="#22406F" stroke-width="1.6"/>
+  <use href="#esf151-eje"/>
+  <use href="#esf151-eje" transform="rotate(240 380 470) translate(380 470) scale(1 0.9) translate(-380 -470)"/>
+  <use href="#esf151-eje" transform="rotate(120 380 470) translate(380 470) scale(1 0.9) translate(-380 -470)"/>
+  <path d="M369.9 453.9 C363.5 415.6 366.8 339.4 380.0 334.0 C393.2 339.4 396.5 415.6 390.1 453.9 A19 19 0 0 0 369.9 486.1 A19 19 0 0 0 390.1 453.9 A21.0 21.0 0 0 0 367.8 489.5 C346.0 508.7 285.2 540.0 274.3 531.0 C272.0 517.1 329.5 480.1 357.0 469.2 A23 23 0 0 0 403.0 470.8 A23 23 0 0 0 357.0 469.2 A25.0 25.0 0 0 0 407.0 470.9 C430.5 480.1 488.0 517.1 485.7 531.0 C474.8 540.0 414.0 508.7 392.7 493.8 A27 27 0 0 0 367.3 446.2 A27 27 0 0 0 392.7 493.8 A23.0 23.0 0 0 0 371.1 453.2 Z" fill="none" stroke="#3FBF6E" stroke-width="2.8" stroke-linejoin="round" stroke-linecap="round"/><polygon points="392.3,379.9 387.2,369.3 395.4,368.6" fill="#3FBF6E"/><polygon points="303.8,499.4 297.4,509.3 292.5,502.7" fill="#3FBF6E"/><polygon points="443.8,521.7 455.5,522.1 452.3,529.8" fill="#3FBF6E"/>
+  <circle cx="380" cy="470" r="3.2" fill="#22406F"/>
+  <text x="380" y="535" text-anchor="middle" font-size="10.5" font-weight="700" fill="#22406F" letter-spacing="1" opacity=".9">NÚCLEO</text>
+  <!-- Los tres ejes usan una tipografía propia para separarlos visualmente de ENTORNO y de RECIBIR/ENTREGAR. -->
+  <text x="380" y="208" text-anchor="middle" font-size="19" font-weight="850" fill="#22406F" letter-spacing="1.2">MENTE</text>
+  <text x="118" y="604" text-anchor="middle" font-size="19" font-weight="850" fill="#22406F" letter-spacing="1.2">CUERPO</text>
+  <text x="642" y="604" text-anchor="middle" font-size="19" font-weight="850" fill="#22406F" letter-spacing="1.2">EMOCIONES</text>
+  <!-- RECIBIR queda entre los dos orígenes; ambas trayectorias apuntan exactamente al centro del núcleo. -->
+  <text x="160" y="313" text-anchor="middle" font-size="16" font-weight="700" fill="#0E7490" letter-spacing="2">RECIBIR</text>
+  <line x1="174" y1="334" x2="289.9" y2="410.5" stroke="#38BDF8" stroke-width="3" stroke-linecap="round" marker-end="url(#esf151-ah-c)"/>
+  <line x1="205" y1="292" x2="304.3" y2="393.0" stroke="#38BDF8" stroke-width="3" stroke-linecap="round" marker-end="url(#esf151-ah-c)"/>
+  <!-- Mirada sube al hueco limpio entre las entradas y el núcleo. -->
+  <svg x="296" y="397" width="36" height="20" viewBox="0 0 449 247" aria-hidden="true"><use href="#i-mirada-actual"/></svg>
+  <text x="314" y="431" text-anchor="middle" font-size="14" font-weight="700" fill="#0E7490">Mirada</text>
+  <text x="314" y="447" text-anchor="middle" font-size="11.5" fill="#0E7490">(Percibir)</text>
+
+  <!-- ENTREGAR horizontal: la dirección la expresan las flechas, no el rótulo. -->
+  <text x="625" y="365" text-anchor="middle" font-size="16" font-weight="700" fill="#B45309" letter-spacing="2">ENTREGAR</text>
+  <!-- Dos salidas radiales y armónicas; sus prolongaciones atraviesan el centro del núcleo. -->
+  <line x1="486.1" y1="400.1" x2="628.0" y2="306.5" stroke="#E3B341" stroke-width="3" stroke-linecap="round" marker-end="url(#esf151-ah-y)"/>
+  <line x1="470.7" y1="381.1" x2="592.2" y2="262.2" stroke="#E3B341" stroke-width="3" stroke-linecap="round" marker-end="url(#esf151-ah-y)"/>
+  <!-- Actitud se desplaza a la izquierda y queda visualmente por encima de la órbita de Estado. -->
+  <svg x="444" y="382" width="27" height="33" viewBox="0 0 283 342" aria-hidden="true"><use href="#i-actitud-actual"/></svg>
+  <text x="457.5" y="429" text-anchor="middle" font-size="14" font-weight="700" fill="#B45309">Actitud</text>
+
+  <!-- Estado: órbita casi cerrada, con el hueco alineado con el vector de Cuerpo. -->
+  <path d="M248.5 500.4 A135 135 0 1 1 278.1 558.6" fill="none" stroke="#E85D9E" stroke-width="2.2" stroke-dasharray="10 6" marker-end="url(#esf151-ah-p)" opacity=".9"/>
+  <!-- Indicación secundaria de circulación del Estado: pequeña y lateral. -->
+  <path d="M499 545 L506 548 L500 553" fill="none" stroke="#E85D9E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" opacity=".9"/>
+  <svg x="362" y="568" width="36" height="36" viewBox="0 0 100 100" aria-hidden="true"><use href="#i-estado-actual"/></svg>
+  <text x="380" y="622" text-anchor="middle" font-size="14" font-weight="700" fill="#BE185D" letter-spacing="1">ESTADO</text>
+  <text x="288" y="610" text-anchor="middle" font-size="20" font-weight="800" fill="#54689A" opacity=".82" letter-spacing="3.5" transform="rotate(28 288 610)">SER</text>
+  <line x1="60" y1="766" x2="700" y2="766" stroke="#22406F" stroke-width="1" opacity=".25"/>
+  <text x="380" y="792" text-anchor="middle" font-size="13" font-weight="700" fill="#22406F" opacity=".7" letter-spacing="3">LOS TRES TRABAJOS: FLUJOS DE ENERGÍA</text>
+  <circle cx="130" cy="870" r="42" fill="#FFFFFF" stroke="#22406F" stroke-width="1.6"/>
+  <circle cx="130" cy="870" r="9" fill="url(#esf151-nuc)" stroke="#22406F" stroke-width="1"/>
+  <line x1="130" y1="861" x2="130" y2="830" stroke="#22406F" stroke-width="2" stroke-linecap="round" marker-end="url(#esf151-ah-t)"/>
+  <path d="M127.6 866.2 C125.5 855.6 126.4 835.4 130.0 834.0 C133.6 835.4 134.5 855.6 132.4 866.2 A4.5 4.5 0 0 0 127.6 873.8 A4.5 4.5 0 0 0 132.4 866.2 A5.0 5.0 0 0 0 127.1 874.7 C121.2 880.3 105.2 888.5 102.3 886.0 C101.6 882.2 116.7 872.5 124.5 869.8 A5.5 5.5 0 0 0 135.5 870.2 A5.5 5.5 0 0 0 124.5 869.8 A6.0 6.0 0 0 0 136.5 870.2 C143.3 872.5 158.4 882.2 157.7 886.0 C154.8 888.5 138.8 880.3 133.1 875.7 A6.5 6.5 0 0 0 126.9 864.3 A6.5 6.5 0 0 0 133.1 875.7 A5.5 5.5 0 0 0 127.9 866.0 Z" fill="none" stroke="#3FBF6E" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"/><polygon points="133.4,847.1 131.2,842.5 134.8,842.2" fill="#3FBF6E"/><polygon points="110.8,877.1 108.0,881.4 105.8,878.5" fill="#3FBF6E"/><polygon points="145.8,883.2 150.9,883.5 149.5,886.8" fill="#3FBF6E"/><circle cx="130" cy="870" r="2" fill="#22406F"/>
+  <text x="130" y="934" text-anchor="middle" font-size="14" font-weight="700" fill="#15803D" letter-spacing="1">MENTALIZACIÓN</text>
+  <circle cx="380" cy="870" r="42" fill="#FFFFFF" stroke="#22406F" stroke-width="1.6"/>
+  <circle cx="380" cy="870" r="9" fill="url(#esf151-nuc)" stroke="#22406F" stroke-width="1"/>
+  <line x1="380" y1="861" x2="380" y2="830" stroke="#22406F" stroke-width="2" stroke-linecap="round" marker-end="url(#esf151-ah-t)"/>
+  <ellipse cx="380" cy="828" rx="6" ry="24" fill="none" stroke="#F4A261" stroke-width="2"/><polygon points="374,833.5 370.5,826.5 377.5,826.5" fill="#F4A261"/><polygon points="386,822.5 382.5,829.5 389.5,829.5" fill="#F4A261"/>
+  <text x="380" y="934" text-anchor="middle" font-size="14" font-weight="700" fill="#C2410C" letter-spacing="1">OPERACIÓN</text>
+  <circle cx="630" cy="870" r="42" fill="#FFFFFF" stroke="#22406F" stroke-width="1.6"/>
+  <circle cx="630" cy="870" r="9" fill="url(#esf151-nuc)" stroke="#22406F" stroke-width="1"/>
+  <line x1="630" y1="861" x2="630" y2="830" stroke="#22406F" stroke-width="2" stroke-linecap="round" marker-end="url(#esf151-ah-t)"/>
+  <!-- Regulación: órbita horizontal de perfil con punta equivalente a Operación. -->
+  <path d="M610 848 C610 845.2 619 843.2 630 843.2 C641 843.2 650 845.2 650 848 C650 850.8 641 852.8 630 852.8 C619 852.8 610 850.8 610 848" fill="none" stroke="#8596B0" stroke-width="1.8" stroke-linecap="round"/>
+  <polygon points="646.1280,845.1008 638.3904,846.2750 640.5460,839.6152" fill="#8596B0"/>
+  <text x="630" y="934" text-anchor="middle" font-size="14" font-weight="700" fill="#475569" letter-spacing="1">REGULACIÓN</text>
+  </svg>
+          </div>
+        </figure>
       </div>
-
-      <!-- ===================== MIRADA ===================== -->
-      <details class="dim dim--mirada" id="mirada">
-        <summary>
-          <div class="dim-cab">
-            <svg class="ico"><use href="#i-mirada-actual"/></svg>
-            <h3>Mirada</h3>
-            <span class="abre">+</span>
-          </div>
-          <p class="eyebrow">Cómo veo — con qué filtros y enfoques interpreto lo que vivo</p>
-        </summary>
-        <div class="dim-body">
-
-        <details class="arq-apartado" id="mirada-filtro">
-          <summary>
-            <h4><span class="arq-nombre c-mirada">Filtros</span><span class="mas" aria-hidden="true">+</span></h4>
-            <span class="arq-glosa">¿Con qué lente miro y cómo percibo las cosas?</span>
-          </summary>
-          <div class="arq-contenido">
-<details class="concepto concepto--icono" id="mirada-contemplacion"><summary><svg class="filtro-ico" aria-hidden="true"><use href="#i-ojo"/></svg><span>Contemplación</span><span class="mas">+</span></summary>
-            <div class="def"><b>Mirar lo que hay antes de juzgarlo.</b> Observar, absorber y conectar antes de interpretar. Primero la realidad; después, si hace falta, comparación y análisis.</div></details>
-<details class="concepto concepto--icono"><summary><svg class="filtro-ico" aria-hidden="true"><use href="#i-manos"/></svg><span>Agradecer</span><span class="mas">+</span></summary>
-            <div class="def">Valorar lo que se tiene: <b>el gimnasio de la mirada</b>.</div></details>
-<details class="concepto concepto--icono"><summary><svg class="filtro-ico filtro-ico--sol" aria-hidden="true"><use href="#i-sol"/></svg><span>Abundancia</span><span class="mas">+</span></summary>
-            <div class="def">Mirar primero <b>lo que hay y lo que permite</b>; la escasez mira primero lo que falta.</div></details>
-          </div>
-        </details>
-
-        <details class="arq-apartado" id="mirada-proposito">
-          <summary>
-            <h4><span class="arq-nombre c-mirada">Cadena de propósito</span><span class="mas" aria-hidden="true">+</span></h4>
-            <span class="arq-glosa">Del sentido a lo que hago.</span>
-          </summary>
-          <div class="arq-contenido">
+        <div class="modelo-elementos-integrados" aria-label="Cadena de propósito e Integración de creencias">
+          <div class="modelo-separador"></div>
+          <section class="modelo-elemento-seccion" id="mirada-proposito" aria-labelledby="modelo-proposito-titulo">
+            <div class="plano modelo-elemento-cab"><h3 id="modelo-proposito-titulo">Cadena de propósito</h3></div>
             <div class="cadena-proposito cadena-proposito--papel" role="group" aria-label="Cadena de propósito: sentido, objetivos, tareas. De arriba abajo se construye; de abajo arriba se comprueba.">
               <div class="cp-fila">
                 <div class="cp-nodo"><b>SENTIDO</b><span>para qué<small>(Preguntarse)</small></span></div>
@@ -1091,95 +1399,56 @@ details[open]>summary .abre{transform:rotate(45deg)}
                 <div class="cp-nodo"><b>TAREAS</b><span>qué hago<small>(Planeamiento)</small></span></div>
               </div>
               <div class="cp-regla"><span>Construir →</span><span>← Comprobar: ¿para qué?</span></div>
+              <div class="modelo-capas-mini modelo-capas-mini--proposito" role="img" aria-label="Cadena de propósito por profundidad: Sentido en el núcleo, Objetivos en la capa intermedia y Tareas en la superficie, con mentalización en circuito cerrado y operación atravesando la superficie."><svg xmlns="http://www.w3.org/2000/svg" viewBox="-15 -15 180 180" aria-hidden="true" font-family="'Avenir Next','Karla','Helvetica Neue',Arial,sans-serif"><circle cx="75" cy="75" r="58" fill="none" stroke="#E0B92E" stroke-width="2"/><circle cx="75" cy="75" r="39" fill="none" stroke="#D2A91D" stroke-width="2" opacity=".78"/><circle cx="75" cy="75" r="19" fill="rgba(255,228,97,.48)" stroke="#22406F" stroke-width="1.5"/><g class="eje-radial" transform="translate(75 75) rotate(-15)"><path class="cierre-mental" d="M21.036 2.7648 A21.217 21.217 0 1 1 21.036 -2.7648" fill="none" stroke="#3FBF6E" stroke-width="1.728" stroke-linecap="round" stroke-linejoin="round"/><line class="vector-azul" x1="19.8" y1="0" x2="64" y2="0" stroke="#22406F" stroke-width="1.5" stroke-linecap="round"/><path d="M60 -2.8 L64 0 L60 2.8" fill="none" stroke="#22406F" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><g class="flujo-mental" transform="translate(18.3 0) rotate(90) scale(0.72) translate(-130 -870)"><path d="M126.16 866.2 C122.8 857.508 124.24 840.944 130 839.796 C135.76 840.944 137.2 857.508 133.84 866.2" fill="none" stroke="#3FBF6E" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/><polygon class="punta-mental punta-mental--ida" points="124.55352,851.14534 127.05421,858.61705 120.68323,858.00834" fill="#3FBF6E"/><polygon class="punta-mental punta-mental--vuelta" points="135.02962,861.83584 133.1807,854.17676 139.47574,855.33107" fill="#3FBF6E"/></g><g class="flujo-operacion" transform="translate(51 0) rotate(90) scale(0.85) translate(-380 -828)"><ellipse cx="380" cy="828" rx="6" ry="24" fill="none" stroke="#F4A261" stroke-width="2"/><polygon points="374,833.5 370.5,826.5 377.5,826.5" fill="#F4A261"/><polygon points="386,822.5 382.5,829.5 389.5,829.5" fill="#F4A261"/></g></g><text class="rotulo-sentido" x="75" y="78" text-anchor="middle" font-size="6.6" font-weight="800" fill="#22406F">SENTIDO</text><text x="75" y="51.6" text-anchor="middle" font-size="7.8" font-weight="700" fill="#7A6110">OBJETIVOS</text><text x="75" y="29" text-anchor="middle" font-size="7.8" font-weight="700" fill="#7A6110">TAREAS</text></svg></div>
             </div>
-          </div>
-        </details>
+          </section>
+          <div class="modelo-elemento-linea"></div>
+          <section class="modelo-elemento-seccion" id="elementos-ideas" aria-labelledby="modelo-creencias-titulo">
+            <div class="plano modelo-elemento-cab"><h3 id="modelo-creencias-titulo">Integración de creencias</h3></div>
+            <div class="modelo-capas-mini modelo-capas-mini--creencias" role="img" aria-label="Integración de creencias por profundidad: Creencias en el núcleo, Convencimiento en la capa intermedia y Afirmaciones en la superficie."><svg viewBox="0 0 220 220" aria-hidden="true"><circle cx="110" cy="110" r="88" fill="rgba(155,221,144,.09)" stroke="#9BDD90" stroke-width="3"/><circle cx="110" cy="110" r="59" fill="rgba(155,221,144,.18)" stroke="#7FCB73" stroke-width="3"/><circle cx="110" cy="110" r="29" fill="rgba(155,221,144,.62)" stroke="#22406F" stroke-width="2"/><!-- Dos flechas verticales de una sola pieza: el vértice es siempre el extremo final. -->
+<path class="creencias-flecha" d="M109.3 47 A0.7 0.7 0 0 1 110.7 47 V58 H112.5 L110 63 L107.5 58 H109.3 Z" fill="#22406F" stroke="none"/>
+<path class="creencias-flecha" d="M109.3 85 A0.7 0.7 0 0 1 110.7 85 V96 H112.5 L110 101 L107.5 96 H109.3 Z" fill="#22406F" stroke="none"/>
+<text x="110" y="114" text-anchor="middle" font-size="8.8" font-weight="800" fill="#22406F">CREENCIAS</text><text x="110" y="78" text-anchor="middle" font-size="8.8" font-weight="800" fill="#22406F">CONVENCIMIENTO</text><text x="110" y="40" text-anchor="middle" font-size="8.8" font-weight="800" fill="#477A40">AFIRMACIONES</text></svg></div>
+            <p class="arq-cruce modelo-elemento-cruce">Lo trabajo en <a href="#mental-grabar">Grabar</a>.</p>
+          </section>
+        </div>
+    </details>
 
-        <details class="arq-apartado" id="mirada-enfoques">
-          <summary>
-            <h4><span class="arq-nombre c-mirada">Enfoques</span><span class="mas" aria-hidden="true">+</span></h4>
-            <span class="arq-glosa">Conjunto de filtros que aplico a una situación.</span>
-          </summary>
-          <div class="arq-contenido">
-            <details class="concepto arq-pieza" id="mirada-enfoque">
-              <summary><span class="pieza-titulo">Tarea<small>con qué ojos miro lo que toca hacer</small></span><span class="mas" aria-hidden="true">+</span></summary>
-              <div class="pieza-contenido">
-<div class="def">Cuatro lentes — y cada una vence al miedo por su lado.</div>
-            <div class="cuadrante">
-              <div class="q p--a"><div class="qcab"><svg class="qico"><use href="#i-fuego"/></svg><span class="titq">Reto · Motivación</span></div><p class="cont">vence al miedo con <b>acción</b></p></div>
-              <div class="q p--b"><div class="qcab"><svg class="qico"><use href="#i-aire"/></svg><span class="titq">Curiosidad</span></div><p class="cont">vence al miedo con <b>apertura</b></p></div>
-              <div class="q p--c"><div class="qcab"><svg class="qico"><use href="#i-tierra"/></svg><span class="titq">Aprendizaje</span></div><p class="cont">vence al miedo con <b>evolución</b></p></div>
-              <div class="q p--d"><div class="qcab"><svg class="qico"><use href="#i-agua"/></svg><span class="titq">Aportación</span></div><p class="cont">vence al miedo con <b>propósito</b></p></div>
-              <span class="centro">TAREA</span>
-            </div>
-              </div>
-            </details>
-          </div>
-        </details>
 
+    <div class="dims dims--superior">
+
+      <div class="plano">
+        <h3>Qué cultivo</h3>
+        <span class="sub">Mirada · Actitud · Estado — cómo interpreto, respondo y estoy</span>
+      </div>
+
+      <!-- ===================== MIRADA ===================== -->
+      <details class="dim dim--mirada modelo-concepto" id="mirada">
+        <summary>
+          <div class="dim-cab">
+            <svg class="ico" aria-hidden="true"><use href="#i-mirada-actual"/></svg>
+            <h3>Mirada</h3><span class="abre">+</span>
+          </div>
+          <p class="eyebrow">Recepción e interpretación — hacia dentro</p>
+        </summary>
+        <div class="modelo-texto">
+          <p>Cómo recibo e interpreto lo que vivo.<br>El entorno, mis pensamientos, mi cuerpo y mis emociones.</p>
+          <p class="arq-cruce">La trabajo con <a href="#mirada-filtro">Filtros</a> y <a href="#mirada-enfoques">Enfoques</a>, en Mentalización.</p>
         </div>
       </details>
 
       <!-- ===================== ACTITUD ===================== -->
-      <details class="dim dim--actitud" id="actitud">
+      <details class="dim dim--actitud modelo-concepto" id="actitud">
         <summary>
           <div class="dim-cab">
-            <svg class="ico"><use href="#i-actitud-actual"/></svg>
-            <h3>Actitud</h3>
-            <span class="abre">+</span>
+            <svg class="ico" aria-hidden="true"><use href="#i-actitud-actual"/></svg>
+            <h3>Actitud</h3><span class="abre">+</span>
           </div>
-          <p class="eyebrow">Disposición — cómo afronto cada situación y trato a los demás</p>
+          <p class="eyebrow">Proyección y respuesta — hacia fuera</p>
         </summary>
-        <div class="dim-body">
-
-        <div class="arq-intro"><p><b>Situaciones ante las que adopto distintas disposiciones.</b></p></div>
-
-        <details class="arq-apartado" id="actitud-accion">
-          <summary>
-            <h4><span class="arq-nombre c-actitud">Tomar acción</span><span class="mas" aria-hidden="true">+</span></h4>
-            <span class="arq-glosa">Situaciones en las que tengo que actuar</span>
-          </summary>
-          <div class="arq-contenido">
-            <p class="arq-alcance">Para trabajar, resolver y sacar adelante lo que requiere acción.<br>No define todas mis actitudes ante la vida.</p>
-<div class="cuadrante">
-            <div class="q p--b"><div class="qcab"><svg class="qico"><use href="#i-fuego"/></svg><span class="titq">① Iniciativa</span></div><span class="fn">empezar</span><p class="cont">Dar el primer paso + atreverse<br>Prontitud <i>(responder a tiempo)</i><br>+ aprovechar oportunidades<br><i>(Fuego empuja)</i></p></div>
-            <div class="q p--a"><div class="qcab"><svg class="qico"><use href="#i-aire"/></svg><span class="titq">② Resolución</span></div><span class="fn">eficiencia</span><p class="cont">Celeridad + agilidad<br>Confianza + decisión<br><i>(convertir en acción)</i><br><i>(Aire aligera)</i></p></div>
-            <div class="q p--c"><div class="qcab"><svg class="qico"><use href="#i-agua"/></svg><span class="titq">③ Esmero</span></div><span class="fn">eficacia</span><p class="cont">Foco / atención + precisión<br>Cuidado / cariño + excelencia<br><i>(Agua cuida)</i></p></div>
-            <div class="q p--d"><div class="qcab"><svg class="qico"><use href="#i-tierra"/></svg><span class="titq">④ Determinación</span></div><span class="fn">sostener</span><p class="cont">Intención + integridad<br>Compromiso + responsabilidad<br>Voluntad + disciplina<br>Constancia + no procrastinar / terminar<br><i>(Tierra sostiene)</i></p></div>
-            <span class="centro">TOMAR ACCIÓN</span>
-          </div>
-          </div>
-        </details>
-
-        <details class="arq-apartado" id="actitud-personas">
-          <summary>
-            <h4><span class="arq-nombre c-actitud">Personas</span><span class="mas" aria-hidden="true">+</span></h4>
-            <span class="arq-glosa">En el trato con los demás</span>
-          </summary>
-          <div class="arq-contenido">
-<div class="cuadrante">
-            <div class="q p--a">
-              <div class="qcab"><svg class="qico"><use href="#i-estrella"/></svg><span class="titq">Agradecer / Valorar</span></div>
-              <p class="pares">Lo que recibo<br>Lo que tienen y lo que son</p>
-            </div>
-            <div class="q p--b">
-              <div class="qcab"><svg class="qico"><use href="#i-manos"/></svg><span class="titq">Entregarse</span></div>
-              <p class="pares"><b>Ayudar + Apoyar</b><br><b>Cuidar + Prestar atención</b><br>Acordarse + Acompañar<br>Escuchar + Interesarse<br><i>(tener detalles)</i></p>
-            </div>
-            <div class="q p--c">
-              <div class="qcab"><svg class="qico"><use href="#i-ancla"/></svg><span class="titq">Ser fiel</span></div>
-              <p class="pares"><b>Lealtad + Honestidad</b><br><b>Sinceridad + Transparencia</b></p>
-            </div>
-            <div class="q p--d">
-              <div class="qcab"><svg class="qico"><use href="#i-corazon"/></svg><span class="titq">Amar</span></div>
-              <p class="pares">Afecto + Cariño<br>Empatía + Entendimiento<br>Perdón + Compasión<br>Aceptar + Acoger</p>
-            </div>
-            <span class="centro">PERSONAS</span>
-          </div>
-          </div>
-        </details>
-
-
+        <div class="modelo-texto">
+          <p>Cómo afronto cada situación y trato a los demás.<br>La disposición que expreso al responder y actuar.</p>
+          <p class="arq-cruce"><a href="#actitud-accion">Actitudes al proceder</a> · <a href="#actitud-personas">Personas</a>.</p>
         </div>
       </details>
 
@@ -1193,46 +1462,21 @@ details[open]>summary .abre{transform:rotate(45deg)}
           <p class="eyebrow">Cómo estoy — estado mental, emocional, corporal y cognitivo</p>
         </summary>
         <div class="dim-body">
-<div class="arq-intro"><p><b>Estados de referencia que quiero poder cultivar y sostener.</b></p></div>
+<div class="arq-intro"><p><b>Estados de referencia que quiero poder cultivar y sostener.</b><br>Presencia y activación pueden coexistir.</p></div>
 <details class="arq-apartado" id="estado-presencia">
           <summary>
             <h4><span class="arq-nombre c-estado">Presencia</span><span class="mas" aria-hidden="true">+</span></h4>
             <span class="arq-glosa">Conexión y conciencia · Atención y concentración</span>
           </summary>
           <div class="arq-contenido">
-            <details class="concepto" id="estado-presencia-conexion">
-              <summary>Conexión y conciencia<span class="mas">+</span></summary>
-              <div class="def">Conectar con cuerpo · mente · emociones · entorno.</div>
-              <div class="cuadrante">
-                <div class="q p--b">
-                  <div class="qcab"><svg class="qico"><use href="#i-cuerpo"/></svg><span class="titq">Cuerpo</span></div>
-                  <ul class="pares-ico">
-                    <li><svg class="mini"><use href="#i-aire"/></svg><span><b>Frente</b> · aire <i>(elevar)</i></span></li>
-                    <li><svg class="mini"><use href="#i-tierra"/></svg><span><b>Pies</b> · tierra <i>(sustentar)</i></span></li>
-                    <li><svg class="mini"><use href="#i-fuego"/></svg><span><b>Sensación</b> · fuego</span></li>
-                    <li><svg class="mini"><use href="#i-agua"/></svg><span><b>Respiración</b> · agua</span></li>
-                  </ul>
-                </div>
-                <div class="q p--c">
-                  <div class="qcab"><svg class="qico"><use href="#i-mente"/></svg><span class="titq">Mente</span></div>
-                  <p class="cont">Pensamientos<br><b>Etiquetar pensamientos</b></p>
-                </div>
-                <div class="q p--d">
-                  <div class="qcab"><svg class="qico"><use href="#i-corazon"/></svg><span class="titq">Emociones</span></div>
-                  <p class="cont"><b>Identificar emociones</b><br>Alegría + tristeza<br>Miedo + ira<br>Ansiedad + culpa<br>Calma + afecto</p>
-                </div>
-                <div class="q p--a">
-                  <div class="qcab"><svg class="qico"><use href="#i-ojo"/></svg><span class="titq">Entorno</span></div>
-                  <p class="cont"><b>Contemplar</b><br>Lugar · personas · situación</p>
-                </div>
-                <span class="centro">CONEXIÓN</span>
-              </div>
-            </details>
+            <div class="estado-faceta">
+              <p><b>Conexión y conciencia</b><br>Conectar con cuerpo · mente · emociones · entorno.</p>
+              <p class="arq-cruce"><a href="#estado-presencia-conexion">Practicar Conexión</a></p>
+            </div>
 
-            <details class="concepto" id="estado-presencia-atencion">
-              <summary>Atención y concentración<span class="mas">+</span></summary>
-              <div class="def">Elegir dónde pongo la atención.<br>Sostener el foco.<br>Volver cuando me voy.</div>
-            </details>
+            <div class="estado-faceta" id="estado-presencia-atencion">
+              <p><b>Atención y concentración</b><br>Elegir dónde pongo la atención.<br>Sostener el foco.<br>Volver cuando me voy.</p>
+            </div>
           </div>
         </details>
 <details class="arq-apartado" id="estado-activacion-cognitiva">
@@ -1255,51 +1499,56 @@ details[open]>summary .abre{transform:rotate(45deg)}
             <span class="arq-glosa">Cómo entiendo una vida plena</span>
           </summary>
           <div class="arq-contenido">
-<div class="def">Qué quiero tener presente <b>al vivirla</b>.</div>
+            <div class="def">Pasión por la vida.<br>Coherencia e integridad.<br>Disfrutar.<br>Serenidad.</div>
             <div class="cuadrante">
-            <div class="q q--fuego">
-              <div class="qcab"><svg class="qico"><use href="#i-fuego"/></svg><span class="elem">Fuego</span></div>
-              <span class="fn">que impulsa y activa</span>
-              <span class="titq">Pasión por la vida</span>
-              <p class="cont">ilusión + motivación<br>fe + curiosidad <i>(no juzgar)</i></p>
-            </div>
-            <div class="q q--tierra">
-              <div class="qcab"><svg class="qico"><use href="#i-tierra"/></svg><span class="elem">Tierra</span></div>
-              <span class="fn">que centra y sostiene</span>
-              <span class="titq">Coherencia · Integridad</span>
-              <p class="cont">fidelidad + confianza<br>verdad + intuición</p>
-            </div>
-            <div class="q q--aire">
-              <div class="qcab"><svg class="qico"><use href="#i-aire"/></svg><span class="elem">Aire</span></div>
-              <span class="fn">que expande y da ligereza</span>
-              <span class="titq">Disfrutar</span>
-              <p class="cont">alegría + fluir<br>gozar + satisfacción</p>
-            </div>
-            <div class="q q--agua">
-              <div class="qcab"><svg class="qico"><use href="#i-agua"/></svg><span class="elem">Agua</span></div>
-              <span class="fn">que sana, limpia y calma</span>
-              <span class="titq">Serenidad</span>
-              <p class="cont">soltar + perdonar<br>aceptar + compasión + amar</p>
-            </div>
-            <span class="centro">PLENITUD</span>
-          </div>
+              <div class="q q--fuego">
+                <div class="qcab"><svg class="qico"><use href="#i-fuego"/></svg><span class="elem">Fuego</span></div>
+                <span class="fn">que impulsa y activa</span>
+                <span class="titq">Pasión por la vida</span>
+                <p class="cont">ilusión + motivación<br>fe + curiosidad <i>(no juzgar)</i></p>
               </div>
+              <div class="q q--tierra">
+                <div class="qcab"><svg class="qico"><use href="#i-tierra"/></svg><span class="elem">Tierra</span></div>
+                <span class="fn">que centra y sostiene</span>
+                <span class="titq">Coherencia · Integridad</span>
+                <p class="cont">fidelidad + confianza<br>verdad + intuición</p>
+              </div>
+              <div class="q q--aire">
+                <div class="qcab"><svg class="qico"><use href="#i-aire"/></svg><span class="elem">Aire</span></div>
+                <span class="fn">que expande y da ligereza</span>
+                <span class="titq">Disfrutar</span>
+                <p class="cont">alegría + fluir<br>gozar + satisfacción</p>
+              </div>
+              <div class="q q--agua">
+                <div class="qcab"><svg class="qico"><use href="#i-agua"/></svg><span class="elem">Agua</span></div>
+                <span class="fn">que sana, limpia y calma</span>
+                <span class="titq">Serenidad</span>
+                <p class="cont">soltar + perdonar<br>aceptar + compasión + amar</p>
+              </div>
+              <span class="centro">PLENITUD</span>
+            </div>
+            <p class="arq-cruce"><a href="#mental-plenitud">Cultivar plenitud en Mentalización</a></p>
+          </div>
         </details>
         </div>
       </details>
     </div>
 
-    <div class="dims dims--herramientas">
+
+    
+
+    <div class="dims dims--herramientas" id="trabajos">
       <div class="plano">
         <h3>Cómo lo entreno</h3>
-        <span class="sub">Mentalización · Operación · Calibración — trabajo interior, acción y regulación del estado</span>
+        <span class="sub">Mentalización · Operación · Regulación</span>
+        <p class="trabajos-nota">Tres trabajos que se complementan sobre mente, cuerpo y emociones.</p>
       </div>
 
       <!-- ===================== MENTALIZACIÓN ===================== -->
       <details class="dim dim--mental" id="mentalizacion">
         <summary>
           <div class="dim-cab">
-            <svg class="ico ico--rosa"><use href="#i-estrella-p"/></svg>
+            <svg class="ico ico--rosa"><use href="#i-estrella-s"/></svg>
             <h3>Mentalización</h3>
             <span class="abre">+</span>
           </div>
@@ -1307,6 +1556,7 @@ details[open]>summary .abre{transform:rotate(45deg)}
         </summary>
         <div class="dim-body">
 
+<div class="mental-cadena-proposito"><span class="mental-cadena-etiqueta">Cadena de propósito</span>
 <details class="arq-apartado" id="mental-preguntarse">
           <summary>
             <h4><span class="arq-nombre c-mental">Preguntarse</span><span class="mas" aria-hidden="true">+</span></h4>
@@ -1327,8 +1577,8 @@ details[open]>summary .abre{transform:rotate(45deg)}
 
             <div class="cuadrante preg">
               <div class="q p--b"><p class="cont">¿Qué <b>quiero</b>, qué me <b>gusta</b> y qué no?<br>¿Qué le <b>pido</b> a la vida y qué <b>espero</b> de ella?<br>¿Qué <b>sentido</b> le doy?<br>¿Cuáles son mis <b>propósitos</b> y <b>proyectos</b>?</p></div>
-              <div class="q p--a"><p class="cont">¿Cuáles son mis <b>valores</b> y <b>principios</b>?<br>¿Cómo quiero <b>ser</b> y qué <b>cualidades</b> quiero tener?<br>¿Qué cosas quiero que me <b>definan</b>?</p></div>
-              <div class="q p--c"><p class="cont">¿Qué es <b>importante</b>?<br>¿Qué merece la pena, mi <b>esfuerzo</b> y mi <b>tiempo</b>?<br>¿Por qué y por <b>quién</b> quiero luchar?</p></div>
+              <div class="q p--a"><p class="cont">¿Cuáles son mis <b>valores</b> y <b>principios</b>?<br>¿Cómo quiero <b>ser</b> y qué <b>cualidades</b> quiero que me <b>definan</b>?</p></div>
+              <div class="q p--c"><p class="cont">¿Qué <b>cosas</b> y qué <b>personas</b> son las más importantes en mi vida?<br>¿Cuáles merecen mi <b>esfuerzo</b> y mi <b>tiempo</b>?<br>¿Por cuáles quiero y voy a <b>luchar</b>?</p></div>
               <div class="q p--d"><p class="cont">¿Qué puedo hacer para ser más <b>feliz</b>?<br>¿Qué puedo hacer para sentirme <b>bien</b>, <b>pleno</b>, <b>en paz</b>?</p></div>
               <span class="centro">PREGUNTAS</span>
             </div>
@@ -1350,7 +1600,7 @@ details[open]>summary .abre{transform:rotate(45deg)}
           </summary>
           <div class="arq-contenido">
             <div class="foco-cadena" role="group" aria-label="Cadena de propósito. En Focalizar, el centro son los objetivos.">
-              <p class="fc-titulo">Cadena de propósito</p>
+              <p class="fc-titulo"><a href="#mirada-proposito">Cadena de propósito</a></p>
               <div class="fc-fila">
                 <div class="fc-nodo"><b>SENTIDO</b><span>Para qué</span></div>
                 <span class="fc-flecha" aria-hidden="true">→</span>
@@ -1367,8 +1617,10 @@ details[open]>summary .abre{transform:rotate(45deg)}
             </div>
           </div>
         </details>
+</div>
 
-        <details class="arq-apartado" id="mental-grabar">
+        <div class="mental-integracion-creencias"><span class="mental-integracion-etiqueta">Integración de creencias</span>
+<details class="arq-apartado" id="mental-grabar">
           <summary>
             <h4><span class="arq-nombre c-mental">Grabar</span><span class="mas" aria-hidden="true">+</span></h4>
             <span class="arq-glosa">Repetirme una idea → convencerme de ella → convertirla en creencia</span>
@@ -1397,7 +1649,9 @@ details[open]>summary .abre{transform:rotate(45deg)}
             </ol>
           </div>
         </details>
+</div>
 
+        <div class="mental-inducir-actitud"><span class="mental-inducir-actitud-etiqueta">Inducir actitud</span>
         <details class="arq-apartado" id="mental-visualizar">
           <summary>
             <h4><span class="arq-nombre c-mental">Visualizar</span><span class="mas" aria-hidden="true">+</span></h4>
@@ -1440,6 +1694,120 @@ details[open]>summary .abre{transform:rotate(45deg)}
           </div>
         </details>
 
+
+        </div>
+
+        <!-- v1.5.0: grupos trasladados íntegros, sujetos a revisión de Javi. -->
+        <div class="mental-mirada-grupo"><span class="mental-mirada-etiqueta">Mirada</span>
+        <details class="arq-apartado" id="mirada-filtro">
+          <summary>
+            <h4><span class="arq-nombre c-mental">Filtros</span><span class="mas" aria-hidden="true">+</span></h4>
+            <span class="arq-glosa">¿Con qué lente miro y cómo percibo las cosas?</span>
+          </summary>
+          <div class="arq-contenido">
+<details class="concepto concepto--icono" id="mirada-contemplacion"><summary><svg class="filtro-ico" aria-hidden="true"><use href="#i-ojo"/></svg><span>Contemplación</span><span class="mas">+</span></summary>
+            <div class="def"><b>Mirar lo que hay antes de juzgarlo.</b> Observar, absorber y conectar antes de interpretar. Primero la realidad; después, si hace falta, comparación y análisis.</div></details>
+<details class="concepto concepto--icono"><summary><svg class="filtro-ico" aria-hidden="true"><use href="#i-manos"/></svg><span>Agradecer</span><span class="mas">+</span></summary>
+            <div class="def">Valorar lo que se tiene: <b>el gimnasio de la mirada</b>.</div></details>
+<details class="concepto concepto--icono"><summary><svg class="filtro-ico filtro-ico--sol" aria-hidden="true"><use href="#i-sol"/></svg><span>Abundancia</span><span class="mas">+</span></summary>
+            <div class="def">Mirar primero <b>lo que hay y lo que permite</b>; la escasez mira primero lo que falta.</div></details>
+          </div>
+        </details>
+
+        <details class="arq-apartado" id="mirada-enfoques">
+          <summary>
+            <h4><span class="arq-nombre c-mental">Enfoques</span><span class="mas" aria-hidden="true">+</span></h4>
+            <span class="arq-glosa">Conjunto de filtros que aplico a una situación.</span>
+          </summary>
+          <div class="arq-contenido">
+            <details class="concepto arq-pieza" id="mirada-enfoque">
+              <summary><span class="pieza-titulo">Tarea<small>con qué ojos miro lo que toca hacer</small></span><span class="mas" aria-hidden="true">+</span></summary>
+              <div class="pieza-contenido">
+<div class="def">Cuatro lentes — y cada una vence al miedo por su lado.</div>
+            <div class="cuadrante">
+              <div class="q p--a"><div class="qcab"><svg class="qico"><use href="#i-fuego"/></svg><span class="titq">Reto · Motivación</span></div><p class="cont">vence al miedo con <b>acción</b></p></div>
+              <div class="q p--b"><div class="qcab"><svg class="qico"><use href="#i-aire"/></svg><span class="titq">Curiosidad</span></div><p class="cont">vence al miedo con <b>apertura</b></p></div>
+              <div class="q p--c"><div class="qcab"><svg class="qico"><use href="#i-tierra"/></svg><span class="titq">Aprendizaje</span></div><p class="cont">vence al miedo con <b>evolución</b></p></div>
+              <div class="q p--d"><div class="qcab"><svg class="qico"><use href="#i-agua"/></svg><span class="titq">Aportación</span></div><p class="cont">vence al miedo con <b>propósito</b></p></div>
+              <span class="centro">TAREA</span>
+            </div>
+              </div>
+            </details>
+          
+<details class="arq-apartado" id="actitud-personas">
+          <summary>
+            <h4><span class="arq-nombre c-mental">Personas</span><span class="mas" aria-hidden="true">+</span></h4>
+            <span class="arq-glosa">En el trato con los demás</span>
+          </summary>
+          <div class="arq-contenido">
+<div class="cuadrante">
+            <div class="q p--a">
+              <div class="qcab"><svg class="qico"><use href="#i-estrella"/></svg><span class="titq">Agradecer / Valorar</span></div>
+              <p class="pares">Lo que recibo<br>Lo que tienen y lo que son</p>
+            </div>
+            <div class="q p--b">
+              <div class="qcab"><svg class="qico"><use href="#i-manos"/></svg><span class="titq">Entregarse</span></div>
+              <p class="pares"><b>Ayudar + Apoyar</b><br><b>Cuidar + Prestar atención</b><br>Acordarse + Acompañar<br>Escuchar + Interesarse<br><i>(tener detalles)</i></p>
+            </div>
+            <div class="q p--c">
+              <div class="qcab"><svg class="qico"><use href="#i-ancla"/></svg><span class="titq">Ser fiel</span></div>
+              <p class="pares"><b>Lealtad + Honestidad</b><br><b>Sinceridad + Transparencia</b></p>
+            </div>
+            <div class="q p--d">
+              <div class="qcab"><svg class="qico"><use href="#i-corazon"/></svg><span class="titq">Amar</span></div>
+              <p class="pares">Afecto + Cariño<br>Empatía + Entendimiento<br>Perdón + Compasión<br>Aceptar + Acoger</p>
+            </div>
+            <span class="centro">PERSONAS</span>
+          </div>
+          </div>
+        </details>
+<details class="arq-apartado" id="mental-plenitud">
+          <summary>
+            <h4><span class="arq-nombre c-mental">Plenitud</span><span class="mas" aria-hidden="true">+</span></h4>
+            <span class="arq-glosa">Cómo entiendo una vida plena</span>
+          </summary>
+          <div class="arq-contenido">
+<div class="def">Qué quiero tener presente <b>al vivirla</b>.</div>
+            <div class="cuadrante">
+            <div class="q q--fuego">
+              <div class="qcab"><svg class="qico"><use href="#i-fuego"/></svg><span class="elem">Fuego</span></div>
+              <span class="fn">que impulsa y activa</span>
+              <span class="titq">Pasión por la vida</span>
+              <p class="cont">ilusión + motivación<br>fe + curiosidad <i>(no juzgar)</i></p>
+            </div>
+            <div class="q q--tierra">
+              <div class="qcab"><svg class="qico"><use href="#i-tierra"/></svg><span class="elem">Tierra</span></div>
+              <span class="fn">que centra y sostiene</span>
+              <span class="titq">Coherencia · Integridad</span>
+              <p class="cont">fidelidad + confianza<br>verdad + intuición</p>
+            </div>
+            <div class="q q--aire">
+              <div class="qcab"><svg class="qico"><use href="#i-aire"/></svg><span class="elem">Aire</span></div>
+              <span class="fn">que expande y da ligereza</span>
+              <span class="titq">Disfrutar</span>
+              <p class="cont">alegría + fluir<br>gozar + satisfacción</p>
+            </div>
+            <div class="q q--agua">
+              <div class="qcab"><svg class="qico"><use href="#i-agua"/></svg><span class="elem">Agua</span></div>
+              <span class="fn">que sana, limpia y calma</span>
+              <span class="titq">Serenidad</span>
+              <p class="cont">soltar + perdonar<br>aceptar + compasión + amar</p>
+            </div>
+            <span class="centro">PLENITUD</span>
+          </div>
+              </div>
+        </details>
+</div>
+        </details>
+        </div>
+
+        
+
+        
+
+        <!-- 20/09/2026: añadido independiente solicitado por Javi; no implementa La Esfera. -->
+        
+
         </div>
       </details>
 
@@ -1447,7 +1815,7 @@ details[open]>summary .abre{transform:rotate(45deg)}
       <details class="dim dim--operar" id="operacion">
         <summary>
           <div class="dim-cab">
-            <svg class="ico ico--rosa"><use href="#i-estrella-s"/></svg>
+            <svg class="ico ico--rosa"><use href="#i-estrella-p"/></svg>
             <h3>Operación</h3>
             <span class="abre">+</span>
           </div>
@@ -1463,7 +1831,7 @@ details[open]>summary .abre{transform:rotate(45deg)}
           </summary>
           <div class="arq-contenido">
             <div class="arq-intro"><p>Información:<br>Comprenderla, relacionarla, recuperarla y crear a partir de ella.</p></div>
-            <p class="arq-cruce">Estado asociado: <a href="#estado-activacion-cognitiva">Activación cognitiva</a> <span>(<a href="#calibracion-activacion">Calibración</a>)</span>.</p>
+            <p class="arq-cruce">Estado asociado: <a href="#estado-activacion-cognitiva">Activación cognitiva</a> <span>(<a href="#calibracion-activacion">Regulación</a>)</span>.</p>
 <details class="concepto"><summary>Procesar / Entender<span class="mas">+</span></summary>
             <div class="def">Traer y ordenar información externa:<br>Conversaciones, explicaciones, hilos narrativos y situaciones.</div></details>
           <details class="concepto"><summary>Lectura<span class="mas">+</span></summary>
@@ -1512,7 +1880,8 @@ details[open]>summary .abre{transform:rotate(45deg)}
             <span class="centro">PROCEDER</span>
           </div>
 
-          <details class="concepto actitudes-proceder"><summary>Actitudes<span class="mas">+</span></summary>
+          <details class="concepto actitudes-proceder" id="actitud-accion"><summary>Actitudes<span class="mas">+</span></summary>
+            <p class="arq-alcance">Para trabajar, resolver y sacar adelante lo que requiere acción.<br>No define todas mis actitudes ante la vida.</p>
             <div class="cuadrante cuadrante--compacto">
               <div class="q p--b"><div class="qcab"><svg class="qico"><use href="#i-fuego"/></svg><span class="titq">① Iniciativa</span></div><span class="fn">empezar</span><p class="cont">Dar el primer paso + atreverse<br>Prontitud <i>(responder a tiempo)</i><br>+ aprovechar oportunidades<br><i>(Fuego empuja)</i></p></div>
               <div class="q p--a"><div class="qcab"><svg class="qico"><use href="#i-aire"/></svg><span class="titq">② Resolución</span></div><span class="fn">eficiencia</span><p class="cont">Celeridad + agilidad<br>Confianza + decisión<br><i>(convertir en acción)</i><br><i>(Aire aligera)</i></p></div>
@@ -1604,7 +1973,9 @@ details[open]>summary .abre{transform:rotate(45deg)}
             </ul>
           </details>
 
-          </div>
+          
+          <p class="arq-cruce">En el trato con los demás: <a href="#actitud-personas">Personas — cómo quiero relacionarme</a>.</p>
+        </div>
         </details>
 
         </div>
@@ -1615,7 +1986,7 @@ details[open]>summary .abre{transform:rotate(45deg)}
         <summary>
           <div class="dim-cab">
             <svg class="ico ico--cal"><use href="#i-calibracion"/></svg>
-            <h3>Calibración</h3>
+            <h3>Regulación</h3>
             <span class="abre">+</span>
           </div>
           <p class="eyebrow">Regular el estado — quitar ruido · volver al presente · activar</p>
@@ -1633,7 +2004,34 @@ details[open]>summary .abre{transform:rotate(45deg)}
                 <li><b>Estiramientos</b></li>
                 <li><b>Respiración</b></li>
                 <li><b>Meditación</b></li>
-                <li id="calibracion-conexion"><a href="#estado-presencia-conexion"><b>Conexión</b></a></li>
+                <li id="calibracion-conexion"><details class="conexion-lista conexion-canonica" id="estado-presencia-conexion">
+              <summary><b>Conexión</b><span class="mas" aria-hidden="true">+</span></summary>
+              <div class="def">Conectar con cuerpo · mente · emociones · entorno.</div>
+              <div class="cuadrante">
+                <div class="q p--b">
+                  <div class="qcab"><svg class="qico"><use href="#i-cuerpo"/></svg><span class="titq">Cuerpo</span></div>
+                  <ul class="pares-ico">
+                    <li><svg class="mini"><use href="#i-aire"/></svg><span><b>Frente</b> · aire <i>(elevar)</i></span></li>
+                    <li><svg class="mini"><use href="#i-tierra"/></svg><span><b>Pies</b> · tierra <i>(sustentar)</i></span></li>
+                    <li><svg class="mini"><use href="#i-fuego"/></svg><span><b>Sensación</b> · fuego</span></li>
+                    <li><svg class="mini"><use href="#i-agua"/></svg><span><b>Respiración</b> · agua</span></li>
+                  </ul>
+                </div>
+                <div class="q p--c">
+                  <div class="qcab"><svg class="qico"><use href="#i-mente"/></svg><span class="titq">Mente</span></div>
+                  <p class="cont">Pensamientos<br><b>Etiquetar pensamientos</b></p>
+                </div>
+                <div class="q p--d">
+                  <div class="qcab"><svg class="qico"><use href="#i-corazon"/></svg><span class="titq">Emociones</span></div>
+                  <p class="cont"><b>Identificar emociones</b><br>Alegría + tristeza<br>Miedo + ira<br>Ansiedad + culpa<br>Calma + afecto</p>
+                </div>
+                <div class="q p--a">
+                  <div class="qcab"><svg class="qico"><use href="#i-ojo"/></svg><span class="titq">Entorno</span></div>
+                  <p class="cont"><b>Contemplar</b><br>Lugar · personas · situación</p>
+                </div>
+                <span class="centro">CONEXIÓN</span>
+              </div>
+            </details></li>
               </ul>
             </div>
           </details>
@@ -1657,6 +2055,7 @@ details[open]>summary .abre{transform:rotate(45deg)}
 
     </div>
   </section>
+
 
   <!-- ============ CAPA II ============ -->
   <section class="capa" id="proceso">
@@ -1703,7 +2102,7 @@ details[open]>summary .abre{transform:rotate(45deg)}
               <p>Empezar con algo cumplido.</p>
             </div>
           </details></li>
-          <li><details class="concepto"><summary>Calibración<span class="mas">+</span></summary>
+          <li><details class="concepto"><summary>Regulación<span class="mas">+</span></summary>
             <div class="bloque-prep cal-bloque">
               <div class="prep-categoria">Presencia</div>
 
@@ -1720,32 +2119,32 @@ details[open]>summary .abre{transform:rotate(45deg)}
               </div>
 
               <div class="fila-p">
-                <details class="conexion-prep">
+                <details data-reutiliza="conexion" class="conexion-prep">
                   <summary><span class="prep-item">Conexión</span><span class="mas">+</span></summary>
-                  <div class="cuadrante">
-                    <div class="q p--b">
-                      <div class="qcab"><svg class="qico"><use href="#i-cuerpo"/></svg><span class="titq">Cuerpo</span></div>
-                      <ul class="pares-ico">
-                        <li><svg class="mini"><use href="#i-aire"/></svg><span><b>Frente</b> · aire <i>(elevar)</i></span></li>
-                        <li><svg class="mini"><use href="#i-tierra"/></svg><span><b>Pies</b> · tierra <i>(sustentar)</i></span></li>
-                        <li><svg class="mini"><use href="#i-fuego"/></svg><span><b>Sensación</b> · fuego</span></li>
-                        <li><svg class="mini"><use href="#i-agua"/></svg><span><b>Respiración</b> · agua</span></li>
-                      </ul>
-                    </div>
-                    <div class="q p--c">
-                      <div class="qcab"><svg class="qico"><use href="#i-mente"/></svg><span class="titq">Mente</span></div>
-                      <p class="cont">Pensamientos<br><b>Etiquetar pensamientos</b></p>
-                    </div>
-                    <div class="q p--d">
-                      <div class="qcab"><svg class="qico"><use href="#i-corazon"/></svg><span class="titq">Emociones</span></div>
-                      <p class="cont"><b>Identificar emociones</b><br>Alegría + tristeza<br>Miedo + ira<br>Ansiedad + culpa<br>Calma + afecto</p>
-                    </div>
-                    <div class="q p--a">
-                      <div class="qcab"><svg class="qico"><use href="#i-ojo"/></svg><span class="titq">Entorno</span></div>
-                      <p class="cont"><b>Contemplar</b><br>Lugar · personas · situación</p>
-                    </div>
-                    <span class="centro">CONEXIÓN</span>
-                  </div>
+                  <div class="cuadrante" data-vista="conexion" data-origen="estado-presencia-conexion">
+                <div class="q p--b">
+                  <div class="qcab"><svg class="qico"><use href="#i-cuerpo"/></svg><span class="titq">Cuerpo</span></div>
+                  <ul class="pares-ico">
+                    <li><svg class="mini"><use href="#i-aire"/></svg><span><b>Frente</b> · aire <i>(elevar)</i></span></li>
+                    <li><svg class="mini"><use href="#i-tierra"/></svg><span><b>Pies</b> · tierra <i>(sustentar)</i></span></li>
+                    <li><svg class="mini"><use href="#i-fuego"/></svg><span><b>Sensación</b> · fuego</span></li>
+                    <li><svg class="mini"><use href="#i-agua"/></svg><span><b>Respiración</b> · agua</span></li>
+                  </ul>
+                </div>
+                <div class="q p--c">
+                  <div class="qcab"><svg class="qico"><use href="#i-mente"/></svg><span class="titq">Mente</span></div>
+                  <p class="cont">Pensamientos<br><b>Etiquetar pensamientos</b></p>
+                </div>
+                <div class="q p--d">
+                  <div class="qcab"><svg class="qico"><use href="#i-corazon"/></svg><span class="titq">Emociones</span></div>
+                  <p class="cont"><b>Identificar emociones</b><br>Alegría + tristeza<br>Miedo + ira<br>Ansiedad + culpa<br>Calma + afecto</p>
+                </div>
+                <div class="q p--a">
+                  <div class="qcab"><svg class="qico"><use href="#i-ojo"/></svg><span class="titq">Entorno</span></div>
+                  <p class="cont"><b>Contemplar</b><br>Lugar · personas · situación</p>
+                </div>
+                <span class="centro">CONEXIÓN</span>
+              </div>
                 </details>
               </div>
             </div>
@@ -1766,34 +2165,32 @@ details[open]>summary .abre{transform:rotate(45deg)}
           </details></li>
           <li><details class="concepto"><summary>Rezar<span class="mas">+</span></summary>
             <div class="rezo-estrella">
+              <input class="rezo-toggle" type="checkbox" id="rezo-preguntas-comenzar" aria-controls="rezo-preguntas-comenzar-panel">
               <div class="rezo-star-grid">
                 <div class="rezo-nodo rezo-arriba"><svg><use href="#i-fuego"/></svg><span>PEDIR<small>fuego</small></span></div>
-                <div class="rezo-nodo rezo-izq"><span>AGRADECER<small>agua</small></span><svg><use href="#i-agua"/></svg></div>
+                <label class="rezo-nodo rezo-izq rezo-pregunta-label" for="rezo-preguntas-comenzar"><span class="mas" aria-hidden="true">+</span><span>PREGUNTARSE<small>agua</small></span><svg><use href="#i-agua"/></svg></label>
                 <div class="rezo-centro"><svg viewBox="0 0 100 100" role="img" aria-label="Estrella de Rezar"><use href="#rosa"/></svg></div>
                 <div class="rezo-nodo rezo-der"><svg><use href="#i-aire"/></svg><span>COMPROMETERSE<small>aire</small></span></div>
               </div>
-              <details class="rezo-preguntas">
-                <summary><svg aria-hidden="true"><use href="#i-tierra"/></svg><span class="rezo-tierra-label">PREGUNTARSE<small>tierra</small></span><span class="mas" aria-hidden="true">+</span></summary>
-      <div class="cuadrante preg">
+              <div class="rezo-nodo rezo-abajo"><svg aria-hidden="true"><use href="#i-tierra"/></svg><span>AGRADECER<small>tierra</small></span></div>
+              <div class="cuadrante preg rezo-preguntas-panel" id="rezo-preguntas-comenzar-panel">
       <div class="q p--b"><p class="cont">¿Qué <b>quiero</b>, qué me <b>gusta</b> y qué no?<br>¿Qué le <b>pido</b> a la vida y qué <b>espero</b> de ella?<br>¿Qué <b>sentido</b> le doy?<br>¿Cuáles son mis <b>propósitos</b> y <b>proyectos</b>?</p></div>
-      <div class="q p--a"><p class="cont">¿Cuáles son mis <b>valores</b> y <b>principios</b>?<br>¿Cómo quiero <b>ser</b> y qué <b>cualidades</b> quiero tener?<br>¿Qué cosas quiero que me <b>definan</b>?</p></div>
-      <div class="q p--c"><p class="cont">¿Qué es <b>importante</b>?<br>¿Qué merece la pena, mi <b>esfuerzo</b> y mi <b>tiempo</b>?<br>¿Por qué y por <b>quién</b> quiero luchar?</p></div>
+      <div class="q p--a"><p class="cont">¿Cuáles son mis <b>valores</b> y <b>principios</b>?<br>¿Cómo quiero <b>ser</b> y qué <b>cualidades</b> quiero que me <b>definan</b>?</p></div>
+      <div class="q p--c"><p class="cont">¿Qué <b>cosas</b> y qué <b>personas</b> son las más importantes en mi vida?<br>¿Cuáles merecen mi <b>esfuerzo</b> y mi <b>tiempo</b>?<br>¿Por cuáles quiero y voy a <b>luchar</b>?</p></div>
       <div class="q p--d"><p class="cont">¿Qué puedo hacer para ser más <b>feliz</b>?<br>¿Qué puedo hacer para sentirme <b>bien</b>, <b>pleno</b>, <b>en paz</b>?</p></div>
       <span class="centro">PREGUNTAS</span>
-      </div>
-              </details>
+              </div>
             </div>
           </details></li>
           <li><details class="concepto"><summary>Preparación / avance<span class="mas">+</span></summary>
-            <div class="bloque-prep">
+            <div class="bloque-prep prep-apilado">
               <div class="prep-categoria">Mentalización<small>Reprogramación y preparación mental</small></div>
-              <div class="fila-p"><span class="prep-item">Decisión</span><span>Decisión consciente · Resolver dudas · Convencimiento</span></div>
               <div class="fila-p"><span class="prep-item">Focalizar</span><span>Objetivos del día.</span></div>
               <div class="fila-p"><span class="prep-item">Grabar</span><span>Afirmaciones · Convencimiento · Creencias.</span></div>
               <div class="fila-p"><span class="prep-item">Identidad</span><span>Quién quiero ser hoy.</span></div>
               <div class="fila-p"><span class="prep-item">Visualizar</span><span>Preparar mentalmente la situación.</span></div>
             </div>
-            <div class="bloque-prep">
+            <div class="bloque-prep prep-apilado">
               <div class="prep-categoria">Planeamiento<small>Identificar y asignar tareas</small></div>
               <div class="fila-p"><span class="prep-item">Planificación</span><span>Qué y cuándo — Identificar tareas · Ordenar · Priorizar · Decidir cuándo</span></div>
               <div class="fila-p"><span class="prep-item">Estrategia</span><span>Cómo — La forma de afrontar cada tarea</span></div>
@@ -1954,6 +2351,7 @@ details[open]>summary .abre{transform:rotate(45deg)}
                   <li><b>14RESP</b> <i>(7 · 14 · 28 · 112)</i> — volver a la respiración y salir del piloto automático · autocontrol + consciencia; las paradas del día, normalmente 14</li>
                   <li><b>Escribir</b> — sacar fuera lo que pasa dentro</li>
                   <li><b>Espejo</b> — 5 minutos de frente: conciencia de uno mismo y de lo que proyecto</li>
+                  <li><b>Actividades conscientes</b> — carrera · comida · música: una sola cosa, sintiéndola</li>
                 </ul>
                 <p class="subgrupo">Atención / concentración</p>
                 <ul class="lista">
@@ -1961,8 +2359,6 @@ details[open]>summary .abre{transform:rotate(45deg)}
                   <li><b>ConsTEMP</b> — consciente de la hora / del ahora</li>
                   <li><b>Bici estática</b> — sostener un rango de velocidad; si salgo, volver a empezar</li>
                   <li><b>1–100</b> — contar visualizando los números, también en otros idiomas</li>
-                  <li><b>GPS del coche</b> — captura visual y análisis de lo visto sin volver a mirar</li>
-                  <li><b>Actividades conscientes</b> — carrera · comida · música: una sola cosa, sintiéndola</li>
                 </ul>
                 <p class="subgrupo" id="practica-autocontrol">Autocontrol</p>
                 <ul class="lista">
@@ -2001,7 +2397,7 @@ details[open]>summary .abre{transform:rotate(45deg)}
                   <li><b>Conversaciones + explicaciones</b></li>
                   <li><b>Hilos narrativos + situaciones</b></li>
                   <li>
-                    <details class="concepto">
+                    <details class="concepto concepto-lista">
                       <summary><b>Lectura</b><span class="mas" aria-hidden="true">+</span></summary>
                       <div class="def">Procesar y ordenar información específicamente leyendo.<br>
                         <span class="rot">Práctica:</span><br>
@@ -2053,7 +2449,7 @@ details[open]>summary .abre{transform:rotate(45deg)}
                 <ul class="lista">
                   <li><b>Practicar imaginación</b></li>
                   <li>
-                    <details class="concepto">
+                    <details class="concepto concepto-lista">
                       <summary><b>Idear</b><span class="mas" aria-hidden="true">+</span></summary>
                       <div class="def">Apuntar las ideas que van llegando.<br>Practicar generarlas y capturarlas.</div>
                     </details>
@@ -2063,9 +2459,9 @@ details[open]>summary .abre{transform:rotate(45deg)}
               
             </div>
             </details></li>
-          <li><details class="concepto"><summary>Técnicas<span class="mas">+</span></summary>
+          <li><details class="concepto concepto-patron"><summary>Técnicas<span class="mas">+</span></summary>
             <div class="def">El manual de instrucciones para diferentes actividades o situaciones.<br>Trucos concretos.</div>
-            <details class="concepto" style="margin-left:12px"><summary>Basket<span class="mas">+</span></summary>
+            <details class="concepto tecnica-item"><summary><b>Basket</b><span class="mas">+</span></summary>
               <p class="rot">Prestar atención</p>
               <div class="esq">
                 <div class="basket-pareja">
@@ -2100,7 +2496,7 @@ details[open]>summary .abre{transform:rotate(45deg)}
                 <li>Pulir y mejorar</li>
               </ul>
 </details>
-            <details class="concepto" style="margin-left:12px"><summary>Pádel<span class="mas">+</span></summary>
+            <details class="concepto tecnica-item"><summary><b>Pádel</b><span class="mas">+</span></summary>
               <ul class="lista">
                 <li>Al saque, ir a por la bola <b>en cuanto golpee la pared</b></li>
                 <li><b>Hablar siempre</b>, aunque sea para decir «dónde» — coordina y da seguridad</li>
@@ -2108,13 +2504,13 @@ details[open]>summary .abre{transform:rotate(45deg)}
                 <li>Respetar el turno del compañero</li>
               </ul>
             </details>
-            <details class="concepto" style="margin-left:12px"><summary>Inglés<span class="mas">+</span></summary>
+            <details class="concepto tecnica-item"><summary><b>Inglés</b><span class="mas">+</span></summary>
               <ul class="lista">
                 <li>Conversación con ChatGPT</li>
                 <li>Autospeakings buscando <b>expresiones y formas nuevas</b> de decir las cosas</li>
               </ul>
             </details>
-            <details class="concepto" style="margin-left:12px"><summary>Vista<span class="mas">+</span></summary>
+            <details class="concepto tecnica-item"><summary><b>Vista</b><span class="mas">+</span></summary>
               <ul class="lista">
                 <li>Movimientos en <b>cruz, círculos e infinito</b></li>
                 <li>Guiñar, cerrar y frotar</li>
@@ -2122,7 +2518,7 @@ details[open]>summary .abre{transform:rotate(45deg)}
                 <li>Leer lejos-cerca</li>
               </ul>
             </details>
-            <details class="concepto" style="margin-left:12px"><summary>Embotamiento<span class="mas">+</span></summary>
+            <details class="concepto tecnica-item"><summary><b>Embotamiento</b><span class="mas">+</span></summary>
               <div class="def">Después de exigir mucho a la atención: <b>descargar y recuperar</b>.</div>
               <ul class="lista">
                 <li>Atención plena</li>
@@ -2131,7 +2527,7 @@ details[open]>summary .abre{transform:rotate(45deg)}
               </ul>
             </details>
           </details></li>
-          <li><details class="concepto"><summary>Listas mentales<span class="mas">+</span></summary>
+          <li><details class="concepto concepto-patron"><summary>Listas mentales<span class="mas">+</span></summary>
             <div class="def">Palabras clave para listar en la mente ciertas listas.</div>
             <div class="subdef">
               <div class="fila"><b>MEMS</b> — ¿qué puedo memorizar?</div>
@@ -2183,7 +2579,7 @@ details[open]>summary .abre{transform:rotate(45deg)}
               <div class="rm-origen"><b>REPRODUCIR EL DÍA</b><span>como una película</span></div>
               <div class="rm-capturar">Capturar</div>
               <div class="rm-resultados">
-                <div class="rm-rama"><div class="rm-caja"><b>LLAA + mejoras</b></div></div>
+                <div class="rm-rama"><div class="rm-caja"><b>LLAA y mejoras</b></div></div>
                 <div class="rm-rama"><div class="rm-caja"><b>Logros</b></div></div>
                 <div class="rm-rama"><div class="rm-caja"><b>Recuerdos</b><span>Álbum mental + útiles</span></div></div>
               </div>
@@ -2198,59 +2594,58 @@ details[open]>summary .abre{transform:rotate(45deg)}
             <div class="fila-p"><span class="pastilla">objetivos</span><span>apuntar los que probablemente tenga mañana</span></div>
             <div class="fila-p"><span class="pastilla">tareas</span><span>apuntar las importantes que ya conozca</span></div>
           </details></li>
-          <li><details class="concepto"><summary>Calibración<span class="mas">+</span></summary>
+          <li><details class="concepto"><summary>Regulación<span class="mas">+</span></summary>
             <div class="def">Bajar revoluciones.<br><b>Soltar el día y volver a mí.</b></div>
             <div class="pastillas"><span class="pastilla">Presencia</span><span class="rot" style="margin:0"><i>calma y claridad</i></span></div>
             <ul class="lista">
               <li><b>Estiramientos</b></li>
               <li><b>Respiración</b></li>
               <li><b>Meditación</b></li>
-              <li><details class="conexion-lista">
+              <li><details data-reutiliza="conexion" class="conexion-lista">
                   <summary><b>Conexión</b><span class="mas">+</span></summary>
-                  <div class="cuadrante">
-                  <div class="q p--b">
-                    <div class="qcab"><svg class="qico"><use href="#i-cuerpo"/></svg><span class="titq">Cuerpo</span></div>
-                    <ul class="pares-ico">
-                      <li><svg class="mini"><use href="#i-aire"/></svg><span><b>Frente</b> · aire <i>(elevar)</i></span></li>
-                      <li><svg class="mini"><use href="#i-tierra"/></svg><span><b>Pies</b> · tierra <i>(sustentar)</i></span></li>
-                      <li><svg class="mini"><use href="#i-fuego"/></svg><span><b>Sensación</b> · fuego</span></li>
-                      <li><svg class="mini"><use href="#i-agua"/></svg><span><b>Respiración</b> · agua</span></li>
-                    </ul>
-                  </div>
-                  <div class="q p--c">
-                    <div class="qcab"><svg class="qico"><use href="#i-mente"/></svg><span class="titq">Mente</span></div>
-                    <p class="cont">Pensamientos<br><b>Etiquetar pensamientos</b></p>
-                  </div>
-                  <div class="q p--d">
-                    <div class="qcab"><svg class="qico"><use href="#i-corazon"/></svg><span class="titq">Emociones</span></div>
-                    <p class="cont"><b>Identificar emociones</b><br>Alegría + tristeza<br>Miedo + ira<br>Ansiedad + culpa<br>Calma + afecto</p>
-                  </div>
-                  <div class="q p--a">
-                    <div class="qcab"><svg class="qico"><use href="#i-ojo"/></svg><span class="titq">Entorno</span></div>
-                    <p class="cont"><b>Contemplar</b><br>Lugar · personas · situación</p>
-                  </div>
-                  <span class="centro">CONEXIÓN</span>
+                  <div class="cuadrante" data-vista="conexion" data-origen="estado-presencia-conexion">
+                <div class="q p--b">
+                  <div class="qcab"><svg class="qico"><use href="#i-cuerpo"/></svg><span class="titq">Cuerpo</span></div>
+                  <ul class="pares-ico">
+                    <li><svg class="mini"><use href="#i-aire"/></svg><span><b>Frente</b> · aire <i>(elevar)</i></span></li>
+                    <li><svg class="mini"><use href="#i-tierra"/></svg><span><b>Pies</b> · tierra <i>(sustentar)</i></span></li>
+                    <li><svg class="mini"><use href="#i-fuego"/></svg><span><b>Sensación</b> · fuego</span></li>
+                    <li><svg class="mini"><use href="#i-agua"/></svg><span><b>Respiración</b> · agua</span></li>
+                  </ul>
                 </div>
+                <div class="q p--c">
+                  <div class="qcab"><svg class="qico"><use href="#i-mente"/></svg><span class="titq">Mente</span></div>
+                  <p class="cont">Pensamientos<br><b>Etiquetar pensamientos</b></p>
+                </div>
+                <div class="q p--d">
+                  <div class="qcab"><svg class="qico"><use href="#i-corazon"/></svg><span class="titq">Emociones</span></div>
+                  <p class="cont"><b>Identificar emociones</b><br>Alegría + tristeza<br>Miedo + ira<br>Ansiedad + culpa<br>Calma + afecto</p>
+                </div>
+                <div class="q p--a">
+                  <div class="qcab"><svg class="qico"><use href="#i-ojo"/></svg><span class="titq">Entorno</span></div>
+                  <p class="cont"><b>Contemplar</b><br>Lugar · personas · situación</p>
+                </div>
+                <span class="centro">CONEXIÓN</span>
+              </div>
                 </details></li>
             </ul></details></li>
           <li><details class="concepto"><summary>Rezar<span class="mas">+</span></summary>
             <div class="rezo-estrella">
+              <input class="rezo-toggle" type="checkbox" id="rezo-preguntas-terminar" aria-controls="rezo-preguntas-terminar-panel">
               <div class="rezo-star-grid">
                 <div class="rezo-nodo rezo-arriba"><svg><use href="#i-fuego"/></svg><span>PEDIR<small>fuego</small></span></div>
-                <div class="rezo-nodo rezo-izq"><span>AGRADECER<small>agua</small></span><svg><use href="#i-agua"/></svg></div>
+                <label class="rezo-nodo rezo-izq rezo-pregunta-label" for="rezo-preguntas-terminar"><span class="mas" aria-hidden="true">+</span><span>PREGUNTARSE<small>agua</small></span><svg><use href="#i-agua"/></svg></label>
                 <div class="rezo-centro"><svg viewBox="0 0 100 100" role="img" aria-label="Estrella de Rezar"><use href="#rosa"/></svg></div>
                 <div class="rezo-nodo rezo-der"><svg><use href="#i-aire"/></svg><span>COMPROMETERSE<small>aire</small></span></div>
               </div>
-              <details class="rezo-preguntas">
-                <summary><svg aria-hidden="true"><use href="#i-tierra"/></svg><span class="rezo-tierra-label">PREGUNTARSE<small>tierra</small></span><span class="mas" aria-hidden="true">+</span></summary>
-      <div class="cuadrante preg">
+              <div class="rezo-nodo rezo-abajo"><svg aria-hidden="true"><use href="#i-tierra"/></svg><span>AGRADECER<small>tierra</small></span></div>
+              <div class="cuadrante preg rezo-preguntas-panel" id="rezo-preguntas-terminar-panel">
       <div class="q p--b"><p class="cont">¿Qué <b>quiero</b>, qué me <b>gusta</b> y qué no?<br>¿Qué le <b>pido</b> a la vida y qué <b>espero</b> de ella?<br>¿Qué <b>sentido</b> le doy?<br>¿Cuáles son mis <b>propósitos</b> y <b>proyectos</b>?</p></div>
-      <div class="q p--a"><p class="cont">¿Cuáles son mis <b>valores</b> y <b>principios</b>?<br>¿Cómo quiero <b>ser</b> y qué <b>cualidades</b> quiero tener?<br>¿Qué cosas quiero que me <b>definan</b>?</p></div>
-      <div class="q p--c"><p class="cont">¿Qué es <b>importante</b>?<br>¿Qué merece la pena, mi <b>esfuerzo</b> y mi <b>tiempo</b>?<br>¿Por qué y por <b>quién</b> quiero luchar?</p></div>
+      <div class="q p--a"><p class="cont">¿Cuáles son mis <b>valores</b> y <b>principios</b>?<br>¿Cómo quiero <b>ser</b> y qué <b>cualidades</b> quiero que me <b>definan</b>?</p></div>
+      <div class="q p--c"><p class="cont">¿Qué <b>cosas</b> y qué <b>personas</b> son las más importantes en mi vida?<br>¿Cuáles merecen mi <b>esfuerzo</b> y mi <b>tiempo</b>?<br>¿Por cuáles quiero y voy a <b>luchar</b>?</p></div>
       <div class="q p--d"><p class="cont">¿Qué puedo hacer para ser más <b>feliz</b>?<br>¿Qué puedo hacer para sentirme <b>bien</b>, <b>pleno</b>, <b>en paz</b>?</p></div>
       <span class="centro">PREGUNTAS</span>
-      </div>
-              </details>
+              </div>
             </div>
           </details></li>
         </ul>
@@ -2272,7 +2667,7 @@ details[open]>summary .abre{transform:rotate(45deg)}
     <small>la Arquitectura orienta · el Proceso ejecuta</small>
   </p>
 
-  <p class="sello">v1.4.64</p>
+  <p class="sello">v1.5.42</p>
 
 </div>
 
@@ -2328,6 +2723,28 @@ details[open]>summary .abre{transform:rotate(45deg)}
 </template>
 
 
+
+<script>
+/* v1.5.0: una fuente de Conexión, dos vistas locales; sin peticiones de red. */
+(function () {
+  'use strict';
+  var fuente = document.querySelector('#estado-presencia-conexion > .cuadrante');
+  if (!fuente) return;
+  document.querySelectorAll('details[data-reutiliza="conexion"]').forEach(function (destino) {
+    if (destino.dataset.preparado === 'si') return;
+    var copia = fuente.cloneNode(true);
+    copia.removeAttribute('id');
+    copia.querySelectorAll('[id]').forEach(function (n) { n.removeAttribute('id'); });
+    copia.setAttribute('data-vista', 'conexion');
+    copia.setAttribute('data-origen', 'estado-presencia-conexion');
+    // La vista está pregenerada para visores que no ejecutan JavaScript.
+    var respaldo = destino.querySelector('[data-vista="conexion"], .conexion-respaldo');
+    if (respaldo) respaldo.replaceWith(copia); else destino.appendChild(copia);
+    destino.dataset.preparado = 'si';
+  });
+})();
+</script>
+
 <script>
 /* Navegación entre apartados: abre el destino y conserva los fragmentos anteriores. */
 (function () {
@@ -2353,6 +2770,28 @@ details[open]>summary .abre{transform:rotate(45deg)}
   });
   window.addEventListener('hashchange', mostrar);
   mostrar();
+})();
+</script>
+
+<script>
+/* v1.5.1: ampliar solo el dibujo, centrado; la página mantiene su ancho. */
+(function () {
+  var control = document.getElementById('esfera-ampliar');
+  var lienzo = document.getElementById('esfera-lienzo');
+  if (!control || !lienzo) return;
+  control.addEventListener('change', function () {
+    requestAnimationFrame(function () {
+      lienzo.scrollLeft = control.checked ? Math.max(0, (lienzo.scrollWidth-lienzo.clientWidth)/2) : 0;
+    });
+  });
+})();
+</script>
+
+</body>
+</html>
+= control.checked ? Math.max(0, (lienzo.scrollWidth-lienzo.clientWidth)/2) : 0;
+    });
+  });
 })();
 </script>
 
