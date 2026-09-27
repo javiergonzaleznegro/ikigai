@@ -1,29 +1,27 @@
 # Sistema de Mejora Personal / IKIGAI
 
-Versión publicada **v1.4.64** (17/09/2026).
+Versión publicada **v1.5.42** (27/09/2026).
 
 ## Regla de publicación
 
-La página publicada no lleva etiquetas PROPUESTA, REUBICACIÓN ni marcas de comprobación. Esas marcas se reservan a versiones de revisión.
+La página publicada no lleva etiquetas PROPUESTA, REUBICACIÓN, COMPROBACIÓN ni marcas de candidata/revisión. Esas marcas se reservan a versiones de trabajo.
 
 ## Fuente y generación
 
-- `work.html`: fuente HTML limpia.
+- `work.html`: fuente HTML limpia v1.5.42.
 - `index.html`: página publicada, idéntica a `work.html`.
-- `sw.js`: HTML network-first; caché `smp-1.4.64`.
-- `manifest.json`: manifiesto PWA.
+- `sw.js`: HTML network-first; caché `smp-1.5.42`.
+- `manifest.json`: manifiesto PWA conservado.
 - Iconos v1 existentes, conservados.
 
 ## Contenido de esta entrega
 
-- Revisión amplia de Arquitectura Interior y Proceso Diario.
-- Cadena de propósito consolidada: SENTIDO → OBJETIVOS → TAREAS.
-- Mentalización, Operación y Calibración reorganizadas y depuradas.
-- Proceder reconstruido: preparación, actitudes, ejecución, prioridad, modos y orientación.
-- Estado y Calibración separados con mayor claridad entre qué se cultiva y cómo se entrena.
-- Pilares — 4A rediseñados y prácticas diarias reorganizadas.
-- Áreas y Pilares tratados como focos continuos y diarios a medio/largo plazo: proyectos y propósitos / aspectos de la personalidad.
-- Comenzar, Funcionar y Terminar simplificados y armonizados visualmente.
-- Ajustes generales de jerarquía, redacción, mayúsculas, saltos de línea y eliminación de redundancias.
+- Modelo del Ser consolidado y refinado visualmente.
+- Cadena de propósito a −15° con SENTIDO, OBJETIVOS y TAREAS.
+- Mentalización en circuito cerrado alrededor de SENTIDO y Operación superpuesta al vector radial.
+- Integración de creencias con flechas verticales de remate limpio.
+- Mentalización reorganizada: `Inducir actitud` agrupa Visualizar e Identidad.
+- Cuadrante de Plenitud incorporado.
+- Cadena de propósito ampliada para mejorar la lectura en tablet.
 
-SHA-256 de `work.html` e `index.html`: `36beb0fe703cc6d1cebd7d97dedafee3f5a5a56abf05612520519880bf875c70`.
+SHA-256 del HTML limpio publicado: `879ab9a758214e5e208459b91e986ef2b79dc3d18baf83c7cb351372857916e3`.
