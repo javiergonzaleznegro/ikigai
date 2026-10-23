@@ -16,8 +16,8 @@ Base de esta entrega: v1.5.39. -->
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="Sistema">
-<title>Sistema de Mejora Personal — v1.5.42</title>
-<meta name="version" content="1.5.42">
+<title>Sistema de Mejora Personal — v1.5.43</title>
+<meta name="version" content="1.5.43">
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Karla:ital,wght@0,400;0,500;0,700;1,400&display=swap');
 
@@ -974,6 +974,13 @@ details[open]>summary .abre{transform:rotate(45deg)}
 /* v1.5.36 — el dibujo se muestra directamente, sin control de ampliación. */
 .esfera-viewport{margin-top:4px}
 
+/* v1.5.40 — Listas mentales: grupos con línea discontinua y rótulo sobre el borde, el mismo patrón que Mentalización;
+   la caja ocupa el mismo ancho que las de Preparación / avance y Regulación (8 px a la izquierda, 14 px a la derecha). */
+#proceso .listas-grupo{position:relative;margin:16px 14px 18px 8px;padding:14px 9px 5px;border:1.4px dashed rgba(34,64,111,.38);border-radius:8px}
+#proceso .listas-grupo:last-child{margin-bottom:10px}
+#proceso .listas-etiqueta{position:absolute;top:-9px;left:14px;padding:0 6px;background:var(--papel);font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--tinta-suave);white-space:nowrap}
+#proceso .listas-grupo>.subdef{margin:0;padding-left:0;border-left:0}
+
 </style>
 </head>
 <body>
@@ -988,6 +995,13 @@ details[open]>summary .abre{transform:rotate(45deg)}
      columna de icono homogénea y rótulos arrancando en el mismo eje para las seis cajas. -->
 <!-- v1.4.5 — ajustes de Javi: mapa más equilibrado, llaves invertidas, cadena de propósito homogénea,
      limpieza de Mentalización/Operación, Presencia = Conexión + Atención/Concentración y prácticas reordenadas. -->
+<!-- v1.5.39 — Listas mentales en dos grupos (orden de Javi, 07/10/2026): cinco de acción, del interior a la acción
+     (Sentido · Objetivos · Tareas · Acción · Aprendizaje), y tres para memorizar, recordar y entrenar.
+     Textos de las filas intactos; solo «LLAA + mejora» va unido para que no se parta en iPad. -->
+<!-- v1.5.40 — Listas mentales: cada grupo en caja de línea discontinua con el rótulo sobre el borde, como en Mentalización
+     (orden de Javi, 08/10/2026). Mismo texto en las filas; cada «·» va unido a la palabra anterior para que ninguna línea empiece por «·». -->
+<!-- v1.5.41 — Listas mentales, segundo grupo: cada lista lleva su palabra clave entre paréntesis
+     (Memorizar · Recordar · Entrenar), como el grupo de acción (orden de Javi, 08/10/2026). -->
 
 
 <!-- ============ definiciones SVG ============ -->
@@ -2529,16 +2543,20 @@ details[open]>summary .abre{transform:rotate(45deg)}
           </details></li>
           <li><details class="concepto concepto-patron"><summary>Listas mentales<span class="mas">+</span></summary>
             <div class="def">Palabras clave para listar en la mente ciertas listas.</div>
+            <div class="listas-grupo"><span class="listas-etiqueta">De acción · del interior a la acción</span>
             <div class="subdef">
-              <div class="fila"><b>MEMS</b> — ¿qué puedo memorizar?</div>
-              <div class="fila"><b>Puntos débiles</b> — detectar capacidades, cualidades o características por debajo de un nivel coherente → reforzarlas para que ninguna debilidad limite el conjunto</div>
-              <div class="fila"><b>Parches críticos</b> — básicos pequeños que no puedo permitirme olvidar: memorizar · practicar · comprobar · tener presentes; poco coste, gran impacto si fallan</div>
-              <div class="fila"><b>TomDEC</b> — decidir: abrir opciones → comparar → elegir</div>
-              <div class="fila"><b>ResDUD</b> — duda: formular bien la pregunta → buscar lo que falta</div>
-              <div class="fila"><b>ResProb / EncSoluc</b> — problema: secuenciar · buscar · comprobar</div>
-              <div class="fila"><b>AnEstCaSit</b> — Analizar/Estudiar casos/situaciones: ¿qué se hizo? · ¿cómo? · ¿por qué? → LLAA + mejora → memorizar y archivar</div>
-              <div class="fila"><b>EnfSit</b> — afrontar una situación difícil: no hay un problema que resolver; hay que llevarla a cabo</div>
-            </div></details></li>
+              <div class="fila"><b>ResDUD</b> <i>(Sentido)</i> — duda: formular bien la pregunta → buscar lo que falta</div>
+              <div class="fila"><b>TomDEC</b> <i>(Objetivos)</i> — decidir: abrir opciones → comparar → elegir</div>
+              <div class="fila"><b>ResProb / EncSoluc</b> <i>(Tareas)</i> — problema: secuenciar&nbsp;· buscar&nbsp;· comprobar</div>
+              <div class="fila"><b>EnfSit</b> <i>(Acción)</i> — afrontar una situación difícil: no hay un problema que resolver; hay que llevarla a cabo</div>
+              <div class="fila"><b>AnEstCaSit</b> <i>(Aprendizaje)</i> — Analizar/Estudiar casos/situaciones: ¿qué se hizo?&nbsp;· ¿cómo?&nbsp;· ¿por qué? → LLAA&nbsp;+&nbsp;mejora → memorizar y archivar</div>
+            </div></div>
+            <div class="listas-grupo"><span class="listas-etiqueta">Memorizar · recordar · entrenar</span>
+            <div class="subdef">
+              <div class="fila"><b>MEMS</b> <i>(Memorizar)</i> — ¿qué puedo memorizar?</div>
+              <div class="fila"><b>Parches críticos</b> <i>(Recordar)</i> — básicos pequeños que no puedo permitirme olvidar: memorizar&nbsp;· practicar&nbsp;· comprobar&nbsp;· tener presentes; poco coste, gran impacto si fallan</div>
+              <div class="fila"><b>Puntos débiles</b> <i>(Entrenar)</i> — detectar capacidades, cualidades o características por debajo de un nivel coherente → reforzarlas para que ninguna debilidad limite el conjunto</div>
+            </div></div></details></li>
           <li><details class="concepto"><summary>Retos<span class="mas">+</span></summary>
             <div class="def">Una capacidad o situación que no entreno a diario pero <b>quiero poder afrontar</b>. Elegir el reto y concretar <b>el siguiente intento</b>.</div></details></li>
         </ul>
@@ -2667,7 +2685,7 @@ details[open]>summary .abre{transform:rotate(45deg)}
     <small>la Arquitectura orienta · el Proceso ejecuta</small>
   </p>
 
-  <p class="sello">v1.5.42</p>
+  <p class="sello">v1.5.43</p>
 
 </div>
 

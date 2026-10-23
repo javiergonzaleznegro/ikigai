@@ -1,6 +1,6 @@
 # Sistema de Mejora Personal / IKIGAI
 
-Versión publicada **v1.5.42** (27/09/2026).
+Versión publicada **v1.5.43** (23/10/2026).
 
 ## Regla de publicación
 
@@ -8,20 +8,17 @@ La página publicada no lleva etiquetas PROPUESTA, REUBICACIÓN, COMPROBACIÓN n
 
 ## Fuente y generación
 
-- `work.html`: fuente HTML limpia v1.5.42.
+- `work.html`: fuente HTML limpia v1.5.43.
 - `index.html`: página publicada, idéntica a `work.html`.
-- `sw.js`: HTML network-first; caché `smp-1.5.42`.
+- `sw.js`: HTML network-first; caché `smp-1.5.43`.
 - `manifest.json`: manifiesto PWA conservado.
 - Iconos v1 existentes, conservados.
 
 ## Contenido de esta entrega
 
-- Modelo del Ser consolidado y refinado visualmente.
-- Cadena de propósito a −15° con SENTIDO, OBJETIVOS y TAREAS.
-- Mentalización en circuito cerrado alrededor de SENTIDO y Operación superpuesta al vector radial.
-- Integración de creencias con flechas verticales de remate limpio.
-- Mentalización reorganizada: `Inducir actitud` agrupa Visualizar e Identidad.
-- Cuadrante de Plenitud incorporado.
-- Cadena de propósito ampliada para mejorar la lectura en tablet.
+- Parte de la v1.5.42 publicada (27/09/2026), sin quitar nada.
+- Listas mentales (Proceso Diario → Funcionar) en dos grupos con caja discontinua y rótulo sobre el borde:
+  «De acción · del interior a la acción» — ResDUD (Sentido), TomDEC (Objetivos), ResProb / EncSoluc (Tareas), EnfSit (Acción), AnEstCaSit (Aprendizaje);
+  «Memorizar · recordar · entrenar» — MEMS (Memorizar), Parches críticos (Recordar), Puntos débiles (Entrenar).
 
-SHA-256 del HTML limpio publicado: `879ab9a758214e5e208459b91e986ef2b79dc3d18baf83c7cb351372857916e3`.
+SHA-256 del HTML limpio publicado: `5fe79b6806ea306234c2492875a902a0e95692a332d542b8f9b18ddd9fda3f1c`.
