@@ -16,8 +16,8 @@ Base de esta entrega: v1.5.39. -->
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="Sistema">
-<title>Sistema de Mejora Personal — v1.5.43</title>
-<meta name="version" content="1.5.43">
+<title>Sistema de Mejora Personal — v1.5.44</title>
+<meta name="version" content="1.5.44">
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Karla:ital,wght@0,400;0,500;0,700;1,400&display=swap');
 
@@ -980,6 +980,13 @@ details[open]>summary .abre{transform:rotate(45deg)}
 #proceso .listas-grupo:last-child{margin-bottom:10px}
 #proceso .listas-etiqueta{position:absolute;top:-9px;left:14px;padding:0 6px;background:var(--papel);font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--tinta-suave);white-space:nowrap}
 #proceso .listas-grupo>.subdef{margin:0;padding-left:0;border-left:0}
+
+/* v1.5.44 — rótulo largo de Listas mentales: en cajas estrechas (iPhone pequeño, iPad apaisado a tres columnas)
+   pasa a dos líneas; la primera sigue sobre el borde y la segunda empuja la lista. En cajas anchas, igual que antes. */
+#proceso .listas-grupo{container:listas/inline-size}
+@container listas (max-width:290px){
+ #proceso .listas-etiqueta{position:relative;top:auto;left:auto;display:block;width:-webkit-fit-content;width:fit-content;max-width:calc(100% - 10px);margin:-23px 0 8px 5px;white-space:normal;line-height:15px}
+}
 
 </style>
 </head>
@@ -2545,17 +2552,18 @@ details[open]>summary .abre{transform:rotate(45deg)}
             <div class="def">Palabras clave para listar en la mente ciertas listas.</div>
             <div class="listas-grupo"><span class="listas-etiqueta">De acción · del interior a la acción</span>
             <div class="subdef">
-              <div class="fila"><b>ResDUD</b> <i>(Sentido)</i> — duda: formular bien la pregunta → buscar lo que falta</div>
-              <div class="fila"><b>TomDEC</b> <i>(Objetivos)</i> — decidir: abrir opciones → comparar → elegir</div>
+              <div class="fila"><b>ResDUD</b> <i>(Sentido)</i> — duda: aclarar qué quiero, sin decidir todavía → pregunta directa → preguntar sin exigir respuesta&nbsp;· mirar sin juzgar</div>
+              <div class="fila"><b>TomDEC</b> <i>(Objetivos)</i> — decidir: abrir opciones → comparar (corto&nbsp;· medio&nbsp;· largo plazo) → elegir; si no es importante, rápido</div>
               <div class="fila"><b>ResProb / EncSoluc</b> <i>(Tareas)</i> — problema: secuenciar&nbsp;· buscar&nbsp;· comprobar</div>
               <div class="fila"><b>EnfSit</b> <i>(Acción)</i> — afrontar una situación difícil: no hay un problema que resolver; hay que llevarla a cabo</div>
               <div class="fila"><b>AnEstCaSit</b> <i>(Aprendizaje)</i> — Analizar/Estudiar casos/situaciones: ¿qué se hizo?&nbsp;· ¿cómo?&nbsp;· ¿por qué? → LLAA&nbsp;+&nbsp;mejora → memorizar y archivar</div>
             </div></div>
-            <div class="listas-grupo"><span class="listas-etiqueta">Memorizar · recordar · entrenar</span>
+            <div class="listas-grupo"><span class="listas-etiqueta">Memorizar&nbsp;·&nbsp;recordar&nbsp;· entrenar&nbsp;·&nbsp;controlar</span>
             <div class="subdef">
               <div class="fila"><b>MEMS</b> <i>(Memorizar)</i> — ¿qué puedo memorizar?</div>
               <div class="fila"><b>Parches críticos</b> <i>(Recordar)</i> — básicos pequeños que no puedo permitirme olvidar: memorizar&nbsp;· practicar&nbsp;· comprobar&nbsp;· tener presentes; poco coste, gran impacto si fallan</div>
               <div class="fila"><b>Puntos débiles</b> <i>(Entrenar)</i> — detectar capacidades, cualidades o características por debajo de un nivel coherente → reforzarlas para que ninguna debilidad limite el conjunto</div>
+              <div class="fila"><b>Lista control</b> <i>(Controlar)</i> — H&nbsp;· O&nbsp;· 3T: la hora&nbsp;· el objetivo más importante&nbsp;· las 3 tareas más importantes → si lo sé, estoy aquí; si no, vuelvo</div>
             </div></div></details></li>
           <li><details class="concepto"><summary>Retos<span class="mas">+</span></summary>
             <div class="def">Una capacidad o situación que no entreno a diario pero <b>quiero poder afrontar</b>. Elegir el reto y concretar <b>el siguiente intento</b>.</div></details></li>
@@ -2685,7 +2693,7 @@ details[open]>summary .abre{transform:rotate(45deg)}
     <small>la Arquitectura orienta · el Proceso ejecuta</small>
   </p>
 
-  <p class="sello">v1.5.43</p>
+  <p class="sello">v1.5.44</p>
 
 </div>
 
