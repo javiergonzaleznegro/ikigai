@@ -16,8 +16,8 @@ Base de esta entrega: v1.5.39. -->
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="Sistema">
-<title>Sistema de Mejora Personal — v1.5.45</title>
-<meta name="version" content="1.5.45">
+<title>Sistema de Mejora Personal — v1.5.48</title>
+<meta name="version" content="1.5.48">
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Karla:ital,wght@0,400;0,500;0,700;1,400&display=swap');
 
@@ -988,6 +988,34 @@ details[open]>summary .abre{transform:rotate(45deg)}
  #proceso .listas-etiqueta{position:relative;top:auto;left:auto;display:block;width:-webkit-fit-content;width:fit-content;max-width:calc(100% - 10px);margin:-23px 0 8px 5px;white-space:normal;line-height:15px}
 }
 
+/* v1.5.48 — notas propias en cada lista mental (desplegable al tocar la lista). */
+#proceso .listas-grupo .fila[data-lista]{position:relative;padding-right:26px;cursor:pointer;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+#proceso .listas-grupo .fila[data-lista]:focus-visible{outline:2px solid var(--tinta-suave);outline-offset:2px;border-radius:4px}
+#proceso .notas-mas{position:absolute;right:2px;top:4px;font:20px/1 var(--mano);color:var(--tinta-suave);transition:transform .18s;user-select:none}
+#proceso .fila[aria-expanded="true"] .notas-mas{transform:rotate(45deg)}
+#proceso .notas-n{margin-left:5px;font-size:12px;font-weight:700;color:var(--tinta-suave);white-space:nowrap}
+#proceso .notas-panel{margin:0 0 8px 12px}
+#proceso .notas-lista{list-style:none;margin:0;padding:0}
+#proceso .notas-lista li{display:flex;align-items:center;gap:6px;padding:2px 0;font-size:13.6px;line-height:1.4;color:var(--grafito)}
+#proceso .notas-lista li::before{content:"·";font-weight:800;color:var(--tinta-suave)}
+#proceso .notas-texto{flex:1;min-width:0;overflow-wrap:anywhere}
+#proceso .notas-quitar{flex:none;width:44px;height:44px;margin:-12px -8px -12px 0;border:0;background:none;font:20px/1 var(--mano);color:var(--tinta-suave);cursor:pointer;touch-action:manipulation;user-select:none}
+#proceso .notas-nueva{display:flex;gap:6px;margin-top:4px}
+#proceso .notas-nueva input{flex:1;min-width:0;min-height:48px;box-sizing:border-box;padding:8px 10px;font-size:16px;font-family:inherit;color:var(--tinta);background:#fff;border:1.4px dashed rgba(34,64,111,.45);border-radius:8px}
+#proceso .notas-boton{flex:none;min-height:48px;font-family:inherit;padding:0 14px;font-size:14px;font-weight:800;color:var(--tinta);background:var(--proceso);border:1.6px solid var(--tinta);border-radius:8px;cursor:pointer;touch-action:manipulation;user-select:none}
+#proceso .notas-copia{display:flex;align-items:center;flex-wrap:wrap;gap:4px;margin:2px 14px 6px 8px;font-size:12.5px;color:var(--tinta-suave)}
+#proceso .notas-copia-tit{font-weight:700}
+#proceso .notas-enlace{min-height:48px;font-family:inherit;padding:0 8px;border:0;background:none;font-size:12.5px;font-weight:700;color:var(--tinta);text-decoration:underline;cursor:pointer;touch-action:manipulation;user-select:none}
+#proceso .notas-aviso{margin:0 14px 6px 8px;font-size:12px;font-style:italic;color:var(--tinta-suave)}
+#proceso .notas-restaurar{display:flex;flex-direction:column;gap:6px;margin:0 14px 10px 8px}
+#proceso .notas-restaurar textarea{width:100%;box-sizing:border-box;padding:8px;font:13px ui-monospace,monospace;border:1.4px dashed rgba(34,64,111,.45);border-radius:8px;background:#fff}
+#proceso .notas-restaurar .notas-boton{align-self:flex-start}
+#proceso .notas-restaurar[hidden],#proceso .notas-panel[hidden]{display:none}
+@media(prefers-reduced-motion:reduce){#proceso .notas-mas{transition:none}}
+/* Terminar › Preparación: pastilla arriba y texto debajo en las tres filas, para que no queden unas en línea y otras partidas. */
+.prep-dejar-listo .fila-p{display:block;margin:8px 0 10px 16px}
+.prep-dejar-listo .fila-p .pastilla{display:table;margin:0 0 4px}
+
 </style>
 </head>
 <body>
@@ -1005,6 +1033,8 @@ details[open]>summary .abre{transform:rotate(45deg)}
 <!-- v1.5.39 — Listas mentales en dos grupos (orden de Javi, 07/10/2026): cinco de acción, del interior a la acción
      (Sentido · Objetivos · Tareas · Acción · Aprendizaje), y tres para memorizar, recordar y entrenar.
      Textos de las filas intactos; solo «LLAA + mejora» va unido para que no se parta en iPad. -->
+<!-- v1.5.48 — notas propias en las listas mentales; Lista control H·O·A·R·I; Terminar › Preparación «dejar listo mañana»;
+     subtítulo de Interiorización. Sin el grupo Mentalización de la candidata v1.5.47: Javi lo deja como estaba (25/10/2026). -->
 <!-- v1.5.40 — Listas mentales: cada grupo en caja de línea discontinua con el rótulo sobre el borde, como en Mentalización
      (orden de Javi, 08/10/2026). Mismo texto en las filas; cada «·» va unido a la palabra anterior para que ninguna línea empiece por «·». -->
 <!-- v1.5.41 — Listas mentales, segundo grupo: cada lista lleva su palabra clave entre paréntesis
@@ -1573,7 +1603,7 @@ details[open]>summary .abre{transform:rotate(45deg)}
             <h3>Interiorización</h3>
             <span class="abre">+</span>
           </div>
-          <p class="eyebrow">Reprogramación y preparación mental</p>
+          <p class="eyebrow">Trabajo hacia dentro: mente, emociones y cuerpo</p>
         </summary>
         <div class="dim-body">
 
@@ -2552,18 +2582,18 @@ details[open]>summary .abre{transform:rotate(45deg)}
             <div class="def">Palabras clave para listar en la mente ciertas listas.</div>
             <div class="listas-grupo"><span class="listas-etiqueta">De acción · del interior a la acción</span>
             <div class="subdef">
-              <div class="fila"><b>ResDUD</b> <i>(Sentido)</i> — duda: aclarar qué quiero, sin decidir todavía → pregunta directa → preguntar sin exigir respuesta&nbsp;· mirar sin juzgar</div>
-              <div class="fila"><b>TomDEC</b> <i>(Objetivos)</i> — decidir: abrir opciones → comparar (corto&nbsp;· medio&nbsp;· largo plazo) → elegir; si no es importante, rápido</div>
-              <div class="fila"><b>ResProb / EncSoluc</b> <i>(Tareas)</i> — problema: secuenciar&nbsp;· buscar&nbsp;· comprobar</div>
-              <div class="fila"><b>EnfSit</b> <i>(Acción)</i> — afrontar una situación difícil: no hay un problema que resolver; hay que llevarla a cabo</div>
-              <div class="fila"><b>AnEstCaSit</b> <i>(Aprendizaje)</i> — Analizar/Estudiar casos/situaciones: ¿qué se hizo?&nbsp;· ¿cómo?&nbsp;· ¿por qué? → LLAA&nbsp;+&nbsp;mejora → memorizar y archivar</div>
+              <div class="fila" data-lista="resdud"><b>ResDUD</b> <i>(Sentido)</i> — duda: aclarar qué quiero, sin decidir todavía → pregunta directa → preguntar sin exigir respuesta&nbsp;· mirar sin juzgar</div>
+              <div class="fila" data-lista="tomdec"><b>TomDEC</b> <i>(Objetivos)</i> — decidir: abrir opciones → comparar (corto&nbsp;· medio&nbsp;· largo plazo) → elegir; si no es importante, rápido</div>
+              <div class="fila" data-lista="resprob"><b>ResProb / EncSoluc</b> <i>(Tareas)</i> — problema: secuenciar&nbsp;· buscar&nbsp;· comprobar</div>
+              <div class="fila" data-lista="enfsit"><b>EnfSit</b> <i>(Acción)</i> — afrontar una situación difícil: no hay un problema que resolver; hay que llevarla a cabo</div>
+              <div class="fila" data-lista="anestcasit"><b>AnEstCaSit</b> <i>(Aprendizaje)</i> — Analizar/Estudiar casos/situaciones: ¿qué se hizo?&nbsp;· ¿cómo?&nbsp;· ¿por qué? → LLAA&nbsp;+&nbsp;mejora → memorizar y archivar</div>
             </div></div>
             <div class="listas-grupo"><span class="listas-etiqueta">Memorizar&nbsp;·&nbsp;recordar&nbsp;· entrenar&nbsp;·&nbsp;controlar</span>
             <div class="subdef">
-              <div class="fila"><b>MEMS</b> <i>(Memorizar)</i> — ¿qué puedo memorizar?</div>
-              <div class="fila"><b>Parches críticos</b> <i>(Recordar)</i> — básicos pequeños que no puedo permitirme olvidar: memorizar&nbsp;· practicar&nbsp;· comprobar&nbsp;· tener presentes; poco coste, gran impacto si fallan</div>
-              <div class="fila"><b>Puntos débiles</b> <i>(Entrenar)</i> — detectar capacidades, cualidades o características por debajo de un nivel coherente → reforzarlas para que ninguna debilidad limite el conjunto</div>
-              <div class="fila"><b>Lista control</b> <i>(Controlar)</i> — H&nbsp;· O&nbsp;· 3T: la hora&nbsp;· el objetivo más importante&nbsp;· las 3 tareas más importantes → si lo sé, estoy aquí; si no, vuelvo</div>
+              <div class="fila" data-lista="mems"><b>MEMS</b> <i>(Memorizar)</i> — ¿qué puedo memorizar?</div>
+              <div class="fila" data-lista="parches"><b>Parches críticos</b> <i>(Recordar)</i> — básicos pequeños que no puedo permitirme olvidar: memorizar&nbsp;· practicar&nbsp;· comprobar&nbsp;· tener presentes; poco coste, gran impacto si fallan</div>
+              <div class="fila" data-lista="debiles"><b>Puntos débiles</b> <i>(Entrenar)</i> — detectar capacidades, cualidades o características por debajo de un nivel coherente → reforzarlas para que ninguna debilidad limite el conjunto</div>
+              <div class="fila" data-lista="control"><b>Lista control</b> <i>(Controlar)</i> — H&nbsp;· O&nbsp;· A&nbsp;· R&nbsp;· I: la hora, el día del mes y la semana del año&nbsp;· 3 objetivos&nbsp;· 3 afirmaciones&nbsp;· el reto&nbsp;· 3 palabras de inglés (a veces 2) → rescatarlo de memoria a lo largo del día; si lo sé, estoy aquí; si no, vuelvo&nbsp;· se prepara la víspera</div>
             </div></div></details></li>
           <li><details class="concepto"><summary>Retos<span class="mas">+</span></summary>
             <div class="def">Una capacidad o situación que no entreno a diario pero <b>quiero poder afrontar</b>. Elegir el reto y concretar <b>el siguiente intento</b>.</div></details></li>
@@ -2615,10 +2645,11 @@ details[open]>summary .abre{transform:rotate(45deg)}
               <div class="fila"><b>Útiles</b> — fijar hechos, conversaciones o formas de hacer algo que puede servirme recordar.</div>
             </div>
           </details></li>
-          <li><details class="concepto"><summary>Preparación — dejar listo<span class="mas">+</span></summary>
-            <div class="def"><b>Dejar una base para mañana</b>, sin desarrollarla todavía:</div>
-            <div class="fila-p"><span class="pastilla">objetivos</span><span>apuntar los que probablemente tenga mañana</span></div>
+          <li><details class="concepto prep-dejar-listo"><summary>Preparación — dejar listo<span class="mas">+</span></summary>
+            <div class="def"><b>Dejar listo mañana</b>, para acostarme sabiendo lo que toca:</div>
+            <div class="fila-p"><span class="pastilla">objetivos</span><span>los 3 más importantes (a veces 2)</span></div>
             <div class="fila-p"><span class="pastilla">tareas</span><span>apuntar las importantes que ya conozca</span></div>
+            <div class="fila-p"><span class="pastilla">lista control</span><span>afirmaciones, reto y palabras de inglés</span></div>
           </details></li>
           <li><details class="concepto"><summary>Regulación<span class="mas">+</span></summary>
             <div class="def">Bajar revoluciones.<br><b>Soltar el día y volver a mí.</b></div>
@@ -2693,7 +2724,7 @@ details[open]>summary .abre{transform:rotate(45deg)}
     <small>la Arquitectura orienta · el Proceso ejecuta</small>
   </p>
 
-  <p class="sello">v1.5.45</p>
+  <p class="sello">v1.5.48</p>
 
 </div>
 
@@ -2818,6 +2849,182 @@ details[open]>summary .abre{transform:rotate(45deg)}
 = control.checked ? Math.max(0, (lienzo.scrollWidth-lienzo.clientWidth)/2) : 0;
     });
   });
+})();
+</script>
+
+<script>
+/* v1.5.48 — Listas mentales con notas propias.
+   Al tocar una lista se abre su desplegable: lo apuntado y una línea para añadir.
+   Las notas viven solo en este móvil (localStorage). «Exportar» descarga una copia JSON
+   y «Restaurar» la vuelve a cargar: sin copia, un cambio de terminal las pierde.
+   Cada guardado lleva sello de tiempo; al volver la app a primer plano se relee lo guardado. */
+(function () {
+  var CLAVE = 'smp-notas-listas';
+  var FORMATO = 'smp-notas-listas/1';
+  var filas = document.querySelectorAll('#proceso .listas-grupo .fila[data-lista]');
+  if (!filas.length) return;
+
+  var almacen = null;
+  try { localStorage.setItem(CLAVE + '-prueba', '1'); localStorage.removeItem(CLAVE + '-prueba'); almacen = localStorage; } catch (e) { almacen = null; }
+
+  function vacio() { return { formato: FORMATO, actualizado: '', listas: {} }; }
+  function leer() {
+    if (!almacen) return vacio();
+    try {
+      var d = JSON.parse(almacen.getItem(CLAVE) || 'null');
+      if (d && d.formato === FORMATO && d.listas && typeof d.listas === 'object') return d;
+    } catch (e) {}
+    return vacio();
+  }
+  var datos = leer();
+  function guardar() {
+    datos.actualizado = new Date().toISOString();
+    if (almacen) { try { almacen.setItem(CLAVE, JSON.stringify(datos)); } catch (e) {} }
+  }
+  function notasDe(id) { return Array.isArray(datos.listas[id]) ? datos.listas[id] : []; }
+  function crear(tag, clase, texto) {
+    var e = document.createElement(tag);
+    if (clase) e.className = clase;
+    if (texto != null) e.textContent = texto;
+    return e;
+  }
+
+  var paneles = [];
+  Array.prototype.forEach.call(filas, function (fila) {
+    var id = fila.getAttribute('data-lista');
+    var nombre = (fila.querySelector('b') || fila).textContent.trim();
+    var cuenta = crear('span', 'notas-n');
+    var mas = crear('span', 'notas-mas', '+');
+    mas.setAttribute('aria-hidden', 'true');
+    fila.appendChild(cuenta);
+    fila.appendChild(mas);
+    fila.setAttribute('role', 'button');
+    fila.setAttribute('tabindex', '0');
+    fila.setAttribute('aria-expanded', 'false');
+    fila.setAttribute('aria-controls', 'notas-' + id);
+
+    var panel = crear('div', 'notas-panel');
+    panel.id = 'notas-' + id;
+    panel.hidden = true;
+    var lista = crear('ul', 'notas-lista');
+    var form = crear('form', 'notas-nueva');
+    var entrada = crear('input');
+    entrada.type = 'text';
+    entrada.maxLength = 300;
+    entrada.placeholder = 'Añadir a ' + nombre + '…';
+    entrada.setAttribute('aria-label', 'Nueva nota en ' + nombre);
+    entrada.setAttribute('enterkeyhint', 'done');
+    var anadir = crear('button', 'notas-boton', 'Añadir');
+    anadir.type = 'submit';
+    form.appendChild(entrada);
+    form.appendChild(anadir);
+    panel.appendChild(lista);
+    panel.appendChild(form);
+    fila.parentNode.insertBefore(panel, fila.nextSibling);
+
+    function pintar() {
+      var notas = notasDe(id);
+      cuenta.textContent = notas.length ? '· ' + notas.length : '';
+      lista.textContent = '';
+      notas.forEach(function (n) {
+        var li = crear('li');
+        li.appendChild(crear('span', 'notas-texto', n.texto));
+        var quitar = crear('button', 'notas-quitar', '×');
+        quitar.type = 'button';
+        quitar.setAttribute('aria-label', 'Quitar «' + n.texto + '»');
+        quitar.addEventListener('click', function () {
+          datos.listas[id] = notasDe(id).filter(function (x) { return x.id !== n.id; });
+          guardar(); pintar();
+        });
+        li.appendChild(quitar);
+        lista.appendChild(li);
+      });
+    }
+    function alternar() {
+      var abrir = panel.hidden;
+      panel.hidden = !abrir;
+      fila.setAttribute('aria-expanded', abrir ? 'true' : 'false');
+    }
+    fila.addEventListener('click', alternar);
+    fila.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); alternar(); }
+    });
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var t = entrada.value.replace(/\s+/g, ' ').trim();
+      if (!t) return;
+      var notas = notasDe(id).slice();
+      notas.push({ id: 'n' + Date.now().toString(36) + Math.random().toString(36).slice(2, 6), texto: t, fecha: new Date().toISOString() });
+      datos.listas[id] = notas;
+      guardar(); pintar();
+      entrada.value = '';
+    });
+    paneles.push(pintar);
+    pintar();
+  });
+  function repintar() { paneles.forEach(function (p) { p(); }); }
+
+  /* Copia de seguridad, al pie de Listas mentales */
+  var pieListas = filas[filas.length - 1].closest('details');
+  var copia = crear('div', 'notas-copia');
+  copia.appendChild(crear('span', 'notas-copia-tit', 'Mis notas:'));
+  var bExportar = crear('button', 'notas-enlace', 'Exportar');
+  var bRestaurar = crear('button', 'notas-enlace', 'Restaurar');
+  bExportar.type = bRestaurar.type = 'button';
+  copia.appendChild(bExportar);
+  copia.appendChild(bRestaurar);
+  var aviso = crear('p', 'notas-aviso');
+  if (!almacen) aviso.textContent = 'En este modo no se pueden guardar notas.';
+  else if (location.protocol === 'file:') aviso.textContent = 'Abierto como fichero: las notas pueden perderse al cerrar. Para guardarlas, usa la app instalada.';
+  var zona = crear('div', 'notas-restaurar');
+  zona.hidden = true;
+  var texto = crear('textarea');
+  texto.rows = 4;
+  texto.placeholder = 'Pega aquí la copia exportada';
+  texto.setAttribute('aria-label', 'Copia de las notas para restaurar');
+  var bAplicar = crear('button', 'notas-boton', 'Restaurar copia');
+  bAplicar.type = 'button';
+  zona.appendChild(texto);
+  zona.appendChild(bAplicar);
+  pieListas.appendChild(copia);
+  if (aviso.textContent) pieListas.appendChild(aviso);
+  pieListas.appendChild(zona);
+
+  bExportar.addEventListener('click', function () {
+    var json = JSON.stringify(datos, null, 1);
+    var nombre = 'notas-listas-' + new Date().toISOString().slice(0, 10) + '.json';
+    try {
+      var fichero = new File([json], nombre, { type: 'application/json' });
+      if (navigator.canShare && navigator.canShare({ files: [fichero] })) {
+        navigator.share({ files: [fichero], title: nombre }).catch(function () {});
+        return;
+      }
+    } catch (e) {}
+    var a = document.createElement('a');
+    a.href = URL.createObjectURL(new Blob([json], { type: 'application/json' }));
+    a.download = nombre;
+    document.body.appendChild(a); a.click();
+    setTimeout(function () { URL.revokeObjectURL(a.href); a.remove(); }, 1000);
+  });
+  bRestaurar.addEventListener('click', function () { zona.hidden = !zona.hidden; if (!zona.hidden) texto.focus(); });
+  bAplicar.addEventListener('click', function () {
+    var d;
+    try { d = JSON.parse(texto.value); } catch (e) { d = null; }
+    if (!d || d.formato !== FORMATO || !d.listas || typeof d.listas !== 'object') { alert('No es una copia de las notas de las listas.'); return; }
+    if (!confirm('¿Sustituir las notas de este móvil por las de la copia?')) return;
+    datos = { formato: FORMATO, actualizado: '', listas: d.listas };
+    guardar(); repintar();
+    texto.value = ''; zona.hidden = true;
+  });
+
+  /* Al volver a primer plano, o si otra pestaña guarda, se relee lo último guardado */
+  function sincronizar() {
+    var d = leer();
+    if (d.actualizado && d.actualizado !== datos.actualizado) { datos = d; repintar(); }
+  }
+  document.addEventListener('visibilitychange', function () { if (document.visibilityState === 'visible') sincronizar(); });
+  window.addEventListener('pageshow', sincronizar);
+  window.addEventListener('storage', function (e) { if (e.key === CLAVE) sincronizar(); });
 })();
 </script>
 
